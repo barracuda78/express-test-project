@@ -1,0 +1,14 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="express-testing:war">
+    <output-path>$PROJECT_DIR$/target</output-path>
+    <properties id="maven-jee-properties">
+      <options>
+        <module>express-testing</module>
+        <packaging>war</packaging>
+      </options>
+    </properties>
+    <root id="archive" name="express-testing-1.0-SNAPSHOT.war">
+      <element id="artifact" artifact-name="express-testing:war exploded" />
+    </root>
+  </artifact>
+</component>
