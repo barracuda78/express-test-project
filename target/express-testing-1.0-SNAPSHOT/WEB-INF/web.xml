@@ -41,4 +41,13 @@
         <servlet-name>TestResults</servlet-name>
         <url-pattern>/testResults</url-pattern>
     </servlet-mapping>
+
+    <servlet>
+        <servlet-name>TeacherMenu</servlet-name>
+        <jsp-file>/WEB-INF/view/teacher_menu.jsp</jsp-file>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>TeacherMenu</servlet-name>
+        <url-pattern>/teacherMenu</url-pattern>
+    </servlet-mapping>
 </web-app>

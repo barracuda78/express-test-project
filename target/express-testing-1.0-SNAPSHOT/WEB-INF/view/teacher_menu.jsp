@@ -19,16 +19,51 @@
 
 <p>Список групп:</p>
 
+<ul>
 <%
     Teacher teacher = (Teacher)session.getAttribute("user");
     List<Group> groups = teacher.getGroups();
     System.out.println(teacher.getRole());
+
     for(Group g : groups){
         %>
+        <li>
         <%=g%>
+        </li>
+        <%
+    }
+
+    String wrongId = (String)request.getAttribute("wrongTestId");
+    String testingStarted = (String)request.getAttribute("testingStarted");
+    if("wrongId".equals(wrongId)){
+        %>
+            <%="<p>Невозможно преобразовать id теста к числу. Укажите номер теста в правильном формате.</p>"%>
+        <%
+    }
+
+    if("ok".equals(testingStarted)){
+        %>
+            <%="<p>Тестирование началось!</p>"%>
         <%
     }
 %>
+</ul>
+
+<div id="box">
+    <form name="add" action="TestingServlet" method="GET">
+        <table>         <%--таблица--%>
+            <tr>        <%--table raw--%>
+                <p>Укажите id теста:</p>
+                <td><input type="text" name="testId" size="12"/></td>
+            </tr>
+            <tr>
+                <td><input type="submit" name="button1" value="Запустить тест"/></td>
+                <td><input type="submit" name="buttin2" value="Остановить тест"/></td>
+            </tr>
+
+        </table>
+    </form>
+</div>
 
 <br/>
 

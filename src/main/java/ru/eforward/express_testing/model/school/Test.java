@@ -11,4 +11,5 @@ public class Test {
     private int id;
     private String name;
     private Path path;
+    private boolean active;
 }
