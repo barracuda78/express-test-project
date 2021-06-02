@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class TestDAO {
+
     private final List<Test> testsStore = new ArrayList<>();
 
     public Test getById(int id) {
@@ -31,17 +32,18 @@ public class TestDAO {
     }
 
     public Test getTestById(int id) {
-        System.out.println("------------->-----------TestDAO class, getTestById() : we are here");
         Test result = null;
-
         for (Test t : testsStore) {
             if (t.getId() == id) {
                 result = t;
             }
         }
-
-        System.out.println("------------->-----------TestDAO class, getTestById() : result = " + result);
         return result;
+    }
+
+
+    public List<Test> getTestsStore() {
+        return testsStore;
     }
 
 }
