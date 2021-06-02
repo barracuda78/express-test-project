@@ -2,6 +2,9 @@ package ru.eforward.express_testing.servlets.filter;
 
 
 import ru.eforward.express_testing.dao.UserDAO;
+import ru.eforward.express_testing.model.Admin;
+import ru.eforward.express_testing.model.Student;
+import ru.eforward.express_testing.model.Teacher;
 import ru.eforward.express_testing.model.User;
 
 import javax.servlet.*;
@@ -13,9 +16,6 @@ import java.util.concurrent.atomic.AtomicReference;
 
 import static java.util.Objects.nonNull;
 
-/**
- * Acidification filter.
- */
 public class AuthFilter implements Filter {
 
     @Override
@@ -37,50 +37,56 @@ public class AuthFilter implements Filter {
         final HttpSession session = req.getSession();
 
         //Logged user. - если пользователь уже залогинен:
-        if (nonNull(session) &&
-                nonNull(session.getAttribute("login")) &&
-                nonNull(session.getAttribute("password"))) {
+        if (nonNull(session) &&  nonNull(session.getAttribute("login")) && nonNull(session.getAttribute("password"))) {
 
             final User.ROLE role = (User.ROLE) session.getAttribute("role");
+
+            if(role == User.ROLE.STUDENT){
+                Student user = (Student) dao.get().getUserByLoginPassword((String) session.getAttribute("login"), (String) session.getAttribute("password"));
+                session.setAttribute("user", user);
+            }else if(role == User.ROLE.ADMIN){
+                Admin user = (Admin)dao.get().getUserByLoginPassword((String) session.getAttribute("login"), (String) session.getAttribute("password"));
+                session.setAttribute("user", user);
+            }else if(role == User.ROLE.TEACHER){
+                Teacher user = (Teacher) dao.get().getUserByLoginPassword((String) session.getAttribute("login"), (String) session.getAttribute("password"));
+                session.setAttribute("user", user);
+            }
 
             moveToMenu(req, res, role);
 
         //если пользователь еще не залогинен, но существует в БД такие логин-пароль:
-        } else if (dao.get().userIsExist(login, password)) {
+        } else if (dao.get().userIsPresent(login, password)) {
 
             final User.ROLE role = dao.get().getRoleByLoginPassword(login, password);
-
             req.getSession().setAttribute("password", password);
             req.getSession().setAttribute("login", login);
             req.getSession().setAttribute("role", role);
 
+            User user = dao.get().getUserByLoginPassword((String) session.getAttribute("login"), (String) session.getAttribute("password"));
+            session.setAttribute("user", user);
+
             moveToMenu(req, res, role);
+
         //если не залогинен и такой пары логин-пароль в БД не существует:
         } else {
             moveToMenu(req, res, User.ROLE.UNKNOWN);
         }
     }
 
-    /**
-     * Move user to menu.
-     * If access 'admin' move to admin menu.
-     * If access 'user' move to user menu.
+    /*
+     * Перепещает пользователя на страницу jsp с соответствующим контентом в зависимости от роли пользователя.
      */
-    private void moveToMenu(final HttpServletRequest req,
-                            final HttpServletResponse res,
-                            final User.ROLE role)
-            throws ServletException, IOException {
-
+    private void moveToMenu(final HttpServletRequest req, final HttpServletResponse res, final User.ROLE role) throws ServletException, IOException {
 
         if (role.equals(User.ROLE.ADMIN)) {
-
             req.getRequestDispatcher("/WEB-INF/view/admin_menu.jsp").forward(req, res);
 
-        } else if (role.equals(User.ROLE.USER)) {
+        } else if (role.equals(User.ROLE.TEACHER)) {
+            req.getRequestDispatcher("/WEB-INF/view/teacher_menu.jsp").forward(req, res);
 
-            req.getRequestDispatcher("/WEB-INF/view/user_menu.jsp").forward(req, res);
-
-        } else {
+        } else if (role.equals(User.ROLE.STUDENT)) {
+            req.getRequestDispatcher("/WEB-INF/view/student_menu.jsp").forward(req, res);
+        }else {
             //неизвестный пользователь опять перенаправляется на страницу логина:
             req.getRequestDispatcher("/WEB-INF/view/login.jsp").forward(req, res);
         }

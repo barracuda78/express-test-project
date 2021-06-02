@@ -1,7 +1,6 @@
 package ru.eforward.express_testing.dao;
 
 import ru.eforward.express_testing.model.User;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -11,8 +10,8 @@ public class UserDAO {
 
     public User getById(int id) {
 
-        User result = new User();
-        result.setId(-1);
+        User result = null;
+        //result.setId(-1);
 
         for (User user : store) {
             if (user.getId() == id) {
@@ -25,8 +24,8 @@ public class UserDAO {
 
     public User getUserByLoginPassword(final String login, final String password) {
 
-        User result = new User();
-        result.setId(-1);
+        User result = null;
+        //result.setId(-1);
 
         for (User user : store) {
             if (user.getLogin().equals(login) && user.getPassword().equals(password)) {
@@ -37,7 +36,7 @@ public class UserDAO {
         return result;
     }
 
-    public boolean add(final User user) {
+    public boolean addUserToDAO(final User user) {
 
         for (User u : store) {
             if (u.getLogin().equals(user.getLogin()) && u.getPassword().equals(user.getPassword())) {
@@ -60,7 +59,7 @@ public class UserDAO {
         return result;
     }
 
-    public boolean userIsExist(final String login, final String password) {
+    public boolean userIsPresent(final String login, final String password) {
 
         boolean result = false;
 

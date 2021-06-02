@@ -19,9 +19,26 @@
         <servlet-name>LogoutServlet</servlet-name>
         <servlet-class>ru.eforward.express_testing.servlets.servlet.LogoutServlet</servlet-class>
     </servlet>
-
     <servlet-mapping>
         <servlet-name>LogoutServlet</servlet-name>
         <url-pattern>/logout</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>Testing</servlet-name>
+        <jsp-file>/WEB-INF/view/testing.jsp</jsp-file>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>Testing</servlet-name>
+        <url-pattern>/testing</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>TestResults</servlet-name>
+        <jsp-file>/WEB-INF/view/testResults.jsp</jsp-file>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>TestResults</servlet-name>
+        <url-pattern>/testResults</url-pattern>
     </servlet-mapping>
 </web-app>

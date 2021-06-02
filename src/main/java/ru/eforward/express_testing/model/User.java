@@ -1,6 +1,10 @@
 package ru.eforward.express_testing.model;
 
-public class User {
+import ru.eforward.express_testing.model.school.*;
+
+import java.util.List;
+
+public abstract class User {
     private int id;
     private String lastName;
     private String firstName;
@@ -8,23 +12,10 @@ public class User {
     private String login;
     private String password;
     private ROLE role;
-    //school
-    //branch
-    //course
-    //level
-    //lesson
-    //testResult
-    //group
-    //teacher
+    private School school;
+    private List<Branch> branches;
 
     public User() {
-    }
-
-    public User(int id, String login, String password, ROLE role) {
-        this.id = id;
-        this.login = login;
-        this.password = password;
-        this.role = role;
     }
 
     public int getId() {
@@ -71,7 +62,40 @@ public class User {
         this.middleName = middleName;
     }
 
+    public String getLastName() {
+        return lastName;
+    }
+
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public String getMiddleName() {
+        return middleName;
+    }
+
+    public School getSchool() {
+        return school;
+    }
+
+    public void setSchool(School school) {
+        this.school = school;
+    }
+
+    public List<Branch> getBranches() {
+        return branches;
+    }
+
+    public void setBranches(List<Branch> branches) {
+        this.branches = branches;
+    }
+
+
     public enum ROLE {
-        USER, ADMIN, TEACHER, UNKNOWN
+        USER,
+        ADMIN,
+        TEACHER,
+        STUDENT,
+        UNKNOWN
     }
 }
