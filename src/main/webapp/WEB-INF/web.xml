@@ -4,6 +4,8 @@
          xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd"
          version="4.0">
     <!--filter check exist session for sign in-->
+
+
     <filter>
         <filter-name>AuthFilter</filter-name>
         <filter-class>ru.eforward.express_testing.servlets.filter.AuthFilter</filter-class>
@@ -13,6 +15,8 @@
         <filter-name>AuthFilter</filter-name>
         <url-pattern>/</url-pattern>
     </filter-mapping>
+
+
 
     <!--Logout servlet-->
     <servlet>
@@ -50,4 +54,6 @@
         <servlet-name>TeacherMenu</servlet-name>
         <url-pattern>/teacherMenu</url-pattern>
     </servlet-mapping>
+
 </web-app>
+

@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dataSource name="projdb">
+  <database-model serializer="dbm" dbms="HSQLDB" family-id="HSQLDB" format-version="4.20">
+    <root id="1">
+      <ServerVersion>2.4.0</ServerVersion>
+    </root>
+    <database id="2" parent="1" name="PUBLIC">
+      <Current>1</Current>
+    </database>
+    <schema id="3" parent="2" name="INFORMATION_SCHEMA"/>
+    <schema id="4" parent="2" name="PUBLIC">
+      <Current>1</Current>
+    </schema>
+    <schema id="5" parent="2" name="SYSTEM_LOBS"/>
+    <table id="6" parent="4" name="TESTTABLE"/>
+    <table id="7" parent="4" name="USERS"/>
+    <column id="8" parent="6" name="ID">
+      <Position>1</Position>
+      <DataType>INTEGER|4s</DataType>
+    </column>
+    <column id="9" parent="6" name="NAME">
+      <Position>2</Position>
+      <DataType>VARCHAR(40)|12s</DataType>
+    </column>
+    <column id="10" parent="6" name="PASSWORD">
+      <Position>3</Position>
+      <DataType>VARCHAR(40)|12s</DataType>
+    </column>
+    <column id="11" parent="6" name="EMAIL">
+      <Position>4</Position>
+      <DataType>VARCHAR(30)|12s</DataType>
+    </column>
+    <column id="12" parent="6" name="EMAIL13">
+      <Position>5</Position>
+      <DataType>VARCHAR(30)|12s</DataType>
+    </column>
+    <column id="13" parent="7" name="ID">
+      <Position>1</Position>
+      <DataType>INTEGER|4s</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>null</SequenceIdentity>
+    </column>
+    <column id="14" parent="7" name="NAME">
+      <Position>2</Position>
+      <DataType>VARCHAR(31)|12s</DataType>
+    </column>
+    <column id="15" parent="7" name="AGE">
+      <Position>3</Position>
+      <DataType>DOUBLE|8s</DataType>
+    </column>
+    <index id="16" parent="7" name="SYS_IDX_SYS_PK_10092_10093">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>ID</ColNames>
+      <Unique>1</Unique>
+    </index>
+    <key id="17" parent="7" name="SYS_PK_10092">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>ID</ColNames>
+      <Primary>1</Primary>
+    </key>
+  </database-model>
+</dataSource>

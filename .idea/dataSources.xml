@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="DataSourceManagerImpl" format="xml" multifile-model="true">
-    <data-source source="LOCAL" name="HSQLDB (Local) - hsqldb" uuid="0b06cc20-1a17-49b7-834b-53685d94c179">
-      <driver-ref>hsqldb.local</driver-ref>
+    <data-source source="LOCAL" name="efdb@localhost" uuid="de22726e-ef72-4728-a7fb-9a7e9ad0b351">
+      <driver-ref>hsqldb.remote</driver-ref>
       <synchronize>true</synchronize>
-      <remarks>HSQLDB local for EF express testing system</remarks>
-      <jdbc-driver>org.hsqldb.jdbc.JDBCDriver</jdbc-driver>
-      <jdbc-url>jdbc:hsqldb:file:$PROJECT_DIR$/hsqldb-2.6.0/hsqldb/db1</jdbc-url>
+      <jdbc-driver>org.hsqldb.jdbcDriver</jdbc-driver>
+      <jdbc-url>jdbc:hsqldb:hsql://localhost:9001/efdb</jdbc-url>
       <working-dir>$ProjectFileDir$</working-dir>
     </data-source>
   </component>
