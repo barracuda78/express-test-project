@@ -1,11 +1,14 @@
 package ru.eforward.express_testing.servlets.listener;
 
-import ru.eforward.express_testing.dao.TestDAO;
-import ru.eforward.express_testing.dao.UserDAO;
+import ru.eforward.express_testing.dao.SchoolDAOImpl;
+import ru.eforward.express_testing.dao.TestDAOImpl;
+import ru.eforward.express_testing.dao.UserDAOImpl;
+import ru.eforward.express_testing.daoInterfaces.SchoolDAO;
 import ru.eforward.express_testing.model.Student;
 import ru.eforward.express_testing.model.User;
 import ru.eforward.express_testing.model.UserBuilder;
 import ru.eforward.express_testing.model.school.*;
+import ru.eforward.express_testing.utils.LogHelper;
 
 import javax.servlet.ServletContext;
 import javax.servlet.ServletContextEvent;
@@ -26,14 +29,16 @@ public class ContextListener implements ServletContextListener {
     /**
      * Fake database connector.
      */
-    private AtomicReference<UserDAO> userDao;
-    private AtomicReference<TestDAO> testDao;
+    private AtomicReference<UserDAOImpl> userDao;
+    private AtomicReference<TestDAOImpl> testDao;
+    private AtomicReference<SchoolDAO> schoolDao;
 
     @Override
     public void contextInitialized(ServletContextEvent servletContextEvent) {
 
-        userDao = new AtomicReference<>(new UserDAO());
-        testDao = new AtomicReference<>(new TestDAO());
+        userDao = new AtomicReference<>(new UserDAOImpl());
+        testDao = new AtomicReference<>(new TestDAOImpl());
+        schoolDao = new AtomicReference<>(new SchoolDAOImpl());
 
         School schoolEF = new School(1, "EnglishForward");
 
@@ -61,7 +66,6 @@ public class ContextListener implements ServletContextListener {
                 .addBranches(branches)
                 .addTestResults(testResults)
                 .buildUser();
-
         userDao.get().addUserToDAO(user01);
 
         userBuilder = new UserBuilder(ADMIN);
@@ -116,5 +120,7 @@ public class ContextListener implements ServletContextListener {
     public void contextDestroyed(ServletContextEvent sce) {
         userDao = null;
         testDao = null;
+        schoolDao = null;
+        LogHelper.writeMessage("---method contextDestroyed() : all daos nulled.");
     }
 }

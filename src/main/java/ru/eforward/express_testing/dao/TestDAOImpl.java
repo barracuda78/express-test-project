@@ -5,7 +5,7 @@ import ru.eforward.express_testing.model.school.Test;
 import java.util.ArrayList;
 import java.util.List;
 
-public class TestDAO {
+public class TestDAOImpl {
 
     private final List<Test> testsStore = new ArrayList<>();
 

@@ -1,6 +1,6 @@
 package ru.eforward.express_testing.model;
 
-import ru.eforward.express_testing.model.files.TestFilesReader;
+import ru.eforward.express_testing.utils.TestFilesReader;
 import ru.eforward.express_testing.model.school.*;
 
 import java.nio.file.Path;

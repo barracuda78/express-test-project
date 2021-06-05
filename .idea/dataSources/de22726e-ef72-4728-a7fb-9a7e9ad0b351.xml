@@ -12,14 +12,71 @@
       <Current>1</Current>
     </schema>
     <schema id="5" parent="2" name="SYSTEM_LOBS"/>
-    <table id="6" parent="4" name="FLOWERS"/>
-    <column id="7" parent="6" name="ID">
+    <table id="6" parent="4" name="BRANCHES"/>
+    <table id="7" parent="4" name="FLOWERS"/>
+    <table id="8" parent="4" name="SCHOOLS"/>
+    <column id="9" parent="6" name="ID">
+      <Position>1</Position>
+      <DataType>INTEGER|4s</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>null</SequenceIdentity>
+    </column>
+    <column id="10" parent="6" name="NAME">
+      <Position>2</Position>
+      <DataType>VARCHAR(255)|12s</DataType>
+    </column>
+    <column id="11" parent="6" name="SCHOOL_ID">
+      <Position>3</Position>
+      <DataType>INTEGER|4s</DataType>
+    </column>
+    <index id="12" parent="6" name="SYS_IDX_SYS_PK_10353_10355">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>ID</ColNames>
+      <Unique>1</Unique>
+    </index>
+    <index id="13" parent="6" name="SYS_IDX_10356">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>SCHOOL_ID</ColNames>
+    </index>
+    <key id="14" parent="6" name="SYS_PK_10353">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>ID</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <foreign-key id="15" parent="6" name="SYS_FK_10354">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>SCHOOL_ID</ColNames>
+      <RefTableName>SCHOOLS</RefTableName>
+      <RefKeyName>SYS_PK_10320</RefKeyName>
+      <RefColNames>ID</RefColNames>
+    </foreign-key>
+    <column id="16" parent="7" name="ID">
       <Position>1</Position>
       <DataType>INTEGER|4s</DataType>
     </column>
-    <column id="8" parent="6" name="FLOWERNAME">
+    <column id="17" parent="7" name="FLOWERNAME">
       <Position>2</Position>
       <DataType>VARCHAR(40)|12s</DataType>
     </column>
+    <column id="18" parent="8" name="ID">
+      <Position>1</Position>
+      <DataType>INTEGER|4s</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>null</SequenceIdentity>
+    </column>
+    <column id="19" parent="8" name="NAME">
+      <Position>2</Position>
+      <DataType>VARCHAR(255)|12s</DataType>
+    </column>
+    <index id="20" parent="8" name="SYS_IDX_SYS_PK_10320_10321">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>ID</ColNames>
+      <Unique>1</Unique>
+    </index>
+    <key id="21" parent="8" name="SYS_PK_10320">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>ID</ColNames>
+      <Primary>1</Primary>
+    </key>
   </database-model>
 </dataSource>

@@ -1,5 +1,7 @@
 package ru.eforward.express_testing.dao;
 
+import ru.eforward.express_testing.daoInterfaces.UserDAO;
+import ru.eforward.express_testing.dbConnection.PoolConnector;
 import ru.eforward.express_testing.model.User;
 
 import java.sql.Connection;
@@ -8,10 +10,10 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
-public class UserDAO {
+public class UserDAOImpl implements UserDAO {
 
     private final List<User> store = new ArrayList<>();
-    private Connection connection = ConnectionFactory.getConnection();
+    private Connection connection = PoolConnector.getConnection();
 
     public User getById(int id) {
 
@@ -41,6 +43,7 @@ public class UserDAO {
         return result;
     }
 
+    @Override
     public boolean addUserToDAO(final User user) {
 
         for (User u : store) {
@@ -49,20 +52,20 @@ public class UserDAO {
             }
         }
 
-        try {
-            String SQLSTRING = "INSERT INTO FLOWERS (ID, FLOWERNAME) VALUES (4, 'flower4')";
-            Statement statement = connection.createStatement();
-            boolean gotResultSet = statement.execute(SQLSTRING);
-            if(!gotResultSet){
-                int updateCount = statement.getUpdateCount();
-                System.out.println("---------updateCount = " + updateCount + " -------------");
-            }
-
-            statement.close();
-            //connection.close();
-        } catch (SQLException throwables) {
-            throwables.printStackTrace();
-        }
+//        try {
+//            String SQLSTRING = "INSERT INTO FLOWERS (ID, FLOWERNAME) VALUES (4, 'flower4')";
+//            Statement statement = connection.createStatement();
+//            boolean gotResultSet = statement.execute(SQLSTRING);
+//            if(!gotResultSet){
+//                int updateCount = statement.getUpdateCount();
+//                System.out.println("---------updateCount = " + updateCount + " -------------");
+//            }
+//
+//            statement.close();
+//            //connection.close();
+//        } catch (SQLException throwables) {
+//            throwables.printStackTrace();
+//        }
 
         return store.add(user);
     }

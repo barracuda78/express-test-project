@@ -16,6 +16,19 @@
 <p><c:out value="${user.lastName}" default="error: last name not found..."/></p>
 <p><c:out value="${user.firstName}" default="error: first name not found..."/></p>
 <p><c:out value="${user.middleName}" default="error: middle name not found..."/></p>
+
+<hr/>
+    <p1><a href="createSchool"> Добавить</a> имя школы</p1>
+<hr/>
+
+<%
+    //request.setAttribute("schoolAdded", schoolAdded);
+//    Boolean schoolAdded = (Boolean)request.getAttribute("schoolAdded");
+//    if(schoolAdded){
+//
+//    }
+%>
+
 <a href="<c:url value='/logout' />">Logout</a>
 </body>
 </html>

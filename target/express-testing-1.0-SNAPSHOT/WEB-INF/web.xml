@@ -10,12 +10,10 @@
         <filter-name>AuthFilter</filter-name>
         <filter-class>ru.eforward.express_testing.servlets.filter.AuthFilter</filter-class>
     </filter>
-
     <filter-mapping>
         <filter-name>AuthFilter</filter-name>
         <url-pattern>/</url-pattern>
     </filter-mapping>
-
 
 
     <!--Logout servlet-->
@@ -28,6 +26,7 @@
         <url-pattern>/logout</url-pattern>
     </servlet-mapping>
 
+
     <servlet>
         <servlet-name>Testing</servlet-name>
         <jsp-file>/WEB-INF/view/testing.jsp</jsp-file>
@@ -36,6 +35,7 @@
         <servlet-name>Testing</servlet-name>
         <url-pattern>/testing</url-pattern>
     </servlet-mapping>
+
 
     <servlet>
         <servlet-name>TestResults</servlet-name>
@@ -46,6 +46,7 @@
         <url-pattern>/testResults</url-pattern>
     </servlet-mapping>
 
+
     <servlet>
         <servlet-name>TeacherMenu</servlet-name>
         <jsp-file>/WEB-INF/view/teacher_menu.jsp</jsp-file>
@@ -54,6 +55,27 @@
         <servlet-name>TeacherMenu</servlet-name>
         <url-pattern>/teacherMenu</url-pattern>
     </servlet-mapping>
+
+
+    <servlet>
+        <servlet-name>AdminMenu</servlet-name>
+        <jsp-file>/WEB-INF/view/admin_menu.jsp</jsp-file>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>AdminMenu</servlet-name>
+        <url-pattern>/adminMenu</url-pattern>
+    </servlet-mapping>
+
+
+    <servlet>
+        <servlet-name>CreateSchool</servlet-name>
+        <jsp-file>/WEB-INF/view/create_school.jsp</jsp-file>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>CreateSchool</servlet-name>
+        <url-pattern>/createSchool</url-pattern>
+    </servlet-mapping>
+
 
     <resource-ref>
         <!--description>DB Connection</description-->

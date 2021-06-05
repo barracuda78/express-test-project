@@ -1,4 +1,4 @@
-package ru.eforward.express_testing.model.files;
+package ru.eforward.express_testing.utils;
 
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;

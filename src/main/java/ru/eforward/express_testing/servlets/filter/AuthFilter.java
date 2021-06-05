@@ -1,7 +1,7 @@
 package ru.eforward.express_testing.servlets.filter;
 
 
-import ru.eforward.express_testing.dao.UserDAO;
+import ru.eforward.express_testing.dao.UserDAOImpl;
 import ru.eforward.express_testing.model.Admin;
 import ru.eforward.express_testing.model.Student;
 import ru.eforward.express_testing.model.Teacher;
@@ -32,7 +32,7 @@ public class AuthFilter implements Filter {
         final String password = req.getParameter("password");
 
         @SuppressWarnings("unchecked")
-        final AtomicReference<UserDAO> dao = (AtomicReference<UserDAO>) req.getServletContext().getAttribute("dao");
+        final AtomicReference<UserDAOImpl> dao = (AtomicReference<UserDAOImpl>) req.getServletContext().getAttribute("dao");
 
         final HttpSession session = req.getSession();
 
@@ -61,7 +61,6 @@ public class AuthFilter implements Filter {
             req.getSession().setAttribute("password", password);
             req.getSession().setAttribute("login", login);
             req.getSession().setAttribute("role", role);
-
             User user = dao.get().getUserByLoginPassword((String) session.getAttribute("login"), (String) session.getAttribute("password"));
             session.setAttribute("user", user);
 
@@ -79,7 +78,7 @@ public class AuthFilter implements Filter {
     private void moveToMenu(final HttpServletRequest req, final HttpServletResponse res, final User.ROLE role) throws ServletException, IOException {
 
         if (role.equals(User.ROLE.ADMIN)) {
-            req.getRequestDispatcher("/WEB-INF/view/admin_menu.jsp").forward(req, res);
+            req.getRequestDispatcher("WEB-INF/view/admin_menu.jsp").forward(req, res);
 
         } else if (role.equals(User.ROLE.TEACHER)) {
             req.getRequestDispatcher("/WEB-INF/view/teacher_menu.jsp").forward(req, res);

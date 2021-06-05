@@ -1,4 +1,6 @@
-package ru.eforward.express_testing.dao;
+package ru.eforward.express_testing.dbConnection;
+
+import ru.eforward.express_testing.utils.LogHelper;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -11,24 +13,25 @@ import java.util.Properties;
 Утилитарный класс для загрузки драйвера, получения параметров соединения из файла .properties и создания соединения.
 Используется в конструкторе классов DAO;
 */
-public class Connector {
+public class DriverManagerConnector{
     private static Connection connection;
-    private static final String URL = "jdbc:hsqldb:hsql://localhost:9001/efdb";
-    private static final String USER = "root";
-    private static final String PASSWORD = "root";
+//    private static final String URL = "jdbc:hsqldb:hsql://localhost:9001/efdb";
+//    private static final String USER = "root";
+//    private static final String PASSWORD = "root";
 
 
     //метод для получения параметров подключения:
     protected static Properties getProperties(){
         Properties properties = new Properties();
-        try(InputStream inputStream = ClassLoader.getSystemResourceAsStream("D:\\coding\\projects\\EF\\express_test_project\\src\\main\\resources\\database.properties")){
+        try(InputStream inputStream = ClassLoader.getSystemResourceAsStream("database.properties")){
             properties.load(inputStream);
-            System.out.println("Файл properties прочитан");
+            LogHelper.writeMessage("Файл properties прочитан");
         }catch(IOException ex){
-            System.out.println("Ошибка чтения файла properties");
+            LogHelper.writeMessage("Ошибка чтения файла properties");
+            ex.printStackTrace();
         }
 
-        System.out.println("Параметры подключения:");
+        LogHelper.writeMessage("Параметры подключения:");
         return properties;
     }
 
@@ -39,26 +42,28 @@ public class Connector {
                 return connection;
             }
         } catch (SQLException ex) {
-            System.out.println("Ошибка проверки активности соединения");
+            LogHelper.writeMessage("Ошибка проверки активности соединения");
+            ex.printStackTrace();
         }
 
         //загрузим драйвер. Если загрузился драйвер - будем возвращщать соединение:
-        if(loadDriver()){ //loadDriver()
-//            Properties properties = getProperties();
-//            String connectionString = properties.getProperty("url") + ";user=" +
-//                    properties.getProperty("user") + ";password=" +
-//                    properties.getProperty("password");
+        if(loadDriver()){
+            Properties properties = getProperties();
+            String connectionString =
+                    properties.getProperty("url") + ";user=" +
+                    properties.getProperty("user") + ";password=" +
+                    properties.getProperty("password");
 
-            String connectionString = URL + ";user=" + USER + ";password=" + PASSWORD;
+            //String connectionString = URL + ";user=" + USER + ";password=" + PASSWORD;
 
-            System.out.println("Строка подключения: " + connectionString);
+            LogHelper.writeMessage("Строка подключения: " + connectionString);
 
             try {
                 connection = DriverManager.getConnection(connectionString);
-                System.out.println("Соединение создано");
-                System.out.println("connection = " + connection);
+                LogHelper.writeMessage("Соединение создано");
+                LogHelper.writeMessage("connection = " + connection);
             } catch (SQLException ex) {
-                System.out.println("Ошибка получения соединения");
+                LogHelper.writeMessage("Ошибка получения соединения");
                 ex.printStackTrace();
             }
         }
@@ -73,10 +78,10 @@ public class Connector {
             //               org.hsqldb.jdbc.JDBCDriver
             //Class.forName("org.hsqldb.jdbc.JDBCDriver");
             //Class.forName("org.apache.derby.jdbc.ClientDriver");
-            System.out.println("Драйвер  загружен");
+            LogHelper.writeMessage("Драйвер  загружен");
             return true;
         } catch (ClassNotFoundException ex) {
-            System.out.println("Ошибка загрузки драйвера");
+            LogHelper.writeMessage("Ошибка загрузки драйвера");
             return false;
         }
     }
@@ -86,11 +91,11 @@ public class Connector {
         try {
             if(connection != null && !connection.isClosed()){
                 connection.close();
-                System.out.println("6. метод closeConnection(): Соединение закрыто");
+                LogHelper.writeMessage("6. метод closeConnection(): Соединение закрыто");
             }
         } catch (SQLException ex) {
-            //Logger.getLogger(DataBase.class.getName()).log(Level.SEVERE, null, ex);
-            System.out.println("6: метод closeConnection(): Ошибка закрытия соединения. " + ex.getMessage());
+            ex.printStackTrace();
+            LogHelper.writeMessage("6: метод closeConnection(): Ошибка закрытия соединения. " + ex.getMessage());
         }
     }
 }

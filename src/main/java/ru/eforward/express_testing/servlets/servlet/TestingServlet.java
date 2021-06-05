@@ -1,6 +1,6 @@
 package ru.eforward.express_testing.servlets.servlet;
 
-import ru.eforward.express_testing.dao.TestDAO;
+import ru.eforward.express_testing.dao.TestDAOImpl;
 import ru.eforward.express_testing.model.school.Test;
 
 import javax.servlet.ServletException;
@@ -23,7 +23,7 @@ public class TestingServlet extends HttpServlet {
         request.setCharacterEncoding("UTF-8");
 
         @SuppressWarnings("unchecked")
-        final AtomicReference<TestDAO> testDao = (AtomicReference<TestDAO>) request.getServletContext().getAttribute("test");
+        final AtomicReference<TestDAOImpl> testDao = (AtomicReference<TestDAOImpl>) request.getServletContext().getAttribute("test");
 
 
         try(PrintWriter out = response.getWriter()){
