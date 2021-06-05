@@ -3,96 +3,88 @@ package ru.eforward.express_testing.dao;
 import ru.eforward.express_testing.daoInterfaces.UserDAO;
 import ru.eforward.express_testing.dbConnection.PoolConnector;
 import ru.eforward.express_testing.model.User;
+import ru.eforward.express_testing.utils.LogHelper;
 
 import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
-import java.util.ArrayList;
-import java.util.List;
 
 public class UserDAOImpl implements UserDAO {
-
-    private final List<User> store = new ArrayList<>();
-    private Connection connection = PoolConnector.getConnection();
-
-    public User getById(int id) {
-
-        User result = null;
-        //result.setId(-1);
-
-        for (User user : store) {
-            if (user.getId() == id) {
-                result = user;
-            }
-        }
-
-        return result;
-    }
-
-    public User getUserByLoginPassword(final String login, final String password) {
-
-        User result = null;
-        //result.setId(-1);
-
-        for (User user : store) {
-            if (user.getLogin().equals(login) && user.getPassword().equals(password)) {
-                result = user;
-            }
-        }
-
-        return result;
-    }
+    private Connection connection;
+    private PreparedStatement preparedStatement;
 
     @Override
-    public boolean addUserToDAO(final User user) {
-
-        for (User u : store) {
-            if (u.getLogin().equals(user.getLogin()) && u.getPassword().equals(user.getPassword())) {
-                return false;
-            }
+    public boolean addUser(User user) {
+        if(user == null){
+            return false;
         }
 
-//        try {
-//            String SQLSTRING = "INSERT INTO FLOWERS (ID, FLOWERNAME) VALUES (4, 'flower4')";
-//            Statement statement = connection.createStatement();
-//            boolean gotResultSet = statement.execute(SQLSTRING);
-//            if(!gotResultSet){
-//                int updateCount = statement.getUpdateCount();
-//                System.out.println("---------updateCount = " + updateCount + " -------------");
-//            }
-//
-//            statement.close();
-//            //connection.close();
-//        } catch (SQLException throwables) {
-//            throwables.printStackTrace();
-//        }
+        if(connection == null){
+            connection = PoolConnector.getConnection();
+        }
 
-        return store.add(user);
+        int updateCount = -1;
+        if(connection != null){
+            try {
+                //check if such school with such id already presents in DB. If so - just return from method;
+                if(userPresents(user.getId())){
+                    LogHelper.writeMessage("class UserDAOImpl, method addUser() : user already exists in DB. id = " + user.getId());
+                    return false;
+                }
+
+                preparedStatement = connection.prepareStatement("INSERT INTO USERS (LASTNAME, FIRSTNAME, MIDDLENAME, EMAIL, LOGIN, PASSWORD, ROLE_ID, BRANCH_ID) VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
+                //preparedStatement.setInt(1, user.getId()); --id will be set by DB;
+                preparedStatement.setString(1, user.getLastName());
+                preparedStatement.setString(2, user.getFirstName());
+                preparedStatement.setString(3, user.getMiddleName());
+                preparedStatement.setString(4, user.getEmail());
+                preparedStatement.setString(5, user.getLogin());
+                preparedStatement.setString(6, user.getPassword());
+                preparedStatement.setString(7, user.getRole().toString());  //--------------------> проверить, что возвращает Role.toString()!!!
+                //preparedStatement.setString(7, user.getBranch().getId());                 //---------------------> получать тут Branch id; возможно, доработать класс Branch
+
+
+                if(!preparedStatement.execute()){
+                    updateCount = preparedStatement.getUpdateCount();
+                    LogHelper.writeMessage("class SchoolDAOImpl, method addSchool() : added records to SCHOOLS table" + updateCount);
+                }
+            } catch (SQLException throwables) {
+                throwables.printStackTrace();
+            }
+        }else{
+            LogHelper.writeMessage("class UserDAOImpl, method addUser() : connection is null");
+        }
+        return updateCount > 0;
     }
 
-    public User.ROLE getRoleByLoginPassword(final String login, final String password) {
-        User.ROLE result = User.ROLE.UNKNOWN;
-
-        for (User user : store) {
-            if (user.getLogin().equals(login) && user.getPassword().equals(password)) {
-                result = user.getRole();
-            }
+    public boolean userPresents(int userId){
+        if(userId < 0 ){
+            return false;
+        }
+        if(connection == null){
+            connection = PoolConnector.getConnection();
         }
 
-        return result;
-    }
+        if(connection != null){
+            try {
+                preparedStatement = connection.prepareStatement("SELECT * FROM USERS WHERE ID = ?");
+                preparedStatement.setInt(1, userId);
+                ResultSet resultSet = preparedStatement.executeQuery();
+                if(resultSet != null){
+                    if(resultSet.next()){
+                        return true;
+                    }
+                }else{
+                    LogHelper.writeMessage("class UserDAOImpl, method userPresents() : resultSet is null");
+                }
 
-    public boolean userIsPresent(final String login, final String password) {
-
-        boolean result = false;
-
-        for (User user : store) {
-            if (user.getLogin().equals(login) && user.getPassword().equals(password)) {
-                result = true;
-                break;
+            } catch (SQLException throwables) {
+                throwables.printStackTrace();
             }
+        }else{
+            LogHelper.writeMessage("class UserDAOImpl, method userPresents() : connection is null");
         }
-
-        return result;
+        return false;
     }
 }

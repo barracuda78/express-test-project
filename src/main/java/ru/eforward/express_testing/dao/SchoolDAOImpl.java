@@ -48,6 +48,8 @@ public class SchoolDAOImpl implements SchoolDAO {
         if(school == null){
             return false;
         }
+
+        //this check should be deleted as the system user do not specifies the id of the user entity, it will be created by database.
         if(school.getId() < 0){
             throw new IllegalArgumentException("school.id should be 0 or positive int");
         }
@@ -110,6 +112,21 @@ public class SchoolDAOImpl implements SchoolDAO {
         }else{
             LogHelper.writeMessage("class SchoolDAOImpl, method schoolPresents() : connection is null");
         }
+        return false;
+    }
+
+    @Override
+    public boolean deleteSchoolById(int id) {
+        return false;
+    }
+
+    @Override
+    public boolean deleteSchoolByName(String name) {
+        return false;
+    }
+
+    @Override
+    public boolean changeSchoolNameByName(String oldName, String newName) {
         return false;
     }
 }

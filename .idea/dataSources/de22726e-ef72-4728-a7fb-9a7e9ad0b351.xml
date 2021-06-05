@@ -14,69 +14,169 @@
     <schema id="5" parent="2" name="SYSTEM_LOBS"/>
     <table id="6" parent="4" name="BRANCHES"/>
     <table id="7" parent="4" name="FLOWERS"/>
-    <table id="8" parent="4" name="SCHOOLS"/>
-    <column id="9" parent="6" name="ID">
+    <table id="8" parent="4" name="ROLES"/>
+    <table id="9" parent="4" name="SCHOOLS"/>
+    <table id="10" parent="4" name="USERS"/>
+    <column id="11" parent="6" name="ID">
       <Position>1</Position>
       <DataType>INTEGER|4s</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>null</SequenceIdentity>
     </column>
-    <column id="10" parent="6" name="NAME">
+    <column id="12" parent="6" name="NAME">
       <Position>2</Position>
       <DataType>VARCHAR(255)|12s</DataType>
     </column>
-    <column id="11" parent="6" name="SCHOOL_ID">
+    <column id="13" parent="6" name="SCHOOL_ID">
       <Position>3</Position>
       <DataType>INTEGER|4s</DataType>
     </column>
-    <index id="12" parent="6" name="SYS_IDX_SYS_PK_10353_10355">
+    <index id="14" parent="6" name="SYS_IDX_SYS_PK_10353_10355">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>ID</ColNames>
       <Unique>1</Unique>
     </index>
-    <index id="13" parent="6" name="SYS_IDX_10356">
+    <index id="15" parent="6" name="SYS_IDX_10356">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>SCHOOL_ID</ColNames>
     </index>
-    <key id="14" parent="6" name="SYS_PK_10353">
+    <key id="16" parent="6" name="SYS_PK_10353">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>ID</ColNames>
       <Primary>1</Primary>
     </key>
-    <foreign-key id="15" parent="6" name="SYS_FK_10354">
+    <foreign-key id="17" parent="6" name="SYS_FK_10354">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>SCHOOL_ID</ColNames>
       <RefTableName>SCHOOLS</RefTableName>
       <RefKeyName>SYS_PK_10320</RefKeyName>
       <RefColNames>ID</RefColNames>
     </foreign-key>
-    <column id="16" parent="7" name="ID">
+    <column id="18" parent="7" name="ID">
       <Position>1</Position>
       <DataType>INTEGER|4s</DataType>
     </column>
-    <column id="17" parent="7" name="FLOWERNAME">
+    <column id="19" parent="7" name="FLOWERNAME">
       <Position>2</Position>
       <DataType>VARCHAR(40)|12s</DataType>
     </column>
-    <column id="18" parent="8" name="ID">
+    <column id="20" parent="8" name="ID">
       <Position>1</Position>
       <DataType>INTEGER|4s</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>null</SequenceIdentity>
     </column>
-    <column id="19" parent="8" name="NAME">
+    <column id="21" parent="8" name="ROLE">
       <Position>2</Position>
-      <DataType>VARCHAR(255)|12s</DataType>
+      <DataType>VARCHAR(30)|12s</DataType>
+      <NotNull>1</NotNull>
     </column>
-    <index id="20" parent="8" name="SYS_IDX_SYS_PK_10320_10321">
+    <index id="22" parent="8" name="SYS_IDX_SYS_PK_10434_10436">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>ID</ColNames>
       <Unique>1</Unique>
     </index>
-    <key id="21" parent="8" name="SYS_PK_10320">
+    <key id="23" parent="8" name="SYS_PK_10434">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>ID</ColNames>
       <Primary>1</Primary>
     </key>
+    <column id="24" parent="9" name="ID">
+      <Position>1</Position>
+      <DataType>INTEGER|4s</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>null</SequenceIdentity>
+    </column>
+    <column id="25" parent="9" name="NAME">
+      <Position>2</Position>
+      <DataType>VARCHAR(255)|12s</DataType>
+    </column>
+    <index id="26" parent="9" name="SYS_IDX_SYS_PK_10320_10321">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>ID</ColNames>
+      <Unique>1</Unique>
+    </index>
+    <key id="27" parent="9" name="SYS_PK_10320">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>ID</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <column id="28" parent="10" name="ID">
+      <Position>1</Position>
+      <DataType>INTEGER|4s</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>null</SequenceIdentity>
+    </column>
+    <column id="29" parent="10" name="LASTNAME">
+      <Position>2</Position>
+      <DataType>VARCHAR(255)|12s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="30" parent="10" name="FIRSTNAME">
+      <Position>3</Position>
+      <DataType>VARCHAR(255)|12s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="31" parent="10" name="MIDDLENAME">
+      <Position>4</Position>
+      <DataType>VARCHAR(255)|12s</DataType>
+    </column>
+    <column id="32" parent="10" name="EMAIL">
+      <Position>5</Position>
+      <DataType>VARCHAR(255)|12s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="33" parent="10" name="LOGIN">
+      <Position>6</Position>
+      <DataType>VARCHAR(255)|12s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="34" parent="10" name="PASSWORD">
+      <Position>7</Position>
+      <DataType>VARCHAR(255)|12s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="35" parent="10" name="ROLE_ID">
+      <Position>8</Position>
+      <DataType>INTEGER|4s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="36" parent="10" name="BRANCH_ID">
+      <Position>9</Position>
+      <DataType>INTEGER|4s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <index id="37" parent="10" name="SYS_IDX_SYS_PK_10568_10578">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>ID</ColNames>
+      <Unique>1</Unique>
+    </index>
+    <index id="38" parent="10" name="SYS_IDX_10586">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>ROLE_ID</ColNames>
+    </index>
+    <index id="39" parent="10" name="SYS_IDX_10588">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>BRANCH_ID</ColNames>
+    </index>
+    <key id="40" parent="10" name="SYS_PK_10568">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>ID</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <foreign-key id="41" parent="10" name="SYS_FK_10576">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>ROLE_ID</ColNames>
+      <RefTableName>ROLES</RefTableName>
+      <RefKeyName>SYS_PK_10434</RefKeyName>
+      <RefColNames>ID</RefColNames>
+    </foreign-key>
+    <foreign-key id="42" parent="10" name="SYS_FK_10577">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>BRANCH_ID</ColNames>
+      <RefTableName>BRANCHES</RefTableName>
+      <RefKeyName>SYS_PK_10353</RefKeyName>
+      <RefColNames>ID</RefColNames>
+    </foreign-key>
   </database-model>
 </dataSource>

@@ -6,4 +6,7 @@ public interface SchoolDAO {
     boolean addSchool(School school);
     boolean addSchoolByName(String schoolName);
     boolean schoolPresents(int schoolId);
+    boolean deleteSchoolById(int id);
+    boolean deleteSchoolByName(String name);
+    boolean changeSchoolNameByName(String oldName, String newName);
 }

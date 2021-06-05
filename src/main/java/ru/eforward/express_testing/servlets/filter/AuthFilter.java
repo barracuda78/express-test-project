@@ -1,7 +1,7 @@
 package ru.eforward.express_testing.servlets.filter;
 
 
-import ru.eforward.express_testing.dao.UserDAOImpl;
+import ru.eforward.express_testing.dao.UserDAOFakeDataBaseImpl;
 import ru.eforward.express_testing.model.Admin;
 import ru.eforward.express_testing.model.Student;
 import ru.eforward.express_testing.model.Teacher;
@@ -32,7 +32,7 @@ public class AuthFilter implements Filter {
         final String password = req.getParameter("password");
 
         @SuppressWarnings("unchecked")
-        final AtomicReference<UserDAOImpl> dao = (AtomicReference<UserDAOImpl>) req.getServletContext().getAttribute("dao");
+        final AtomicReference<UserDAOFakeDataBaseImpl> dao = (AtomicReference<UserDAOFakeDataBaseImpl>) req.getServletContext().getAttribute("dao");
 
         final HttpSession session = req.getSession();
 
