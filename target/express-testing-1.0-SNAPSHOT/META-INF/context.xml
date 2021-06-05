@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<Context>
+  <Resource name="jdbc/myefdb"
+    auth="Container"
+    type="javax.sql.DataSource"
+    maxTotal="10"
+    maxIdle="30"
+    driverClassName="org.hsqldb.jdbcDriver"
+    url="jdbc:hsqldb:hsql://localhost:9001/efdb"
+    username="root"
+    password="root"
+  />
+</Context>

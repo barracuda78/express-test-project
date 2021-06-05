@@ -30,13 +30,7 @@ public class Main {
 //        statement.close();
 //        connection.close();
 
+        connection.close();
 
-
-//        try {
-//            Connection connection = ConnectionFactory.getConnection();
-//            System.out.println("we've got connection");
-//        } catch (SQLException throwables) {
-//            throwables.printStackTrace();
-//        }
     }
 }

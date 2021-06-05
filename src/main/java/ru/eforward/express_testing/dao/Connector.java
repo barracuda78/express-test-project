@@ -56,6 +56,7 @@ public class Connector {
             try {
                 connection = DriverManager.getConnection(connectionString);
                 System.out.println("Соединение создано");
+                System.out.println("connection = " + connection);
             } catch (SQLException ex) {
                 System.out.println("Ошибка получения соединения");
                 ex.printStackTrace();
