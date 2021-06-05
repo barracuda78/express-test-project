@@ -21,17 +21,19 @@ public class UpdatingServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         request.setCharacterEncoding("UTF-8");
-//
+
         String schoolName = request.getParameter("schoolName");
         String button = request.getParameter("createSchool");
-//        Boolean schoolAdded = false;
-//
+        String schoolAdded = "schoolNotAdded";
+
         if(schoolName != null && button != null){
             SchoolDAO schoolDAO = new SchoolDAOImpl();
-            schoolDAO.addSchoolByName(schoolName);
+            if(schoolDAO.addSchoolByName(schoolName)){
+                schoolAdded = "schoolAdded";
+            }
         }
-//
-//        request.setAttribute("schoolAdded", schoolAdded);
-//        request.getRequestDispatcher("adminMenu").forward(request, response);
+
+        request.setAttribute("schoolAdded", schoolAdded);
+        request.getRequestDispatcher("adminMenu").forward(request, response);
     }
 }

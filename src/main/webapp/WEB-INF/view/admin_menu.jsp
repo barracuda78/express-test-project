@@ -22,11 +22,12 @@
 <hr/>
 
 <%
-    //request.setAttribute("schoolAdded", schoolAdded);
-//    Boolean schoolAdded = (Boolean)request.getAttribute("schoolAdded");
-//    if(schoolAdded){
-//
-//    }
+    String choice = (String)request.getAttribute("schoolAdded");
+    if("schoolAdded".equals(choice)){
+        %>
+            <%="<p>Школа успешно добавлена</p>"%>
+        <%
+    }
 %>
 
 <a href="<c:url value='/logout' />">Logout</a>
