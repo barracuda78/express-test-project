@@ -97,6 +97,11 @@ public class UserBuilder {
         ((Student)user).setTestResults(testResults);
         return this;
     }
+
+    public UserBuilder addEmail(String email){
+        user.setEmail(email);
+        return this;
+    }
     //------------------------------
 
     //методы только для преподавателя:

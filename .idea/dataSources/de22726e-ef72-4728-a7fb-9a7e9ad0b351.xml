@@ -49,7 +49,7 @@
       <NameSurrogate>1</NameSurrogate>
       <ColNames>SCHOOL_ID</ColNames>
       <RefTableName>SCHOOLS</RefTableName>
-      <RefKeyName>SYS_PK_10320</RefKeyName>
+      <RefKeyName>SYS_PK_10093</RefKeyName>
       <RefColNames>ID</RefColNames>
     </foreign-key>
     <column id="18" parent="7" name="ID">
@@ -168,14 +168,14 @@
       <NameSurrogate>1</NameSurrogate>
       <ColNames>ROLE_ID</ColNames>
       <RefTableName>ROLES</RefTableName>
-      <RefKeyName>SYS_PK_10434</RefKeyName>
+      <RefKeyName>SYS_PK_10104</RefKeyName>
       <RefColNames>ID</RefColNames>
     </foreign-key>
     <foreign-key id="42" parent="10" name="SYS_FK_10119">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>BRANCH_ID</ColNames>
       <RefTableName>BRANCHES</RefTableName>
-      <RefKeyName>SYS_PK_10353</RefKeyName>
+      <RefKeyName>SYS_PK_10097</RefKeyName>
       <RefColNames>ID</RefColNames>
     </foreign-key>
   </database-model>

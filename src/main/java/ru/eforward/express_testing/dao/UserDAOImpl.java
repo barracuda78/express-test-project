@@ -16,7 +16,9 @@ public class UserDAOImpl implements UserDAO {
 
     @Override
     public boolean addUser(User user) {
+        LogHelper.writeMessage("---class UserDAOImpl : We start creating new User");
         if(user == null){
+            LogHelper.writeMessage("---class UserDAOImpl : User == null");
             return false;
         }
 
@@ -27,7 +29,7 @@ public class UserDAOImpl implements UserDAO {
         int updateCount = -1;
         if(connection != null){
             try {
-                //check if such school with such id already presents in DB. If so - just return from method;
+                //check if such user with such id already presents in DB. If so - just return from method;
                 if(userPresents(user.getId())){
                     LogHelper.writeMessage("class UserDAOImpl, method addUser() : user already exists in DB. id = " + user.getId());
                     return false;
@@ -39,14 +41,16 @@ public class UserDAOImpl implements UserDAO {
                 preparedStatement.setString(2, user.getFirstName());
                 preparedStatement.setString(3, user.getMiddleName());
                 preparedStatement.setString(4, user.getEmail());
-                preparedStatement.setString(5, user.getLogin());
+                preparedStatement.setString(5, user.getEmail());   //->this is for login being the same as email!!!
                 preparedStatement.setString(6, user.getPassword());         //-------------------->нужно сперва захэшировать пароль
                 preparedStatement.setInt(7, user.getRole().getId());
-                preparedStatement.setInt(7, user.getBranches().get(0).getId());   //---------------------> at this stage I assume only one branch in the List. For further development
+                preparedStatement.setInt(8, user.getBranches().get(0).getId());   //---------------------> at this stage I assume only one branch in the List. For further development
+
+                LogHelper.writeMessage("---class UserDAOImpl : preparedStatement prepared.");
 
                 if(!preparedStatement.execute()){
                     updateCount = preparedStatement.getUpdateCount();
-                    LogHelper.writeMessage("class SchoolDAOImpl, method addSchool() : added records to SCHOOLS table" + updateCount);
+                    LogHelper.writeMessage("class SchoolDAOImpl, method addUser() : added records to Users table" + updateCount);
                 }
             } catch (SQLException throwables) {
                 throwables.printStackTrace();

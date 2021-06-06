@@ -24,9 +24,17 @@
 
 <%
     String choice = (String)request.getAttribute("schoolAdded");
+    String userCreated = (String)request.getAttribute("userCreated");
     if("schoolAdded".equals(choice)){
         %>
             <%="<p>Школа успешно добавлена</p>"%>
+        <%
+    }
+    //            userCreated = "created";
+    //        allFieldsFilled = "all";
+    if("created".equals(userCreated)){
+        %>
+            <%="<p>Новый пользователь успешно добавлен</p>"%>
         <%
     }
 %>

@@ -33,6 +33,15 @@
         </form>
     </div>
 
+    <%
+        String allFieldsFilled = (String)request.getAttribute("allFieldsFilled");
+        if("notAll".equals(allFieldsFilled)){
+            %>
+                <%="<p>Пользователь не добавлен. Заполните все поля.</p>"%>
+            <%
+        }
+    %>
+
 <a href="<c:url value='/logout' />">Logout</a>
 </body>
 </html>
