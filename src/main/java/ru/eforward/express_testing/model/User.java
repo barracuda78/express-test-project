@@ -5,7 +5,9 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import ru.eforward.express_testing.model.school.*;
 
+import java.util.Arrays;
 import java.util.List;
+import java.util.Optional;
 
 @Getter
 @Setter
@@ -20,7 +22,7 @@ public abstract class User {
     private String password;
     private ROLE role;
     private School school;
-    private List<Branch> branches;
+    private List<Integer> branches; //contains branch_id's
 
 
 
@@ -38,6 +40,10 @@ public abstract class User {
 
         public int getId(){
             return id;
+        }
+        public static ROLE getRoleById(int id){
+            Optional<ROLE> firstRole = Arrays.stream(values()).filter(role -> role.id == id).findFirst();
+            return firstRole.orElse(UNKNOWN);
         }
     }
 }

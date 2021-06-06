@@ -37,11 +37,8 @@ public class AddingUserServlet extends HttpServlet {
             //User user = "1".equals(role_id) ? new Admin() : ("2".equals(role_id) ? new Teacher() : new Student());
             User.ROLE role = "1".equals(role_id) ? User.ROLE.ADMIN : ("2".equals(role_id) ? User.ROLE.TEACHER : User.ROLE.STUDENT);
             UserBuilder userBuilder = new UserBuilder(role);
-            List<Branch> branches = new ArrayList<>();
-            Branch branch = new Branch();
-            branch.setId(Integer.parseInt(branch_id));
-            branch.setName(Integer.parseInt(branch_id) == 1 ? "EF - Горьковская" : "EF - Парк Победы ");
-            branches.add(branch);
+            List<Integer> branches = new ArrayList<>();
+            branches.add(1);
             //------------------------------------------------------------------здесь лезть в базу и искать филиал по id!!!
             User user = userBuilder
                     .addLastName(lastName)

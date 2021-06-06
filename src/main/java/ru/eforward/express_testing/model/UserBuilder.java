@@ -77,7 +77,7 @@ public class UserBuilder {
         return this;
     }
 
-    public UserBuilder addBranches(List<Branch> branches){
+    public UserBuilder addBranches(List<Integer> branches){
         user.setBranches(branches);
         return this;
     }

@@ -42,11 +42,9 @@ public class ContextListener implements ServletContextListener {
 
         School schoolEF = new School(1, "EnglishForward");
 
-        List<Branch> branches = new ArrayList<>();
-        Branch b1 = new Branch(1, "Парк Победы");
-        Branch b2 = new Branch(2, "Горьковская");
-        branches.add(b1);
-        branches.add(b2);
+        List<Integer> branches = new ArrayList<>();
+        branches.add(1);
+        branches.add(2);
 
         TestResult testResult01 = new TestResult(1, "Level01 lesson02",  "I like coffee\nI get up at 6 o'clock\ntable", 10);
         TestResult testResult02 = new TestResult(2, "Level01 lesson03",  "I like to play\nHe has lunch\napple", 9);
