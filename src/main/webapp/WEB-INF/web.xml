@@ -77,6 +77,16 @@
     </servlet-mapping>
 
 
+    <servlet>
+        <servlet-name>CreateUser</servlet-name>
+        <jsp-file>/WEB-INF/view/create_user.jsp</jsp-file>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>CreateUser</servlet-name>
+        <url-pattern>/createUser</url-pattern>
+    </servlet-mapping>
+
+
     <resource-ref>
         <!--description>DB Connection</description-->
         <res-ref-name>jdbc/myefdb</res-ref-name>

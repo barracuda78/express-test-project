@@ -22,10 +22,22 @@ public abstract class User {
     private School school;
     private List<Branch> branches;
 
+
+
     public enum ROLE {
-        ADMIN,
-        TEACHER,
-        STUDENT,
-        UNKNOWN
+        ADMIN(1),
+        TEACHER(2),
+        STUDENT(3),
+        UNKNOWN(4);
+
+        private final int id;
+
+        ROLE(int id){
+            this.id = id;
+        }
+
+        public int getId(){
+            return id;
+        }
     }
 }

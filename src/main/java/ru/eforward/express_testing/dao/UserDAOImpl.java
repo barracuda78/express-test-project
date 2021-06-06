@@ -40,10 +40,9 @@ public class UserDAOImpl implements UserDAO {
                 preparedStatement.setString(3, user.getMiddleName());
                 preparedStatement.setString(4, user.getEmail());
                 preparedStatement.setString(5, user.getLogin());
-                preparedStatement.setString(6, user.getPassword());
-                preparedStatement.setString(7, user.getRole().toString());  //--------------------> проверить, что возвращает Role.toString()!!!
-                //preparedStatement.setString(7, user.getBranch().getId());                 //---------------------> получать тут Branch id; возможно, доработать класс Branch
-
+                preparedStatement.setString(6, user.getPassword());         //-------------------->нужно сперва захэшировать пароль
+                preparedStatement.setInt(7, user.getRole().getId());
+                preparedStatement.setInt(7, user.getBranches().get(0).getId());   //---------------------> at this stage I assume only one branch in the List. For further development
 
                 if(!preparedStatement.execute()){
                     updateCount = preparedStatement.getUpdateCount();

@@ -19,6 +19,7 @@
 
 <hr/>
     <p1><a href="createSchool"> Добавить</a> имя школы</p1>
+    <p1><a href="createUser"> Добавить</a> пользователя</p1>
 <hr/>
 
 <%
