@@ -8,7 +8,6 @@ import ru.eforward.express_testing.utils.LogHelper;
 
 import java.sql.*;
 
-
 public class Main {
     public static String URL;
     private static String USER;
@@ -17,8 +16,6 @@ public class Main {
 
     private static Connection connection;
     private static PreparedStatement pst;
-
-
 
     public static void main(String[] args) {
         String password = "123";
@@ -29,5 +26,4 @@ public class Main {
         boolean equals = BCrypt.checkpw(password, hashed);
         System.out.println("equals = " + equals);
     }
-
 }

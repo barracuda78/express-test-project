@@ -43,6 +43,12 @@ public class UserDAOFakeDataBaseImpl implements UserDAO {
         return result;
     }
 
+    //just a stub - do not use it
+    @Override
+    public boolean userPresents(int userId) {
+        return false;
+    }
+
     @Override
     public boolean addUser(final User user) {
 

@@ -61,6 +61,42 @@ public class UserDAOImpl implements UserDAO {
         return updateCount > 0;
     }
 
+    @Override
+    public User getUserByLoginPassword(final String login, final String password){
+        if(login == null || password == null){
+            return null;
+        }
+
+        User result = null;
+        if(connection == null){
+            connection = PoolConnector.getConnection();
+        }
+        if(connection != null){
+            try {
+                preparedStatement = connection.prepareStatement("SELECT * FROM USERS WHERE LOGIN = ?");
+                preparedStatement.setString(1, login);
+                ResultSet resultSet = preparedStatement.executeQuery();
+                if(resultSet != null){
+                    if(resultSet.next()){
+                        ///ДОПИШИ ТУТ ВЫТАСКИВАНИЕ  ХЭША ПАРОЛЯ  ПО ЮЗЕРУ И СРАВНЕНИЕ ХЭША И ПАРОЛЯ ИЗ ПАРАМЕТРА МЕТОДА.
+                        ///boolean equals = BCrypt.checkpw(password, hashed);
+                        //return true;
+                    }
+                }else{
+                    LogHelper.writeMessage("class UserDAOImpl, method getUserByLoginPassword() : resultSet is null");
+                }
+
+            } catch (SQLException throwables) {
+                throwables.printStackTrace();
+            }
+        }else{
+            LogHelper.writeMessage("class UserDAOImpl, method getUserByLoginPassword() : connection is null");
+        }
+
+
+        return result;
+    }
+
     public boolean userPresents(int userId){
         if(userId < 0 ){
             return false;
