@@ -1,6 +1,6 @@
 <%@ page import="ru.eforward.express_testing.model.Student" %>
 <%@ page import="java.nio.file.Paths" %>
-<%@ page import="ru.eforward.express_testing.dao.TestDAOImpl" %>
+<%@ page import="ru.eforward.express_testing.dao.TestDAOFakeDatabaseImpl" %>
 <%@ page import="java.util.concurrent.atomic.AtomicReference" %>
 <%@ page import="ru.eforward.express_testing.model.school.Test" %>
 <%@ page import="java.util.List" %>
@@ -18,7 +18,7 @@
     <%
         Student student = (Student)session.getAttribute("user");
         @SuppressWarnings("unchecked")
-        final AtomicReference<TestDAOImpl> testDao = (AtomicReference<TestDAOImpl>) request.getServletContext().getAttribute("test");
+        final AtomicReference<TestDAOFakeDatabaseImpl> testDao = (AtomicReference<TestDAOFakeDatabaseImpl>) request.getServletContext().getAttribute("test");
         List<Test> tests = testDao.get().getTestsStore();   //Как тест привязан к студенту? Как они взаимосвязаны.
                                             // По этому принципу нужно вытащить из testDAO нужный тест, проверить, active  ли он, и запустить.
         Test currentTest = null;

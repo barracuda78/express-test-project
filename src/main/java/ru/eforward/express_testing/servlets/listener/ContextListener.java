@@ -1,7 +1,7 @@
 package ru.eforward.express_testing.servlets.listener;
 
 import ru.eforward.express_testing.dao.SchoolDAOImpl;
-import ru.eforward.express_testing.dao.TestDAOImpl;
+import ru.eforward.express_testing.dao.TestDAOFakeDatabaseImpl;
 import ru.eforward.express_testing.dao.UserDAOFakeDataBaseImpl;
 import ru.eforward.express_testing.daoInterfaces.SchoolDAO;
 import ru.eforward.express_testing.model.Student;
@@ -30,14 +30,14 @@ public class ContextListener implements ServletContextListener {
      * Fake database connector.
      */
     private AtomicReference<UserDAOFakeDataBaseImpl> userDao;
-    private AtomicReference<TestDAOImpl> testDao;
+    private AtomicReference<TestDAOFakeDatabaseImpl> testDao;
     private AtomicReference<SchoolDAO> schoolDao;
 
     @Override
     public void contextInitialized(ServletContextEvent servletContextEvent) {
 
         userDao = new AtomicReference<>(new UserDAOFakeDataBaseImpl());
-        testDao = new AtomicReference<>(new TestDAOImpl());
+        testDao = new AtomicReference<>(new TestDAOFakeDatabaseImpl());
         schoolDao = new AtomicReference<>(new SchoolDAOImpl());
 
         School schoolEF = new School(1, "EnglishForward");

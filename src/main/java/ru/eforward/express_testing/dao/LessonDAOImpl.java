@@ -28,14 +28,15 @@ public class LessonDAOImpl implements LessonDAO {
                 preparedStatement.setInt(1, lessonId);
                 ResultSet resultSet = preparedStatement.executeQuery();
                 if(!resultSet.wasNull()){
-                    //while may be changed to if as only one by lessonId will be found.
+                    //'while' may be changed to 'if' as only one by lessonId will be found.
                     while(resultSet.next()) {
                         int id = resultSet.getInt("ID");
                         String lessonName = resultSet.getString("LESSON_NAME");
+                        String pathToTestFile = resultSet.getString("PATH");
                         int levelId = resultSet.getInt("LEVEL_ID");
                         int courseId = resultSet.getInt("COURSE_ID");
                         int schoolId = resultSet.getInt("SCHOOL_ID");
-                        lesson = new Lesson(id, lessonName, levelId, courseId, schoolId);
+                        lesson = new Lesson(id, lessonName, pathToTestFile, levelId, courseId, schoolId);
                     }
                 }
             } catch (SQLException throwables) {

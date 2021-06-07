@@ -1,11 +1,12 @@
 package ru.eforward.express_testing.dao;
 
+import ru.eforward.express_testing.daoInterfaces.TestDAO;
 import ru.eforward.express_testing.model.school.Test;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class TestDAOImpl {
+public class TestDAOFakeDatabaseImpl implements TestDAO {
 
     private final List<Test> testsStore = new ArrayList<>();
 
@@ -44,6 +45,11 @@ public class TestDAOImpl {
 
     public List<Test> getTestsStore() {
         return testsStore;
+    }
+
+    @Override
+    public String getTestInfoByLessonId(int lessonId){
+        return null;
     }
 
 }

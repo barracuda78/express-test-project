@@ -12,6 +12,7 @@ import lombok.Setter;
 public class Lesson {
     private int id;
     private String lessonName;
+    private String pathToTestFile;
     private int levelId;
     private int courseId;
     private int schoolId;

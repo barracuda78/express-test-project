@@ -1,21 +1,17 @@
-Have a ... day.=1
--nice
--good
--bad
--dog
-Be ... careful.=1
--very
--often
--seldom
-Sing me ... song.=1
--a
--the
--fix
-Moon=2
--Луна
--Месяц
--Солнце
-Crocodile=2
--Крокодил
--Аллигатор
--Реставратор
+//course=English course
+//Level=First Level
+//Lesson=First Lesson
+
+Japanese characters originally came from what country? {
+    ~India
+    =China
+    ~Korea
+    ~Egypt}
+
+Grant is {~buried =entombed ~living} in Grant's tomb.
+
+The American holiday of Thanksgiving is celebrated on the {
+    ~second
+    ~third
+    =fourth
+} Thursday of November.
