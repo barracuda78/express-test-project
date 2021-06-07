@@ -13,11 +13,4 @@ import java.util.List;
 @AllArgsConstructor
 public class Teacher extends User {
     List<Integer> groups;
-
-    /**
-     * Runs the testing for all students of this particular group.
-    * */
-    public void runTest(Group group){
-
-    }
 }

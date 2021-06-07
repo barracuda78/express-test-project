@@ -20,10 +20,10 @@ public class PoolConnector {
             connection = ds.getConnection();
             LogHelper.writeMessage("connection = " + connection);
         } catch (NamingException e) {
-            LogHelper.writeMessage("class ConnectionFactory : NamingException e");
+            LogHelper.writeMessage("class ConnectionFactory : NamingException: " + e.getMessage());
             e.printStackTrace();
         } catch (SQLException throwables) {
-            LogHelper.writeMessage("class ConnectionFactory : SQLException throwables");
+            LogHelper.writeMessage("class ConnectionFactory : SQLException: " + throwables.getMessage());
             throwables.printStackTrace();
         }
     }

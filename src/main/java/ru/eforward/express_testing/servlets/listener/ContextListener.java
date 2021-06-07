@@ -81,7 +81,7 @@ public class ContextListener implements ServletContextListener {
 
         List<Student> students = new ArrayList<>();
         students.add((Student)user01);
-        Group group755 = new Group(1, "group755a", students);
+
         List<Integer> groups = new ArrayList<>();
         groups.add(1);
 
@@ -104,8 +104,6 @@ public class ContextListener implements ServletContextListener {
         test01.setActive(false);
         test01.setPath(Paths.get("D:\\coding\\projects\\EF\\express_test_project\\src\\main\\resources\\tests\\eng\\level01\\lesson01.txt"));
         testDao.get().addTestToDAO(test01);
-
-        System.out.println("--->>>---ContextListener: tests = " + testDao.get());
 
         final ServletContext servletContext = servletContextEvent.getServletContext();
 

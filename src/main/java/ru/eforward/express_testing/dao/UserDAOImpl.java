@@ -1,6 +1,7 @@
 package ru.eforward.express_testing.dao;
 
 import org.mindrot.jbcrypt.BCrypt;
+import ru.eforward.express_testing.daoInterfaces.GroupDAO;
 import ru.eforward.express_testing.daoInterfaces.UserDAO;
 import ru.eforward.express_testing.dbConnection.PoolConnector;
 import ru.eforward.express_testing.model.User;
@@ -13,6 +14,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 public class UserDAOImpl implements UserDAO {
     private Connection connection;
@@ -102,7 +104,8 @@ public class UserDAOImpl implements UserDAO {
                             int school_id = resultSet.getInt("SCHOOL_ID");
                             Integer branch_id = resultSet.getInt("BRANCH_ID");
 
-                            return new UserBuilder(User.ROLE.getRoleById(role_id))
+                            User.ROLE role = User.ROLE.getRoleById(role_id);
+                            UserBuilder userBuilder = new UserBuilder(role)
                                     .addLastName(lastName)
                                     .addFirstName(firstName)
                                     .addMiddleName(middleName)
@@ -110,8 +113,18 @@ public class UserDAOImpl implements UserDAO {
                                     .addLogin(login)
                                     .addPassword(password)
                                     .addSchool(school_id)
-                                    .addBranches(new ArrayList<Integer>(Arrays.asList(branch_id))) //list of one element - just a stub for further development
-                                    .buildUser();
+                                    .addBranches(new ArrayList<Integer>(Arrays.asList(branch_id))); //list of one element - just a stub for further development
+
+                            //if ROLE = TEACER - use method AddGroupsToTeacher.
+                            //Groups should be taken from BD using GroupsDAOImpl class - getGroupsByTeacherId().
+                            if(role == User.ROLE.TEACHER){
+                                int id = resultSet.getInt("ID");
+                                GroupDAO groupDAO = new GroupDAOImpl();
+                                List<Integer> groups = groupDAO.getGroupsByTeacherId(id);
+                                userBuilder.addGroupsToTeacher(groups);
+                            }
+
+                            return userBuilder.buildUser();
                         }
                     }
                 }else{

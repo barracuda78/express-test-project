@@ -13,5 +13,7 @@ import java.util.List;
 public class Group {
     private int id;
     private String groupName;
+    private int schoolId;
+    private int teacherId;
     private List<Student> students;
 }

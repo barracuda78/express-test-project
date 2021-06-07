@@ -26,12 +26,11 @@
 <%
     Teacher teacher = (Teacher)session.getAttribute("user");
     List<Integer> groups = teacher.getGroups();
-    LogHelper.writeMessage("---teacher_menu.jsp : groups = " + groups);
     if(groups != null){
         for(Integer g : groups){
             %>
             <li>
-            <%=g%>
+            <a href="TestingServlet"><%=g%></a>
             </li>
             <%
         }
@@ -57,12 +56,13 @@
     <form name="add" action="TestingServlet" method="GET">
         <table>         <%--таблица--%>
             <tr>        <%--table raw--%>
-                <p>Укажите id теста:</p>
-                <td><input type="text" name="testId" size="12"/></td>
+                <p>Укажите :</p>
+                <td>id теста<input type="text" name="testId" size="12"/></td>
+                <td>id группы<input type="text" name="groupId" size="12"/></td>
+                <td>id урока<input type="text" name="lessonId" size="12"/></td>
             </tr>
             <tr>
                 <td><input type="submit" name="button1" value="Запустить тест"/></td>
-                <td><input type="submit" name="buttin2" value="Остановить тест"/></td>
             </tr>
 
         </table>
