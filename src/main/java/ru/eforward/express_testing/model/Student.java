@@ -1,58 +1,21 @@
 package ru.eforward.express_testing.model;
 
+import lombok.Getter;
+import lombok.Setter;
 import ru.eforward.express_testing.utils.TestFilesReader;
 import ru.eforward.express_testing.model.school.*;
 
 import java.nio.file.Path;
 import java.util.List;
 
+@Getter
+@Setter
 public class Student extends User{
 
-    private List<Course> courses;
-    private List<Lesson> lessons;
-    private List<Level> levels;
-    private List<Group> groups;
-    private List<TestResult> testResults;
+    private int levelId;
+    private int groupId;
+    private List<Integer> testResults; //list of ids of testResults
 
-    public List<Course> getCourses() {
-        return courses;
-    }
-
-    public void setCourses(List<Course> courses) {
-        this.courses = courses;
-    }
-
-    public List<Lesson> getLessons() {
-        return lessons;
-    }
-
-    public void setLessons(List<Lesson> lessons) {
-        this.lessons = lessons;
-    }
-
-    public List<Level> getLevels() {
-        return levels;
-    }
-
-    public void setLevels(List<Level> levels) {
-        this.levels = levels;
-    }
-
-    public List<Group> getGroups() {
-        return groups;
-    }
-
-    public void setGroups(List<Group> groups) {
-        this.groups = groups;
-    }
-
-    public List<TestResult> getTestResults() {
-        return testResults;
-    }
-
-    public void setTestResults(List<TestResult> testResults) {
-        this.testResults = testResults;
-    }
 
     /**
      * Reads the text file with testing information from the given path.

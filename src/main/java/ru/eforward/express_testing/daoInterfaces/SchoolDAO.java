@@ -4,7 +4,7 @@ import ru.eforward.express_testing.model.school.School;
 
 public interface SchoolDAO {
     boolean addSchool(School school);
-    boolean addSchoolByName(String schoolName);
+    boolean changeSchoolName(String schoolName, int currentSchoolId);
     boolean schoolPresents(int schoolId);
     boolean deleteSchoolById(int id);
     boolean deleteSchoolByName(String name);

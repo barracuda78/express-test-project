@@ -83,17 +83,8 @@ public class UserBuilder {
     }
 
     //методы только для студента:
-    public UserBuilder addCourses(List<Course> courses){
-        ((Student)user).setCourses(courses);
-        return this;
-    }
 
-    public UserBuilder addGroup(List<Group> groups){
-        ((Student)user).setGroups(groups);
-        return this;
-    }
-
-    public UserBuilder addTestResults(List<TestResult> testResults){
+    public UserBuilder addTestResults(List<Integer> testResults){
         ((Student)user).setTestResults(testResults);
         return this;
     }
@@ -105,7 +96,7 @@ public class UserBuilder {
     //------------------------------
 
     //методы только для преподавателя:
-    public UserBuilder addGroupsToTeacher(List<Group> groups){
+    public UserBuilder addGroupsToTeacher(List<Integer> groups){
         ((Teacher)user).setGroups(groups);
         return this;
     }

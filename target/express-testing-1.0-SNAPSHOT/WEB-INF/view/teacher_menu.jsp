@@ -25,10 +25,10 @@
 <ul>
 <%
     Teacher teacher = (Teacher)session.getAttribute("user");
-    List<Group> groups = teacher.getGroups();
+    List<Integer> groups = teacher.getGroups();
     LogHelper.writeMessage("---teacher_menu.jsp : groups = " + groups);
     if(groups != null){
-        for(Group g : groups){
+        for(Integer g : groups){
             %>
             <li>
             <%=g%>

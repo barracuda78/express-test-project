@@ -1,8 +1,8 @@
 package ru.eforward.express_testing.servlets.servlet;
 
 import ru.eforward.express_testing.dao.SchoolDAOImpl;
-import ru.eforward.express_testing.dao.TestDAOImpl;
 import ru.eforward.express_testing.daoInterfaces.SchoolDAO;
+import ru.eforward.express_testing.model.User;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -10,7 +10,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.util.concurrent.atomic.AtomicReference;
 
 @WebServlet(name = "UpdatingServlet", urlPatterns = {"/UpdatingServlet"})
 public class UpdatingServlet extends HttpServlet {
@@ -28,7 +27,9 @@ public class UpdatingServlet extends HttpServlet {
 
         if(schoolName != null && button != null){
             SchoolDAO schoolDAO = new SchoolDAOImpl();
-            if(schoolDAO.addSchoolByName(schoolName)){
+            //first I have to get current school id from session^
+            int currentSchoolId = ((User)request.getSession().getAttribute("user")).getSchool();
+            if(schoolDAO.changeSchoolName(schoolName, currentSchoolId)){
                 schoolAdded = "schoolAdded";
             }
         }

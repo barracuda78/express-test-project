@@ -15,7 +15,7 @@ public class SchoolDAOImpl implements SchoolDAO {
     private PreparedStatement preparedStatement;
 
     @Override
-    public boolean addSchoolByName(String schoolName) {
+    public boolean changeSchoolName(String schoolName, int currentSchoolId) {
         if(schoolName == null){
             return false;
         }
@@ -27,8 +27,10 @@ public class SchoolDAOImpl implements SchoolDAO {
         int updateCount = -1;
         if(connection != null){
             try {
-                preparedStatement = connection.prepareStatement("INSERT INTO SCHOOLS (NAME) VALUES (?)");
+                //обновить название по переданному id школы!
+                preparedStatement = connection.prepareStatement("UPDATE SCHOOLS SET NAME = ? WHERE id = ?");
                 preparedStatement.setString(1, schoolName);
+                preparedStatement.setInt(2, currentSchoolId);
 
                 if(!preparedStatement.execute()){
                     updateCount = preparedStatement.getUpdateCount();

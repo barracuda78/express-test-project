@@ -12,7 +12,7 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 public class Teacher extends User {
-    List<Group> groups;
+    List<Integer> groups;
 
     /**
      * Runs the testing for all students of this particular group.

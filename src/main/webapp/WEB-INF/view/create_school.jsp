@@ -8,7 +8,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>Новая школа</title>
+    <title>Изменить имя школы</title>
 </head>
 <body>
     <div id="box">
@@ -19,7 +19,7 @@
                     <td><input type="text" name="schoolName" size="12"/></td>
                 </tr>
                 <tr>
-                    <td><input type="submit" name="createSchool" value="Создать школу"/></td>
+                    <td><input type="submit" name="createSchool" value="Изменить название школы"/></td>
                 </tr>
             </table>
         </form>

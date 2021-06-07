@@ -18,7 +18,7 @@
 <p><c:out value="${user.middleName}" default="error: middle name not found..."/></p>
 
 <hr/>
-    <p1><a href="createSchool"> Добавить</a> имя школы</p1>
+    <p1><a href="createSchool"> Изменить</a> имя школы</p1>
     <p1><a href="createUser"> Добавить</a> пользователя</p1>
 <hr/>
 
@@ -27,14 +27,14 @@
     String userCreated = (String)request.getAttribute("userCreated");
     if("schoolAdded".equals(choice)){
         %>
-            <%="<p>Школа успешно добавлена</p>"%>
+            <%="<p>Имя школы успешно изменено!</p>"%>
         <%
     }
     //            userCreated = "created";
     //        allFieldsFilled = "all";
     if("created".equals(userCreated)){
         %>
-            <%="<p>Новый пользователь успешно добавлен</p>"%>
+            <%="<p>Новый пользователь успешно добавлен!</p>"%>
         <%
     }
 %>

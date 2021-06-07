@@ -48,9 +48,9 @@ public class ContextListener implements ServletContextListener {
 
         TestResult testResult01 = new TestResult(1, "Level01 lesson02",  "I like coffee\nI get up at 6 o'clock\ntable", 10);
         TestResult testResult02 = new TestResult(2, "Level01 lesson03",  "I like to play\nHe has lunch\napple", 9);
-        List<TestResult> testResults = new ArrayList<>();
-        testResults.add(testResult01);
-        testResults.add(testResult02);
+        List<Integer> testResults = new ArrayList<>();
+        testResults.add(1);
+        testResults.add(2);
 
         UserBuilder userBuilder = new UserBuilder(STUDENT);
         User user01 = userBuilder
@@ -82,10 +82,8 @@ public class ContextListener implements ServletContextListener {
         List<Student> students = new ArrayList<>();
         students.add((Student)user01);
         Group group755 = new Group(1, "group755a", students);
-        List<Group> groups = new ArrayList<>();
-        groups.add(group755);
-        groups.add(new Group());
-        groups.add(new Group());
+        List<Integer> groups = new ArrayList<>();
+        groups.add(1);
 
         userBuilder = new UserBuilder(TEACHER);
         User user03 = userBuilder
