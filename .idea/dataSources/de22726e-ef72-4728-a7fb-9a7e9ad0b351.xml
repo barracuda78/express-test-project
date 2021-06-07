@@ -146,32 +146,36 @@
       <DataType>INTEGER|4s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <index id="37" parent="10" name="SYS_IDX_SYS_PK_10110_10120">
+    <column id="37" parent="10" name="SCHOOL_ID">
+      <Position>10</Position>
+      <DataType>VARCHAR(255)|12s</DataType>
+    </column>
+    <index id="38" parent="10" name="SYS_IDX_SYS_PK_10110_10120">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>ID</ColNames>
       <Unique>1</Unique>
     </index>
-    <index id="38" parent="10" name="SYS_IDX_10129">
+    <index id="39" parent="10" name="SYS_IDX_10129">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>ROLE_ID</ColNames>
     </index>
-    <index id="39" parent="10" name="SYS_IDX_10131">
+    <index id="40" parent="10" name="SYS_IDX_10131">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>BRANCH_ID</ColNames>
     </index>
-    <key id="40" parent="10" name="SYS_PK_10110">
+    <key id="41" parent="10" name="SYS_PK_10110">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>ID</ColNames>
       <Primary>1</Primary>
     </key>
-    <foreign-key id="41" parent="10" name="SYS_FK_10118">
+    <foreign-key id="42" parent="10" name="SYS_FK_10118">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>ROLE_ID</ColNames>
       <RefTableName>ROLES</RefTableName>
       <RefKeyName>SYS_PK_10104</RefKeyName>
       <RefColNames>ID</RefColNames>
     </foreign-key>
-    <foreign-key id="42" parent="10" name="SYS_FK_10119">
+    <foreign-key id="43" parent="10" name="SYS_FK_10119">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>BRANCH_ID</ColNames>
       <RefTableName>BRANCHES</RefTableName>

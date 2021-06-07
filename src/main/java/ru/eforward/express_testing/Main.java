@@ -18,7 +18,7 @@ public class Main {
     private static PreparedStatement pst;
 
     public static void main(String[] args) {
-        String password = "123";
+        String password = "111";
         String hashed = BCrypt.hashpw(password, BCrypt.gensalt());
         System.out.println("plain password = " + password);
         System.out.println("hashed password = " + hashed);

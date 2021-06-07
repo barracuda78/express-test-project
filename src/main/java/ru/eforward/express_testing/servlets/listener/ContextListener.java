@@ -60,7 +60,7 @@ public class ContextListener implements ServletContextListener {
                 .addMiddleName("Vladimirovich")
                 .addLogin("barracuda")
                 .addPassword("111")
-                .addSchool(schoolEF)
+                .addSchool(schoolEF.getId())
                 .addBranches(branches)
                 .addTestResults(testResults)
                 .buildUser();
@@ -74,6 +74,7 @@ public class ContextListener implements ServletContextListener {
                 .addMiddleName("Sergeevich")
                 .addLogin("Egor")
                 .addPassword("1")
+                .addSchool(1)
                 .buildUser();
         userDao.get().addUser(user02);
 
@@ -94,6 +95,7 @@ public class ContextListener implements ServletContextListener {
                 .addMiddleName("Fedorovich")
                 .addLogin("zin")
                 .addPassword("1")
+                .addSchool(1)
                 .addGroupsToTeacher(groups)
                 .buildUser();
         userDao.get().addUser(user03);

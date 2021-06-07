@@ -7,4 +7,5 @@ public interface UserDAO {
     boolean userIsPresent(String login, String password);
     boolean addUser(final User user);
     User getUserByLoginPassword(final String login, final String password);
+    User.ROLE getRoleByLoginPassword(String login, String password);
 }

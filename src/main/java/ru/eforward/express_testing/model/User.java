@@ -21,10 +21,8 @@ public abstract class User {
     private String login;
     private String password;
     private ROLE role;
-    private School school;
+    private int school;
     private List<Integer> branches; //contains branch_id's
-
-
 
     public enum ROLE {
         ADMIN(1),

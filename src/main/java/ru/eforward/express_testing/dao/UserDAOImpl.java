@@ -39,16 +39,17 @@ public class UserDAOImpl implements UserDAO {
                     return false;
                 }
 
-                preparedStatement = connection.prepareStatement("INSERT INTO USERS (LASTNAME, FIRSTNAME, MIDDLENAME, EMAIL, LOGIN, PASSWORD, ROLE_ID, BRANCH_ID) VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
+                preparedStatement = connection.prepareStatement("INSERT INTO USERS (LASTNAME, FIRSTNAME, MIDDLENAME, EMAIL, LOGIN, PASSWORD, ROLE_ID, SCHOOL_ID, BRANCH_ID) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)");
                 //preparedStatement.setInt(1, user.getId()); --id will be set by DB;
                 preparedStatement.setString(1, user.getLastName());
                 preparedStatement.setString(2, user.getFirstName());
                 preparedStatement.setString(3, user.getMiddleName());
                 preparedStatement.setString(4, user.getEmail());
                 preparedStatement.setString(5, user.getEmail());   //->this is for login being the same as email!!!
-                preparedStatement.setString(6, user.getPassword());         //-------------------->нужно сперва захэшировать пароль
+                preparedStatement.setString(6, user.getPassword());
                 preparedStatement.setInt(7, user.getRole().getId());
-                preparedStatement.setInt(8, user.getBranches().get(0));   //---------------------> at this stage I assume only one branch in the List. For further development
+                preparedStatement.setInt(8, user.getSchool());
+                preparedStatement.setInt(9, user.getBranches().get(0));   //---------------------> at this stage I assume only one branch in the List. For further development
 
                 LogHelper.writeMessage("---class UserDAOImpl : preparedStatement prepared.");
 
@@ -98,6 +99,7 @@ public class UserDAOImpl implements UserDAO {
                             //login = // already defined as method parameter
                             //password = // already defined as method parameter
                             int role_id = resultSet.getInt("ROLE_ID");
+                            int school_id = resultSet.getInt("SCHOOL_ID");
                             Integer branch_id = resultSet.getInt("BRANCH_ID");
 
                             return new UserBuilder(User.ROLE.getRoleById(role_id))
@@ -107,6 +109,7 @@ public class UserDAOImpl implements UserDAO {
                                     .addEmail(email)
                                     .addLogin(login)
                                     .addPassword(password)
+                                    .addSchool(school_id)
                                     .addBranches(new ArrayList<Integer>(Arrays.asList(branch_id))) //list of one element - just a stub for further development
                                     .buildUser();
                         }
@@ -121,6 +124,50 @@ public class UserDAOImpl implements UserDAO {
             LogHelper.writeMessage("class UserDAOImpl, method getUserByLoginPassword() : connection is null");
         }
         return null;
+    }
+
+    @Override
+    public User.ROLE getRoleByLoginPassword(String login, String password) {
+        User.ROLE result = User.ROLE.UNKNOWN;
+
+        if(login == null || password == null){
+            return null;
+        }
+
+        if(connection == null){
+            connection = PoolConnector.getConnection();
+        }
+        if(connection != null){
+            try {
+                preparedStatement = connection.prepareStatement("SELECT LOGIN, PASSWORD, ROLE_ID FROM USERS WHERE LOGIN = ?");
+                preparedStatement.setString(1, login);
+                ResultSet resultSet = preparedStatement.executeQuery();
+                if(!resultSet.wasNull()){
+                    //I'm using 'while' because can have several users with same login.
+                    while(resultSet.next()){
+                        String hashedPassword = resultSet.getString("PASSWORD");
+                        boolean equals = false;
+                        if(hashedPassword != null){
+                            equals = BCrypt.checkpw(password, hashedPassword);
+                        }
+
+                        if(equals){
+                            //LASTNAME, FIRSTNAME, MIDDLENAME, EMAIL, LOGIN, PASSWORD, ROLE_ID, BRANCH_ID
+                            int role_id = resultSet.getInt("ROLE_ID");
+                            result = User.ROLE.getRoleById(role_id);
+                        }
+                    }
+                }else{
+                    LogHelper.writeMessage("class UserDAOImpl, method getUserByLoginPassword() : resultSet is null");
+                }
+            } catch (SQLException throwables) {
+                throwables.printStackTrace();
+            }
+        }else{
+            LogHelper.writeMessage("class UserDAOImpl, method getUserByLoginPassword() : connection is null");
+        }
+
+        return result;
     }
 
     @Override

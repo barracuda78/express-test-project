@@ -72,8 +72,8 @@ public class UserBuilder {
 //    }
 
 
-    public UserBuilder addSchool(School school){
-        user.setSchool(school);
+    public UserBuilder addSchool(int school_id){
+        user.setSchool(school_id);
         return this;
     }
 
