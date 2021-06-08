@@ -39,6 +39,6 @@
     }
 %>
 
-<a href="<c:url value='/logout' />">Logout</a>
+<a href="<c:url value='/logout' />">Выйти</a>
 </body>
 </html>

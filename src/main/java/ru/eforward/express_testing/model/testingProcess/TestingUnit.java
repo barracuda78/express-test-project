@@ -1,8 +1,10 @@
 package ru.eforward.express_testing.model.testingProcess;
 
+import lombok.Getter;
 import ru.eforward.express_testing.dao.TestDAOFilesystemImpl;
 import ru.eforward.express_testing.daoInterfaces.TestDAO;
 
+@Getter
 public class TestingUnit {
     private final int lessonId;
     private final int groupId;

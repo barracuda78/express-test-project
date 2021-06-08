@@ -5,6 +5,8 @@
 <%@ page import="ru.eforward.express_testing.model.school.Test" %>
 <%@ page import="java.util.List" %>
 <%@ page import="java.nio.file.Path" %>
+<%@ page import="ru.eforward.express_testing.model.testingProcess.TestingUnit" %>
+<%@ page import="ru.eforward.express_testing.utils.LogHelper" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
@@ -16,22 +18,45 @@
     <h1>Тестирование</h1>
 
     <%
+        LogHelper.writeMessage("---class testing.jsp : user entered.");
+        boolean testIsAvailable = false;
         Student student = (Student)session.getAttribute("user");
+        ServletContext servletContext = request.getServletContext();
         @SuppressWarnings("unchecked")
-        final AtomicReference<TestDAOFakeDatabaseImpl> testDao = (AtomicReference<TestDAOFakeDatabaseImpl>) request.getServletContext().getAttribute("test");
-        List<Test> tests = testDao.get().getTestsStore();   //Как тест привязан к студенту? Как они взаимосвязаны.
-                                            // По этому принципу нужно вытащить из testDAO нужный тест, проверить, active  ли он, и запустить.
-        Test currentTest = null;
-        for(Test t : tests){
-            if(t.isActive()){
-                currentTest = t;
+        AtomicReference<List<TestingUnit>> testingUnitsListAtomicReference = (AtomicReference<List<TestingUnit>>)servletContext.getAttribute("testingUnitsListAtomicReference");
+        LogHelper.writeMessage("---class testing.jsp : AtomicReference = " + testingUnitsListAtomicReference);
+        LogHelper.writeMessage("---class testing.jsp : student = " + student);
+        if(testingUnitsListAtomicReference != null && student != null){
+            List<TestingUnit> list = testingUnitsListAtomicReference.get();
+            LogHelper.writeMessage("---class testing.jsp : if statement:  list = " + list);
+            //testIsAvailable = list.stream().anyMatch(testingUnit -> testingUnit.getGroupId() == student.getGroupId());
+            for(TestingUnit t : list){
+                int unitGroupId = t.getGroupId();
+                int studentGroupId = student.getGroupId();
+                LogHelper.writeMessage("---class testing.jsp : for cycle:  unitGroupId = " + unitGroupId + ", studentGroupId = " + studentGroupId);
+                if(t.getGroupId() == student.getGroupId()){
+                    testIsAvailable = true;
+                    break;
+                }
             }
+            LogHelper.writeMessage("---class testing.jsp : if statement:  testIsAvailable = " + testIsAvailable);
         }
+//this commented code works with fake database:
+//        Student student = (Student)session.getAttribute("user");
+//        @SuppressWarnings("unchecked")
+//        final AtomicReference<TestDAOFakeDatabaseImpl> testDao = (AtomicReference<TestDAOFakeDatabaseImpl>) request.getServletContext().getAttribute("test");
+//        List<Test> tests = testDao.get().getTestsStore();
+//        Test currentTest = null;
+//        for(Test t : tests){
+//            if(t.isActive()){
+//                currentTest = t;
+//            }
+//        }
 
-        if(currentTest != null){
-            Path path = currentTest.getPath();
+        if(testIsAvailable){
+            //Path path = currentTest.getPath();
             //String htmlString = student.performTest(Paths.get("D:\\coding\\projects\\EF\\express_test_project\\src\\main\\resources\\tests\\eng\\level01\\lesson01.txt"));
-            String htmlString = student.performTest(path);
+            String htmlString = "<h1>УРРРАААА! ЗАРАБОТАЛОО!!!</h1>";
 
             %>
                 <br/>
@@ -110,7 +135,7 @@
             <%
 
         }
-        if(currentTest == null){
+        if(!testIsAvailable){
 
             %>
                 <p><%="Нет доступных тестов."%></p>
