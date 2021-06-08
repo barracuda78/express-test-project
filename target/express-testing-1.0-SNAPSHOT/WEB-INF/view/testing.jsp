@@ -29,16 +29,21 @@
         if(testingUnitsListAtomicReference != null && student != null){
             List<TestingUnit> list = testingUnitsListAtomicReference.get();
             LogHelper.writeMessage("---class testing.jsp : if statement:  list = " + list);
-            //testIsAvailable = list.stream().anyMatch(testingUnit -> testingUnit.getGroupId() == student.getGroupId());
-            for(TestingUnit t : list){
-                int unitGroupId = t.getGroupId();
-                int studentGroupId = student.getGroupId();
-                LogHelper.writeMessage("---class testing.jsp : for cycle:  unitGroupId = " + unitGroupId + ", studentGroupId = " + studentGroupId);
-                if(t.getGroupId() == student.getGroupId()){
-                    testIsAvailable = true;
-                    break;
-                }
-            }
+            testIsAvailable = list
+                    .stream()
+                    .anyMatch(testingUnit -> {
+                        LogHelper.writeMessage("---class testing.jsp : stream:  test is available");
+                        return testingUnit.getGroupId() == student.getGroupId();
+                    });
+//            for(TestingUnit t : list){
+//                int unitGroupId = t.getGroupId();
+//                int studentGroupId = student.getGroupId();
+//                LogHelper.writeMessage("---class testing.jsp : for cycle:  unitGroupId = " + unitGroupId + ", studentGroupId = " + studentGroupId);
+//                if(t.getGroupId() == student.getGroupId()){
+//                    testIsAvailable = true;
+//                    break;
+//                }
+//            }
             LogHelper.writeMessage("---class testing.jsp : if statement:  testIsAvailable = " + testIsAvailable);
         }
 //this commented code works with fake database:

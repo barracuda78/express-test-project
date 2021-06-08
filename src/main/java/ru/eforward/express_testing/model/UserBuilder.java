@@ -61,16 +61,15 @@ public class UserBuilder {
 
     }
 
+    public UserBuilder addEmail(String email){
+        user.setEmail(email);
+        return this;
+    }
+
     public UserBuilder addPassword(String password){
         user.setPassword(password);
         return this;
     }
-
-//    public UserBuilder addRole(){
-//        user.setRole(role);
-//        return this;
-//    }
-
 
     public UserBuilder addSchool(int school_id){
         user.setSchool(school_id);
@@ -89,10 +88,12 @@ public class UserBuilder {
         return this;
     }
 
-    public UserBuilder addEmail(String email){
-        user.setEmail(email);
+    public UserBuilder addGroupIdToStudent(int groupId) {
+        ((Student)user).setGroupId(groupId);
         return this;
     }
+
+
     //------------------------------
 
     //методы только для преподавателя:
@@ -105,4 +106,6 @@ public class UserBuilder {
     public <T extends User>T buildUser(){
         return (T) user;
     }
+
+
 }

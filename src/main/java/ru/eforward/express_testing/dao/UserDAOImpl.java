@@ -103,7 +103,6 @@ public class UserDAOImpl implements UserDAO {
                             int role_id = resultSet.getInt("ROLE_ID");
                             int school_id = resultSet.getInt("SCHOOL_ID");
                             Integer branch_id = resultSet.getInt("BRANCH_ID");
-
                             User.ROLE role = User.ROLE.getRoleById(role_id);
                             UserBuilder userBuilder = new UserBuilder(role)
                                     .addLastName(lastName)
@@ -122,6 +121,15 @@ public class UserDAOImpl implements UserDAO {
                                 GroupDAO groupDAO = new GroupDAOImpl();
                                 List<Integer> groups = groupDAO.getGroupsByTeacherId(id);
                                 userBuilder.addGroupsToTeacher(groups);
+                            }
+
+                            //add group_id to user:
+                            //    private int levelId;
+                            //    private int groupId;
+                            //    private List<Integer> testResults; //list of ids of testResults
+                            if(role == User.ROLE.STUDENT){
+                                int groupId = resultSet.getInt("GROUP_ID");
+                                userBuilder.addGroupIdToStudent(groupId);
                             }
 
                             return userBuilder.buildUser();
