@@ -62,7 +62,7 @@
                 <td>id урока<input type="text" name="lessonId" size="12"/></td>
             </tr>
             <tr>
-                <td><input type="submit" name="button1" value="Запустить тест"/></td>
+                <td><input type="submit" name="runTestButton" value="Запустить тест"/></td>
             </tr>
 
         </table>

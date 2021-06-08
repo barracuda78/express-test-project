@@ -82,12 +82,12 @@
       <Position>4</Position>
       <DataType>INTEGER|4s</DataType>
     </column>
-    <index id="26" parent="8" name="SYS_IDX_SYS_PK_10393_10396">
+    <index id="26" parent="8" name="SYS_IDX_SYS_PK_10134_10137">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>ID</ColNames>
       <Unique>1</Unique>
     </index>
-    <key id="27" parent="8" name="SYS_PK_10393">
+    <key id="27" parent="8" name="SYS_PK_10134">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>ID</ColNames>
       <Primary>1</Primary>
@@ -123,12 +123,12 @@
       <DataType>VARCHAR(255)|12s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <index id="34" parent="9" name="SYS_IDX_SYS_PK_10788_10793">
+    <index id="34" parent="9" name="SYS_IDX_SYS_PK_10142_10148">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>ID</ColNames>
       <Unique>1</Unique>
     </index>
-    <key id="35" parent="9" name="SYS_PK_10788">
+    <key id="35" parent="9" name="SYS_PK_10142">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>ID</ColNames>
       <Primary>1</Primary>
