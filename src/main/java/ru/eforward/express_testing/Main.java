@@ -1,7 +1,5 @@
 package ru.eforward.express_testing;
 
-
-
 import org.mindrot.jbcrypt.BCrypt;
 import org.slf4j.LoggerFactory;
 import ru.eforward.express_testing.dao.TestDAOFilesystemImpl;

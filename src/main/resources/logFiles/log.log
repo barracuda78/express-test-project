@@ -1,0 +1,4 @@
+10.06.2021 01:28:06.793 [http-nio-8080-exec-6] INFO   r.e.e.m.t.TestingUnit - ---Just a log message.
+10.06.2021 01:28:06.807 [http-nio-8080-exec-6] DEBUG  r.e.e.m.t.TestingUnit - ---Message for debug level.
+10.06.2021 01:28:06.807 [http-nio-8080-exec-6] ERROR  r.e.e.m.t.TestingUnit - ---Failed to read file.
+10.06.2021 01:28:06.807 [http-nio-8080-exec-6] WARN   r.e.e.m.t.TestingUnit - ---Logger: Внимание! Был создан тест!---
