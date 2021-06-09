@@ -82,7 +82,7 @@ public class AuthFilter implements Filter {
         }
     }
 
-    /*
+    /**
      * Перемещает пользователя на страницу jsp с соответствующим контентом в зависимости от роли пользователя.
      */
     private void moveToMenu(final HttpServletRequest req, final HttpServletResponse res, final User.ROLE role) throws ServletException, IOException {
@@ -105,5 +105,4 @@ public class AuthFilter implements Filter {
     @Override
     public void destroy() {
     }
-
 }

@@ -33,6 +33,7 @@
                     .stream()
                     .anyMatch(testingUnit -> {
                         LogHelper.writeMessage("---class testing.jsp : stream:  test is available");
+                        //here we should take testingUnit from list and run it -> html code!
                         return testingUnit.getGroupId() == student.getGroupId();
                     });
 //            for(TestingUnit t : list){

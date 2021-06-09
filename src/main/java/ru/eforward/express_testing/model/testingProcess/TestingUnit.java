@@ -1,11 +1,17 @@
 package ru.eforward.express_testing.model.testingProcess;
 
 import lombok.Getter;
+import org.slf4j.LoggerFactory;
+import ru.eforward.express_testing.Main;
 import ru.eforward.express_testing.dao.TestDAOFilesystemImpl;
 import ru.eforward.express_testing.daoInterfaces.TestDAO;
+import ru.eforward.express_testing.utils.LogHelper;
+
+import org.slf4j.Logger;
 
 @Getter
 public class TestingUnit {
+    public static final Logger LOGGER = LoggerFactory.getLogger(TestingUnit.class);
     private final int lessonId;
     private final int groupId;
     private String[] questions;
@@ -15,6 +21,8 @@ public class TestingUnit {
         this.lessonId = lessonId;
         this.groupId = groupId;
         init(lessonId);
+        LOGGER.warn("---Logger: Внимание! Был создан тест!---");
+        LogHelper.writeMessage("---LogHelper: Внимание! Был создан тест!---");
     }
 
     private void init(int lessonId){
@@ -36,5 +44,4 @@ public class TestingUnit {
         cursor++;
         return testString;
     }
-
 }
