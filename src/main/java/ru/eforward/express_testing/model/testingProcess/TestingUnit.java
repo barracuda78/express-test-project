@@ -56,7 +56,7 @@ public class TestingUnit {
 //            getNextTest();
 //        }
 //        cursor++;
-        return questionToHtml(questions.get(3)); //todo: remove hardcoded '3' with appropriate logic.
+        return questionToHtml(questions.get(1)); //todo: remove hardcoded '3' with appropriate logic.
     }
 
     private synchronized String questionToHtml(String plainString){
