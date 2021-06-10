@@ -1,0 +1,5 @@
+
+10.06.2021 12:33:55.293 [http-nio-8080-exec-6] WARN   r.e.e.m.t.TestingUnit - new test was created for lessonId 3 and groupId 1
+10.06.2021 12:45:16.363 [http-nio-8080-exec-9] WARN   r.e.e.m.t.TestingUnit - new test was created for lessonId 3 and groupId 1
+10.06.2021 12:50:56.253 [http-nio-8080-exec-7] WARN   r.e.e.m.t.TestingUnit - new test was created for lessonId 3 and groupId 1
+10.06.2021 12:54:01.110 [http-nio-8080-exec-6] WARN   r.e.e.m.t.TestingUnit - new test was created for lessonId 3 and groupId 1

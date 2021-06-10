@@ -1,11 +1,14 @@
 package ru.eforward.express_testing.dao;
 
 import org.mindrot.jbcrypt.BCrypt;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import ru.eforward.express_testing.daoInterfaces.GroupDAO;
 import ru.eforward.express_testing.daoInterfaces.UserDAO;
 import ru.eforward.express_testing.dbConnection.PoolConnector;
 import ru.eforward.express_testing.model.User;
 import ru.eforward.express_testing.model.UserBuilder;
+import ru.eforward.express_testing.model.testingProcess.TestingUnit;
 import ru.eforward.express_testing.utils.LogHelper;
 
 import java.sql.Connection;
@@ -17,6 +20,7 @@ import java.util.Arrays;
 import java.util.List;
 
 public class UserDAOImpl implements UserDAO {
+    private static final Logger LOGGER = LoggerFactory.getLogger(UserDAOImpl.class);
     private Connection connection;
     private PreparedStatement preparedStatement;
 
@@ -58,6 +62,7 @@ public class UserDAOImpl implements UserDAO {
                 if(!preparedStatement.execute()){
                     updateCount = preparedStatement.getUpdateCount();
                     LogHelper.writeMessage("class SchoolDAOImpl, method addUser() : added records to Users table" + updateCount);
+                    LOGGER.warn("new user record was inserted into table USERS with lastName {}", user.getLastName());
                 }
             } catch (SQLException throwables) {
                 throwables.printStackTrace();

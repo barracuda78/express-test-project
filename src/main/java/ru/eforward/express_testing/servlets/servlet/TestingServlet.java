@@ -64,6 +64,7 @@ public class TestingServlet extends HttpServlet {
             servletContext.setAttribute("testingUnitsListAtomicReference", testingUnitsListAtomicReference);
             request.setAttribute("testingStarted", "ok");
             LogHelper.writeMessage("---class TestingServlet: doGet() testingStarted - OK---");
+            LogHelper.writeMessage("---class TestingServlet: doGet()Текст теста = " + testingUnit.getNextTest());
         } else {
             LogHelper.writeMessage("---class TestingServlet: doGet() - in else statement");
             request.setAttribute("testingStarted", "bad");

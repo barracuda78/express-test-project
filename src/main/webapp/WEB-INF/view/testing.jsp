@@ -7,6 +7,7 @@
 <%@ page import="java.nio.file.Path" %>
 <%@ page import="ru.eforward.express_testing.model.testingProcess.TestingUnit" %>
 <%@ page import="ru.eforward.express_testing.utils.LogHelper" %>
+<%@ page import="java.util.Optional" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
@@ -26,8 +27,9 @@
         AtomicReference<List<TestingUnit>> testingUnitsListAtomicReference = (AtomicReference<List<TestingUnit>>)servletContext.getAttribute("testingUnitsListAtomicReference");
         LogHelper.writeMessage("---class testing.jsp : AtomicReference = " + testingUnitsListAtomicReference);
         LogHelper.writeMessage("---class testing.jsp : student = " + student);
+        List<TestingUnit> list = null;
         if(testingUnitsListAtomicReference != null && student != null){
-            List<TestingUnit> list = testingUnitsListAtomicReference.get();
+            list = testingUnitsListAtomicReference.get();
             LogHelper.writeMessage("---class testing.jsp : if statement:  list = " + list);
             testIsAvailable = list
                     .stream()
@@ -36,6 +38,7 @@
                         //here we should take testingUnit from list and run it -> html code!
                         return testingUnit.getGroupId() == student.getGroupId();
                     });
+//same as stream above - for testing:
 //            for(TestingUnit t : list){
 //                int unitGroupId = t.getGroupId();
 //                int studentGroupId = student.getGroupId();
@@ -47,24 +50,22 @@
 //            }
             LogHelper.writeMessage("---class testing.jsp : if statement:  testIsAvailable = " + testIsAvailable);
         }
-//this commented code works with fake database:
-//        Student student = (Student)session.getAttribute("user");
-//        @SuppressWarnings("unchecked")
-//        final AtomicReference<TestDAOFakeDatabaseImpl> testDao = (AtomicReference<TestDAOFakeDatabaseImpl>) request.getServletContext().getAttribute("test");
-//        List<Test> tests = testDao.get().getTestsStore();
-//        Test currentTest = null;
-//        for(Test t : tests){
-//            if(t.isActive()){
-//                currentTest = t;
-//            }
-//        }
 
         if(testIsAvailable){
             //Path path = currentTest.getPath();
             //String htmlString = student.performTest(Paths.get("D:\\coding\\projects\\EF\\express_test_project\\src\\main\\resources\\tests\\eng\\level01\\lesson01.txt"));
-            String htmlString = "<h1>УРРРАААА! ЗАРАБОТАЛОО!!!</h1>";
+            //String htmlString = "<h1>УРРРАААА! ЗАРАБОТАЛОО!!!</h1>";
 
-            %>
+            Optional<TestingUnit> optionalTestingUnit = list
+                    .stream()
+                    .findFirst();
+
+            String htmlString = "Извините. Файл с тестом не был подготовлен.";
+            if(optionalTestingUnit.isPresent() && optionalTestingUnit.get().hasNextTest()){
+                htmlString = optionalTestingUnit.get().getNextTest();
+            }
+
+    %>
                 <br/>
 
     <h2 class="countdown-title">Тестирование началось:</h2>
