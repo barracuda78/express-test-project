@@ -1,8 +1,9 @@
-package ru.eforward.express_testing.model.testingProcess;
+package ru.eforward.express_testing.testingProcess;
 
-import ru.eforward.express_testing.model.testingProcess.enumHandlers.DefaultHandler;
-import ru.eforward.express_testing.model.testingProcess.enumHandlers.MultichoiceHandler;
-import ru.eforward.express_testing.model.testingProcess.enumHandlers.QuestionHandler;
+import ru.eforward.express_testing.testingProcess.enumHandlers.DefaultHandler;
+import ru.eforward.express_testing.testingProcess.enumHandlers.MultichoiceHandler;
+import ru.eforward.express_testing.testingProcess.enumHandlers.QuestionHandler;
+import ru.eforward.express_testing.testingProcess.enumHandlers.ShortAnswerHandler;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -33,6 +34,7 @@ public enum QuestionType {
         List<QuestionHandler> handlers = new ArrayList<>();
         //todo: implement package scanning here for automatic adding of entities from package enumHandlers.
         handlers.add(new MultichoiceHandler());
+        handlers.add(new ShortAnswerHandler());
         handlers.add(new DefaultHandler());
 
         for(QuestionHandler h : handlers){

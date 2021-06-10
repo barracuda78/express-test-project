@@ -1,19 +1,15 @@
 package ru.eforward.express_testing.servlets.servlet;
 
-import ru.eforward.express_testing.dao.TestDAOFakeDatabaseImpl;
-import ru.eforward.express_testing.model.school.Test;
-import ru.eforward.express_testing.model.testingProcess.TestingUnit;
+import ru.eforward.express_testing.testingProcess.TestingUnit;
 import ru.eforward.express_testing.utils.LogHelper;
 
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
-import javax.servlet.annotation.WebListener;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicReference;

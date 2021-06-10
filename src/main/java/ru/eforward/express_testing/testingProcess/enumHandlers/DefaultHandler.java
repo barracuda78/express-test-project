@@ -1,6 +1,7 @@
-package ru.eforward.express_testing.model.testingProcess.enumHandlers;
+package ru.eforward.express_testing.testingProcess.enumHandlers;
 
-import ru.eforward.express_testing.model.testingProcess.QuestionType;
+import ru.eforward.express_testing.testingProcess.QuestionType;
+import ru.eforward.express_testing.utils.LogHelper;
 
 public class DefaultHandler implements QuestionHandler{
     //always returns false : will be used only if no other handlers can process
@@ -12,6 +13,7 @@ public class DefaultHandler implements QuestionHandler{
     //does nothing but returns the same string
     @Override
     public String process(String s) {
+        LogHelper.writeMessage("-- class DefaultHandler ");
         return s;
     }
 }

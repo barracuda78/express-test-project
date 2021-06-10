@@ -1,10 +1,10 @@
-package ru.eforward.express_testing.model.testingProcess;
+package ru.eforward.express_testing.testingProcess;
 
 import lombok.Getter;
 import org.slf4j.LoggerFactory;
 import ru.eforward.express_testing.dao.TestDAOFilesystemImpl;
 import ru.eforward.express_testing.daoInterfaces.TestDAO;
-import ru.eforward.express_testing.model.testingProcess.enumHandlers.QuestionHandler;
+import ru.eforward.express_testing.testingProcess.enumHandlers.QuestionHandler;
 import ru.eforward.express_testing.utils.LogHelper;
 
 import org.slf4j.Logger;
@@ -56,7 +56,7 @@ public class TestingUnit {
 //            getNextTest();
 //        }
 //        cursor++;
-        return questionToHtml(questions.get(1)); //todo: remove hardcoded '3' with appropriate logic.
+        return questionToHtml(questions.get(4)); //todo: remove hardcoded 'number' with appropriate logic.
     }
 
     private synchronized String questionToHtml(String plainString){
@@ -69,6 +69,9 @@ public class TestingUnit {
     }
 
     private QuestionType findOutQuestionType(String plainString) {
+        LogHelper.writeMessage("plainString = " + plainString);
+        LogHelper.writeMessage("plainString.split(\"=\").length = " + plainString.split("=").length);
+
         //consider the string has '{', '~' and '=' signs:
         if(plainString.contains("{") && plainString.contains("~") && plainString.contains("=")){
             return QuestionType.MULTICHOICE;
@@ -94,6 +97,8 @@ public class TestingUnit {
             return QuestionType.COMMENT;
         }
 
+        LogHelper.writeMessage("---class TestingUnit method findOut(): Невозможно определить тип вопроса! QuestionType.UNDEFINED");
+        LOGGER.error("Невозможно определить тип вопроса! QuestionType.UNDEFINED");
         return QuestionType.UNDEFINED;
     }
 

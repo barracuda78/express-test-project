@@ -5,7 +5,7 @@
 <%@ page import="ru.eforward.express_testing.model.school.Test" %>
 <%@ page import="java.util.List" %>
 <%@ page import="java.nio.file.Path" %>
-<%@ page import="ru.eforward.express_testing.model.testingProcess.TestingUnit" %>
+<%@ page import="ru.eforward.express_testing.testingProcess.TestingUnit" %>
 <%@ page import="ru.eforward.express_testing.utils.LogHelper" %>
 <%@ page import="java.util.Optional" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>

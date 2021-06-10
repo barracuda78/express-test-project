@@ -8,7 +8,6 @@ import ru.eforward.express_testing.daoInterfaces.UserDAO;
 import ru.eforward.express_testing.dbConnection.PoolConnector;
 import ru.eforward.express_testing.model.User;
 import ru.eforward.express_testing.model.UserBuilder;
-import ru.eforward.express_testing.model.testingProcess.TestingUnit;
 import ru.eforward.express_testing.utils.LogHelper;
 
 import java.sql.Connection;

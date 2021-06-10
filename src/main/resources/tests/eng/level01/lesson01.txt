@@ -17,3 +17,5 @@ The American holiday of Thanksgiving is celebrated on the {
     =fourth
     ~затрудняюсь ответить
 } Thursday of November.
+
+два плюс два равно {=четыре =4}
