@@ -2,16 +2,18 @@
 //Level=First Level
 //Lesson=First Lesson
 
-Japanese characters originally came from what country? {
+::Question about Japan::Japanese characters originally came from what country? {
     ~India
     =China
     ~Korea
-    ~Egypt}
+    ~Egypt
+    ~затрудн€юсь ответить}
 
-Grant is {~buried =entombed ~living} in Grant's tomb.
+Grant is {~buried =entombed ~living ~затрудн€юсь ответить} in Grant's tomb.
 
 The American holiday of Thanksgiving is celebrated on the {
     ~second
     ~third
     =fourth
+    ~затрудн€юсь ответить
 } Thursday of November.
