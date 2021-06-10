@@ -7,6 +7,7 @@ import javax.mail.search.SearchTerm;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Objects;
 
 public class MultichoiceHandler implements QuestionHandler{
     @Override
@@ -59,24 +60,24 @@ public class MultichoiceHandler implements QuestionHandler{
                 sb.append(questionItself);
             sb.append("</b>");
             sb.append("<ul>");
-            sb.append("<form method=\"get\" action=\"AnswerHandlerServlet\">");  //TODO:------------->have to implement logic this servlet
-                for(String variant : allVariants.split("[\\s]+")){
-                    if("".equals(variant)){
+            sb.append("<form method=\"get\" action=\"AnswerHandlerServlet\" method=\"GET\">" );  //TODO:------------->have to implement logic this servlet
+                for (String variant : allVariants.split("[~=]+")) {  //"[\\s]+" --> this is unappropriate regex.
+                    if (Objects.nonNull(variant) && "".equals(variant.trim())) {
                         continue;
                     }
                     LogHelper.writeMessage("variant = " + variant);
                     sb.append("<li>");
-                    if(variant.contains("%")){
-                        variant = variant.substring(variant.lastIndexOf("%"));
-                        sb.append(variant); //taking into account variant may start not only with '=' or '~' signs, but '~%50%';
-                    }else{
-                        sb.append(variant.substring(1)); //taking into account variant starts with '~' sign or '=' sign;
+                    if (variant.contains("%")) {
+                        variant = variant.substring(variant.lastIndexOf("%")); //taking into account variant may start not only with '=' or '~' signs, but '~%50%';
+                        //sb.append(variant);
                     }
-                    sb.append("<input type=\"text\" required placeholder=\"type your answer\" name=\"answer\"><br>"); //todo: radiobutton instead of text here!
+                    //sb.append("<input type=\"text\" required placeholder=\"type your answer\" name=\"answer\"><br>"); //todo: radiobutton instead of text here!
+                    sb.append("<input type=\"radio\" name=\"choice1\" value=\"-123-\">" + variant + "<br>");
                     sb.append("</li>");
+
                 }
                 sb.append("</ul>");
-                sb.append("<input class=\"button\" type=\"submit\" name=\"answeredButton\" value=\"Отправить\">");
+                sb.append("<input class=\"button\" type=\"submit\" name=\"choice1\" value=\"Отправить\">");
             sb.append("</form>");
 
         sb.append("</p>");
