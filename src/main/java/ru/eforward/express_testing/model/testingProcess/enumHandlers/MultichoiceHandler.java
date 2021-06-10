@@ -12,7 +12,7 @@ public class MultichoiceHandler implements QuestionHandler{
     }
 
     /**
-     * A String, passed as a paramether to this method, looks like:
+     * A String, passed as a parameter to this method, looks like:
      * Кто похоронен в могиле Гранта? {~Грант ~Джефферсон =никто}
      *
      * or like:

@@ -26,10 +26,6 @@ public enum QuestionType {
     DESCRIPTION,
     //Строка комментария:
     COMMENT,
-    //Название вопроса:
-    QUESTION_NAME,
-    //Комментарий на вариант ответа:
-    ANSWER_COMMENT,
     //Непонятно какой тип вороса:
     UNDEFINED;
 

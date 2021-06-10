@@ -69,8 +69,32 @@ public class TestingUnit {
     }
 
     private QuestionType findOutQuestionType(String plainString) {
-        //todo: implement logic instead of hardcode:
-        return QuestionType.MULTICHOICE;
+        //consider the string has '{', '~' and '=' signs:
+        if(plainString.contains("{") && plainString.contains("~") && plainString.contains("=")){
+            return QuestionType.MULTICHOICE;
+        }
+        //counting how many '=' signs contains this string (more than 1 ore no one)
+        else if((plainString.split("=").length > 2) || (!plainString.contains("="))){
+            return QuestionType.SHORT_ANSWER;
+        }
+        //consider the string contains {T} or {TRUE} or {true} or {True} combination:
+        else if(plainString.toLowerCase().contains("{t}") || plainString.toLowerCase().contains("{true}")){
+            return QuestionType.TRUE_FALSE;
+        }
+        else if(plainString.contains("->")){
+            return QuestionType.COMPLIANCE;
+        }
+        else if(plainString.contains("#") && plainString.matches(".*\\d+.*")){
+            return QuestionType.NUMBER_QUESTION;
+        }
+        else if(plainString.endsWith("{}")){
+            return QuestionType.ESSAY;
+        }
+        else if(plainString.contains("//")){
+            return QuestionType.COMMENT;
+        }
+
+        return QuestionType.UNDEFINED;
     }
 
 }
