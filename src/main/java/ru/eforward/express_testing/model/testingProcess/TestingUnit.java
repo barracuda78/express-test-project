@@ -4,6 +4,7 @@ import lombok.Getter;
 import org.slf4j.LoggerFactory;
 import ru.eforward.express_testing.dao.TestDAOFilesystemImpl;
 import ru.eforward.express_testing.daoInterfaces.TestDAO;
+import ru.eforward.express_testing.model.testingProcess.enumHandlers.QuestionHandler;
 import ru.eforward.express_testing.utils.LogHelper;
 
 import org.slf4j.Logger;
@@ -38,7 +39,7 @@ public class TestingUnit {
 //        logger.debug("---Message for debug level.");
 //        logger.error("---Failed to read file.");
         questions = new ArrayList<>(Arrays.asList(array));
-        LogHelper.writeMessage("---class TestingUnit method init() : questions = " + questions);
+        //LogHelper.writeMessage("---class TestingUnit method init() : questions = " + questions);
     }
 
     public synchronized boolean hasNextTest(){
@@ -55,48 +56,21 @@ public class TestingUnit {
 //            getNextTest();
 //        }
 //        cursor++;
-        return covertPlainStringToValidHtmlString(questions.get(3));
+        return questionToHtml(questions.get(3)); //todo: remove hardcoded '3' with appropriate logic.
     }
 
-    //        <form method="post" action="">
-    //            <input type="text" required placeholder="login" name="login"><br>
-    //            <input type="password" required placeholder="password" name="password"><br><br>
-    //            <input class="button" type="submit" value="Войти">
-    //
-    //        </form>
-    private synchronized String covertPlainStringToValidHtmlString(String plainString){
-        StringBuilder sb = new StringBuilder();
-        sb.append("<p>");
-        sb.append("<br>");
-        sb.append(buildNiceQuestionFromPlainQuestion(plainString));   //------>this is the question itself;
-        sb.append("<br>");
-        sb.append("<form method=\"get\" action=\"AnswerHandlerServlet\">");  //TODO:------------->have to create this servlet
-        sb.append("<input type=\"text\" required placeholder=\"type your answer\" name=\"answer\"><br>");
-        sb.append("<input class=\"button\" type=\"submit\" name=\"answeredButton\" value=\"Отправить\">");
-        sb.append("</form>");
-        sb.append("</p>");
-
-        return sb.toString();
+    private synchronized String questionToHtml(String plainString){
+        //here I have to understand witch enum 'QuestionType' is this question.
+        //and move this  plainString to appropriate Handler:
+        QuestionType questionType = findOutQuestionType(plainString);
+        //get handler and pass this questionType to it:
+        QuestionHandler questionHandler = QuestionType.getHandler(questionType);
+        return  questionHandler.process(plainString);
     }
 
-    //Grant is {~buried =entombed ~living ~затрудняюсь ответить} in Grant's tomb.
-    private synchronized String buildNiceQuestionFromPlainQuestion(String q){
-        LogHelper.writeMessage("---class TestingUnit method  buildNice...() q = " + q);
-        StringBuilder sb = new StringBuilder();
-        String allVariants = q.substring(q.indexOf('{') + 1, q.indexOf('}'));
-        String questionItself = q.substring(0, q.indexOf('{')) + q.substring(q.indexOf('}') + 1);
-
-        sb.append("<b>");
-        sb.append(questionItself);
-        sb.append("</b>");
-        sb.append("<ul>");
-        for(String variant : allVariants.split("[\\s]+")){
-            sb.append("<li>");
-            sb.append(variant);
-            sb.append("</li>");
-        }
-        sb.append("</ul>");
-
-        return sb.toString();
+    private QuestionType findOutQuestionType(String plainString) {
+        //todo: implement logic instead of hardcode:
+        return QuestionType.MULTICHOICE;
     }
+
 }

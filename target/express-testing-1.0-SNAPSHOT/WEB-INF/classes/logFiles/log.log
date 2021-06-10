@@ -8,3 +8,8 @@
 10.06.2021 13:58:05.824 [http-nio-8080-exec-6] WARN   r.e.e.m.t.TestingUnit - new test was created for lessonId 3 and groupId 1
 10.06.2021 14:00:07.231 [http-nio-8080-exec-6] WARN   r.e.e.m.t.TestingUnit - new test was created for lessonId 3 and groupId 1
 10.06.2021 14:03:33.813 [http-nio-8080-exec-6] WARN   r.e.e.m.t.TestingUnit - new test was created for lessonId 3 and groupId 1
+10.06.2021 14:06:30.206 [http-nio-8080-exec-6] WARN   r.e.e.m.t.TestingUnit - new test was created for lessonId 3 and groupId 1
+10.06.2021 17:57:50.686 [http-nio-8080-exec-7] WARN   r.e.e.m.t.TestingUnit - new test was created for lessonId 3 and groupId 1
+10.06.2021 18:00:26.659 [http-nio-8080-exec-6] WARN   r.e.e.m.t.TestingUnit - new test was created for lessonId 3 and groupId 1
+10.06.2021 18:03:38.417 [http-nio-8080-exec-6] WARN   r.e.e.m.t.TestingUnit - new test was created for lessonId 3 and groupId 1
+10.06.2021 18:06:58.144 [http-nio-8080-exec-8] WARN   r.e.e.m.t.TestingUnit - new test was created for lessonId 3 and groupId 1
