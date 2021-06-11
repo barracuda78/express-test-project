@@ -6,21 +6,12 @@ import ru.eforward.express_testing.utils.LogHelper;
 import java.util.Objects;
 
 public class MultichoiceHandler extends Handler implements QuestionHandler{
-    /**
-     *Takes a QuestionType enum value, finds out if this value can be processed with this class.
-     * @param enumValue - a QuestionType enum value.
-     * @return true if this value can be processed with this class, otherwise returns false;
-     */
+
     @Override
     public boolean canProcess(QuestionType enumValue) {
         return enumValue == QuestionType.MULTICHOICE;
     }
 
-    /**
-     *Takes plain string as a parameter, parses it to html-formatted string
-     * @param q - plain string (one whole question of the test.
-     * @return html-formatted String created with given String q;
-     */
     @Override
     public String process(String q) {
         LogHelper.writeMessage("-- class DefaultHandler ");

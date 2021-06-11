@@ -3,8 +3,6 @@ package ru.eforward.express_testing.testingProcess.enumHandlers;
 import ru.eforward.express_testing.testingProcess.QuestionType;
 import ru.eforward.express_testing.utils.LogHelper;
 
-import java.util.Objects;
-
 public class ShortAnswerHandler extends Handler implements QuestionHandler{
 
     @Override
@@ -45,7 +43,7 @@ public class ShortAnswerHandler extends Handler implements QuestionHandler{
         sb.append("</b>");
             sb.append("<form method=\"get\" action=\"AnswerHandlerServlet\" method=\"GET\">" );
             sb.append("<input type=\"text\" required placeholder=\"напишите ваш ответ\" name=\"shortAnswer\"><br>");
-            sb.append("<input class=\"button\" type=\"submit\" name=\"choice1\" value=\"Отправить\">");
+            sb.append("<input class=\"button\" type=\"submit\" name=\"choice2\" value=\"Отправить\">");
         sb.append("</form>");
         sb.append("</p>");
         return sb.toString();

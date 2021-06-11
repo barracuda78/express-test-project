@@ -14,6 +14,7 @@ public class DefaultHandler implements QuestionHandler{
     @Override
     public String process(String s) {
         LogHelper.writeMessage("-- class DefaultHandler ");
+
         return s;
     }
 }

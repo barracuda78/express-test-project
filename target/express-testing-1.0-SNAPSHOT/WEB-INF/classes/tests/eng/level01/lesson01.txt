@@ -19,3 +19,5 @@ The American holiday of Thanksgiving is celebrated on the {
 } Thursday of November.
 
 два плюс два равно {=четыре =4}
+
+Солнце встает на Востоке.{T}
