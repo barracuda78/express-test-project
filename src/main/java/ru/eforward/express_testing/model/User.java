@@ -1,77 +1,47 @@
 package ru.eforward.express_testing.model;
 
-public class User {
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import ru.eforward.express_testing.model.school.*;
+
+import java.util.Arrays;
+import java.util.List;
+import java.util.Optional;
+
+@Getter
+@Setter
+@NoArgsConstructor
+public abstract class User {
     private int id;
     private String lastName;
     private String firstName;
     private String middleName;
+    private String email;
     private String login;
     private String password;
     private ROLE role;
-    //school
-    //branch
-    //course
-    //level
-    //lesson
-    //testResult
-    //group
-    //teacher
-
-    public User() {
-    }
-
-    public User(int id, String login, String password, ROLE role) {
-        this.id = id;
-        this.login = login;
-        this.password = password;
-        this.role = role;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public String getLogin() {
-        return login;
-    }
-
-    public void setLogin(String login) {
-        this.login = login;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-    public ROLE getRole() {
-        return role;
-    }
-
-    public void setRole(ROLE role) {
-        this.role = role;
-    }
-
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
-    }
-
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
-
-    public void setMiddleName(String middleName) {
-        this.middleName = middleName;
-    }
+    private int school;
+    private List<Integer> branches; //contains branch_id's
 
     public enum ROLE {
-        USER, ADMIN, TEACHER, UNKNOWN
+        ADMIN(1),
+        TEACHER(2),
+        STUDENT(3),
+        UNKNOWN(4);
+
+        private final int id;
+
+        ROLE(int id){
+            this.id = id;
+        }
+
+        public int getId(){
+            return id;
+        }
+        public static ROLE getRoleById(int id){
+            Optional<ROLE> firstRole = Arrays.stream(values()).filter(role -> role.id == id).findFirst();
+            return firstRole.orElse(UNKNOWN);
+        }
     }
 }

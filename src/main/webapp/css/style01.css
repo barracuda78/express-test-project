@@ -1,0 +1,103 @@
+/*
+*{
+  padding:0;
+  margin:0;
+}
+*/
+
+/*гиперссылки*/
+A{
+    color:orange;
+}
+A:visited{
+    color:orange;
+}
+A:active{
+    color:orangered;
+}
+
+h1{
+    color:white;
+}
+
+p1{
+    color:orange;
+}
+
+#main-header{
+    margin-top:0;
+    text-align:center;
+    color:lightskyblue;
+    background-color: black;
+    font-size: 26px;
+}
+
+body{
+    margin:0;
+
+    color:orange;
+    background-color: #333333;
+    font-family: "Courier new", Courier, monospace;
+    line-height: 1.6em;
+}
+
+.box-1{
+    color:greenyellow;
+    background-color: #333333;
+    font-family: "Courier new", Courier, monospace;
+    line-height: 1.6em;
+    border:1px red solid;
+    padding:20px;
+    padding-left: 100px;
+    margin:5px;
+}
+
+.box-2{
+    color:orange;
+    background-color: #333333;
+    font-family: "Courier new", Courier, monospace;
+    line-height: 1.6em;
+    border:1px white solid;
+    padding:20px;
+}
+
+.box-3{
+    color:white;
+    background-color: #333333;
+    font-family: "Courier new", Courier, monospace;
+    line-height: 1.6em;
+    border:1px whitesmoke solid;
+    padding:20px;
+}
+
+.container{
+    width:60%;
+    margin:auto;
+}
+
+/*кнопки*/
+.b1 {
+    background: #333333; /* Синий цвет фона */
+    color: white; /* Белые буквы */
+    font-size: 7pt; /* Размер шрифта в пунктах */
+}
+
+/*ввод текста и меню выпадающие*/
+.t1 {
+    background: #333333; /* Синий цвет фона */
+    color: white; /* Белые буквы */
+    font-size: 7pt; /* Размер шрифта в пунктах */
+}
+
+/*линия горизонтальная*/
+.hr1 {
+    background: #333333; /* Синий цвет фона */
+    color: black; /* Белые буквы */
+    font-size: 7pt; /* Размер шрифта в пунктах */
+}
+
+.menu {
+    text-align: center;
+    font-size: 1vw;
+}
+
