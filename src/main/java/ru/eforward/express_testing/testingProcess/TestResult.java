@@ -18,5 +18,5 @@ public class TestResult {
     private int schoolId;
     private int lessonId;
     private Map<String, String> map = new LinkedHashMap<>();
-    private double averageScore;
+    private int score;
 }

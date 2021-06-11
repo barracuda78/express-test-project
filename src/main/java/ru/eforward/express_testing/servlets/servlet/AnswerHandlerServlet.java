@@ -56,13 +56,18 @@ public class AnswerHandlerServlet extends HttpServlet {
             testResult.setSchoolId(student.getSchool());
             testResult.setLessonId(testingUnit.getLessonId());
 
-            httpSession.setAttribute("testResult", testResult);
+            //todo: decide what parameters should be put to this method to evaluate every question. TestingUnit? Question? Should i get question from form 'hidden'?
 
-            String evaluation = testEvaluate.evaluateMultiChoice(choice);
+            int score = testEvaluate.evaluateMultiChoice(choice);
+
+
+            testResult.getMap().put("question!!!!!!!!", choice);
+
+            httpSession.setAttribute("testResult", testResult);
 
             try(PrintWriter out = response.getWriter()){
                 out.println("<h1>" + choice + "</h1>");
-                out.println("<h1>" + evaluation + "</h1>");
+                out.println("<h1>" + score + "</h1>");
                 out.println("<h1>" + questionType + "</h1>");
             }
         }
