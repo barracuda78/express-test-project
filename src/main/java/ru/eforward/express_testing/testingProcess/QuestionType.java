@@ -17,7 +17,7 @@ public enum QuestionType {
     //Вопрос на соответствие:
     COMPLIANCE,
     //Числовой вопрос:
-    NUMBER_QUESTION,
+    NUMBER,
     //Эссэ:
     ESSAY,
     //Описание:
@@ -34,6 +34,7 @@ public enum QuestionType {
         handlers.add(new ShortAnswerHandler());
         handlers.add(new TrueFalseHandler());
         handlers.add(new ComplianceHandler());
+        handlers.add(new NumberHandler());
         handlers.add(new DefaultHandler());
 
         for(QuestionHandler h : handlers){
@@ -41,6 +42,7 @@ public enum QuestionType {
                 return h;
             }
         }
+
         return new DefaultHandler();
     }
 }

@@ -28,3 +28,5 @@ The American holiday of Thanksgiving is celebrated on the {
     =Япония -> Токио
     =Индия  -> Нью Дели
 }
+
+Когда родился Грант? {#1822}

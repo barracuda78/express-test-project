@@ -24,3 +24,15 @@
 11.06.2021 13:55:15.395 [http-nio-8080-exec-6] WARN   r.e.e.t.TestingUnit - new test was created for lessonId 3 and groupId 1
 11.06.2021 13:57:57.250 [http-nio-8080-exec-6] WARN   r.e.e.t.TestingUnit - new test was created for lessonId 3 and groupId 1
 11.06.2021 14:00:37.040 [http-nio-8080-exec-6] WARN   r.e.e.t.TestingUnit - new test was created for lessonId 3 and groupId 1
+11.06.2021 14:02:53.799 [http-nio-8080-exec-6] WARN   r.e.e.t.TestingUnit - new test was created for lessonId 3 and groupId 1
+11.06.2021 14:28:49.794 [http-nio-8080-exec-6] WARN   r.e.e.t.TestingUnit - new test was created for lessonId 3 and groupId 1
+11.06.2021 14:30:09.921 [http-nio-8080-exec-6] WARN   r.e.e.t.TestingUnit - new test was created for lessonId 3 and groupId 1
+11.06.2021 14:43:46.726 [http-nio-8080-exec-6] WARN   r.e.e.t.TestingUnit - new test was created for lessonId 3 and groupId 1
+11.06.2021 14:55:44.883 [http-nio-8080-exec-6] WARN   r.e.e.t.TestingUnit - new test was created for lessonId 3 and groupId 1
+11.06.2021 14:59:34.803 [http-nio-8080-exec-6] WARN   r.e.e.t.TestingUnit - new test was created for lessonId 3 and groupId 1
+11.06.2021 15:02:37.583 [http-nio-8080-exec-6] WARN   r.e.e.t.TestingUnit - new test was created for lessonId 3 and groupId 1
+11.06.2021 15:03:44.466 [http-nio-8080-exec-6] WARN   r.e.e.t.TestingUnit - new test was created for lessonId 3 and groupId 1
+11.06.2021 15:03:44.475 [http-nio-8080-exec-6] ERROR  r.e.e.t.TestingUnit - Невозможно определить тип вопроса! QuestionType.UNDEFINED
+11.06.2021 15:03:53.070 [http-nio-8080-exec-1] ERROR  r.e.e.t.TestingUnit - Невозможно определить тип вопроса! QuestionType.UNDEFINED
+11.06.2021 15:05:11.260 [http-nio-8080-exec-6] WARN   r.e.e.t.TestingUnit - new test was created for lessonId 3 and groupId 1
+11.06.2021 15:06:12.009 [http-nio-8080-exec-6] WARN   r.e.e.t.TestingUnit - new test was created for lessonId 3 and groupId 1

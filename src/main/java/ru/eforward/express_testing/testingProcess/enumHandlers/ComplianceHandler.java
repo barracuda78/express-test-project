@@ -21,7 +21,6 @@ public class ComplianceHandler extends Handler implements  QuestionHandler{
     @Override
     public String process(String q) {
         LogHelper.writeMessage("---class ComplianceHandler");
-
         //1. get question name if exists:
         String questionName = getQuestionName(q); //methods are inherited from superclass Handler
         //2.get question itself:
@@ -43,22 +42,14 @@ public class ComplianceHandler extends Handler implements  QuestionHandler{
             list.add(value);
         }
 
-        //6. build the html-string here:
-        StringBuilder sb = new StringBuilder();
-        sb.append("<p>");
-        sb.append("<b>");
-        sb.append(questionName);
-        sb.append("</b>");
-        sb.append("<br>");
-        sb.append("<b>");
-        sb.append(questionItself);
-        sb.append("</b>");
-        sb.append("<form method=\"get\" action=\"AnswerHandlerServlet\" method=\"GET\">" );
-        sb.append("<table border=\"1\">");
+        //4. build the html-string here:
+        StringBuilder sb = startBuildingHtml(questionName, questionItself);
 
+        sb.append("<table border=\"1\">");
         AtomicInteger valueParameter = new AtomicInteger(0);
         for (Map.Entry<String, String> pair : map.entrySet()) {
             String k = pair.getKey();
+            k = k.trim();
             if(k.startsWith("=")){
                 k = k.substring(1);
             }

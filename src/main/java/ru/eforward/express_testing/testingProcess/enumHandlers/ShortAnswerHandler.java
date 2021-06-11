@@ -32,16 +32,8 @@ public class ShortAnswerHandler extends Handler implements QuestionHandler{
         String allVariants = getAllVariants(q);
 
         //6. build the html-string here:
-        StringBuilder sb = new StringBuilder();
-        sb.append("<p>");
-        sb.append("<b>");
-        sb.append(questionName);
-        sb.append("</b>");
-        sb.append("<br>");
-        sb.append("<b>");
-        sb.append(questionItself);
-        sb.append("</b>");
-            sb.append("<form method=\"get\" action=\"AnswerHandlerServlet\" method=\"GET\">" );
+        StringBuilder sb = startBuildingHtml(questionName, questionItself);
+
             sb.append("<input type=\"text\" required placeholder=\"напишите ваш ответ\" name=\"shortAnswer\"><br>");
             sb.append("<input class=\"button\" type=\"submit\" name=\"choice2\" value=\"Отправить\">");
         sb.append("</form>");

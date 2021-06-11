@@ -24,16 +24,8 @@ public class TrueFalseHandler extends Handler implements QuestionHandler{
         //String allVariants = getAllVariants(q); //- there is no variants in this type of question (true-false only)
 
         //4. build the html-string here:
-        StringBuilder sb = new StringBuilder();
-        sb.append("<p>");
-        sb.append("<b>");
-        sb.append(questionName);
-        sb.append("</b>");
-        sb.append("<br>");
-        sb.append("<b>");
-        sb.append(questionItself);
-        sb.append("</b>");
-        sb.append("<form method=\"get\" action=\"AnswerHandlerServlet\" method=\"GET\">" );
+        StringBuilder sb = startBuildingHtml(questionName, questionItself);
+
         sb.append("<input type=\"radio\" name=\"choice3\" value=\"trueCase\">ДА<br>");
         sb.append("<input type=\"radio\" name=\"choice3\" value=\"falseCase\">НЕТ<br>");
         sb.append("<input class=\"button\" type=\"submit\" name=\"choice3\" value=\"Отправить\">");

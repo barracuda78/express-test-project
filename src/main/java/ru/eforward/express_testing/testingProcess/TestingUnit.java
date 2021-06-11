@@ -56,7 +56,7 @@ public class TestingUnit {
 //            getNextTest();
 //        }
 //        cursor++;
-        return questionToHtml(questions.get(6)); //todo: remove hardcoded 'number' with appropriate logic.
+        return questionToHtml(questions.get(7)); //todo: remove hardcoded 'number' with appropriate logic.
     }
 
     private synchronized String questionToHtml(String plainString){
@@ -78,8 +78,12 @@ public class TestingUnit {
             LogHelper.writeMessage("else if: QuestionType = MULTICHOICE");
             return QuestionType.MULTICHOICE;
         }
-        //counting how many '=' signs contains this string (more than 1 ore no one). Regexp checks if it is not a TRUE_FALSE question.
-        else if(((plainString.split("=").length > 2) || (!plainString.contains("="))) && !(plainString.toLowerCase().contains("{t}")) && !(plainString.toLowerCase().contains("{true}")) && !(plainString.contains("->"))){
+        //counting how many '=' signs contains this string (more than 1 ore no one). Also checks if it is not a TRUE_FALSE and other question types.
+        else if(((plainString.split("=").length > 2) || (!plainString.contains("=")))
+                && !(plainString.toLowerCase().contains("{t}"))
+                && !(plainString.toLowerCase().contains("{true}"))
+                && !(plainString.contains("->"))
+                && !(plainString.contains("{#"))){
             LogHelper.writeMessage("else if: QuestionType = SHORT_ANSWER");
             return QuestionType.SHORT_ANSWER;
         }
@@ -92,9 +96,9 @@ public class TestingUnit {
             LogHelper.writeMessage("else if: QuestionType = COMPLIANCE");
             return QuestionType.COMPLIANCE;
         }
-        else if(plainString.contains("#") && plainString.matches(".*\\d+.*")){
+        else if(plainString.contains("{#")){            //&& plainString.matches(".*[0-9]+.*")
             LogHelper.writeMessage("else if: QuestionType = NUMBER_QUESTION");
-            return QuestionType.NUMBER_QUESTION;
+            return QuestionType.NUMBER;
         }
         else if(plainString.endsWith("{}")){
             LogHelper.writeMessage("else if: QuestionType = ESSAY");
