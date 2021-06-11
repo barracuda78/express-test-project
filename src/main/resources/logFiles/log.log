@@ -44,3 +44,9 @@
 11.06.2021 17:42:54.626 [http-nio-8080-exec-2] ERROR  r.e.e.t.TestingUnit - Невозможно определить тип вопроса! QuestionType.UNDEFINED
 11.06.2021 17:44:30.681 [http-nio-8080-exec-6] WARN   r.e.e.t.TestingUnit - new test was created for lessonId 3 and groupId 1
 11.06.2021 17:46:51.700 [http-nio-8080-exec-6] WARN   r.e.e.t.TestingUnit - new test was created for lessonId 3 and groupId 1
+11.06.2021 17:55:59.769 [http-nio-8080-exec-6] WARN   r.e.e.t.TestingUnit - new test was created for lessonId 3 and groupId 1
+11.06.2021 17:59:57.740 [http-nio-8080-exec-8] WARN   r.e.e.t.TestingUnit - new test was created for lessonId 3 and groupId 1
+11.06.2021 18:00:10.977 [http-nio-8080-exec-3] WARN   r.e.e.t.TestingUnit - new test was created for lessonId 3 and groupId 1
+11.06.2021 18:02:09.997 [http-nio-8080-exec-6] WARN   r.e.e.t.TestingUnit - new test was created for lessonId 3 and groupId 1
+11.06.2021 18:05:34.195 [http-nio-8080-exec-6] WARN   r.e.e.t.TestingUnit - new test was created for lessonId 3 and groupId 1
+11.06.2021 18:07:37.154 [http-nio-8080-exec-6] WARN   r.e.e.t.TestingUnit - new test was created for lessonId 3 and groupId 1

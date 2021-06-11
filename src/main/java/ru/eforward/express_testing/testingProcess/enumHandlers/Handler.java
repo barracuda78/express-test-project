@@ -10,9 +10,18 @@ public abstract class Handler {
 
     final String getQuestion(String q){
         //2. get the question itself:
-        int blankSpacesIndex = q.indexOf('{');
+        int blankSpacesIndex = -1;
 
-        String questionItself = q.substring(0, q.indexOf('{')) + q.substring(q.indexOf('}') + 1);
+        String questionItself = "";
+        if(q.contains("{") && q.contains("}")){
+            blankSpacesIndex = q.indexOf('{');
+            questionItself = q.substring(0, q.indexOf('{')) + q.substring(q.indexOf('}') + 1);
+        }else if(q.contains("::")){
+            questionItself = q.substring(q.lastIndexOf("..") + 2);
+        }else{
+            questionItself = q;
+        }
+
         //3. check if there is a question text after {...} variants block: insert "____" here. ( ___ is not needed in case of TRUE_FALSE or COMPLIANCE QuestionType) :
         if(!q.endsWith("}")
                 && !q.toLowerCase().contains("{t}")
@@ -21,7 +30,9 @@ public abstract class Handler {
                 && !q.toLowerCase().contains("{#")
                 && !q.contains("{}")){
             StringBuilder questSB = new StringBuilder(questionItself);
-            questSB.insert(blankSpacesIndex, "_____"); //
+            if(blankSpacesIndex >=0) {
+                questSB.insert(blankSpacesIndex, "_____");
+            }
             questionItself = questSB.toString();
         }
         //4. remove '::abcd...::' block if exists:
@@ -34,7 +45,11 @@ public abstract class Handler {
 
     final String getAllVariants(String q){
         //3. get all variants of answer:
-        return q.substring(q.indexOf('{') + 1, q.indexOf('}'));
+        String result = q;
+        if(q.contains("{") && q.contains("}")){
+            result = q.substring(q.indexOf('{') + 1, q.indexOf('}'));
+        }
+        return result;
     }
 
     final StringBuilder startBuildingHtml(String questionName, String questionItself){

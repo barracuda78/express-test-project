@@ -56,7 +56,7 @@ public class TestingUnit {
 //            getNextTest();
 //        }
 //        cursor++;
-        return questionToHtml(questions.get(10)); //todo: remove hardcoded 'number' with appropriate logic.
+        return questionToHtml(questions.get(11)); //todo: remove hardcoded 'number' with appropriate logic.
     }
 
     private synchronized String questionToHtml(String plainString){
@@ -80,6 +80,7 @@ public class TestingUnit {
         }
         //counting how many '=' signs contains this string (more than 1 ore no one). Also checks if it is not a TRUE_FALSE and other question types.
         else if(((plainString.split("=").length > 2) || (!plainString.contains("=")))
+                && plainString.contains("{")
                 && !(plainString.toLowerCase().contains("{t}"))
                 && !(plainString.toLowerCase().contains("{true}"))
                 && !(plainString.contains("->"))
@@ -104,6 +105,13 @@ public class TestingUnit {
         else if(plainString.contains("{}")){
             LogHelper.writeMessage("else if: QuestionType = ESSAY");
             return QuestionType.ESSAY;
+        }
+        else if(!plainString.contains("{}")
+                && !plainString.contains("{#")
+                && !plainString.contains("->")
+                && !plainString.toLowerCase().contains("{t")){
+            LogHelper.writeMessage("else if: QuestionType = DESCRIPTION");
+            return QuestionType.DESCRIPTION;
         }
         else if(plainString.contains("//")){ //todo: check if in multiline question every line starts with '//'
             LogHelper.writeMessage("else if: QuestionType = COMMENT");
