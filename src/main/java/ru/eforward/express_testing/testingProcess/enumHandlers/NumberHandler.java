@@ -28,11 +28,13 @@ public class NumberHandler extends Handler implements QuestionHandler{
         //3. get all variants of answer:
         String allVariants = getAllVariants(q);
 
+        List<Double> numbers = getNumbers(q); //todo: pass it to validate Test.
+
         //6. build the html-string here:
         StringBuilder sb = startBuildingHtml(questionName, questionItself);
 
-        sb.append("<input type=\"text\" required placeholder=\"напишите ваш ответ\" name=\"shortAnswer\"><br>");
-        sb.append("<input class=\"button\" type=\"submit\" name=\"choice2\" value=\"Отправить\">");
+        sb.append("<input type=\"text\" required placeholder=\"напишите ваш ответ\" name=\"NumberAnswer\"><br>");
+        sb.append("<input class=\"button\" type=\"submit\" name=\"numberButton\" value=\"Отправить\">");
         sb.append("</form>");
         sb.append("</p>");
         return sb.toString();

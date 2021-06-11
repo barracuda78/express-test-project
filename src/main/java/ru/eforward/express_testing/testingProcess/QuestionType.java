@@ -35,6 +35,7 @@ public enum QuestionType {
         handlers.add(new TrueFalseHandler());
         handlers.add(new ComplianceHandler());
         handlers.add(new NumberHandler());
+        handlers.add(new EssayHandler());
         handlers.add(new DefaultHandler());
 
         for(QuestionHandler h : handlers){

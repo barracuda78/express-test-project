@@ -14,7 +14,12 @@ public abstract class Handler {
 
         String questionItself = q.substring(0, q.indexOf('{')) + q.substring(q.indexOf('}') + 1);
         //3. check if there is a question text after {...} variants block: insert "____" here. ( ___ is not needed in case of TRUE_FALSE or COMPLIANCE QuestionType) :
-        if(!q.endsWith("}") && !q.toLowerCase().contains("{t}") && !q.toLowerCase().contains("{true}") && !q.toLowerCase().contains("->") && !q.toLowerCase().contains("{#")){
+        if(!q.endsWith("}")
+                && !q.toLowerCase().contains("{t}")
+                && !q.toLowerCase().contains("{true}")
+                && !q.toLowerCase().contains("->")
+                && !q.toLowerCase().contains("{#")
+                && !q.contains("{}")){
             StringBuilder questSB = new StringBuilder(questionItself);
             questSB.insert(blankSpacesIndex, "_____"); //
             questionItself = questSB.toString();

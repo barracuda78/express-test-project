@@ -56,7 +56,7 @@ public class TestingUnit {
 //            getNextTest();
 //        }
 //        cursor++;
-        return questionToHtml(questions.get(7)); //todo: remove hardcoded 'number' with appropriate logic.
+        return questionToHtml(questions.get(10)); //todo: remove hardcoded 'number' with appropriate logic.
     }
 
     private synchronized String questionToHtml(String plainString){
@@ -83,7 +83,8 @@ public class TestingUnit {
                 && !(plainString.toLowerCase().contains("{t}"))
                 && !(plainString.toLowerCase().contains("{true}"))
                 && !(plainString.contains("->"))
-                && !(plainString.contains("{#"))){
+                && !(plainString.contains("{#"))
+                && !(plainString.contains("{}"))) {
             LogHelper.writeMessage("else if: QuestionType = SHORT_ANSWER");
             return QuestionType.SHORT_ANSWER;
         }
@@ -100,7 +101,7 @@ public class TestingUnit {
             LogHelper.writeMessage("else if: QuestionType = NUMBER_QUESTION");
             return QuestionType.NUMBER;
         }
-        else if(plainString.endsWith("{}")){
+        else if(plainString.contains("{}")){
             LogHelper.writeMessage("else if: QuestionType = ESSAY");
             return QuestionType.ESSAY;
         }
