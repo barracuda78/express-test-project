@@ -37,8 +37,8 @@ public enum QuestionType {
         handlers.add(new NumberHandler());
         handlers.add(new EssayHandler());
         handlers.add(new DescriptionHandler());
-
-        handlers.add(new DefaultHandler());
+        handlers.add(new CommentHandler());
+        handlers.add(new UndefinedHandler());
 
         for(QuestionHandler h : handlers){
             if(h.canProcess(enumType)){
@@ -46,6 +46,6 @@ public enum QuestionType {
             }
         }
 
-        return new DefaultHandler();
+        return new UndefinedHandler();
     }
 }

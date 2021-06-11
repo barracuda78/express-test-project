@@ -12,6 +12,7 @@ import org.slf4j.Logger;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.concurrent.atomic.AtomicInteger;
 
 @Getter
 public class TestingUnit {
@@ -26,8 +27,7 @@ public class TestingUnit {
         this.lessonId = lessonId;
         this.groupId = groupId;
         init(lessonId);
-        LOGGER.warn("new test was created for lessonId {} and groupId {}", lessonId, groupId);
-        LogHelper.writeMessage("---class TestingUnit method init() : Внимание! Был создан тест!---");
+        LOGGER.info("new test was created for lessonId {} and groupId {}", lessonId, groupId);
     }
 
     private void init(int lessonId){
@@ -35,11 +35,7 @@ public class TestingUnit {
         String s = testDAO.getTestInfoByLessonId(lessonId);
         //init 'List<String> questions' field here by parsing the given String s in a line above.
         String[] array = s.split("\n\n");
-//        logger.info("---Just a log message.");
-//        logger.debug("---Message for debug level.");
-//        logger.error("---Failed to read file.");
         questions = new ArrayList<>(Arrays.asList(array));
-        //LogHelper.writeMessage("---class TestingUnit method init() : questions = " + questions);
     }
 
     public synchronized boolean hasNextTest(){
@@ -56,7 +52,7 @@ public class TestingUnit {
 //            getNextTest();
 //        }
 //        cursor++;
-        return questionToHtml(questions.get(11)); //todo: remove hardcoded 'number' with appropriate logic.
+        return questionToHtml(questions.get(12)); //todo: remove hardcoded 'number' with appropriate logic.
     }
 
     private synchronized String questionToHtml(String plainString){
@@ -72,6 +68,10 @@ public class TestingUnit {
         LogHelper.writeMessage("plainString = " + plainString);
         LogHelper.writeMessage("plainString.split(\"=\").length = " + plainString.split("=").length);
         LogHelper.writeMessage("plainString.toLowerCase() = " + plainString.toLowerCase());
+
+        if(plainString == null || plainString.isEmpty()){
+            return QuestionType.UNDEFINED;
+        }
 
         //consider the string has '{', '~' and '=' signs:
         if(plainString.contains("{") && plainString.contains("~") && plainString.contains("=")){
@@ -109,18 +109,37 @@ public class TestingUnit {
         else if(!plainString.contains("{}")
                 && !plainString.contains("{#")
                 && !plainString.contains("->")
-                && !plainString.toLowerCase().contains("{t")){
+                && !plainString.toLowerCase().contains("{t")
+                && !isEveryLineCommented(plainString)){
             LogHelper.writeMessage("else if: QuestionType = DESCRIPTION");
             return QuestionType.DESCRIPTION;
         }
         else if(plainString.contains("//")){ //todo: check if in multiline question every line starts with '//'
             LogHelper.writeMessage("else if: QuestionType = COMMENT");
-            return QuestionType.COMMENT;
+            String[] array = plainString.split("\n");
+            AtomicInteger numberOfCommentedStrings = new AtomicInteger(0);
+            for(String line : array){
+                if(line.startsWith("//")){
+                    numberOfCommentedStrings.incrementAndGet();
+                }
+            }
+            return array.length == numberOfCommentedStrings.get() ? QuestionType.COMMENT : QuestionType.UNDEFINED;
         }
 
         LogHelper.writeMessage("---class TestingUnit method findOut(): Невозможно определить тип вопроса! QuestionType.UNDEFINED");
         LOGGER.error("Невозможно определить тип вопроса! QuestionType.UNDEFINED");
         return QuestionType.UNDEFINED;
+    }
+
+    private boolean isEveryLineCommented(String q){
+        String[] array = q.split("\n");
+        AtomicInteger numberOfCommentedStrings = new AtomicInteger(0);
+        for(String line : array){
+            if(line.startsWith("//")){
+                numberOfCommentedStrings.incrementAndGet();
+            }
+        }
+        return array.length == numberOfCommentedStrings.get();
     }
 
 }
