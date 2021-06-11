@@ -52,7 +52,7 @@ public class TestingUnit {
 //            getNextTest();
 //        }
 //        cursor++;
-        return questionToHtml(questions.get(12)); //todo: remove hardcoded 'number' with appropriate logic.
+        return questionToHtml(questions.get(1)); //todo: remove hardcoded 'number' with appropriate logic.
     }
 
     private synchronized String questionToHtml(String plainString){

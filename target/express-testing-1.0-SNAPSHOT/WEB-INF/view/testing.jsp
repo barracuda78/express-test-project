@@ -20,7 +20,7 @@
 
     <%
         LogHelper.writeMessage("---class testing.jsp : user entered.");
-        boolean testIsAvailable = false;
+
         Student student = (Student)session.getAttribute("user");
         ServletContext servletContext = request.getServletContext();
         @SuppressWarnings("unchecked")
@@ -28,9 +28,12 @@
         LogHelper.writeMessage("---class testing.jsp : AtomicReference = " + testingUnitsListAtomicReference);
         LogHelper.writeMessage("---class testing.jsp : student = " + student);
         List<TestingUnit> list = null;
+
+        //find out if there is an available test (TestingUnit) for this student (his group);
+        boolean testIsAvailable = false;
         if(testingUnitsListAtomicReference != null && student != null){
             list = testingUnitsListAtomicReference.get();
-            LogHelper.writeMessage("---class testing.jsp : if statement:  list = " + list);
+            LogHelper.writeMessage("---===class testing.jsp : if statement:  list = " + list);
             testIsAvailable = list
                     .stream()
                     .anyMatch(testingUnit -> {
@@ -52,22 +55,29 @@
         }
 
         if(testIsAvailable){
-            //Path path = currentTest.getPath();
-            //String htmlString = student.performTest(Paths.get("D:\\coding\\projects\\EF\\express_test_project\\src\\main\\resources\\tests\\eng\\level01\\lesson01.txt"));
-            //String htmlString = "<h1>УРРРАААА! ЗАРАБОТАЛОО!!!</h1>";
 
+            //get the first available test (TestingUnits) for this student (his group):
             Optional<TestingUnit> optionalTestingUnit = list
                     .stream()
+                    .filter(testingUnit -> testingUnit.getGroupId() == student.getGroupId())
                     .findFirst();
 
+            //get the available first/next question of this test (of this TestingUnit)
             String htmlString = "Извините. Файл с тестом не был подготовлен.";
+            //add TestingUnit to student's own session:
+            if(optionalTestingUnit.isPresent()){
+                TestingUnit testingUnit = optionalTestingUnit.get();
+                session.setAttribute("studentsTestingUnit", testingUnit);
+            }
+
+            //pull next question from TestingUnit: (iteration algorithm exists in TestingUnit entity)
             if(optionalTestingUnit.isPresent() && optionalTestingUnit.get().hasNextTest()){
                 htmlString = optionalTestingUnit.get().getNextTest();
             }
 
     %>
-                <br/>
-
+    <br/>
+    <!--This is for countdown:-->
     <h2 class="countdown-title">Тестирование началось:</h2>
     <div id="deadline-message" class="deadline-message">
         Время тестирования закончилось!
@@ -90,7 +100,6 @@
             <span class="countdown-text">Секунды</span>
         </div>
     </div>
-
     <script>
         function getTimeRemaining(endtime) {
             var t = Date.parse(endtime) - Date.parse(new Date());
@@ -137,17 +146,16 @@
         var deadline = new Date(Date.parse(new Date()) + 1 * 1 *  3 * 60 * 1000);
         initializeClock("countdown", deadline);
     </script>
+    <!--end of countdown code-->
 
-                <%=htmlString%>
-            <%
+     <%=htmlString%>
 
+     <%
         }
         if(!testIsAvailable){
-
             %>
                 <p><%="Нет доступных тестов."%></p>
             <%
-
         }
     %>
 

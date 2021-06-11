@@ -27,6 +27,7 @@ public class EssayHandler extends Handler implements QuestionHandler{
 
         sb.append("<textarea name=\"essayText\" rows=\"4\" cols=\"20\"></textarea><br>");
         sb.append("<input class=\"button\" type=\"submit\" name=\"essayButton\" value=\"Отправить\">");
+        sb.append("<input type=\"hidden\" name=\"type\" value=\"ESSAY\">");
         sb.append("</form>");
         sb.append("</p>");
         return sb.toString();

@@ -72,6 +72,7 @@ public class ComplianceHandler extends Handler implements  QuestionHandler{
         }
         sb.append("</table>");
         sb.append("<input class=\"button\" type=\"submit\" name=\"choice1\" value=\"Отправить\">");
+        sb.append("<input type=\"hidden\" name=\"type\" value=\"COMPLIANCE\">");
         sb.append("</form>");
         sb.append("</p>");
         return sb.toString();

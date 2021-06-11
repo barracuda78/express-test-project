@@ -23,7 +23,8 @@ public class UndefinedHandler extends Handler implements QuestionHandler{
         StringBuilder sb = startBuildingHtml(questionName, questionItself);
 
         sb.append("<input type=\"text\" required placeholder=\"напишите ваш ответ\" name=\"undefinedAnswer\"><br>");
-        sb.append("<input class=\"button\" type=\"submit\" name=\"гтвуаштувИгеещт\" value=\"Отправить\">");
+        sb.append("<input class=\"button\" type=\"submit\" name=\"undefinedButton\" value=\"Отправить\">");
+        sb.append("<input type=\"hidden\" name=\"type\" value=\"UNDEFINED\">");
         sb.append("</form>");
         sb.append("</p>");
         return sb.toString();

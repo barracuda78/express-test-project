@@ -11,7 +11,17 @@ public class MultichoiceHandler extends Handler implements QuestionHandler{
     public boolean canProcess(QuestionType enumValue) {
         return enumValue == QuestionType.MULTICHOICE;
     }
+//How does this type of question look:
 
+//Кто похоронен в могиле Гранта? {~Грант ~Джефферсон =никто}
+
+//Ленин {~похоронен =родился ~живет} в Симбирске.
+
+//День Благодарения празднуется во {
+//    ~второй
+//    ~третий
+//    =четвертый
+//} вторник ноября.
     @Override
     public String process(String q) {
         LogHelper.writeMessage("---MultichoiceHandler");
@@ -37,11 +47,13 @@ public class MultichoiceHandler extends Handler implements QuestionHandler{
                         variant = variant.substring(variant.lastIndexOf("%")); //taking into account variant may start not only with '=' or '~' signs, but '~%50%';
                         //sb.append(variant);
                     }
-                    sb.append("<input type=\"radio\" name=\"choice1\" value=\"-123-\">" + variant + "<br>");
+                    sb.append("<input type=\"radio\" name=\"choice1\" value=\"" + variant + "\">" + variant + "<br>");
                     sb.append("</li>");
                 }
                 sb.append("</ul>");
                 sb.append("<input class=\"button\" type=\"submit\" name=\"choice1\" value=\"Отправить\">");
+                sb.append("<input type=\"hidden\" name=\"type\" value=\"MULTICHOICE\">");
+
             sb.append("</form>");
         sb.append("</p>");
         return sb.toString();

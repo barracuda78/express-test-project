@@ -54,3 +54,11 @@
 11.06.2021 18:30:49.424 [http-nio-8080-exec-6] WARN   r.e.e.t.TestingUnit - new test was created for lessonId 3 and groupId 1
 11.06.2021 18:31:13.723 [http-nio-8080-exec-2] WARN   r.e.e.t.TestingUnit - new test was created for lessonId 3 and groupId 1
 11.06.2021 18:34:53.694 [http-nio-8080-exec-6] WARN   r.e.e.t.TestingUnit - new test was created for lessonId 3 and groupId 1
+11.06.2021 19:39:11.797 [http-nio-8080-exec-6] INFO   r.e.e.t.TestingUnit - new test was created for lessonId 3 and groupId 1
+11.06.2021 19:39:14.530 [http-nio-8080-exec-7] INFO   r.e.e.t.TestingUnit - new test was created for lessonId 3 and groupId 2
+11.06.2021 20:12:45.959 [http-nio-8080-exec-6] INFO   r.e.e.t.TestingUnit - new test was created for lessonId 3 and groupId 1
+11.06.2021 20:14:57.766 [http-nio-8080-exec-6] INFO   r.e.e.t.TestingUnit - new test was created for lessonId 3 and groupId 1
+11.06.2021 21:18:27.585 [http-nio-8080-exec-6] INFO   r.e.e.t.TestingUnit - new test was created for lessonId 3 and groupId 1
+11.06.2021 21:49:33.413 [http-nio-8080-exec-9] WARN   r.e.e.d.UserDAOImpl - new user record was inserted into table USERS with lastName fdsf
+11.06.2021 21:50:25.777 [http-nio-8080-exec-1] INFO   r.e.e.t.TestingUnit - new test was created for lessonId 3 and groupId 1
+11.06.2021 23:01:35.496 [http-nio-8080-exec-8] INFO   r.e.e.t.TestingUnit - new test was created for lessonId 3 and groupId 1
