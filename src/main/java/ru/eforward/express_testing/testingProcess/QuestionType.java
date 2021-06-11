@@ -33,6 +33,7 @@ public enum QuestionType {
         handlers.add(new MultichoiceHandler());
         handlers.add(new ShortAnswerHandler());
         handlers.add(new TrueFalseHandler());
+        handlers.add(new ComplianceHandler());
         handlers.add(new DefaultHandler());
 
         for(QuestionHandler h : handlers){

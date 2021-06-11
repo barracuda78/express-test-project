@@ -56,7 +56,7 @@ public class TestingUnit {
 //            getNextTest();
 //        }
 //        cursor++;
-        return questionToHtml(questions.get(5)); //todo: remove hardcoded 'number' with appropriate logic.
+        return questionToHtml(questions.get(6)); //todo: remove hardcoded 'number' with appropriate logic.
     }
 
     private synchronized String questionToHtml(String plainString){
@@ -79,7 +79,7 @@ public class TestingUnit {
             return QuestionType.MULTICHOICE;
         }
         //counting how many '=' signs contains this string (more than 1 ore no one). Regexp checks if it is not a TRUE_FALSE question.
-        else if(((plainString.split("=").length > 2) || (!plainString.contains("="))) && !(plainString.toLowerCase().contains("{t}")) && !(plainString.toLowerCase().contains("{true}"))){
+        else if(((plainString.split("=").length > 2) || (!plainString.contains("="))) && !(plainString.toLowerCase().contains("{t}")) && !(plainString.toLowerCase().contains("{true}")) && !(plainString.contains("->"))){
             LogHelper.writeMessage("else if: QuestionType = SHORT_ANSWER");
             return QuestionType.SHORT_ANSWER;
         }

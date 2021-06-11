@@ -21,3 +21,10 @@ The American holiday of Thanksgiving is celebrated on the {
 два плюс два равно {=четыре =4}
 
 Солнце встает на Востоке.{T}
+
+::Question about Capitals::Укажите столицы государств: {
+    =Канада -> Оттава
+    =Италия -> Рим
+    =Япония -> Токио
+    =Индия  -> Нью Дели
+}

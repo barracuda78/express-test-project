@@ -23,7 +23,7 @@ public class ShortAnswerHandler extends Handler implements QuestionHandler{
      * */
     @Override
     public String process(String q) {
-        LogHelper.writeMessage("-- class DefaultHandler ");
+        LogHelper.writeMessage("--class ShortAnswerHandler");
         //1. get question name if exists:
         String questionName = getQuestionName(q); //methods are inherited from superclass Handler
         //2.get question itself:

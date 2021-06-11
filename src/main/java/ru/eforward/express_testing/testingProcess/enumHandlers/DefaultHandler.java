@@ -13,8 +13,7 @@ public class DefaultHandler implements QuestionHandler{
     //does nothing but returns the same string
     @Override
     public String process(String s) {
-        LogHelper.writeMessage("-- class DefaultHandler ");
-
-        return s;
+        LogHelper.writeMessage("--class DefaultHandler--");
+        return s + " from DefaultHandler";
     }
 }
