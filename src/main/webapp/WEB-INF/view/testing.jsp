@@ -66,21 +66,19 @@
             //get the available first/next question of this test (of this TestingUnit)
             String htmlString = "Извините. Файл с тестом не был подготовлен.";
             //add TestingUnit to student's own session:
-            if(optionalTestingUnit.isPresent()){
+            TestingUnit studentsTestingUnit = (TestingUnit)session.getAttribute("studentsTestingUnit");
+
+            if(studentsTestingUnit == null && optionalTestingUnit.isPresent()){
                 TestingUnit testingUnit = optionalTestingUnit.get();
                 //todo: clone this object, and pass it to sessionAttribute after it.
                 TestingUnit clone = CloneMaker.getClone(testingUnit);
-                //Проверка, как сериализовались поля:
-                LogHelper.writeMessage("testingUnit = " + testingUnit);
-                LogHelper.writeMessage("clone = " + clone);
-                //session.setAttribute("studentsTestingUnit", testingUnit);
                 session.setAttribute("studentsTestingUnit", clone);
             }
 
             //pull next question from TestingUnit: (iteration algorithm exists in TestingUnit entity)
-            if(optionalTestingUnit.isPresent() && optionalTestingUnit.get().hasNextTest()){
+            if(studentsTestingUnit != null && studentsTestingUnit.hasNextTest()){
                 //todo: here we should take TestingUnit from session, not from context!!!
-                htmlString = optionalTestingUnit.get().getNextTest();
+                htmlString = studentsTestingUnit.getNextTest();
             }
 
     %>

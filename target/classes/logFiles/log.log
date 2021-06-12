@@ -7,3 +7,4 @@
 13.06.2021 00:39:42.428 [main] ERROR  r.e.e.u.CloneMaker - IOException. Can not clone this object: Cat{name='Vaska', color='Gray', age=4, friends=[Fedya, Masha]}
 13.06.2021 00:41:51.991 [main] ERROR  r.e.e.u.CloneMaker - IOException. Can not clone this object: Cat{name='Vaska', color='Gray', age=4, friends=[Fedya, Masha]}
 13.06.2021 00:42:32.418 [main] ERROR  r.e.e.u.CloneMaker - IOException. Can not clone this object: Cat{name='Vaska', color='Gray', age=4, friends=[Fedya, Masha]}
+13.06.2021 00:45:03.125 [http-nio-8080-exec-6] INFO   r.e.e.t.TestingUnit - new test was created for lessonId 3 and groupId 1
