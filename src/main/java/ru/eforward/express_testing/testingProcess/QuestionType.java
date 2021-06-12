@@ -1,6 +1,10 @@
 package ru.eforward.express_testing.testingProcess;
 
-import ru.eforward.express_testing.testingProcess.enumHandlers.*;
+import ru.eforward.express_testing.testingProcess.questionHandlers.*;
+import ru.eforward.express_testing.testingProcess.evaluatingHandlers.EvaluatingHandler;
+import ru.eforward.express_testing.testingProcess.evaluatingHandlers.MultiChoiceEvaluator;
+import ru.eforward.express_testing.testingProcess.evaluatingHandlers.UndefinedEvaluator;
+
 
 import java.util.ArrayList;
 import java.util.List;
@@ -27,7 +31,7 @@ public enum QuestionType {
     //Непонятно какой тип вороса:
     UNDEFINED;
 
-    public static QuestionHandler getHandler(QuestionType enumType){
+    public static QuestionHandler getQuestionHandler(QuestionType enumType){
         List<QuestionHandler> handlers = new ArrayList<>();
         //todo: implement package scanning here for automatic adding of entities from package enumHandlers.
         handlers.add(new MultichoiceHandler());
@@ -47,5 +51,18 @@ public enum QuestionType {
         }
 
         return new UndefinedHandler();
+    }
+
+    public static EvaluatingHandler getEvaluatingHandler(QuestionType enumType){
+        List<EvaluatingHandler> handlers = new ArrayList<>();
+        //todo: implement package scanning here for automatic adding of entities from package evaluatingHandlers.
+        handlers.add(new MultiChoiceEvaluator());
+
+        for(EvaluatingHandler h : handlers){
+            if(h.canEvaluate(enumType)){
+                return h;
+            }
+        }
+        return new UndefinedEvaluator();
     }
 }

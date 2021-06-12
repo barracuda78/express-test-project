@@ -4,7 +4,7 @@ import lombok.Getter;
 import org.slf4j.LoggerFactory;
 import ru.eforward.express_testing.dao.TestDAOFilesystemImpl;
 import ru.eforward.express_testing.daoInterfaces.TestDAO;
-import ru.eforward.express_testing.testingProcess.enumHandlers.QuestionHandler;
+import ru.eforward.express_testing.testingProcess.questionHandlers.QuestionHandler;
 import ru.eforward.express_testing.utils.LogHelper;
 
 import org.slf4j.Logger;
@@ -60,11 +60,11 @@ public class TestingUnit {
         //and move this  plainString to appropriate Handler:
         QuestionType questionType = findOutQuestionType(plainString);
         //get handler and pass this questionType to it:
-        QuestionHandler questionHandler = QuestionType.getHandler(questionType);
+        QuestionHandler questionHandler = QuestionType.getQuestionHandler(questionType);
         return  questionHandler.process(plainString);
     }
 
-    private QuestionType findOutQuestionType(String plainString) {
+    QuestionType findOutQuestionType(String plainString) {
         LogHelper.writeMessage("plainString = " + plainString);
         LogHelper.writeMessage("plainString.split(\"=\").length = " + plainString.split("=").length);
         LogHelper.writeMessage("plainString.toLowerCase() = " + plainString.toLowerCase());

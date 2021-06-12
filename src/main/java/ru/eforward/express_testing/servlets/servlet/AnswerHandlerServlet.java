@@ -1,6 +1,7 @@
 package ru.eforward.express_testing.servlets.servlet;
 
 import ru.eforward.express_testing.model.Student;
+import ru.eforward.express_testing.testingProcess.QuestionType;
 import ru.eforward.express_testing.testingProcess.TestEvaluate;
 import ru.eforward.express_testing.testingProcess.TestResult;
 import ru.eforward.express_testing.testingProcess.TestingUnit;
@@ -13,10 +14,8 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.List;
 import java.util.Objects;
 
-//todo: add this servlet to web.xml or check if annotation with urlPattern works!
 @WebServlet(name = "AnswerHandlerServlet", urlPatterns = {"/AnswerHandlerServlet"})
 public class AnswerHandlerServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -40,35 +39,38 @@ public class AnswerHandlerServlet extends HttpServlet {
         HttpSession httpSession = request.getSession();
         TestingUnit testingUnit = (TestingUnit)httpSession.getAttribute("studentsTestingUnit");
         Student student = (Student)httpSession.getAttribute("user");
-        TestEvaluate testEvaluate = new TestEvaluate();
+
         //sb.append("<input type=\"hidden\" name=\"type\" value=\"MULTICHOICE\">");
-        String questionType = request.getParameter("type");
+        String type = request.getParameter("type");
+        //sb.append("<input type=\"hidden\" name=\"question\" value=\" " + q + "\">"); //passing the original text of question
+        String question = request.getParameter("question");
     //for MultiChoice question type:
         String choice = request.getParameter("choice1"); //this is the answer student gave
-        if(Objects.nonNull(questionType)
-                && ("MULTICHOICE".equals(questionType))
+        if(Objects.nonNull(type)
+                && ("MULTICHOICE".equals(type))
                 && Objects.nonNull(choice)
                 && Objects.nonNull(testingUnit)
-                && Objects.nonNull(student)){
+                && Objects.nonNull(student)
+                && Objects.nonNull(question)){
             //create new TestResult entity and preset it:
             TestResult testResult = new TestResult();
             testResult.setStudentsId(student.getId());
             testResult.setSchoolId(student.getSchool());
             testResult.setLessonId(testingUnit.getLessonId());
 
-            //todo: decide what parameters should be put to this method to evaluate every question. TestingUnit? Question? Should i get question from form 'hidden'?
+            QuestionType questionType = QuestionType.valueOf(type);
 
-            int score = testEvaluate.evaluateMultiChoice(choice);
+            TestEvaluate testEvaluate = new TestEvaluate();
+            int score = testEvaluate.getScore(questionType, question, choice);
 
-
-            testResult.getMap().put("question!!!!!!!!", choice);
+            testResult.getMap().put(question, choice + "=$$$=" + score);
 
             httpSession.setAttribute("testResult", testResult);
 
             try(PrintWriter out = response.getWriter()){
                 out.println("<h1>" + choice + "</h1>");
                 out.println("<h1>" + score + "</h1>");
-                out.println("<h1>" + questionType + "</h1>");
+                out.println("<h1>" + type + "</h1>");
             }
         }
     }

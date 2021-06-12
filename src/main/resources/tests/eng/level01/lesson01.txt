@@ -2,12 +2,7 @@
 //Level=First Level
 //Lesson=First Lesson
 
-::Question about Japan::Japanese characters originally came from what country? {
-    ~India
-    =China
-    ~Korea
-    ~Egypt
-    ~затрудн€юсь ответить}
+Ћенин {~похоронен =родилс€ ~живет} в —имбирске.
 
 Grant is {~buried =entombed ~living ~затрудн€юсь ответить} in Grant's tomb.
 
