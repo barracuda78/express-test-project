@@ -8,6 +8,7 @@
 <%@ page import="ru.eforward.express_testing.testingProcess.TestingUnit" %>
 <%@ page import="ru.eforward.express_testing.utils.LogHelper" %>
 <%@ page import="java.util.Optional" %>
+<%@ page import="ru.eforward.express_testing.utils.CloneMaker" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
@@ -68,7 +69,12 @@
             if(optionalTestingUnit.isPresent()){
                 TestingUnit testingUnit = optionalTestingUnit.get();
                 //todo: clone this object, and pass it to sessionAttribute after it.
-                session.setAttribute("studentsTestingUnit", testingUnit);
+                TestingUnit clone = CloneMaker.getClone(testingUnit);
+                //Проверка, как сериализовались поля:
+                LogHelper.writeMessage("testingUnit = " + testingUnit);
+                LogHelper.writeMessage("clone = " + clone);
+                //session.setAttribute("studentsTestingUnit", testingUnit);
+                session.setAttribute("studentsTestingUnit", clone);
             }
 
             //pull next question from TestingUnit: (iteration algorithm exists in TestingUnit entity)

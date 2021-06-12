@@ -9,13 +9,14 @@ import ru.eforward.express_testing.utils.LogHelper;
 
 import org.slf4j.Logger;
 
+import java.io.*;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicInteger;
 
 @Getter
-public final class TestingUnit {
+public final class TestingUnit implements Serializable {
     private static final Logger LOGGER = LoggerFactory.getLogger(TestingUnit.class);
 
     private final int lessonId;
@@ -139,6 +140,4 @@ public final class TestingUnit {
         }
         return array.length == numberOfCommentedStrings.get();
     }
-
-
 }
