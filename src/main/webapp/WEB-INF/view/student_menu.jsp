@@ -52,6 +52,8 @@
 <p1>Посмотреть <a href="testResults">результаты тестов</a></p1>
 <hr/>
 
+<p1>Посмотреть <a href="StudentTestResultServlet">результаты тестов новые</a></p1>
+
 <hr/>
 <a href="<c:url value='/logout' />">Выйти</a>
 </body>

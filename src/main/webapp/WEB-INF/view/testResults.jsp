@@ -14,7 +14,7 @@
     <c:set var="testResults" scope="page" value="${user.testResults}"/>
 
 
-    <p><b>Результаты тестов:</b></p>
+    <p><b>Результаты тестов старые:</b></p>
     <ul>
         <c:forEach var="testResult" items="${testResults}">
             <li><c:out value="${testResult}"/></li>

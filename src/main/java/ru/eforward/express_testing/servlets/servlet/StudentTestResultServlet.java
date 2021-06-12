@@ -4,6 +4,7 @@ import ru.eforward.express_testing.dao.TestResultDAOImpl;
 import ru.eforward.express_testing.daoInterfaces.TestResultDAO;
 import ru.eforward.express_testing.model.Student;
 import ru.eforward.express_testing.testingProcess.TestResult;
+import ru.eforward.express_testing.utils.LogHelper;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -14,7 +15,7 @@ import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.util.List;
 
-@WebServlet(name = "StudentTestResultServlet")
+@WebServlet(name = "StudentTestResultServlet" , urlPatterns = {"/StudentTestResultServlet"})
 public class StudentTestResultServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         doGet(request, response);
@@ -30,6 +31,9 @@ public class StudentTestResultServlet extends HttpServlet {
 
         TestResultDAO testResultDAO = new TestResultDAOImpl();
         List<TestResult> testResults = testResultDAO.getTestResultByStudentId(studentId);
+
+        LogHelper.writeMessage("StudentTestResultServlet");
+        LogHelper.writeMessage("testResults = " + testResults);
         request.setAttribute("testResults", testResults);
 
         request.getRequestDispatcher("/WEB-INF/view/testResults.jsp").forward(request, response);

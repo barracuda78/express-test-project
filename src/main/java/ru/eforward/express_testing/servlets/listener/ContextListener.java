@@ -46,8 +46,7 @@ public class ContextListener implements ServletContextListener {
         branches.add(1);
         branches.add(2);
 
-        TestResult testResult01 = new TestResult(1, "Level01 lesson02",  "I like coffee\nI get up at 6 o'clock\ntable", 10);
-        TestResult testResult02 = new TestResult(2, "Level01 lesson03",  "I like to play\nHe has lunch\napple", 9);
+
         List<Integer> testResults = new ArrayList<>();
         testResults.add(1);
         testResults.add(2);
