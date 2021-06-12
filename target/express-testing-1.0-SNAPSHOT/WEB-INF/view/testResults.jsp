@@ -10,6 +10,7 @@
     <c:set var="branches" scope="page" value="${user.branches}"/>
     <c:set var="testResults" scope="page" value="${user.testResults}"/>
 
+
     <p><b>Результаты тестов:</b></p>
     <ul>
         <c:forEach var="testResult" items="${testResults}">

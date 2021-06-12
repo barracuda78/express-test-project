@@ -1,5 +1,6 @@
 package ru.eforward.express_testing.testingProcess;
 
+import ru.eforward.express_testing.testingProcess.evaluatingHandlers.ShortAnswerEvaluator;
 import ru.eforward.express_testing.testingProcess.questionHandlers.*;
 import ru.eforward.express_testing.testingProcess.evaluatingHandlers.EvaluatingHandler;
 import ru.eforward.express_testing.testingProcess.evaluatingHandlers.MultiChoiceEvaluator;
@@ -57,6 +58,7 @@ public enum QuestionType {
         List<EvaluatingHandler> handlers = new ArrayList<>();
         //todo: implement package scanning here for automatic adding of entities from package evaluatingHandlers.
         handlers.add(new MultiChoiceEvaluator());
+        handlers.add(new ShortAnswerEvaluator());
 
         for(EvaluatingHandler h : handlers){
             if(h.canEvaluate(enumType)){

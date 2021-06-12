@@ -14,7 +14,7 @@ public class Student extends User{
 
     private int levelId;
     private int groupId;
-    private List<Integer> testResults; //list of ids of testResults
+    private List<Integer> testResults; //list of ids of testResults //todo: why do i need this field?
 
 
     /**
@@ -82,5 +82,16 @@ public class Student extends User{
             return true;
         }
         return false;
+    }
+
+    @Override
+    public String toString() {
+        return "Student{" +
+                " id=" + getId() +
+                ", lastName=" + getLastName() +
+                ", levelId=" + levelId +
+                ", groupId=" + groupId +
+                ", testResults=" + testResults +
+                '}';
     }
 }

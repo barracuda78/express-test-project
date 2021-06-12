@@ -87,7 +87,7 @@ public class UserDAOImpl implements UserDAO {
                 preparedStatement.setString(1, login);
                 ResultSet resultSet = preparedStatement.executeQuery();
                 if(!resultSet.wasNull()){
-                    //I'm using 'while' because can have several users with same login.
+                    //I'm using 'while' because can have several users with same login - //todo: have to fix it!.
                     while(resultSet.next()){
                         String hashedPassword = resultSet.getString("PASSWORD");
                         boolean equals = false;
@@ -98,6 +98,8 @@ public class UserDAOImpl implements UserDAO {
                         if(equals){
                             //LASTNAME, FIRSTNAME, MIDDLENAME, EMAIL, LOGIN, PASSWORD, ROLE_ID, BRANCH_ID
                             //take user with this password and return this user;
+                            int id = resultSet.getInt("ID");
+                            LogHelper.writeMessage("class UserDAOImpl. getUserByLoginPassword. id = " + id);
                             String lastName = resultSet.getString("LASTNAME");
                             String firstName = resultSet.getString("FIRSTNAME");
                             String middleName = resultSet.getString("MIDDLENAME");
@@ -109,6 +111,7 @@ public class UserDAOImpl implements UserDAO {
                             Integer branch_id = resultSet.getInt("BRANCH_ID");
                             User.ROLE role = User.ROLE.getRoleById(role_id);
                             UserBuilder userBuilder = new UserBuilder(role)
+                                    .addId(id)
                                     .addLastName(lastName)
                                     .addFirstName(firstName)
                                     .addMiddleName(middleName)
@@ -121,7 +124,7 @@ public class UserDAOImpl implements UserDAO {
                             //if ROLE = TEACER - use method AddGroupsToTeacher.
                             //Groups should be taken from BD using GroupsDAOImpl class - getGroupsByTeacherId().
                             if(role == User.ROLE.TEACHER){
-                                int id = resultSet.getInt("ID");
+                                //int id = resultSet.getInt("ID");
                                 GroupDAO groupDAO = new GroupDAOImpl();
                                 List<Integer> groups = groupDAO.getGroupsByTeacherId(id);
                                 userBuilder.addGroupsToTeacher(groups);

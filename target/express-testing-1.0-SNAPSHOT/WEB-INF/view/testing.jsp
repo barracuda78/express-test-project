@@ -67,11 +67,13 @@
             //add TestingUnit to student's own session:
             if(optionalTestingUnit.isPresent()){
                 TestingUnit testingUnit = optionalTestingUnit.get();
+                //todo: clone this object, and pass it to sessionAttribute after it.
                 session.setAttribute("studentsTestingUnit", testingUnit);
             }
 
             //pull next question from TestingUnit: (iteration algorithm exists in TestingUnit entity)
             if(optionalTestingUnit.isPresent() && optionalTestingUnit.get().hasNextTest()){
+                //todo: here we should take TestingUnit from session, not from context!!!
                 htmlString = optionalTestingUnit.get().getNextTest();
             }
 

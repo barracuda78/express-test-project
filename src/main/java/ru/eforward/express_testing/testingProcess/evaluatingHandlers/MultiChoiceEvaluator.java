@@ -37,6 +37,7 @@ public class MultiChoiceEvaluator implements EvaluatingHandler{
         question = question.trim().toLowerCase();
         answer = answer.trim().toLowerCase();
 
+        //todo: implement percentage here ~%50%Галилея#Вы должны быть более определенным.
         //lazy quantifier used (for one-lined questions)
         Pattern p = Pattern.compile("=.+?\\s"); //regex matches to every combination started with '=' and ended with 'space' symbol (including \n, \t, \r\n)
         Matcher m = p.matcher(question);

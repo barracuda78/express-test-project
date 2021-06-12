@@ -47,11 +47,11 @@ public class MultichoiceHandler extends Handler implements QuestionHandler{
                         variant = variant.substring(variant.lastIndexOf("%")); //taking into account variant may start not only with '=' or '~' signs, but '~%50%';
                         //sb.append(variant);
                     }
-                    sb.append("<input type=\"radio\" name=\"choice1\" value=\"" + variant + "\">" + variant + "<br>");
+                    sb.append("<input type=\"radio\" name=\"choice\" value=\"" + variant + "\">" + variant + "<br>");
                     sb.append("</li>");
                 }
                 sb.append("</ul>");
-                sb.append("<input class=\"button\" type=\"submit\" name=\"choice1\" value=\"Отправить\">");
+                sb.append("<input class=\"button\" type=\"submit\" name=\"choice\" value=\"Отправить\">");
                 sb.append("<input type=\"hidden\" name=\"type\" value=\"MULTICHOICE\">"); //passing type of question as a parameter
                 sb.append("<input type=\"hidden\" name=\"question\" value=\" " + q + "\">"); //passing the original text of question
 

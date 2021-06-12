@@ -46,7 +46,9 @@ public class AuthFilter implements Filter {
 
             if(role == User.ROLE.STUDENT){
                 //Student user = (Student) dao.get().getUserByLoginPassword((String) session.getAttribute("login"), (String) session.getAttribute("password"));
-                Student user = (Student)userDAO.getUserByLoginPassword((String) session.getAttribute("login"), (String) session.getAttribute("password"));
+                Student user = (Student)userDAO.getUserByLoginPassword(
+                        (String) session.getAttribute("login"),
+                        (String) session.getAttribute("password"));
                 session.setAttribute("user", user);
             }else if(role == User.ROLE.ADMIN){
                 //Admin user = (Admin)dao.get().getUserByLoginPassword((String) session.getAttribute("login"), (String) session.getAttribute("password"));

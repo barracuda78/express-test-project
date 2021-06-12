@@ -15,7 +15,7 @@ import java.util.List;
 import java.util.concurrent.atomic.AtomicInteger;
 
 @Getter
-public class TestingUnit {
+public final class TestingUnit {
     private static final Logger LOGGER = LoggerFactory.getLogger(TestingUnit.class);
 
     private final int lessonId;
@@ -46,13 +46,11 @@ public class TestingUnit {
         if (questions == null || questions.size() < 1 || cursor >= questions.size()){
             return null;
         }
-//        String testString = questions.get(cursor);
-//        if(testString.startsWith("//")){
-//            cursor++;
-//            getNextTest();
-//        }
-//        cursor++; //todo: implement moving cursor.
-        return questionToHtml(questions.get(1)); //todo: remove hardcoded 'number' with appropriate logic.
+
+        String testString = questions.get(cursor);
+        LogHelper.writeMessage("class TestingUnit. getNextTest(). cursor = " + cursor);
+        cursor++;
+        return questionToHtml(testString);
     }
 
     private synchronized String questionToHtml(String plainString){
@@ -141,5 +139,6 @@ public class TestingUnit {
         }
         return array.length == numberOfCommentedStrings.get();
     }
+
 
 }
