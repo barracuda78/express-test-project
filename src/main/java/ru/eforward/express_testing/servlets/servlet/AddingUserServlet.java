@@ -35,17 +35,19 @@ public class AddingUserServlet extends HttpServlet {
         String password = request.getParameter("password");
         String role_id = request.getParameter("roles");
         String branch_id = request.getParameter("branches");
+        String teacher_id = request.getParameter("teacher");
         String userCreated = "notCreated";
         String allFieldsFilled = "notAll";
+        String added = "notAdded";
 
         if(lastName != null && firstName != null && email != null && password != null && role_id != null && branch_id != null){
             UserDAO userDAO = new UserDAOImpl();
             //User user = "1".equals(role_id) ? new Admin() : ("2".equals(role_id) ? new Teacher() : new Student());
             User.ROLE role = "1".equals(role_id) ? User.ROLE.ADMIN : ("2".equals(role_id) ? User.ROLE.TEACHER : User.ROLE.STUDENT);
             UserBuilder userBuilder = new UserBuilder(role);
-            List<Integer> branches = new ArrayList<>();
-            branches.add(1);
-            //------------------------------------------------------------------здесь лезть в базу и искать филиал по id!!!
+            int branchId = Integer.parseInt(branch_id);
+            int teacherId = Integer.parseInt(teacher_id);
+
             User user = userBuilder
                     .addLastName(lastName)
                     .addFirstName(firstName)
@@ -53,16 +55,19 @@ public class AddingUserServlet extends HttpServlet {
                     .addEmail(email)
                     .addPassword(BCrypt.hashpw(password, BCrypt.gensalt()))
                     .addSchool(schoolId)
-                    .addBranches(branches)
+                    .addBranch(branchId)
+                    .addCurator(teacherId)
                     .buildUser();
 
-            userDAO.addUser(user, admin.getId());
+            boolean addedToDB = userDAO.addUser(user, admin.getId());
             userCreated = "created";
             allFieldsFilled = "all";
+            added = addedToDB ? "added" : "notAdded";
         }else{
             //send to create_user.jsp that all fields should be filled.
             request.setAttribute("userCreated", userCreated);
             request.setAttribute("allFieldsFilled", allFieldsFilled);
+            request.setAttribute("added", added);
             request.getRequestDispatcher("createUser").forward(request, response);
         }
 

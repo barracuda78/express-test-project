@@ -14,19 +14,14 @@
 <h1>Студент</h1>
 
 <c:set var="user" scope="page" value="${param.user}"/>
-<c:set var="branches" scope="page" value="${user.branches}"/>
+<c:set var="branch" scope="page" value="${user.branch}"/>
 <c:set var="testResults" scope="page" value="${user.testResults}"/>
 
 
 
 <p><b><c:out value="${user.school}" default="error: school not found..."/></b></p>
-<p><b>Филиалы:</b></p>
-<ul>
-    <c:forEach var="branch" items="${branches}">
+<p><b>Филиал:</b></p>
         <li><c:out value="${branch}"/></li>
-    </c:forEach>
-</ul>
-
 <p><c:out value="${user.lastName}" default="error: last name not found..."/></p>
 <p><c:out value="${user.firstName}" default="error: first name not found..."/></p>
 <p><c:out value="${user.middleName}" default="error: middle name not found..."/></p>

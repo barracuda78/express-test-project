@@ -70,14 +70,21 @@
 
             if(studentsTestingUnit == null && optionalTestingUnit.isPresent()){
                 TestingUnit testingUnit = optionalTestingUnit.get();
+
                 //todo: clone this object, and pass it to sessionAttribute after it.
                 TestingUnit clone = CloneMaker.getClone(testingUnit);
                 session.setAttribute("studentsTestingUnit", clone);
+                studentsTestingUnit = clone;
+                LogHelper.writeMessage("testing.jsp : if(studentsTestingUnit == null...");
+                LogHelper.writeMessage("testing.jsp : testingUnit = " + testingUnit);
+                LogHelper.writeMessage("testing.jsp : clone = " + clone);
             }
+
 
             //pull next question from TestingUnit: (iteration algorithm exists in TestingUnit entity)
             if(studentsTestingUnit != null && studentsTestingUnit.hasNextTest()){
                 //todo: here we should take TestingUnit from session, not from context!!!
+                LogHelper.writeMessage("testing.jsp = if(studentsTestingUnit != null && ...");
                 htmlString = studentsTestingUnit.getNextTest();
             }
 

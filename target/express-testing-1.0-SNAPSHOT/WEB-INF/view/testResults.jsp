@@ -10,7 +10,7 @@
 <body>
     <h1>Результаты тестирования:</h1>
     <c:set var="user" scope="page" value="${param.user}"/>
-    <c:set var="branches" scope="page" value="${user.branches}"/>
+    <c:set var="branch" scope="page" value="${user.branch}"/>
     <c:set var="testResults" scope="page" value="${user.testResults}"/>
 
 

@@ -55,16 +55,15 @@ public class UserDAOImpl implements UserDAO {
                 preparedStatement.setString(6, user.getPassword());
                 preparedStatement.setInt(7, user.getRole().getId());
                 preparedStatement.setInt(8, user.getSchool());
-                preparedStatement.setInt(9, user.getBranches().get(0));   //---------------------> at this stage I assume only one branch in the List. For further development
+                preparedStatement.setInt(9, user.getBranch());   //---> at this stage I assume only one branch in the List. For further development
                 //if teacher or admin will be added - use id of user, who is adding, as TEACHER_ID for this new user;
                 if(user.getRole() == User.ROLE.TEACHER || user.getRole() == User.ROLE.ADMIN){
                     preparedStatement.setInt(10, parent_id); //
                 }
                 else{
                     //todo:if student will be added - use teacher_id from html-from (need to add it) or use NULL
-
+                    preparedStatement.setInt(10, parent_id);
                 }
-
 
                 LogHelper.writeMessage("---class UserDAOImpl : preparedStatement prepared.");
 
@@ -118,7 +117,7 @@ public class UserDAOImpl implements UserDAO {
                             //password = // already defined as method parameter
                             int role_id = resultSet.getInt("ROLE_ID");
                             int school_id = resultSet.getInt("SCHOOL_ID");
-                            Integer branch_id = resultSet.getInt("BRANCH_ID");
+                            int branch_id = resultSet.getInt("BRANCH_ID");
                             User.ROLE role = User.ROLE.getRoleById(role_id);
                             UserBuilder userBuilder = new UserBuilder(role)
                                     .addId(id)
@@ -129,7 +128,7 @@ public class UserDAOImpl implements UserDAO {
                                     .addLogin(login)
                                     .addPassword(password)
                                     .addSchool(school_id)
-                                    .addBranches(new ArrayList<Integer>(Arrays.asList(branch_id))); //list of one element - just a stub for further development
+                                    .addBranch(branch_id);
 
                             //if ROLE = TEACER - use method AddGroupsToTeacher.
                             //Groups should be taken from BD using GroupsDAOImpl class - getGroupsByTeacherId().

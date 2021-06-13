@@ -42,11 +42,6 @@ public class ContextListener implements ServletContextListener {
 
         School schoolEF = new School(1, "EnglishForward");
 
-        List<Integer> branches = new ArrayList<>();
-        branches.add(1);
-        branches.add(2);
-
-
         List<Integer> testResults = new ArrayList<>();
         testResults.add(1);
         testResults.add(2);
@@ -60,7 +55,7 @@ public class ContextListener implements ServletContextListener {
                 .addLogin("barracuda")
                 .addPassword("111")
                 .addSchool(schoolEF.getId())
-                .addBranches(branches)
+                .addBranch(1)
                 .addTestResults(testResults)
                 .buildUser();
         userDao.get().addUser(user01, 3);

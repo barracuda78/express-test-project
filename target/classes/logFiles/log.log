@@ -1,19 +1,15 @@
-13.06.2021 00:10:50.989 [http-nio-8080-exec-10] INFO   r.e.e.t.TestingUnit - new test was created for lessonId 3 and groupId 1
-13.06.2021 00:11:01.608 [http-nio-8080-exec-5] ERROR  r.e.e.t.TestingUnit - IOException. Can not clone this object: ru.eforward.express_testing.testingProcess.TestingUnit@493f38aa
-13.06.2021 00:30:32.706 [http-nio-8080-exec-6] INFO   r.e.e.t.TestingUnit - new test was created for lessonId 3 and groupId 1
-13.06.2021 00:30:39.612 [http-nio-8080-exec-1] ERROR  r.e.e.u.CloneMaker - IOException. Can not clone this object: ru.eforward.express_testing.testingProcess.TestingUnit@21be66e7
-13.06.2021 00:32:50.417 [http-nio-8080-exec-6] INFO   r.e.e.t.TestingUnit - new test was created for lessonId 3 and groupId 1
-13.06.2021 00:32:55.488 [http-nio-8080-exec-1] ERROR  r.e.e.u.CloneMaker - IOException. Can not clone this object: ru.eforward.express_testing.testingProcess.TestingUnit@3142cd87
-13.06.2021 00:39:42.428 [main] ERROR  r.e.e.u.CloneMaker - IOException. Can not clone this object: Cat{name='Vaska', color='Gray', age=4, friends=[Fedya, Masha]}
-13.06.2021 00:41:51.991 [main] ERROR  r.e.e.u.CloneMaker - IOException. Can not clone this object: Cat{name='Vaska', color='Gray', age=4, friends=[Fedya, Masha]}
-13.06.2021 00:42:32.418 [main] ERROR  r.e.e.u.CloneMaker - IOException. Can not clone this object: Cat{name='Vaska', color='Gray', age=4, friends=[Fedya, Masha]}
-13.06.2021 00:45:03.125 [http-nio-8080-exec-6] INFO   r.e.e.t.TestingUnit - new test was created for lessonId 3 and groupId 1
-13.06.2021 00:56:17.831 [http-nio-8080-exec-5] INFO   r.e.e.t.TestingUnit - new test was created for lessonId 3 and groupId 1
-13.06.2021 00:56:50.066 [http-nio-8080-exec-7] INFO   r.e.e.t.TestingUnit - new test was created for lessonId 3 and groupId 1
-13.06.2021 00:57:02.398 [http-nio-8080-exec-3] INFO   r.e.e.t.e.MultiChoiceEvaluator - evaluating: answer = живет
-13.06.2021 00:57:05.080 [http-nio-8080-exec-6] INFO   r.e.e.t.e.MultiChoiceEvaluator - evaluating: answer = третий
+14.06.2021 00:41:13.147 [http-nio-8080-exec-6] INFO   r.e.e.t.TestingUnit - new test was created for lessonId 3 and groupId 1
+14.06.2021 01:08:08.337 [http-nio-8080-exec-10] WARN   r.e.e.d.UserDAOImpl - new user record was inserted into table USERS with lastName Рузаева
+14.06.2021 01:08:34.323 [http-nio-8080-exec-7] INFO   r.e.e.t.TestingUnit - new test was created for lessonId 3 and groupId 1
+14.06.2021 01:10:08.796 [http-nio-8080-exec-6] INFO   r.e.e.t.TestingUnit - new test was created for lessonId 3 and groupId 1
+14.06.2021 01:14:43.085 [http-nio-8080-exec-6] INFO   r.e.e.t.TestingUnit - new test was created for lessonId 3 and groupId 1
+14.06.2021 01:18:44.684 [http-nio-8080-exec-6] INFO   r.e.e.t.TestingUnit - new test was created for lessonId 3 and groupId 1
+14.06.2021 01:21:49.521 [http-nio-8080-exec-6] INFO   r.e.e.t.TestingUnit - new test was created for lessonId 3 and groupId 1
+14.06.2021 01:23:40.581 [http-nio-8080-exec-6] INFO   r.e.e.t.TestingUnit - new test was created for lessonId 3 and groupId 1
+14.06.2021 01:28:05.569 [http-nio-8080-exec-6] INFO   r.e.e.t.TestingUnit - new test was created for lessonId 3 and groupId 1
+14.06.2021 01:28:13.394 [http-nio-8080-exec-3] INFO   r.e.e.t.e.MultiChoiceEvaluator - evaluating: answer = родился 
+14.06.2021 01:28:15.957 [http-nio-8080-exec-2] INFO   r.e.e.t.e.MultiChoiceEvaluator - evaluating: answer = второй
     
-13.06.2021 00:57:07.287 [http-nio-8080-exec-5] INFO   r.e.e.t.e.MultiChoiceEvaluator - evaluating: answer = Египте
-
-13.06.2021 00:57:07.292 [http-nio-8080-exec-5] INFO   r.e.e.d.TestResultDAOImpl - New  record to TESTRESULTS table has been added by student with ID 13
-13.06.2021 17:22:34.222 [http-nio-8080-exec-2] WARN   r.e.e.d.UserDAOImpl - new user record was inserted into table USERS with lastName Рузаев
+14.06.2021 01:28:17.967 [http-nio-8080-exec-5] INFO   r.e.e.t.e.MultiChoiceEvaluator - evaluating: answer = Китае
+    
+14.06.2021 01:28:17.972 [http-nio-8080-exec-5] INFO   r.e.e.d.TestResultDAOImpl - New  record to TESTRESULTS table has been added by student with ID 6

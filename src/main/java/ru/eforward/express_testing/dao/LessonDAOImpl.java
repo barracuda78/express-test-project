@@ -24,7 +24,11 @@ public class LessonDAOImpl implements LessonDAO {
         }
         if(connection != null) {
             try {
-                preparedStatement = connection.prepareStatement("SELECT * FROM LESSONS WHERE ID = ?");
+                preparedStatement = connection.prepareStatement("SELECT LESSONS.ID, LESSONS.LESSON_NAME, PATH, L.ID\n" +
+                        " FROM LESSONS\n" +
+                        " INNER JOIN LEVELS L on L.ID = LESSONS.LEVEL_ID\n" +
+                        " INNER JOIN COURSES C on C.ID = L.COURSE_ID\n" +
+                        " WHERE LESSONS.ID = ?;");
                 preparedStatement.setInt(1, lessonId);
                 ResultSet resultSet = preparedStatement.executeQuery();
                 if(!resultSet.wasNull()){
@@ -33,10 +37,8 @@ public class LessonDAOImpl implements LessonDAO {
                         int id = resultSet.getInt("ID");
                         String lessonName = resultSet.getString("LESSON_NAME");
                         String pathToTestFile = resultSet.getString("PATH");
-                        int levelId = resultSet.getInt("LEVEL_ID");
-                        int courseId = resultSet.getInt("COURSE_ID");
-                        int schoolId = resultSet.getInt("SCHOOL_ID");
-                        lesson = new Lesson(id, lessonName, pathToTestFile, levelId, courseId, schoolId);
+                        int levelId = resultSet.getInt("LEVELS.ID");
+                        lesson = new Lesson(id, lessonName, pathToTestFile, levelId);
                     }
                 }
             } catch (SQLException throwables) {

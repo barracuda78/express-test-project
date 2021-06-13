@@ -3,7 +3,6 @@ package ru.eforward.express_testing.model;
 import lombok.Getter;
 import lombok.Setter;
 import ru.eforward.express_testing.utils.TestFilesReader;
-import ru.eforward.express_testing.model.school.*;
 
 import java.nio.file.Path;
 import java.util.List;

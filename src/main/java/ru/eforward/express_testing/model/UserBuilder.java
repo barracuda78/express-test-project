@@ -76,8 +76,13 @@ public class UserBuilder {
         return this;
     }
 
-    public UserBuilder addBranches(List<Integer> branches){
-        user.setBranches(branches);
+    public UserBuilder addBranch(int branchId){
+        user.setBranch(branchId);
+        return this;
+    }
+
+    public UserBuilder addCurator(int curatorId){
+        user.setCuratorId(curatorId);
         return this;
     }
 
