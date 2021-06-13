@@ -63,7 +63,7 @@ public class ContextListener implements ServletContextListener {
                 .addBranches(branches)
                 .addTestResults(testResults)
                 .buildUser();
-        userDao.get().addUser(user01);
+        userDao.get().addUser(user01, 3);
 
         userBuilder = new UserBuilder(ADMIN);
         User user02 = userBuilder
@@ -75,7 +75,7 @@ public class ContextListener implements ServletContextListener {
                 .addPassword("1")
                 .addSchool(1)
                 .buildUser();
-        userDao.get().addUser(user02);
+        userDao.get().addUser(user02, 2);
 
 
         List<Student> students = new ArrayList<>();
@@ -95,7 +95,7 @@ public class ContextListener implements ServletContextListener {
                 .addSchool(1)
                 .addGroupsToTeacher(groups)
                 .buildUser();
-        userDao.get().addUser(user03);
+        userDao.get().addUser(user03, 2);
 
         Test test01 = new Test();
         test01.setId(1);

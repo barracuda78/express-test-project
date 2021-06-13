@@ -24,7 +24,7 @@ public class UserDAOImpl implements UserDAO {
     private PreparedStatement preparedStatement;
 
     @Override
-    public boolean addUser(User user) {
+    public boolean addUser(User user, int parent_id) {
         LogHelper.writeMessage("---class UserDAOImpl : We start creating new User");
         if(user == null){
             LogHelper.writeMessage("---class UserDAOImpl : User == null");
@@ -44,7 +44,7 @@ public class UserDAOImpl implements UserDAO {
                     return false;
                 }
 
-                preparedStatement = connection.prepareStatement("INSERT INTO USERS (LASTNAME, FIRSTNAME, MIDDLENAME, EMAIL, LOGIN, PASSWORD, ROLE_ID, SCHOOL_ID, BRANCH_ID) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)");
+                preparedStatement = connection.prepareStatement("INSERT INTO USERS (LASTNAME, FIRSTNAME, MIDDLENAME, EMAIL, LOGIN, PASSWORD, ROLE_ID, SCHOOL_ID, BRANCH_ID, TEACHER_ID) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
                 //preparedStatement.setInt(1, user.getId()); --id will be set by DB;
                 preparedStatement.setString(1, user.getLastName());
                 preparedStatement.setString(2, user.getFirstName());
@@ -55,6 +55,15 @@ public class UserDAOImpl implements UserDAO {
                 preparedStatement.setInt(7, user.getRole().getId());
                 preparedStatement.setInt(8, user.getSchool());
                 preparedStatement.setInt(9, user.getBranches().get(0));   //---------------------> at this stage I assume only one branch in the List. For further development
+                //todo:if teacher or admin will be added - use id of user, who is adding, as TEACHER_ID for this new user;
+                if(user.getRole() == User.ROLE.TEACHER || user.getRole() == User.ROLE.ADMIN){
+                    preparedStatement.setInt(10, parent_id); //
+                }
+                else{
+                    //todo:if student will be added - use teacher_id from html-from (need to add it) or use NULL
+
+                }
+
 
                 LogHelper.writeMessage("---class UserDAOImpl : preparedStatement prepared.");
 
@@ -196,6 +205,12 @@ public class UserDAOImpl implements UserDAO {
         }
 
         return result;
+    }
+
+    @Override
+    public List<User> getUsersByRole(User.ROLE role, int school_id) {
+        //todo: implement getUsersByRole(User.ROLE role, int school_id) in UserDAOImpl class
+        return null;
     }
 
     @Override

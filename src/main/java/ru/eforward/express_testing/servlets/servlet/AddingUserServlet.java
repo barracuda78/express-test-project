@@ -56,7 +56,7 @@ public class AddingUserServlet extends HttpServlet {
                     .addBranches(branches)
                     .buildUser();
 
-            userDAO.addUser(user);
+            userDAO.addUser(user, admin.getId());
             userCreated = "created";
             allFieldsFilled = "all";
         }else{
