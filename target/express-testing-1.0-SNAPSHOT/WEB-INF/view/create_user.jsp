@@ -13,7 +13,7 @@
 </head>
 <body>
 <%--вытащить всех учителей (id, lastName, FirstName), привязанных к данной школе в List<Teachers>.--%>
-<%--todo:итерируясь по списку учителей, формировать html-форму <select name="teacher"> выдавая  id как value="1" и Учитель Вася--%>
+<%--итерируясь по списку учителей, формировать html-форму <select name="teacher"> выдавая  id как value="1" и Учитель Вася--%>
 <%--для этого нужен метод в UserDAOImpl() - получить всех учителей (id, lastName, FirstName) по id школы--%>
     <%
         Admin admin = (Admin)session.getAttribute("user");
