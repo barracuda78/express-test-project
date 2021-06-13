@@ -16,3 +16,4 @@
 13.06.2021 00:57:07.287 [http-nio-8080-exec-5] INFO   r.e.e.t.e.MultiChoiceEvaluator - evaluating: answer = Египте
 
 13.06.2021 00:57:07.292 [http-nio-8080-exec-5] INFO   r.e.e.d.TestResultDAOImpl - New  record to TESTRESULTS table has been added by student with ID 13
+13.06.2021 17:22:34.222 [http-nio-8080-exec-2] WARN   r.e.e.d.UserDAOImpl - new user record was inserted into table USERS with lastName Рузаев

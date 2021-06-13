@@ -19,7 +19,7 @@
         Admin admin = (Admin)session.getAttribute("user");
 
         UserDAO userDAO = new UserDAOImpl();
-        List<User> list = userDAO.getUsersByRole(admin.getRole(), admin.getSchool());
+        List<User> users = userDAO.getUsersByRole(User.ROLE.TEACHER, admin.getSchool());
 
     %>
 
@@ -47,9 +47,17 @@
                         <option value="2">EF - Парк Победы</option>
                     </select></td>
                     <td><select name="teacher">
-                        <option value="" style="display:none">Выберите филиал</option>
-                        <option value="1">Учитель Вася</option>
-                        <option value="2">Учитель Петя</option>
+                        <option value="" style="display:none">Выберите куратора</option>
+                        <option value="0">Куратор не выбран</option>
+                        <%
+                        for(User u : users){
+                            %>
+                                <%="<option value=\"" + u.getId() + "\">" + u.getFirstName() + " " + u.getLastName() + "</option>"%>
+                            <%
+                        }
+                        %>
+                        <%--option value="1">Учитель Вася</option--%>
+                        <%--option value="2">Учитель Петя</option--%>
                     </select></td>
                 </tr>
                 <tr>

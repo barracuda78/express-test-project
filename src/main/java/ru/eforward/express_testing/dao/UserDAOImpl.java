@@ -17,6 +17,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Objects;
 
 public class UserDAOImpl implements UserDAO {
     private static final Logger LOGGER = LoggerFactory.getLogger(UserDAOImpl.class);
@@ -55,7 +56,7 @@ public class UserDAOImpl implements UserDAO {
                 preparedStatement.setInt(7, user.getRole().getId());
                 preparedStatement.setInt(8, user.getSchool());
                 preparedStatement.setInt(9, user.getBranches().get(0));   //---------------------> at this stage I assume only one branch in the List. For further development
-                //todo:if teacher or admin will be added - use id of user, who is adding, as TEACHER_ID for this new user;
+                //if teacher or admin will be added - use id of user, who is adding, as TEACHER_ID for this new user;
                 if(user.getRole() == User.ROLE.TEACHER || user.getRole() == User.ROLE.ADMIN){
                     preparedStatement.setInt(10, parent_id); //
                 }
@@ -96,7 +97,7 @@ public class UserDAOImpl implements UserDAO {
                 preparedStatement.setString(1, login);
                 ResultSet resultSet = preparedStatement.executeQuery();
                 if(!resultSet.wasNull()){
-                    //I'm using 'while' because can have several users with same login - //todo: have to fix it!.
+                    //while can be replaced by if as LOGIN is UNIQUE.
                     while(resultSet.next()){
                         String hashedPassword = resultSet.getString("PASSWORD");
                         boolean equals = false;
@@ -209,8 +210,47 @@ public class UserDAOImpl implements UserDAO {
 
     @Override
     public List<User> getUsersByRole(User.ROLE role, int school_id) {
-        //todo: implement getUsersByRole(User.ROLE role, int school_id) in UserDAOImpl class
-        return null;
+        if(Objects.isNull(role) || school_id <= 0){
+            return null;
+        }
+        if(connection == null){
+            connection = PoolConnector.getConnection();
+        }
+        List<User> users = new ArrayList<>();
+        if(connection != null) {
+            try {
+                //получить всех учителей (id, lastName, FirstName) по id школы
+                preparedStatement = connection.prepareStatement("SELECT ID, LASTNAME, FIRSTNAME FROM USERS WHERE SCHOOL_ID = ? AND ROLE_ID = ?");
+                preparedStatement.setInt(1, school_id);
+                preparedStatement.setInt(2, role.getId());
+                ResultSet resultSet = preparedStatement.executeQuery();
+                if(!resultSet.wasNull()){
+                    //I'm using 'while' because can have several users with same login.
+                    while(resultSet.next()){
+                        int id = resultSet.getInt("ID");
+                        String lastName = resultSet.getString("LASTNAME");
+                        String firstName = resultSet.getString("FIRSTNAME");
+                        User user = new UserBuilder(role)
+                                .addId(id)
+                                .addLastName(lastName)
+                                .addFirstName(firstName)
+                                .buildUser();
+                        users.add(user);
+                    }
+                }else{
+                    LogHelper.writeMessage("class UserDAOImpl, method getUsersByRole() : resultSet is null");
+                    LOGGER.error("resultSet is null");
+                }
+            } catch (SQLException throwables) {
+                LogHelper.writeMessage("class UserDAOImpl, method getUsersByRole() : SQLException");
+                throwables.printStackTrace();
+                LOGGER.error("SQLException while SELECT query - getUsersByRole");
+            }
+        }else{
+            LogHelper.writeMessage("class UserDAOImpl, method getUsersByRole() : connection is null");
+            LOGGER.error("connection is null");
+        }
+        return users;
     }
 
     @Override

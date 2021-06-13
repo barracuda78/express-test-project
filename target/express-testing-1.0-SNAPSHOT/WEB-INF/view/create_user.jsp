@@ -1,3 +1,10 @@
+<%@ page import="ru.eforward.express_testing.model.Teacher" %>
+<%@ page import="java.util.List" %>
+<%@ page import="java.util.ArrayList" %>
+<%@ page import="ru.eforward.express_testing.daoInterfaces.UserDAO" %>
+<%@ page import="ru.eforward.express_testing.dao.UserDAOImpl" %>
+<%@ page import="ru.eforward.express_testing.model.User" %>
+<%@ page import="ru.eforward.express_testing.model.Admin" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
@@ -5,6 +12,19 @@
     <title>Новый пользователь</title>
 </head>
 <body>
+<%--вытащить всех учителей (id, lastName, FirstName), привязанных к данной школе в List<Teachers>.--%>
+<%--todo:итерируясь по списку учителей, формировать html-форму <select name="teacher"> выдавая  id как value="1" и Учитель Вася--%>
+<%--для этого нужен метод в UserDAOImpl() - получить всех учителей (id, lastName, FirstName) по id школы--%>
+    <%
+        Admin admin = (Admin)session.getAttribute("user");
+
+        UserDAO userDAO = new UserDAOImpl();
+        List<User> users = userDAO.getUsersByRole(User.ROLE.TEACHER, admin.getSchool());
+
+    %>
+
+
+
     <div id="box">
         <form name="add" action="AddingUserServlet" method="POST">
             <table>         <%--таблица--%>
@@ -25,6 +45,19 @@
                         <option value="" style="display:none">Выберите филиал</option>
                         <option value="1">EF - Горьковская</option>
                         <option value="2">EF - Парк Победы</option>
+                    </select></td>
+                    <td><select name="teacher">
+                        <option value="" style="display:none">Выберите куратора</option>
+                        <option value="0">Куратор не выбран</option>
+                        <%
+                        for(User u : users){
+                            %>
+                                <%="<option value=\"" + u.getId() + "\">" + u.getFirstName() + " " + u.getLastName() + "</option>"%>
+                            <%
+                        }
+                        %>
+                        <%--option value="1">Учитель Вася</option--%>
+                        <%--option value="2">Учитель Петя</option--%>
                     </select></td>
                 </tr>
                 <tr>
