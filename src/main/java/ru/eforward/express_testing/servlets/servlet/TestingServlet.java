@@ -38,15 +38,12 @@ public class TestingServlet extends HttpServlet {
             lessonId = Integer.parseInt(lessonIdString);
             groupId = Integer.parseInt(groupIdString);
         }catch(NumberFormatException e){
-            LogHelper.writeMessage("---class TestingServlet: doGet() - NumberFormatException" + e.getMessage());
             request.setAttribute("wrongId", "wrongId");
         }
         String runTestButton = request.getParameter("runTestButton");
         List<TestingUnit> testingUnits = null;
         TestingUnit testingUnit = null;
-        LogHelper.writeMessage("---class TestingServlet: doGet() - before if statement");
         if(runTestButton != null && groupId >= 0 && lessonId >= 0){
-            LogHelper.writeMessage("---class TestingServlet: doGet() - in if statement");
             testingUnit = new TestingUnit(lessonId, groupId);
 
             ServletContext servletContext = request.getServletContext();
@@ -63,10 +60,8 @@ public class TestingServlet extends HttpServlet {
             }
             servletContext.setAttribute("testingUnitsListAtomicReference", testingUnitsListAtomicReference);
             request.setAttribute("testingStarted", "ok");
-            LogHelper.writeMessage("---class TestingServlet: doGet() testingStarted - OK---");
-            LogHelper.writeMessage("---class TestingServlet: doGet()Текст теста = " + testingUnit.getNextTest());
+
         } else {
-            LogHelper.writeMessage("---class TestingServlet: doGet() - in else statement");
             request.setAttribute("testingStarted", "bad");
         }
         //go back to teachers main menu with corresponding attributes:

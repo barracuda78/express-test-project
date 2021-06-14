@@ -40,6 +40,7 @@ public class TestingUnit implements Serializable {
         //init 'List<String> questions' field here by parsing the given String s in a line above.
         String[] array = s.split("\n\n");
         questions = new ArrayList<>(Arrays.asList(array));
+        LogHelper.writeMessage("TestingUnit :: questions = \n" + questions);
     }
 
     public synchronized boolean hasNextTest(){

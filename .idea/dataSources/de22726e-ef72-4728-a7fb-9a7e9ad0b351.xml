@@ -160,7 +160,7 @@
       <NameSurrogate>1</NameSurrogate>
       <ColNames>TEACHER_ID</ColNames>
       <RefTableName>USERS</RefTableName>
-      <RefKeyName>SYS_PK_10635</RefKeyName>
+      <RefKeyName>SYS_PK_10134</RefKeyName>
       <RefColNames>ID</RefColNames>
     </foreign-key>
     <column id="43" parent="9" name="ID">
@@ -211,7 +211,7 @@
       <NameSurrogate>1</NameSurrogate>
       <ColNames>LEVEL_ID</ColNames>
       <RefTableName>LEVELS</RefTableName>
-      <RefKeyName>SYS_PK_11140</RefKeyName>
+      <RefKeyName>SYS_PK_10204</RefKeyName>
       <RefColNames>ID</RefColNames>
     </foreign-key>
     <column id="53" parent="10" name="ID">
@@ -257,7 +257,7 @@
       <NameSurrogate>1</NameSurrogate>
       <ColNames>COURSE_ID</ColNames>
       <RefTableName>COURSES</RefTableName>
-      <RefKeyName>SYS_PK_11031</RefKeyName>
+      <RefKeyName>SYS_PK_10191</RefKeyName>
       <RefColNames>ID</RefColNames>
     </foreign-key>
     <column id="62" parent="11" name="ID">
@@ -349,14 +349,14 @@
       <NameSurrogate>1</NameSurrogate>
       <ColNames>STUDENT_ID</ColNames>
       <RefTableName>USERS</RefTableName>
-      <RefKeyName>SYS_PK_10635</RefKeyName>
+      <RefKeyName>SYS_PK_10134</RefKeyName>
       <RefColNames>ID</RefColNames>
     </foreign-key>
     <foreign-key id="80" parent="13" name="SYS_FK_10179">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>LESSON_ID</ColNames>
       <RefTableName>LESSONS</RefTableName>
-      <RefKeyName>SYS_PK_10141</RefKeyName>
+      <RefKeyName>SYS_PK_10122</RefKeyName>
       <RefColNames>ID</RefColNames>
     </foreign-key>
     <column id="81" parent="14" name="ID">
@@ -490,14 +490,14 @@
       <NameSurrogate>1</NameSurrogate>
       <ColNames>TEACHER_ID</ColNames>
       <RefTableName>USERS</RefTableName>
-      <RefKeyName>SYS_PK_10635</RefKeyName>
+      <RefKeyName>SYS_PK_10134</RefKeyName>
       <RefColNames>ID</RefColNames>
     </foreign-key>
     <foreign-key id="108" parent="14" name="SYS_FK_10149">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>GROUP_ID</ColNames>
       <RefTableName>GROUPS</RefTableName>
-      <RefKeyName>SYS_PK_10133</RefKeyName>
+      <RefKeyName>SYS_PK_10109</RefKeyName>
       <RefColNames>ID</RefColNames>
     </foreign-key>
   </database-model>
