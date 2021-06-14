@@ -25,22 +25,9 @@ public class ComplianceHandler extends Handler implements  QuestionHandler{
         String questionName = getQuestionName(q); //methods are inherited from superclass Handler
         //2.get question itself:
         String questionItself = getQuestion(q);
-        //3. get all variants of answer:
-        String allVariants = getAllVariants(q);
 
-        Map<String, String> map = new HashMap<>();
-        List<String> list = new ArrayList<>(); //for answers only.
-        String[] vars = allVariants.split("\n");
-        for(String v : vars){
-            if("".equals(v)){
-                continue;
-            }
-            LogHelper.writeMessage("var = " + v);
-            String key = v.substring(1, v.indexOf("->"));
-            String value = v.substring(v.indexOf("->") + 2);
-            map.put(key, value);
-            list.add(value);
-        }
+        Map<String, String> map = createMapOfQuestionAnswers(q); // map of question-answer.
+        List<String> list = createListOfAnswers(q); //for answers only.
 
         //4. build the html-string here:
         StringBuilder sb = startBuildingHtml(questionName, questionItself);
@@ -63,7 +50,7 @@ public class ComplianceHandler extends Handler implements  QuestionHandler{
                 sb.append("<select name=\"answerDropdowns\">");
                 sb.append("<option value=\"\" style=\"display:none\">Выберите ответ</option>");
                 for(String s : list) {
-                    sb.append("<option value=\"" + valueParameter.incrementAndGet() + "\">" + s + "</option>");
+                    sb.append("<option value=\"" + valueParameter.incrementAndGet() + "\">" + s + "</option>"); // 's' is an answer//
                 }
                 sb.append("</select>");
 
@@ -73,8 +60,55 @@ public class ComplianceHandler extends Handler implements  QuestionHandler{
         sb.append("</table>");
         sb.append("<input class=\"button\" type=\"submit\" name=\"choice1\" value=\"Отправить\">");
         sb.append("<input type=\"hidden\" name=\"type\" value=\"COMPLIANCE\">");
+        sb.append("<input type=\"hidden\" name=\"question\" value=\" " + q + "\">"); //passing the original text of question
         sb.append("</form>");
         sb.append("</p>");
         return sb.toString();
     }
+
+    public Map<String, String> createMapOfQuestionAnswers(String q){
+        String allVariants = getAllVariants(q);
+        //creating map of question-answer:
+        Map<String, String> map = new HashMap<>();
+        String[] vars = allVariants.split("\n");
+        for(String v : vars){
+            if("".equals(v)){
+                continue;
+            }
+            LogHelper.writeMessage("var = " + v);
+            String key = v.substring(1, v.indexOf("->"));
+            String value = v.substring(v.indexOf("->") + 2);
+            map.put(key, value);
+        }
+        return map;
+    }
+
+    public List<String> createListOfAnswers(String q){
+        String allVariants = getAllVariants(q);
+        List<String> list = new ArrayList<>(); //for answers only.
+        String[] vars = allVariants.split("\n");
+        for(String v : vars){
+            if("".equals(v)){
+                continue;
+            }
+            String value = v.substring(v.indexOf("->") + 2);
+            list.add(value);
+        }
+        return list;
+    }
+
+    //separator for converting to String is =$=
+    // - is used by ComplianceEvaluator as this type of question has 3 or more subquestions,
+    // but interface works with Strings, not with List<String>
+    public String createStringFromList(List<String> list){
+        StringBuilder sb = new StringBuilder();
+        for(int i = 0; i < list.size(); i++){
+            sb.append(list.get(i));
+            if(i != list.size() - 1){
+                sb.append("=$=");
+            }
+        }
+        return sb.toString();
+    }
+
 }

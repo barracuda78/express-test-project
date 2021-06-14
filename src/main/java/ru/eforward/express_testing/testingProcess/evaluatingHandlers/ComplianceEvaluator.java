@@ -5,6 +5,10 @@ import org.slf4j.LoggerFactory;
 import ru.eforward.express_testing.testingProcess.QuestionType;
 import ru.eforward.express_testing.utils.LogHelper;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Objects;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -24,34 +28,41 @@ public class ComplianceEvaluator implements EvaluatingHandler{
 //    }
 
     @Override
-    public int evaluate(String question, String answer) {
-        LOGGER.info("evaluating: answer = " + answer);
-
-        if(answer == null || question == null){
+    public int evaluate(String q, String a) {
+        LOGGER.info("evaluating: answer = " + a);
+        if(q == null || a == null){
             return 0;
         }
 
-        question = question.trim().toLowerCase();
-        answer = answer.trim().toLowerCase();
+        //separator for converting to list is =$=
 
+        String[] qArray = q.split("=\\$=");
+        String[] aArray = a.split("=\\$=");
 
-        if(answer.isEmpty()){
-            return 0;
+        List<String> questions = new ArrayList<>(Arrays.asList(qArray));
+        List<String> answers = new ArrayList<>(Arrays.asList(aArray));
+
+        int score = 0;
+        int correctAnswersCounter = 0;
+
+        for(int i = 0; i < questions.size(); i++){
+            String question = questions.get(i);
+            String answer = answers.get(i);
+            question = question.trim().toLowerCase();
+            answer = answer.trim().toLowerCase();
+
+            if(answer.isEmpty()){
+                continue; //do not add scores for this subquestion.
+            }
+
+            if(answer.equals(question)){
+                score = score + score/questions.size();
+                correctAnswersCounter ++;
+            }
         }
 
-        //todo: implement percentage here ~%50%Галилея#Вы должны быть более определенным.
-        //lazy quantifier used (for one-lined questions)
-        Pattern p = Pattern.compile("=.+?\\s"); //regex matches to every combination started with '=' and ended with 'space' symbol (including \n, \t, \r\n)
-        Matcher m = p.matcher(question);
-
-        String correctAnswer = "";
-        if(m.find()){
-            correctAnswer = m.group();
-            correctAnswer = correctAnswer.substring(1); //removing '=' sign from the beginning of this string;
-            correctAnswer = correctAnswer.replaceAll("\\s", "");
-            correctAnswer = correctAnswer.replaceAll("}", "");
-        }
-        LogHelper.writeMessage("correctAnswer = " + correctAnswer);
-        return correctAnswer.equals(answer) ? 10 : 0;
+        return correctAnswersCounter == questions.size() ? 10 : score; //all answers correct - 10. to avoid loosing scores while rounding to an integer
     }
+
+
 }

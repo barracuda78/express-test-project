@@ -19,6 +19,7 @@ public class TestResult {
     private int lessonId;
     private Map<String, String> map = new LinkedHashMap<>();
     private int totalScore;
+    //todo: do I need here int maxScore (to know what was maximum for this test?
 
     public synchronized void setTotalScore(int totalScore) {
         this.totalScore = totalScore;

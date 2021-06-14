@@ -1,98 +1,11 @@
-14.06.2021 00:41:13.147 [http-nio-8080-exec-6] INFO   r.e.e.t.TestingUnit - new test was created for lessonId 3 and groupId 1
-14.06.2021 01:08:08.337 [http-nio-8080-exec-10] WARN   r.e.e.d.UserDAOImpl - new user record was inserted into table USERS with lastName Рузаева
-14.06.2021 01:08:34.323 [http-nio-8080-exec-7] INFO   r.e.e.t.TestingUnit - new test was created for lessonId 3 and groupId 1
-14.06.2021 01:10:08.796 [http-nio-8080-exec-6] INFO   r.e.e.t.TestingUnit - new test was created for lessonId 3 and groupId 1
-14.06.2021 01:14:43.085 [http-nio-8080-exec-6] INFO   r.e.e.t.TestingUnit - new test was created for lessonId 3 and groupId 1
-14.06.2021 01:18:44.684 [http-nio-8080-exec-6] INFO   r.e.e.t.TestingUnit - new test was created for lessonId 3 and groupId 1
-14.06.2021 01:21:49.521 [http-nio-8080-exec-6] INFO   r.e.e.t.TestingUnit - new test was created for lessonId 3 and groupId 1
-14.06.2021 01:23:40.581 [http-nio-8080-exec-6] INFO   r.e.e.t.TestingUnit - new test was created for lessonId 3 and groupId 1
-14.06.2021 01:28:05.569 [http-nio-8080-exec-6] INFO   r.e.e.t.TestingUnit - new test was created for lessonId 3 and groupId 1
-14.06.2021 01:28:13.394 [http-nio-8080-exec-3] INFO   r.e.e.t.e.MultiChoiceEvaluator - evaluating: answer = родился 
-14.06.2021 01:28:15.957 [http-nio-8080-exec-2] INFO   r.e.e.t.e.MultiChoiceEvaluator - evaluating: answer = второй
-    
-14.06.2021 01:28:17.967 [http-nio-8080-exec-5] INFO   r.e.e.t.e.MultiChoiceEvaluator - evaluating: answer = Китае
-    
-14.06.2021 01:28:17.972 [http-nio-8080-exec-5] INFO   r.e.e.d.TestResultDAOImpl - New  record to TESTRESULTS table has been added by student with ID 6
-14.06.2021 01:29:17.886 [http-nio-8080-exec-6] INFO   r.e.e.t.TestingUnit - new test was created for lessonId 3 and groupId 1
-14.06.2021 01:29:25.748 [http-nio-8080-exec-1] INFO   r.e.e.t.e.MultiChoiceEvaluator - evaluating: answer = похоронен 
-14.06.2021 01:29:26.998 [http-nio-8080-exec-3] INFO   r.e.e.t.e.MultiChoiceEvaluator - evaluating: answer = четвертый
+15.06.2021 01:43:19.259 [http-nio-8080-exec-6] INFO   r.e.e.t.TestingUnit - new test was created for lessonId 3 and groupId 1
+15.06.2021 01:45:06.463 [http-nio-8080-exec-6] INFO   r.e.e.t.TestingUnit - new test was created for lessonId 3 and groupId 1
+15.06.2021 01:46:58.755 [http-nio-8080-exec-6] INFO   r.e.e.t.TestingUnit - new test was created for lessonId 3 and groupId 1
+15.06.2021 01:50:07.586 [http-nio-8080-exec-7] INFO   r.e.e.t.TestingUnit - new test was created for lessonId 3 and groupId 1
+15.06.2021 01:50:22.618 [http-nio-8080-exec-4] INFO   r.e.e.t.e.ShortAnswerEvaluator - evaluating: answer = никто
+15.06.2021 01:50:24.642 [http-nio-8080-exec-5] INFO   r.e.e.t.e.MultiChoiceEvaluator - evaluating: answer = родился 
+15.06.2021 01:50:26.367 [http-nio-8080-exec-7] INFO   r.e.e.t.e.MultiChoiceEvaluator - evaluating: answer = четвертый
 
-14.06.2021 01:29:28.423 [http-nio-8080-exec-4] INFO   r.e.e.t.e.MultiChoiceEvaluator - evaluating: answer = Китае
+15.06.2021 01:50:28.363 [http-nio-8080-exec-6] INFO   r.e.e.t.e.MultiChoiceEvaluator - evaluating: answer = Kорее
     
-14.06.2021 01:29:28.428 [http-nio-8080-exec-4] INFO   r.e.e.d.TestResultDAOImpl - New  record to TESTRESULTS table has been added by student with ID 6
-14.06.2021 13:04:00.831 [main] INFO   r.e.e.t.TestingUnit - new test was created for lessonId -1 and groupId -1
-14.06.2021 13:04:45.286 [main] INFO   r.e.e.t.TestingUnit - new test was created for lessonId -1 and groupId -1
-14.06.2021 13:05:53.101 [main] INFO   r.e.e.t.TestingUnit - new test was created for lessonId -1 and groupId -1
-14.06.2021 13:06:21.087 [main] INFO   r.e.e.t.TestingUnit - new test was created for lessonId -1 and groupId -1
-14.06.2021 13:28:30.213 [main] INFO   r.e.e.t.e.MultiChoiceEvaluator - evaluating: answer = РЅРёРєС‚Рѕ
-14.06.2021 13:30:03.437 [main] INFO   r.e.e.t.e.MultiChoiceEvaluator - evaluating: answer = РЅРёРєС‚Рѕ
-14.06.2021 13:30:03.437 [main] INFO   r.e.e.t.e.MultiChoiceEvaluator - evaluating: answer = РЅРёРєРѕРіРѕ
-14.06.2021 13:31:03.714 [main] INFO   r.e.e.t.e.MultiChoiceEvaluator - evaluating: answer = РЅРёРєС‚Рѕ
-14.06.2021 13:31:03.714 [main] INFO   r.e.e.t.e.MultiChoiceEvaluator - evaluating: answer = РЅРёРєРѕРіРѕ
-14.06.2021 13:31:31.736 [main] INFO   r.e.e.t.e.MultiChoiceEvaluator - evaluating: answer = РЅРёРєС‚Рѕ
-14.06.2021 13:31:31.736 [main] INFO   r.e.e.t.e.MultiChoiceEvaluator - evaluating: answer = Р“СЂР°РЅС‚
-14.06.2021 13:31:31.736 [main] INFO   r.e.e.t.e.MultiChoiceEvaluator - evaluating: answer = 
-14.06.2021 13:31:31.736 [main] INFO   r.e.e.t.e.MultiChoiceEvaluator - evaluating: answer = null
-14.06.2021 13:34:35.318 [main] INFO   r.e.e.t.e.MultiChoiceEvaluator - evaluating: answer = РЅРёРєС‚Рѕ
-14.06.2021 13:34:35.334 [main] INFO   r.e.e.t.e.MultiChoiceEvaluator - evaluating: answer = Р“СЂР°РЅС‚
-14.06.2021 13:34:35.334 [main] INFO   r.e.e.t.e.MultiChoiceEvaluator - evaluating: answer = 
-14.06.2021 13:34:35.334 [main] INFO   r.e.e.t.e.MultiChoiceEvaluator - evaluating: answer = null
-14.06.2021 13:34:46.989 [main] INFO   r.e.e.t.e.MultiChoiceEvaluator - evaluating: answer = РЅРёРєС‚Рѕ
-14.06.2021 13:34:46.989 [main] INFO   r.e.e.t.e.MultiChoiceEvaluator - evaluating: answer = РЅРёРєРѕРіРѕ
-14.06.2021 13:35:48.512 [main] INFO   r.e.e.t.e.MultiChoiceEvaluator - evaluating: answer = РЅРёРєС‚Рѕ
-14.06.2021 13:35:48.528 [main] INFO   r.e.e.t.e.MultiChoiceEvaluator - evaluating: answer = РЅРёРєРѕРіРѕ
-14.06.2021 13:45:23.771 [main] INFO   r.e.e.t.e.MultiChoiceEvaluator - evaluating: answer = СЂРѕРґРёР»СЃСЏ
-14.06.2021 13:45:23.771 [main] INFO   r.e.e.t.e.MultiChoiceEvaluator - evaluating: answer = Р РѕРґРёР»СЃСЏ
-14.06.2021 13:45:23.771 [main] INFO   r.e.e.t.e.MultiChoiceEvaluator - evaluating: answer = Р РћР”РР›РЎРЇ   
-14.06.2021 13:45:23.771 [main] INFO   r.e.e.t.e.MultiChoiceEvaluator - evaluating: answer =    Р РћРґРёР›РЎРЇ   
-14.06.2021 13:45:23.771 [main] INFO   r.e.e.t.e.MultiChoiceEvaluator - evaluating: answer = Р¶РёРІРµС‚
-14.06.2021 13:45:23.771 [main] INFO   r.e.e.t.e.MultiChoiceEvaluator - evaluating: answer = 
-14.06.2021 13:45:23.771 [main] INFO   r.e.e.t.e.MultiChoiceEvaluator - evaluating: answer = null
-14.06.2021 13:50:26.833 [main] INFO   r.e.e.t.e.ShortAnswerEvaluator - evaluating: answer = РЅРёРєС‚Рѕ
-14.06.2021 13:50:26.833 [main] INFO   r.e.e.t.e.ShortAnswerEvaluator - evaluating: answer = РЅРёРєРѕРіРѕ
-14.06.2021 13:51:33.145 [main] INFO   r.e.e.t.e.ShortAnswerEvaluator - evaluating: answer = РЅРёРєС‚Рѕ
-14.06.2021 13:51:33.161 [main] INFO   r.e.e.t.e.ShortAnswerEvaluator - evaluating: answer = РЅРёРєРѕРіРѕ
-14.06.2021 13:52:40.955 [main] INFO   r.e.e.t.e.ShortAnswerEvaluator - evaluating: answer = РЅРёРєС‚Рѕ
-14.06.2021 13:52:40.955 [main] INFO   r.e.e.t.e.ShortAnswerEvaluator - evaluating: answer = РЅРёРєРѕРіРѕ
-14.06.2021 13:54:32.575 [main] INFO   r.e.e.t.e.ShortAnswerEvaluator - evaluating: answer = РЅРёРєС‚Рѕ
-14.06.2021 13:54:32.591 [main] INFO   r.e.e.t.e.ShortAnswerEvaluator - evaluating: answer = РЅРёРєРѕРіРѕ
-14.06.2021 13:54:41.772 [main] INFO   r.e.e.t.e.ShortAnswerEvaluator - evaluating: answer = РЅРёРєС‚Рѕ
-14.06.2021 13:55:37.056 [main] INFO   r.e.e.t.e.ShortAnswerEvaluator - evaluating: answer = РЅРёРєРѕРіРѕ
-14.06.2021 13:59:04.325 [main] INFO   r.e.e.t.e.ShortAnswerEvaluator - evaluating: answer = РЅРёРєС‚Рѕ
-14.06.2021 13:59:04.340 [main] INFO   r.e.e.t.e.ShortAnswerEvaluator - evaluating: answer = РЅРёРєРѕРіРѕ
-14.06.2021 13:59:24.081 [main] INFO   r.e.e.t.e.ShortAnswerEvaluator - evaluating: answer = РЅРёРєС‚Рѕ
-14.06.2021 13:59:24.081 [main] INFO   r.e.e.t.e.ShortAnswerEvaluator - evaluating: answer = РЅРёРєРѕРіРѕ
-14.06.2021 13:59:24.081 [main] INFO   r.e.e.t.e.ShortAnswerEvaluator - evaluating: answer = РќРРљРћР“Рћ   
-14.06.2021 13:59:24.081 [main] INFO   r.e.e.t.e.ShortAnswerEvaluator - evaluating: answer =   РќРРљРўРћ   
-14.06.2021 13:59:24.097 [main] INFO   r.e.e.t.e.ShortAnswerEvaluator - evaluating: answer = Р’Р°СЃСЏ
-14.06.2021 13:59:24.097 [main] INFO   r.e.e.t.e.ShortAnswerEvaluator - evaluating: answer = 
-14.06.2021 13:59:24.097 [main] INFO   r.e.e.t.e.ShortAnswerEvaluator - evaluating: answer = null
-14.06.2021 14:54:05.225 [main] INFO   r.e.e.t.e.TrueFalseEvaluator - evaluating: answer = {F}
-14.06.2021 14:56:07.037 [main] INFO   r.e.e.t.e.TrueFalseEvaluator - evaluating: answer = {F}
-14.06.2021 14:56:26.195 [main] INFO   r.e.e.t.e.TrueFalseEvaluator - evaluating: answer = {F}
-14.06.2021 14:56:26.211 [main] INFO   r.e.e.t.e.TrueFalseEvaluator - evaluating: answer = {T}
-14.06.2021 14:56:26.211 [main] INFO   r.e.e.t.e.TrueFalseEvaluator - evaluating: answer = {T}
-14.06.2021 14:56:26.211 [main] INFO   r.e.e.t.e.TrueFalseEvaluator - evaluating: answer = {F}
-14.06.2021 14:56:26.211 [main] INFO   r.e.e.t.e.TrueFalseEvaluator - evaluating: answer = 
-14.06.2021 14:56:26.211 [main] INFO   r.e.e.t.e.TrueFalseEvaluator - evaluating: answer = null
-14.06.2021 15:14:15.994 [main] INFO   r.e.e.t.e.TrueFalseEvaluator - evaluating: answer = {F}
-14.06.2021 15:14:16.009 [main] INFO   r.e.e.t.e.TrueFalseEvaluator - evaluating: answer = {T}
-14.06.2021 15:14:16.009 [main] INFO   r.e.e.t.e.TrueFalseEvaluator - evaluating: answer = 
-14.06.2021 15:14:16.009 [main] INFO   r.e.e.t.e.TrueFalseEvaluator - evaluating: answer = null
-14.06.2021 15:14:16.009 [main] INFO   r.e.e.t.e.TrueFalseEvaluator - evaluating: answer = {T}
-14.06.2021 15:14:16.009 [main] INFO   r.e.e.t.e.TrueFalseEvaluator - evaluating: answer = {F}
-14.06.2021 15:14:16.009 [main] INFO   r.e.e.t.e.TrueFalseEvaluator - evaluating: answer = 
-14.06.2021 15:14:16.009 [main] INFO   r.e.e.t.e.TrueFalseEvaluator - evaluating: answer = null
-14.06.2021 15:24:08.912 [http-nio-8080-exec-4] INFO   r.e.e.t.TestingUnit - new test was created for lessonId 3 and groupId 1
-14.06.2021 15:24:49.668 [http-nio-8080-exec-3] INFO   r.e.e.t.e.ShortAnswerEvaluator - evaluating: answer = никто
-14.06.2021 15:24:55.971 [http-nio-8080-exec-4] INFO   r.e.e.t.e.MultiChoiceEvaluator - evaluating: answer = родился 
-14.06.2021 15:24:58.682 [http-nio-8080-exec-5] INFO   r.e.e.t.e.MultiChoiceEvaluator - evaluating: answer = четвертый
-
-14.06.2021 15:25:01.766 [http-nio-8080-exec-6] INFO   r.e.e.t.e.MultiChoiceEvaluator - evaluating: answer = Китае
-    
-14.06.2021 15:25:01.772 [http-nio-8080-exec-6] INFO   r.e.e.d.TestResultDAOImpl - New  record to TESTRESULTS table has been added by student with ID 6
-14.06.2021 15:26:16.012 [http-nio-8080-exec-7] INFO   r.e.e.t.TestingUnit - new test was created for lessonId 3 and groupId 1
-14.06.2021 15:27:00.467 [http-nio-8080-exec-6] INFO   r.e.e.t.TestingUnit - new test was created for lessonId 3 and groupId 1
-14.06.2021 15:32:35.044 [http-nio-8080-exec-6] INFO   r.e.e.t.TestingUnit - new test was created for lessonId 3 and groupId 1
-14.06.2021 15:36:56.480 [http-nio-8080-exec-6] INFO   r.e.e.t.TestingUnit - new test was created for lessonId 3 and groupId 1
-14.06.2021 15:37:24.996 [http-nio-8080-exec-7] INFO   r.e.e.t.TestingUnit - new test was created for lessonId 3 and groupId 1
+15.06.2021 01:50:28.369 [http-nio-8080-exec-6] INFO   r.e.e.d.TestResultDAOImpl - New  record to TESTRESULTS table has been added by student with ID 6
