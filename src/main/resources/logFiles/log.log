@@ -20,3 +20,50 @@
 14.06.2021 01:29:28.423 [http-nio-8080-exec-4] INFO   r.e.e.t.e.MultiChoiceEvaluator - evaluating: answer = �����
     
 14.06.2021 01:29:28.428 [http-nio-8080-exec-4] INFO   r.e.e.d.TestResultDAOImpl - New  record to TESTRESULTS table has been added by student with ID 6
+14.06.2021 13:04:00.831 [main] INFO   r.e.e.t.TestingUnit - new test was created for lessonId -1 and groupId -1
+14.06.2021 13:04:45.286 [main] INFO   r.e.e.t.TestingUnit - new test was created for lessonId -1 and groupId -1
+14.06.2021 13:05:53.101 [main] INFO   r.e.e.t.TestingUnit - new test was created for lessonId -1 and groupId -1
+14.06.2021 13:06:21.087 [main] INFO   r.e.e.t.TestingUnit - new test was created for lessonId -1 and groupId -1
+14.06.2021 13:28:30.213 [main] INFO   r.e.e.t.e.MultiChoiceEvaluator - evaluating: answer = никто
+14.06.2021 13:30:03.437 [main] INFO   r.e.e.t.e.MultiChoiceEvaluator - evaluating: answer = никто
+14.06.2021 13:30:03.437 [main] INFO   r.e.e.t.e.MultiChoiceEvaluator - evaluating: answer = никого
+14.06.2021 13:31:03.714 [main] INFO   r.e.e.t.e.MultiChoiceEvaluator - evaluating: answer = никто
+14.06.2021 13:31:03.714 [main] INFO   r.e.e.t.e.MultiChoiceEvaluator - evaluating: answer = никого
+14.06.2021 13:31:31.736 [main] INFO   r.e.e.t.e.MultiChoiceEvaluator - evaluating: answer = никто
+14.06.2021 13:31:31.736 [main] INFO   r.e.e.t.e.MultiChoiceEvaluator - evaluating: answer = Грант
+14.06.2021 13:31:31.736 [main] INFO   r.e.e.t.e.MultiChoiceEvaluator - evaluating: answer = 
+14.06.2021 13:31:31.736 [main] INFO   r.e.e.t.e.MultiChoiceEvaluator - evaluating: answer = null
+14.06.2021 13:34:35.318 [main] INFO   r.e.e.t.e.MultiChoiceEvaluator - evaluating: answer = никто
+14.06.2021 13:34:35.334 [main] INFO   r.e.e.t.e.MultiChoiceEvaluator - evaluating: answer = Грант
+14.06.2021 13:34:35.334 [main] INFO   r.e.e.t.e.MultiChoiceEvaluator - evaluating: answer = 
+14.06.2021 13:34:35.334 [main] INFO   r.e.e.t.e.MultiChoiceEvaluator - evaluating: answer = null
+14.06.2021 13:34:46.989 [main] INFO   r.e.e.t.e.MultiChoiceEvaluator - evaluating: answer = никто
+14.06.2021 13:34:46.989 [main] INFO   r.e.e.t.e.MultiChoiceEvaluator - evaluating: answer = никого
+14.06.2021 13:35:48.512 [main] INFO   r.e.e.t.e.MultiChoiceEvaluator - evaluating: answer = никто
+14.06.2021 13:35:48.528 [main] INFO   r.e.e.t.e.MultiChoiceEvaluator - evaluating: answer = никого
+14.06.2021 13:45:23.771 [main] INFO   r.e.e.t.e.MultiChoiceEvaluator - evaluating: answer = родился
+14.06.2021 13:45:23.771 [main] INFO   r.e.e.t.e.MultiChoiceEvaluator - evaluating: answer = Родился
+14.06.2021 13:45:23.771 [main] INFO   r.e.e.t.e.MultiChoiceEvaluator - evaluating: answer = РОДИЛСЯ   
+14.06.2021 13:45:23.771 [main] INFO   r.e.e.t.e.MultiChoiceEvaluator - evaluating: answer =    РОдиЛСЯ   
+14.06.2021 13:45:23.771 [main] INFO   r.e.e.t.e.MultiChoiceEvaluator - evaluating: answer = живет
+14.06.2021 13:45:23.771 [main] INFO   r.e.e.t.e.MultiChoiceEvaluator - evaluating: answer = 
+14.06.2021 13:45:23.771 [main] INFO   r.e.e.t.e.MultiChoiceEvaluator - evaluating: answer = null
+14.06.2021 13:50:26.833 [main] INFO   r.e.e.t.e.ShortAnswerEvaluator - evaluating: answer = никто
+14.06.2021 13:50:26.833 [main] INFO   r.e.e.t.e.ShortAnswerEvaluator - evaluating: answer = никого
+14.06.2021 13:51:33.145 [main] INFO   r.e.e.t.e.ShortAnswerEvaluator - evaluating: answer = никто
+14.06.2021 13:51:33.161 [main] INFO   r.e.e.t.e.ShortAnswerEvaluator - evaluating: answer = никого
+14.06.2021 13:52:40.955 [main] INFO   r.e.e.t.e.ShortAnswerEvaluator - evaluating: answer = никто
+14.06.2021 13:52:40.955 [main] INFO   r.e.e.t.e.ShortAnswerEvaluator - evaluating: answer = никого
+14.06.2021 13:54:32.575 [main] INFO   r.e.e.t.e.ShortAnswerEvaluator - evaluating: answer = никто
+14.06.2021 13:54:32.591 [main] INFO   r.e.e.t.e.ShortAnswerEvaluator - evaluating: answer = никого
+14.06.2021 13:54:41.772 [main] INFO   r.e.e.t.e.ShortAnswerEvaluator - evaluating: answer = никто
+14.06.2021 13:55:37.056 [main] INFO   r.e.e.t.e.ShortAnswerEvaluator - evaluating: answer = никого
+14.06.2021 13:59:04.325 [main] INFO   r.e.e.t.e.ShortAnswerEvaluator - evaluating: answer = никто
+14.06.2021 13:59:04.340 [main] INFO   r.e.e.t.e.ShortAnswerEvaluator - evaluating: answer = никого
+14.06.2021 13:59:24.081 [main] INFO   r.e.e.t.e.ShortAnswerEvaluator - evaluating: answer = никто
+14.06.2021 13:59:24.081 [main] INFO   r.e.e.t.e.ShortAnswerEvaluator - evaluating: answer = никого
+14.06.2021 13:59:24.081 [main] INFO   r.e.e.t.e.ShortAnswerEvaluator - evaluating: answer = НИКОГО   
+14.06.2021 13:59:24.081 [main] INFO   r.e.e.t.e.ShortAnswerEvaluator - evaluating: answer =   НИКТО   
+14.06.2021 13:59:24.097 [main] INFO   r.e.e.t.e.ShortAnswerEvaluator - evaluating: answer = Вася
+14.06.2021 13:59:24.097 [main] INFO   r.e.e.t.e.ShortAnswerEvaluator - evaluating: answer = 
+14.06.2021 13:59:24.097 [main] INFO   r.e.e.t.e.ShortAnswerEvaluator - evaluating: answer = null

@@ -34,8 +34,17 @@ public class MultiChoiceEvaluator implements EvaluatingHandler{
     public int evaluate(String question, String answer) {
         LOGGER.info("evaluating: answer = " + answer);
 
+        if(answer == null){
+            return 0;
+        }
+
         question = question.trim().toLowerCase();
         answer = answer.trim().toLowerCase();
+
+
+        if(answer.isEmpty()){
+            return 0;
+        }
 
         //todo: implement percentage here ~%50%Галилея#Вы должны быть более определенным.
         //lazy quantifier used (for one-lined questions)
@@ -47,7 +56,9 @@ public class MultiChoiceEvaluator implements EvaluatingHandler{
             correctAnswer = m.group();
             correctAnswer = correctAnswer.substring(1); //removing '=' sign from the beginning of this string;
             correctAnswer = correctAnswer.replaceAll("\\s", "");
+            correctAnswer = correctAnswer.replaceAll("}", "");
         }
+        LogHelper.writeMessage("correctAnswer = " + correctAnswer);
         return correctAnswer.equals(answer) ? 10 : 0;
     }
 }

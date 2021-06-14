@@ -16,7 +16,7 @@ import java.util.List;
 import java.util.concurrent.atomic.AtomicInteger;
 
 @Getter
-public final class TestingUnit implements Serializable {
+public class TestingUnit implements Serializable {
     private static final Logger LOGGER = LoggerFactory.getLogger(TestingUnit.class);
 
     private final int lessonId;
@@ -32,6 +32,9 @@ public final class TestingUnit implements Serializable {
     }
 
     private void init(int lessonId){
+        if(lessonId < 1){
+            return;
+        }
         TestDAO testDAO = new TestDAOFilesystemImpl();
         String s = testDAO.getTestInfoByLessonId(lessonId);
         //init 'List<String> questions' field here by parsing the given String s in a line above.
