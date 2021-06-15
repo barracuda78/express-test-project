@@ -1,12 +1,17 @@
 package ru.eforward.express_testing.testingProcess.questionHandlers;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import ru.eforward.express_testing.testingProcess.QuestionType;
+import ru.eforward.express_testing.testingProcess.evaluatingHandlers.ComplianceEvaluator;
 import ru.eforward.express_testing.utils.LogHelper;
 
 import java.util.*;
 import java.util.concurrent.atomic.AtomicInteger;
 
 public class ComplianceHandler extends Handler implements  QuestionHandler{
+    private static final Logger LOGGER = LoggerFactory.getLogger(ComplianceHandler.class);
+
     @Override
     public boolean canProcess(QuestionType enumValue) {
         return enumValue == QuestionType.COMPLIANCE;
@@ -47,10 +52,10 @@ public class ComplianceHandler extends Handler implements  QuestionHandler{
                 sb.append("</td>");
                 sb.append("<td>");
                     //drop-down menu:
-                sb.append("<select name=\"answerDropdowns\">");
+                sb.append("<select name=\"" + valueParameter.incrementAndGet() + "\">"); //was 'answerDropdowns'. For first pair will be '1' and so on
                 sb.append("<option value=\"\" style=\"display:none\">Выберите ответ</option>");
                 for(String s : list) {
-                    sb.append("<option value=\"" + valueParameter.incrementAndGet() + "\">" + s + "</option>"); // 's' is an answer//
+                    sb.append("<option value=\"" + s + "\">" + s + "</option>"); // 's' is an answer//
                 }
                 sb.append("</select>");
 
@@ -69,7 +74,7 @@ public class ComplianceHandler extends Handler implements  QuestionHandler{
     public Map<String, String> createMapOfQuestionAnswers(String q){
         String allVariants = getAllVariants(q);
         //creating map of question-answer:
-        Map<String, String> map = new HashMap<>();
+        Map<String, String> map = new LinkedHashMap<>();
         String[] vars = allVariants.split("\n");
         for(String v : vars){
             if("".equals(v)){
@@ -84,16 +89,18 @@ public class ComplianceHandler extends Handler implements  QuestionHandler{
     }
 
     public List<String> createListOfAnswers(String q){
+        LOGGER.info("createListOfAnswers() method: q = " + q);
         String allVariants = getAllVariants(q);
         List<String> list = new ArrayList<>(); //for answers only.
         String[] vars = allVariants.split("\n");
         for(String v : vars){
-            if("".equals(v)){
+            if(!v.contains("->")){ //first entry doesnt contin ->
                 continue;
             }
             String value = v.substring(v.indexOf("->") + 2);
-            list.add(value);
+            list.add(value.trim());
         }
+        LOGGER.info("createListOfAnswers() method: list = " + list);
         return list;
     }
 
@@ -101,13 +108,18 @@ public class ComplianceHandler extends Handler implements  QuestionHandler{
     // - is used by ComplianceEvaluator as this type of question has 3 or more subquestions,
     // but interface works with Strings, not with List<String>
     public String createStringFromList(List<String> list){
+        LOGGER.info("createStringFromList() method: List<String> list = " + list);
         StringBuilder sb = new StringBuilder();
         for(int i = 0; i < list.size(); i++){
-            sb.append(list.get(i));
+            if("".equals(list.get(i).trim())){
+                continue; //do not need empty strings
+            }
+            sb.append(list.get(i).trim());
             if(i != list.size() - 1){
                 sb.append("=$=");
             }
         }
+        LOGGER.info("createStringFromList() method: sb.toString() = " + sb.toString());
         return sb.toString();
     }
 

@@ -29,7 +29,7 @@ public class ComplianceEvaluator implements EvaluatingHandler{
 
     @Override
     public int evaluate(String q, String a) {
-        LOGGER.info("evaluating: answer = " + a);
+        LOGGER.info("ComplianceEvaluator evaluating: answer = " + a);
         if(q == null || a == null){
             return 0;
         }
@@ -41,11 +41,15 @@ public class ComplianceEvaluator implements EvaluatingHandler{
 
         List<String> questions = new ArrayList<>(Arrays.asList(qArray));
         List<String> answers = new ArrayList<>(Arrays.asList(aArray));
+        LOGGER.info("ComplianceEvaluator evaluate() : q = \n" + q);
+        LOGGER.info("ComplianceEvaluator evaluate() questions = " + questions);
+        LOGGER.info("ComplianceEvaluator evaluate() answers = " + answers);
 
         int score = 0;
         int correctAnswersCounter = 0;
 
-        for(int i = 0; i < questions.size(); i++){
+
+        for(int i = 0; i < answers.size(); i++){
             String question = questions.get(i);
             String answer = answers.get(i);
             question = question.trim().toLowerCase();
@@ -56,7 +60,7 @@ public class ComplianceEvaluator implements EvaluatingHandler{
             }
 
             if(answer.equals(question)){
-                score = score + score/questions.size();
+                score = score + 10/questions.size();
                 correctAnswersCounter ++;
             }
         }

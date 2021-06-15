@@ -111,18 +111,18 @@ public class AnswerHandlerServlet extends HttpServlet {
         //тип вопроса я определяю по параметру type. Он уже есть: String type = request.getParameter("type");
 
         //COMPLIANCE:
-        String answerDropdowns = request.getParameter("answerDropdowns");
-        LogHelper.writeMessage("answerDropdowns = " + answerDropdowns);
+        //String answerDropdowns = request.getParameter("answerDropdowns");
+        //LogHelper.writeMessage("answerDropdowns = " + answerDropdowns);
         LogHelper.writeMessage("testingUnit = " + testingUnit);
         LogHelper.writeMessage("student = " + student);
         LogHelper.writeMessage("question = " + question);
 
         if(Objects.nonNull(type)
-                //&& ("COMPLIANCE".equals(type))
+                && ("COMPLIANCE".equals(type))
                 && Objects.nonNull(testingUnit)
                 && Objects.nonNull(student)
-                && Objects.nonNull(question)
-                && Objects.nonNull(answerDropdowns)){
+                && Objects.nonNull(question)){
+                //&& Objects.nonNull(answerDropdowns)){
             //что есть:
             //        HttpSession httpSession = request.getSession();
             //        TestingUnit testingUnit = (TestingUnit)httpSession.getAttribute("studentsTestingUnit");
@@ -131,13 +131,18 @@ public class AnswerHandlerServlet extends HttpServlet {
             //        String question = request.getParameter("question");
 
             ComplianceHandler ch = new ComplianceHandler();
+
             List<String> listOfAnswers = ch.createListOfAnswers(question); //correctAnswers.
+            LogHelper.writeMessage("AnswerHandlerServlet: listOfAnswers = " + listOfAnswers);
             String manyAnswers = ch.createStringFromList(listOfAnswers);   //correctAnswers.
+            LogHelper.writeMessage("AnswerHandlerServlet: manyAnswers = " + manyAnswers);
 
             List<String> listOfChoices = new ArrayList<>(); //given by student answers
             //read the parameters using numbers (as much as answers is in the list - do not know how many there are at that stage)
-            for(int i = 0; i < listOfAnswers.size(); i++){
-                String studentsAnswer = request.getParameter(String.valueOf(i));
+            for(int i = 1; i <= listOfAnswers.size(); i++){
+                String studentsAnswer = (request.getParameter(String.valueOf(i))).trim();
+                LogHelper.writeMessage("AnswerHandlerServlet: String.valueOf(i) = " + String.valueOf(i));
+                LogHelper.writeMessage("AnswerHandlerServlet: studentsAnswer request.getParameter(String.valueOf(i)) = " + studentsAnswer);
                 listOfChoices.add(studentsAnswer);
             }
             String manyChoices = ch.createStringFromList(listOfChoices);//given by student answers
@@ -145,6 +150,8 @@ public class AnswerHandlerServlet extends HttpServlet {
             //May several times invoke evaluate() method (as mch as list.size is) and collect results here,
             //but better use own specified method:
             TestEvaluate testEvaluate = new TestEvaluate();
+            LogHelper.writeMessage("AnswerHandlerServlet: manyAnswers = \n" + manyAnswers);
+            LogHelper.writeMessage("AnswerHandlerServlet: manyChoices = \n" + manyChoices);
             int score = testEvaluate.getScore(QuestionType.valueOf(type), manyAnswers , manyChoices);
 
 
