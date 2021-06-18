@@ -54,7 +54,7 @@ public enum QuestionType {
     public static EvaluatingHandler getEvaluatingHandler(QuestionType enumType){
         List<EvaluatingHandler> handlers = new ArrayList<>();
         //todo: implement package scanning here for automatic adding of entities from package evaluatingHandlers.
-        handlers.add(new MultiChoiceEvaluator());
+        handlers.add(new MultiсhoiceEvaluator());
         handlers.add(new ShortAnswerEvaluator());
         handlers.add(new TrueFalseEvaluator());
         handlers.add(new ComplianceEvaluator());

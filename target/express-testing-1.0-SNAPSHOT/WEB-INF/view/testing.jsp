@@ -65,14 +65,14 @@
 
             //get the available first/next question of this test (of this TestingUnit)
             String htmlString = "Извините. Файл с тестом не был подготовлен.";
-            //add TestingUnit to student's own session:
             TestingUnit studentsTestingUnit = (TestingUnit)session.getAttribute("studentsTestingUnit");
 
             if(studentsTestingUnit == null && optionalTestingUnit.isPresent()){
                 TestingUnit testingUnit = optionalTestingUnit.get();
 
-                //todo: clone this object, and pass it to sessionAttribute after it.
+                //clone this object, and pass it to sessionAttribute after it.
                 TestingUnit clone = CloneMaker.getClone(testingUnit);
+                //add cloned TestingUnit to student's own session:
                 session.setAttribute("studentsTestingUnit", clone);
                 studentsTestingUnit = clone;
                 LogHelper.writeMessage("testing.jsp : if(studentsTestingUnit == null...");

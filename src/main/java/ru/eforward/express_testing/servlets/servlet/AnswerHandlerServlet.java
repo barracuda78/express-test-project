@@ -3,10 +3,7 @@ package ru.eforward.express_testing.servlets.servlet;
 import ru.eforward.express_testing.dao.TestResultDAOImpl;
 import ru.eforward.express_testing.daoInterfaces.TestResultDAO;
 import ru.eforward.express_testing.model.Student;
-import ru.eforward.express_testing.testingProcess.QuestionType;
-import ru.eforward.express_testing.testingProcess.TestEvaluate;
-import ru.eforward.express_testing.testingProcess.TestResult;
-import ru.eforward.express_testing.testingProcess.TestingUnit;
+import ru.eforward.express_testing.testingProcess.*;
 import ru.eforward.express_testing.testingProcess.evaluatingHandlers.ComplianceEvaluator;
 import ru.eforward.express_testing.testingProcess.questionHandlers.ComplianceHandler;
 import ru.eforward.express_testing.utils.LogHelper;
@@ -73,8 +70,8 @@ public class AnswerHandlerServlet extends HttpServlet {
             QuestionType questionType = QuestionType.valueOf(type);
 
             //evaluate question, add question score to the totalScore:
-            TestEvaluate testEvaluate = new TestEvaluate();
-            int score = testEvaluate.getScore(questionType, question, choice);
+            Evaluating evaluating = new TestEvaluate();
+            int score = evaluating.getScore(questionType, question, choice);
             int totalScore = testResult.getTotalScore();
             testResult.setTotalScore(totalScore + score);
 

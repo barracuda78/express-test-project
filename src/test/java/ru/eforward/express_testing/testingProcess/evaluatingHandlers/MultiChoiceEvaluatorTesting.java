@@ -7,7 +7,7 @@ import ru.eforward.express_testing.testingProcess.QuestionType;
 public class MultiChoiceEvaluatorTesting {
     @Test
     public void canEvaluateTesting(){
-        MultiChoiceEvaluator multiChoiceEvaluator = new MultiChoiceEvaluator();
+        MultiсhoiceEvaluator multiChoiceEvaluator = new MultiсhoiceEvaluator();
 
         Assertions.assertEquals(true,
                 multiChoiceEvaluator.canEvaluate(QuestionType.MULTICHOICE),
@@ -40,7 +40,7 @@ public class MultiChoiceEvaluatorTesting {
 
     @Test
     public void evaluateTest(){
-        MultiChoiceEvaluator me = new MultiChoiceEvaluator();
+        MultiсhoiceEvaluator me = new MultiсhoiceEvaluator();
         String question = "Ленин {~похоронен =родился ~живет} в Симбирске.";
 
         String answer = "родился";

@@ -1,10 +1,6 @@
 package ru.eforward.express_testing.testingProcess;
 
 import ru.eforward.express_testing.testingProcess.evaluatingHandlers.EvaluatingHandler;
-import ru.eforward.express_testing.testingProcess.evaluatingHandlers.MultiChoiceEvaluator;
-
-import java.util.ArrayList;
-import java.util.List;
 
 public class TestEvaluate implements Evaluating {
 
@@ -18,6 +14,4 @@ public class TestEvaluate implements Evaluating {
         EvaluatingHandler evaluatingHandler = QuestionType.getEvaluatingHandler(type);
         return evaluatingHandler.evaluate(question, choice);
     }
-
-
 }

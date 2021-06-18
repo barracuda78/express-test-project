@@ -21,7 +21,6 @@ public class TrueFalseEvaluator implements EvaluatingHandler{
     //Солнце встает на Востоке.{T}
     @Override
     public int evaluate(String question, String answer) {
-        //todo: implement evaluation of TRUE_FALSE question types.
         //answer may by {F} or {T}
 
         LOGGER.info("evaluating: answer = " + answer);

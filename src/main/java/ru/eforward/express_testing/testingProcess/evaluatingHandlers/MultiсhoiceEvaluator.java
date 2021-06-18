@@ -3,14 +3,13 @@ package ru.eforward.express_testing.testingProcess.evaluatingHandlers;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import ru.eforward.express_testing.testingProcess.QuestionType;
-import ru.eforward.express_testing.testingProcess.TestingUnit;
 import ru.eforward.express_testing.utils.LogHelper;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class MultiChoiceEvaluator implements EvaluatingHandler{
-    private static final Logger LOGGER = LoggerFactory.getLogger(MultiChoiceEvaluator.class);
+public class MultiсhoiceEvaluator implements EvaluatingHandler{
+    private static final Logger LOGGER = LoggerFactory.getLogger(MultiсhoiceEvaluator.class);
     @Override
     public boolean canEvaluate(QuestionType enumType) {
         return enumType == QuestionType.MULTICHOICE;
@@ -34,13 +33,12 @@ public class MultiChoiceEvaluator implements EvaluatingHandler{
     public int evaluate(String question, String answer) {
         LOGGER.info("evaluating: answer = " + answer);
 
-        if(answer == null){
+        if(answer == null  || question == null){
             return 0;
         }
 
         question = question.trim().toLowerCase();
         answer = answer.trim().toLowerCase();
-
 
         if(answer.isEmpty()){
             return 0;
