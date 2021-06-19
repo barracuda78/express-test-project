@@ -54,6 +54,8 @@
             String htmlString = "Извините. Файл с тестом не был подготовлен.";
             TestingUnit studentsTestingUnit = (TestingUnit)session.getAttribute("studentsTestingUnit");
 
+
+
             if(studentsTestingUnit == null && optionalTestingUnit.isPresent()){
                 TestingUnit testingUnit = optionalTestingUnit.get();
                 //clone this object, and pass it to sessionAttribute after it.
@@ -64,18 +66,19 @@
             }
 
 
+            long millisPassed = 0L; //used for setting up js timer every time;
+            double duration = 0.0d; //used for set up Stopper and also for setting up js timer every time;
             //pull next question from TestingUnit: (iteration algorithm exists in TestingUnit entity)
             if(studentsTestingUnit != null && studentsTestingUnit.hasNextTest()){
-
                 //get stopper for testing from student's session attributes if exists, otherwise create new Stopper():
                 Stopper stopper = (Stopper)session.getAttribute("stopper");
+                //get duration from testingUnit:
+                duration = studentsTestingUnit.getDuration();
                 if(Objects.isNull(stopper)){
-                    //get duration from testingUnit:
-                    double duration = studentsTestingUnit.getDuration();
                     stopper = new Stopper(duration);
                     session.setAttribute("stopper", stopper);
                 }
-
+                millisPassed = stopper.getMillisPassed();
                 htmlString = studentsTestingUnit.getNextTest();
             }
 
@@ -146,8 +149,9 @@
             updateClock();
             var timeinterval = setInterval(updateClock, 1000);
         }
-
-        var deadline = new Date(Date.parse(new Date()) + 1 * 1 *  3 * 60 * 1000);
+        var duratio ="<%=duration%>"
+        var studentmillisPassed="<%=millisPassed%>"
+        var deadline = new Date(Date.parse(new Date()) + 1 * 1 * duratio * 60 * 1000 - studentmillisPassed);
         initializeClock("countdown", deadline);
     </script>
     <!--end of countdown code-->

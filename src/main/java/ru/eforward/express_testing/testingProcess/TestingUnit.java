@@ -22,7 +22,7 @@ public class TestingUnit implements Serializable {
 
     private final int lessonId;
     private final int groupId;
-    private final double duration;
+    private final double duration; //for example 3.5 minutes
     private List<String> questions;
     private int cursor;
 

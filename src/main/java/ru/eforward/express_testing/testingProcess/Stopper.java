@@ -28,6 +28,25 @@ public class Stopper {
     }
 
     /**
+     * Returns amount of milliseconds left to the end of test;
+     * @return long amount of milliseconds left to the end of test.
+     */
+    public long getMillisLeft(){
+        long currentTime = System.currentTimeMillis();
+        long endTime = startTime + duration;
+        return endTime - currentTime;
+    }
+
+    /**
+     * Returns amount of milliseconds passed from the beginning of test;
+     * @return long amount of milliseconds passed from the beginning of test;
+     */
+    public long getMillisPassed(){
+        long current = System.currentTimeMillis();
+        return current - startTime;
+    }
+
+    /**
      * Takes minutes and turns it to milliseconds
      * @param minutes - the given amount of minutes of duration of current testing;
      * @return amount of milliseconds for this given amount of minutes
