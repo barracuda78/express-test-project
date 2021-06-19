@@ -67,10 +67,9 @@
 
 
             long millisPassed = 0L; //used for setting up js timer every time;
-            double duration = 0.0d;
+            double duration = 0.0d; //used for set up Stopper and also for setting up js timer every time;
             //pull next question from TestingUnit: (iteration algorithm exists in TestingUnit entity)
             if(studentsTestingUnit != null && studentsTestingUnit.hasNextTest()){
-                //double dur = studentsTestingUnit.getDuration(); //used for setting up js timer every time;
                 //get stopper for testing from student's session attributes if exists, otherwise create new Stopper():
                 Stopper stopper = (Stopper)session.getAttribute("stopper");
                 //get duration from testingUnit:
@@ -81,11 +80,7 @@
                 }
                 millisPassed = stopper.getMillisPassed();
                 htmlString = studentsTestingUnit.getNextTest();
-                LogHelper.writeMessage("T E S T I N G . J S P : dur = " + duration);
-//                int durationInteger = (int)dur;
-//                LogHelper.writeMessage("T E S T I N G . J S P : durationInteger = " + durationInteger);
             }
-
 
     %>
     <br/>

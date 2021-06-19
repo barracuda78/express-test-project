@@ -4,5 +4,5 @@ import java.util.ArrayList;
 import java.util.List;
 
 public interface GroupDAO {
-    List<Integer> getGroupsByTeacherId(int teacherId);
+    List<Integer> getGroupIdsByTeacherId(int teacherId);
 }

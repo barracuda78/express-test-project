@@ -23,6 +23,63 @@ public class TestResultDAOImpl implements TestResultDAO {
     private PreparedStatement preparedStatement;
 
     @Override
+    public List<TestResult> getTestResultsByGroupId(int groupId){
+        if(groupId <= 0){
+            return null;
+        }
+        if(connection == null){
+            connection = PoolConnector.getConnection();
+        }
+        List<TestResult> testResults = null;
+        if(connection != null) {
+            try {
+                preparedStatement = connection.prepareStatement("SELECT USERS.ID, USERS.LASTNAME, T.ID, LESSON_ID, RESULTS, TOTAL_SCORE\n" +
+                        "    FROM USERS INNER JOIN GROUPS G on G.ID = USERS.GROUP_ID\n" +
+                        "        INNER JOIN TESTRESULTS T on USERS.ID = T.STUDENT_ID\n" +
+                        "            WHERE G.ID = ?;");
+                preparedStatement.setInt(1, groupId);
+                ResultSet resultSet = preparedStatement.executeQuery();
+                if(!resultSet.wasNull()){
+                    testResults = new ArrayList<>();
+                    while(resultSet.next()) {
+                        //SELECT USERS.ID, USERS.LASTNAME, T.ID, LESSON_ID, RESULTS, TOTAL_SCORE - from resultset
+
+                        //public class TestResult {
+                        //    private int id;
+                        //    private int studentId;
+                        //    private int schoolId;
+                        //    private int lessonId;
+                        //    private Map<String, String> map = new LinkedHashMap<>();
+                        //    private int totalScore;
+                        int id = resultSet.getInt("TESTRESULTS.ID");
+                        int studentId = resultSet.getInt("USERS.ID");
+                        int schoolId = 1; //todo: do not hardcode it, build one more join to SCHOOLS table;
+                        int lessonId = resultSet.getInt("LESSON_ID");
+                        String results = resultSet.getString("RESULTS");
+                        int totalScore = resultSet.getInt("TOTAL_SCORE");
+
+                        TestResult testResult = new TestResult();
+                        testResult.setId(id);
+                        testResult.setStudentId(studentId);
+                        testResult.setSchoolId(schoolId);
+                        testResult.setLessonId(lessonId);
+                        testResult.setMap(createMapFromString(results));
+                        testResult.setTotalScore(totalScore);
+
+                        testResults.add(testResult);
+                    }
+                }
+                preparedStatement.close();
+                PoolConnector.closeConnection(connection);
+            } catch (SQLException throwables) {
+                throwables.printStackTrace();
+            }
+        }
+        return testResults;
+    }
+
+
+    @Override
     public boolean addTestResult(TestResult testResult) {
         if(testResult == null){
             return false;

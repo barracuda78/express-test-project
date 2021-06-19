@@ -2,6 +2,9 @@
 <%@ page import="ru.eforward.express_testing.model.school.Group" %>
 <%@ page import="java.util.List" %>
 <%@ page import="ru.eforward.express_testing.utils.LogHelper" %>
+<%@ page import="ru.eforward.express_testing.model.school.Lesson" %>
+<%@ page import="ru.eforward.express_testing.daoInterfaces.LessonDAO" %>
+<%@ page import="ru.eforward.express_testing.dao.LessonDAOImpl" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
@@ -20,10 +23,26 @@
 <p><c:out value="${user.middleName}" default="error: middle name not found..."/></p>
 
 
-<p>Список групп:</p>
+<p>Список уроков:</p>
 
 <ul>
 <%
+    LessonDAO lessonDAO = new LessonDAOImpl();
+    List<Lesson> lessons = lessonDAO.getAllLessons();
+    if(lessons != null){
+        for(Lesson l : lessons){
+            %>
+            <li>
+                <a href="TestingServlet"><%=l.getLessonName() + ", id = " + l.getId()%></a>
+            </li>
+            <%
+            }
+        }
+    %>
+
+    <p>Список групп:</p>
+
+    <%
     Teacher teacher = (Teacher)session.getAttribute("user");
     List<Integer> groups = teacher.getGroups();
     if(groups != null){
@@ -35,6 +54,8 @@
             <%
         }
     }
+
+
 
     String wrongId = (String)request.getAttribute("wrongTestId");
     String testingStarted = (String)request.getAttribute("testingStarted");
@@ -56,13 +77,29 @@
     <form name="add" action="TestingServlet" method="GET">
         <table>         <%--таблица--%>
             <tr>        <%--table raw--%>
-                <p>Укажите :</p>
+                <p>Укажите параметры тестирования:</p>
                 <td>продолжительность теста в минутах: <input type="text" name="duration" size="12"/></td>
                 <td>id группы: <input type="text" name="groupId" size="12"/></td>
                 <td>id урока: <input type="text" name="lessonId" size="12"/></td>
             </tr>
             <tr>
                 <td><input type="submit" name="runTestButton" value="Запустить тест"/></td>
+            </tr>
+
+        </table>
+    </form>
+</div>
+
+
+<div id="box">
+    <form name="add" action="StatisticServlet" method="GET">
+        <table>         <%--таблица--%>
+            <tr>        <%--table raw--%>
+                <p>Для просмотра статистики укажите группу:</p>
+                <td>id группы: <input type="text" name="groupId" size="12"/></td>
+            </tr>
+            <tr>
+                <td><input type="submit" name="showStats" value="посмотреть статистику"/></td>
             </tr>
 
         </table>

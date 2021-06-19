@@ -15,7 +15,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 
@@ -135,7 +134,7 @@ public class UserDAOImpl implements UserDAO {
                             if(role == User.ROLE.TEACHER){
                                 //int id = resultSet.getInt("ID");
                                 GroupDAO groupDAO = new GroupDAOImpl();
-                                List<Integer> groups = groupDAO.getGroupsByTeacherId(id);
+                                List<Integer> groups = groupDAO.getGroupIdsByTeacherId(id);
                                 userBuilder.addGroupsToTeacher(groups);
                             }
 

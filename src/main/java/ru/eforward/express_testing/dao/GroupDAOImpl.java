@@ -16,7 +16,7 @@ public class GroupDAOImpl implements GroupDAO {
     private PreparedStatement preparedStatement;
 
     @Override
-    public List<Integer> getGroupsByTeacherId(int teacherId) {
+    public List<Integer> getGroupIdsByTeacherId(int teacherId) {
         List<Integer> groups = new ArrayList<>();
         if(teacherId < 0){
             return groups;
