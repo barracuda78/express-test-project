@@ -40,23 +40,6 @@
                         //here we should take testingUnit from list and run it -> html code!
                         return testingUnit.getGroupId() == student.getGroupId();
                     });
-//same as stream above - for testing:
-//            for(TestingUnit t : list){
-//                int unitGroupId = t.getGroupId();
-//                int studentGroupId = student.getGroupId();
-//                LogHelper.writeMessage("---class testing.jsp : for cycle:  unitGroupId = " + unitGroupId + ", studentGroupId = " + studentGroupId);
-//                if(t.getGroupId() == student.getGroupId()){
-//                    testIsAvailable = true;
-//                    break;
-//                }
-//            }
-        }
-
-        //get stopper for testing from student's session attributes if exists, otherwise create new Stopper():
-        Stopper stopper = (Stopper)session.getAttribute("stopper");
-        if(Objects.isNull(stopper)){
-            stopper = new Stopper(1); //todo: do not hardcode time in minutes. get it from teachers web.
-            session.setAttribute("stopper", stopper);
         }
 
         if(testIsAvailable){
@@ -83,6 +66,16 @@
 
             //pull next question from TestingUnit: (iteration algorithm exists in TestingUnit entity)
             if(studentsTestingUnit != null && studentsTestingUnit.hasNextTest()){
+
+                //get stopper for testing from student's session attributes if exists, otherwise create new Stopper():
+                Stopper stopper = (Stopper)session.getAttribute("stopper");
+                if(Objects.isNull(stopper)){
+                    //get duration from testingUnit:
+                    double duration = studentsTestingUnit.getDuration();
+                    stopper = new Stopper(duration);
+                    session.setAttribute("stopper", stopper);
+                }
+
                 htmlString = studentsTestingUnit.getNextTest();
             }
 

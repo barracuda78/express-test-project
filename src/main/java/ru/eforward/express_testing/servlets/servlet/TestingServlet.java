@@ -30,11 +30,16 @@ public class TestingServlet extends HttpServlet {
 
         String lessonIdString = request.getParameter("lessonId");
         String groupIdString = request.getParameter("groupId");
+        String durationString = request.getParameter("duration");
+        durationString = durationString.replaceAll("[,:;'\"-]", ".");
+
         int lessonId = -1;
         int groupId = -1;
+        double duration = -1.0d;
         try{
             lessonId = Integer.parseInt(lessonIdString);
             groupId = Integer.parseInt(groupIdString);
+            duration = Double.parseDouble(durationString);
         }catch(NumberFormatException e){
             request.setAttribute("wrongId", "wrongId");
         }
@@ -42,7 +47,7 @@ public class TestingServlet extends HttpServlet {
         List<TestingUnit> testingUnits = null;
         TestingUnit testingUnit = null;
         if(runTestButton != null && groupId >= 0 && lessonId >= 0){
-            testingUnit = new TestingUnit(lessonId, groupId);
+            testingUnit = new TestingUnit(lessonId, groupId, duration);
 
             ServletContext servletContext = request.getServletContext();
             @SuppressWarnings("unchecked")

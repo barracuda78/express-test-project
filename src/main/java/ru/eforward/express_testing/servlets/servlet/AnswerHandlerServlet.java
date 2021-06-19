@@ -4,10 +4,10 @@ import ru.eforward.express_testing.dao.TestResultDAOImpl;
 import ru.eforward.express_testing.daoInterfaces.TestResultDAO;
 import ru.eforward.express_testing.model.Student;
 import ru.eforward.express_testing.testingProcess.*;
-import ru.eforward.express_testing.testingProcess.evaluatingHandlers.ComplianceEvaluator;
 import ru.eforward.express_testing.testingProcess.questionHandlers.ComplianceHandler;
 import ru.eforward.express_testing.utils.LogHelper;
 
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -18,9 +18,16 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 import java.util.Objects;
+import java.util.concurrent.atomic.AtomicReference;
 
+/**
+*This Servlet should know how many (n) questions there is in this test (in this TestingUnit).
+*student will 'n'-times forwarded to testing.jsp ant will get here, AnswerHandlerServlet again.
+*When the n count will be equal to number of questions in this TestingUnit,
+*Evaluating interface will help to assert how good passed the student this TestingUnit, and
+*Student will be forwarded to students_menu.jsp with a message "Testing completed! Your score = xx.x of xx."
+*/
 @WebServlet(name = "AnswerHandlerServlet", urlPatterns = {"/AnswerHandlerServlet"})
 public class AnswerHandlerServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -30,37 +37,39 @@ public class AnswerHandlerServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         request.setCharacterEncoding("UTF-8");
-        //CONCEPT:
-        //this Servlet should know how many (n) questions there is in this test (in this TestingUnit).
-        //student will 'n'-times forwarded to testing.jsp ant will get here, AnswerHandlerServlet again.
-        //When the n count will be equal to number of questions in this TestingUnit,
-        //TestValidating class will help to assert how good passed the student this TestingUnit, and
-        //Student will be forwarded to students_menu.jsp with a message "Testing completed! Your score = xx.x of xx."
-        //So this Servlet should get from attributes the TestingUnit entity;
-        //need to get studentsId somehow here to pass it to database
-        //write this answer to DatBase (maybe new table TestResults)
 
         HttpSession httpSession = request.getSession();
         TestingUnit testingUnit = (TestingUnit)httpSession.getAttribute("studentsTestingUnit");
         Student student = (Student)httpSession.getAttribute("user");
         TestResult testResult =(TestResult) httpSession.getAttribute("testResult");
 
+        //Stop the test if time is over:
         Stopper stopper = (Stopper)httpSession.getAttribute("stopper");
         boolean timeIsOver = false;
         if(Objects.nonNull(stopper)){
             timeIsOver = stopper.shouldBeStopped();
             if(timeIsOver){
-                TestingUnit studentsTestingUnit = (TestingUnit)httpSession.getAttribute("studentsTestingUnit");
-                if(Objects.nonNull(studentsTestingUnit)){
-                    request.setAttribute("score", new Integer(testResult.getTotalScore()));
-                    httpSession.setAttribute("timeIsOver", "timeIsOver");
-                    request.getRequestDispatcher("/WEB-INF/view/student_menu.jsp").forward(request, response);
+                request.setAttribute("score", new Integer(testResult.getTotalScore()));
+                httpSession.setAttribute("timeIsOver", "timeIsOver");
+                request.getRequestDispatcher("/WEB-INF/view/student_menu.jsp").forward(request, response);
+
+                //get from context List<TestingUnit>
+                //Delete from list particular TestingUnit
+                ServletContext servletContext = request.getServletContext();
+                AtomicReference<List<TestingUnit>> atomicReference = (AtomicReference<List<TestingUnit>>)servletContext.getAttribute("testingUnitsListAtomicReference");
+                if(Objects.nonNull(atomicReference)){
+                    List<TestingUnit> testingUnits = atomicReference.get();
+                    //delete using groupId:
+                    for(int i = 0; i < testingUnits.size(); i++){
+                        if(testingUnits.get(i).getGroupId() == testingUnit.getGroupId()){
+                            testingUnits.remove(i);
+                        }
+                    }
                 }
             }
         }
 
-
-        //MULTICHOICE AND SHORTANSWER:
+        //MULTICHOICE AND OTHERS:
         String type = request.getParameter("type");
         LogHelper.writeMessage("AnswerHandlerServlet: type = " + type);
         //sb.append("<input type=\"hidden\" name=\"question\" value=\" " + q + "\">"); //passing the original text of question
@@ -192,7 +201,7 @@ public class AnswerHandlerServlet extends HttpServlet {
         }
 
         try(PrintWriter out = response.getWriter()){
-            out.println("<h1>" + "AnswerHandlerServlet: мы не попали в if..." + "</h1>");
+            out.println("<h1>" + "AnswerHandlerServlet: что-то пошло не так..." + "</h1>");
         }
     }
 }

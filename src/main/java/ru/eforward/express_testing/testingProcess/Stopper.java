@@ -7,7 +7,7 @@ public class Stopper {
     long startTime;
     long duration;
 
-    public Stopper(int durationInMinutes){
+    public Stopper(double durationInMinutes){
         startTime = System.currentTimeMillis();
         this.duration = getMillisFromMinutes(durationInMinutes);
     }
@@ -32,7 +32,7 @@ public class Stopper {
      * @param minutes - the given amount of minutes of duration of current testing;
      * @return amount of milliseconds for this given amount of minutes
      */
-    private long getMillisFromMinutes(int minutes){
+    private long getMillisFromMinutes(double minutes){
         return (long) minutes * 60 * 1000;
     }
 }

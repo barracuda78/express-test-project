@@ -1,6 +1,7 @@
 package ru.eforward.express_testing.testingProcess;
 
 import lombok.Getter;
+import lombok.Setter;
 import org.slf4j.LoggerFactory;
 import ru.eforward.express_testing.dao.TestDAOFilesystemImpl;
 import ru.eforward.express_testing.daoInterfaces.TestDAO;
@@ -21,12 +22,15 @@ public class TestingUnit implements Serializable {
 
     private final int lessonId;
     private final int groupId;
+    private final double duration;
     private List<String> questions;
     private int cursor;
 
-    public TestingUnit(int lessonId, int groupId){
+
+    public TestingUnit(int lessonId, int groupId, double duration){
         this.lessonId = lessonId;
         this.groupId = groupId;
+        this.duration = duration;
         init(lessonId);
         LOGGER.info("new test was created for lessonId {} and groupId {}", lessonId, groupId);
     }

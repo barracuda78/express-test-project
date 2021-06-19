@@ -941,3 +941,37 @@
 19.06.2021 20:01:12.922 [http-nio-8080-exec-6] INFO   r.e.e.t.q.ComplianceHandler - createStringFromList() method: List<String> list = [Оттава, Рим, Токио, Нью Дели]
 19.06.2021 20:01:12.922 [http-nio-8080-exec-6] INFO   r.e.e.t.q.ComplianceHandler - createStringFromList() method: sb.toString() = Оттава=$=Рим=$=Токио=$=Нью Дели
 19.06.2021 20:03:34.924 [http-nio-8080-exec-9] INFO   r.e.e.t.e.ShortAnswerEvaluator - evaluating: answer = никто
+19.06.2021 20:08:21.659 [http-nio-8080-exec-6] INFO   r.e.e.t.TestingUnit - new test was created for lessonId 3 and groupId 1
+19.06.2021 20:08:29.147 [http-nio-8080-exec-1] INFO   r.e.e.t.q.NumberHandler - processing question: Сколько тебе лет? {#42:0.5}
+19.06.2021 20:08:31.759 [http-nio-8080-exec-2] INFO   r.e.e.t.e.NumberEvaluator - evaluating question =  Сколько тебе лет? {#42:0.5}, answer = 42
+19.06.2021 20:08:31.762 [http-nio-8080-exec-2] INFO   r.e.e.t.q.ComplianceHandler - createListOfAnswers() method: q = Укажите столицы государств: {
+    =Канада -> Оттава
+    =Италия -> Рим
+    =Япония -> Токио
+    =Индия  -> Нью Дели
+}
+19.06.2021 20:08:31.762 [http-nio-8080-exec-2] INFO   r.e.e.t.q.ComplianceHandler - createListOfAnswers() method: list = [Оттава, Рим, Токио, Нью Дели]
+19.06.2021 20:08:47.092 [http-nio-8080-exec-4] INFO   r.e.e.t.q.ComplianceHandler - createListOfAnswers() method: q =  Укажите столицы государств: {
+    =Канада -> Оттава
+    =Италия -> Рим
+    =Япония -> Токио
+    =Индия  -> Нью Дели
+}
+19.06.2021 20:08:47.093 [http-nio-8080-exec-4] INFO   r.e.e.t.q.ComplianceHandler - createListOfAnswers() method: list = [Оттава, Рим, Токио, Нью Дели]
+19.06.2021 20:08:47.093 [http-nio-8080-exec-4] INFO   r.e.e.t.q.ComplianceHandler - createStringFromList() method: List<String> list = [Оттава, Рим, Токио, Нью Дели]
+19.06.2021 20:08:47.093 [http-nio-8080-exec-4] INFO   r.e.e.t.q.ComplianceHandler - createStringFromList() method: sb.toString() = Оттава=$=Рим=$=Токио=$=Нью Дели
+19.06.2021 20:08:47.094 [http-nio-8080-exec-4] INFO   r.e.e.t.q.ComplianceHandler - createStringFromList() method: List<String> list = [Оттава, Рим, Токио, Нью Дели]
+19.06.2021 20:08:47.094 [http-nio-8080-exec-4] INFO   r.e.e.t.q.ComplianceHandler - createStringFromList() method: sb.toString() = Оттава=$=Рим=$=Токио=$=Нью Дели
+19.06.2021 20:08:49.622 [http-nio-8080-exec-5] INFO   r.e.e.t.e.ShortAnswerEvaluator - evaluating: answer = никто
+19.06.2021 20:08:52.003 [http-nio-8080-exec-6] INFO   r.e.e.t.e.MultiсhoiceEvaluator - evaluating: answer = родился 
+19.06.2021 20:08:53.530 [http-nio-8080-exec-7] INFO   r.e.e.t.e.MultiсhoiceEvaluator - evaluating: answer = четвертый
+
+19.06.2021 20:08:54.795 [http-nio-8080-exec-8] INFO   r.e.e.t.e.MultiсhoiceEvaluator - evaluating: answer = Китае
+    
+19.06.2021 20:08:54.800 [http-nio-8080-exec-8] INFO   r.e.e.d.TestResultDAOImpl - New  record to TESTRESULTS table has been added by student with ID 6
+19.06.2021 20:53:26.651 [main] INFO   r.e.e.t.TestingUnit - new test was created for lessonId -1 and groupId -1
+19.06.2021 21:00:45.498 [main] INFO   r.e.e.t.TestingUnit - new test was created for lessonId -1 and groupId -1
+19.06.2021 21:03:55.362 [http-nio-8080-exec-8] INFO   r.e.e.t.TestingUnit - new test was created for lessonId 3 and groupId 1
+19.06.2021 21:05:22.881 [http-nio-8080-exec-6] INFO   r.e.e.t.TestingUnit - new test was created for lessonId 3 and groupId 1
+19.06.2021 21:08:44.440 [http-nio-8080-exec-6] INFO   r.e.e.t.TestingUnit - new test was created for lessonId 3 and groupId 1
+19.06.2021 21:11:11.224 [http-nio-8080-exec-6] INFO   r.e.e.t.TestingUnit - new test was created for lessonId 3 and groupId 1

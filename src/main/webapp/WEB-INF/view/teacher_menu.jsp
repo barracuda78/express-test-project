@@ -57,9 +57,9 @@
         <table>         <%--таблица--%>
             <tr>        <%--table raw--%>
                 <p>Укажите :</p>
-                <!--td>id теста<input type="text" name="testId" size="12"/></td-->
-                <td>id группы<input type="text" name="groupId" size="12"/></td>
-                <td>id урока<input type="text" name="lessonId" size="12"/></td>
+                <td>продолжительность теста в минутах: <input type="text" name="duration" size="12"/></td>
+                <td>id группы: <input type="text" name="groupId" size="12"/></td>
+                <td>id урока: <input type="text" name="lessonId" size="12"/></td>
             </tr>
             <tr>
                 <td><input type="submit" name="runTestButton" value="Запустить тест"/></td>
