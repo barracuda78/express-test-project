@@ -28,8 +28,6 @@ public class TestingServlet extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         request.setCharacterEncoding("UTF-8");
 
-        //                <td>id группы<input type="text" name="groupId" size="12"/></td>
-        //                <td>id урока<input type="text" name="lessonId" size="12"/></td>
         String lessonIdString = request.getParameter("lessonId");
         String groupIdString = request.getParameter("groupId");
         int lessonId = -1;

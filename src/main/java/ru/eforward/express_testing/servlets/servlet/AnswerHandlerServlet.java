@@ -40,13 +40,27 @@ public class AnswerHandlerServlet extends HttpServlet {
         //need to get studentsId somehow here to pass it to database
         //write this answer to DatBase (maybe new table TestResults)
 
-        //session.setAttribute("studentsTestingUnit", testingUnit);
         HttpSession httpSession = request.getSession();
         TestingUnit testingUnit = (TestingUnit)httpSession.getAttribute("studentsTestingUnit");
         Student student = (Student)httpSession.getAttribute("user");
+        TestResult testResult =(TestResult) httpSession.getAttribute("testResult");
+
+        Stopper stopper = (Stopper)httpSession.getAttribute("stopper");
+        boolean timeIsOver = false;
+        if(Objects.nonNull(stopper)){
+            timeIsOver = stopper.shouldBeStopped();
+            if(timeIsOver){
+                TestingUnit studentsTestingUnit = (TestingUnit)httpSession.getAttribute("studentsTestingUnit");
+                if(Objects.nonNull(studentsTestingUnit)){
+                    request.setAttribute("score", new Integer(testResult.getTotalScore()));
+                    httpSession.setAttribute("timeIsOver", "timeIsOver");
+                    request.getRequestDispatcher("/WEB-INF/view/student_menu.jsp").forward(request, response);
+                }
+            }
+        }
+
 
         //MULTICHOICE AND SHORTANSWER:
-        //sb.append("<input type=\"hidden\" name=\"type\" value=\"MULTICHOICE\">");
         String type = request.getParameter("type");
         LogHelper.writeMessage("AnswerHandlerServlet: type = " + type);
         //sb.append("<input type=\"hidden\" name=\"question\" value=\" " + q + "\">"); //passing the original text of question
@@ -59,8 +73,8 @@ public class AnswerHandlerServlet extends HttpServlet {
                 && Objects.nonNull(student)
                 && Objects.nonNull(question)){
             LogHelper.writeMessage("student = " + student);
+
             //if no testResult in session - create new TestResult entity and preset it:
-            TestResult testResult =(TestResult) httpSession.getAttribute("testResult");
             if(Objects.isNull(testResult)){
                 testResult = new TestResult();
                 testResult.setStudentId(student.getId());
@@ -99,32 +113,17 @@ public class AnswerHandlerServlet extends HttpServlet {
 
             if(numberOfQuestions == cursor ){
                 request.setAttribute("finished", "finished");
-                //request.setAttribute("score", Integer.valueOf(testResult.getTotalScore()));
                 request.setAttribute("score", new Integer(testResult.getTotalScore()));
                 TestResultDAO testResultDAO = new TestResultDAOImpl();
                 testResultDAO.addTestResult(testResult);
                 request.getRequestDispatcher("/WEB-INF/view/student_menu.jsp").forward(request, response);
             }else{
+                request.setAttribute("score", new Integer(testResult.getTotalScore()));
                 request.getRequestDispatcher("testing").forward(request, response);
             }
         }
 
-
         //COMPLIANCE:
-        //                sb.append("<select name=\"answerDropdowns\">");
-        //                sb.append("<option value=\"\" style=\"display:none\">Выберите ответ</option>");
-        //                for(String s : list) {
-        //                    sb.append("<option value=\"" + valueParameter.incrementAndGet() + "\">" + s + "</option>"); // 's' is an answer
-        //                }
-        //                sb.append("</select>");
-        //        sb.append("<input class=\"button\" type=\"submit\" name=\"choice1\" value=\"Отправить\">");
-        //        sb.append("<input type=\"hidden\" name=\"type\" value=\"COMPLIANCE\">");
-
-        //тип вопроса я определяю по параметру type. Он уже есть: String type = request.getParameter("type");
-
-        //COMPLIANCE:
-        //String answerDropdowns = request.getParameter("answerDropdowns");
-        //LogHelper.writeMessage("answerDropdowns = " + answerDropdowns);
         LogHelper.writeMessage("testingUnit = " + testingUnit);
         LogHelper.writeMessage("student = " + student);
         LogHelper.writeMessage("question = " + question);
@@ -134,13 +133,6 @@ public class AnswerHandlerServlet extends HttpServlet {
                 && Objects.nonNull(testingUnit)
                 && Objects.nonNull(student)
                 && Objects.nonNull(question)){
-                //&& Objects.nonNull(answerDropdowns)){
-            //что есть:
-            //        HttpSession httpSession = request.getSession();
-            //        TestingUnit testingUnit = (TestingUnit)httpSession.getAttribute("studentsTestingUnit");
-            //        Student student = (Student)httpSession.getAttribute("user");
-            //        String type = request.getParameter("type");
-            //        String question = request.getParameter("question");
 
             ComplianceHandler ch = new ComplianceHandler();
 
@@ -169,7 +161,7 @@ public class AnswerHandlerServlet extends HttpServlet {
 
             //todo: below code duplicates upper if statement. try to insert original code to upper if.
             //if no testResult in session - create new TestResult entity and preset it:
-            TestResult testResult =(TestResult) httpSession.getAttribute("testResult");
+            testResult =(TestResult) httpSession.getAttribute("testResult");
             if(Objects.isNull(testResult)){
                 testResult = new TestResult();
                 testResult.setStudentId(student.getId());

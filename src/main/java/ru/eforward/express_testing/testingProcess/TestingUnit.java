@@ -154,4 +154,8 @@ public class TestingUnit implements Serializable {
     public void decrementCursor(){
         cursor--;
     }
+
+    public void setCursor(int size) {
+        cursor = size;
+    }
 }

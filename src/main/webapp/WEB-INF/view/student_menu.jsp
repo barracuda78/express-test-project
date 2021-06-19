@@ -2,6 +2,7 @@
 <%@ page import="ru.eforward.express_testing.model.Student" %>
 <%@ page import="java.nio.file.Paths" %>
 <%@ page import="java.util.Objects" %>
+<%@ page import="ru.eforward.express_testing.utils.LogHelper" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
@@ -30,11 +31,25 @@
 <!--request.setAttribute("score", 500); -->
 
 <%
+    String timeIsOver = (String)session.getAttribute("timeIsOver");
     String finished = (String)request.getAttribute("finished");
     Integer score = (Integer)request.getAttribute("score");
+
+    LogHelper.writeMessage("students_menu.jsp: timeIsOver = " + timeIsOver);
+    LogHelper.writeMessage("students_menu.jsp: finished = " + finished);
+    LogHelper.writeMessage("students_menu.jsp: score = " + score);
+
     if(Objects.nonNull(finished)){
+        LogHelper.writeMessage("students_menu.jsp: if Objects.nonNull(finished) ...");
         %>
             <%="Спасибо. Тестирование окончено. Вы набрали: " + score%>
+        <%
+    }
+
+    if(Objects.nonNull(timeIsOver)){
+        LogHelper.writeMessage("students_menu.jsp: if Objects.nonNull(timeIsOver) ...");
+        %>
+            <%="Спасибо. Время тестирования закончилось. Вы набрали: " + score%>
         <%
     }
 %>

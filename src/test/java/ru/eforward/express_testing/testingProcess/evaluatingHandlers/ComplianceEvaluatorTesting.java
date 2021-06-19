@@ -48,7 +48,7 @@ public class ComplianceEvaluatorTesting {
                 "    =Индия  -> Нью Дели\n" +
                 "}";
 
-        String answer = "родился";
-        Assertions.assertEquals(10, ce.evaluate(question, answer));
+        String answer = "Мадагаскар";
+        Assertions.assertEquals(0, ce.evaluate(question, answer));
     }
 }

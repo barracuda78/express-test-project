@@ -63,6 +63,8 @@ public class NumberEvaluator implements EvaluatingHandler{
                 choice = Double.parseDouble(answer); //method throws NumberFormatException to call-point
             }catch (NumberFormatException nfe){
                 LOGGER.info("User entered not a number");
+                //in case user entered not a number - catch this exception in AnswerHandlerServlet and render for user
+                //appropriate message, move cursor left and give chance answer again:
                 throw new IllegalArgumentException("User entered not a number. Can not be parsed to double", nfe);
             }
 

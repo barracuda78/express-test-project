@@ -10,6 +10,7 @@
 <%@ page import="java.util.Optional" %>
 <%@ page import="ru.eforward.express_testing.utils.CloneMaker" %>
 <%@ page import="java.util.Objects" %>
+<%@ page import="ru.eforward.express_testing.testingProcess.Stopper" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
@@ -27,19 +28,15 @@
         ServletContext servletContext = request.getServletContext();
         @SuppressWarnings("unchecked")
         AtomicReference<List<TestingUnit>> testingUnitsListAtomicReference = (AtomicReference<List<TestingUnit>>)servletContext.getAttribute("testingUnitsListAtomicReference");
-        LogHelper.writeMessage("---class testing.jsp : AtomicReference = " + testingUnitsListAtomicReference);
-        LogHelper.writeMessage("---class testing.jsp : student = " + student);
         List<TestingUnit> list = null;
 
         //find out if there is an available test (TestingUnit) for this student (his group);
         boolean testIsAvailable = false;
         if(testingUnitsListAtomicReference != null && student != null){
             list = testingUnitsListAtomicReference.get();
-            LogHelper.writeMessage("---===class testing.jsp : if statement:  list = " + list);
             testIsAvailable = list
                     .stream()
                     .anyMatch(testingUnit -> {
-                        LogHelper.writeMessage("---class testing.jsp : stream:  test is available");
                         //here we should take testingUnit from list and run it -> html code!
                         return testingUnit.getGroupId() == student.getGroupId();
                     });
@@ -53,7 +50,13 @@
 //                    break;
 //                }
 //            }
-            LogHelper.writeMessage("---class testing.jsp : if statement:  testIsAvailable = " + testIsAvailable);
+        }
+
+        //get stopper for testing from student's session attributes if exists, otherwise create new Stopper():
+        Stopper stopper = (Stopper)session.getAttribute("stopper");
+        if(Objects.isNull(stopper)){
+            stopper = new Stopper(1); //todo: do not hardcode time in minutes. get it from teachers web.
+            session.setAttribute("stopper", stopper);
         }
 
         if(testIsAvailable){
@@ -70,22 +73,16 @@
 
             if(studentsTestingUnit == null && optionalTestingUnit.isPresent()){
                 TestingUnit testingUnit = optionalTestingUnit.get();
-
                 //clone this object, and pass it to sessionAttribute after it.
                 TestingUnit clone = CloneMaker.getClone(testingUnit);
                 //add cloned TestingUnit to student's own session:
                 session.setAttribute("studentsTestingUnit", clone);
                 studentsTestingUnit = clone;
-                LogHelper.writeMessage("testing.jsp : if(studentsTestingUnit == null...");
-                LogHelper.writeMessage("testing.jsp : testingUnit = " + testingUnit);
-                LogHelper.writeMessage("testing.jsp : clone = " + clone);
             }
 
 
             //pull next question from TestingUnit: (iteration algorithm exists in TestingUnit entity)
             if(studentsTestingUnit != null && studentsTestingUnit.hasNextTest()){
-                //todo: here we should take TestingUnit from session, not from context!!!
-                LogHelper.writeMessage("testing.jsp = if(studentsTestingUnit != null && ...");
                 htmlString = studentsTestingUnit.getNextTest();
             }
 
