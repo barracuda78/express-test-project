@@ -51,6 +51,9 @@ public class TestResultDAOImpl implements TestResultDAO {
                     LogHelper.writeMessage("class TestResultDAOImpl, method addTestResult : added record to TESTRESULTS table");
                     LOGGER.info("New  record to TESTRESULTS table has been added by student with ID " + studentId);
                 }
+
+                preparedStatement.close();
+                PoolConnector.closeConnection(connection);
             } catch (SQLException throwables) {
                 throwables.printStackTrace();
                 LOGGER.error("Can not add record to TESTRESULTS table");
@@ -95,6 +98,8 @@ public class TestResultDAOImpl implements TestResultDAO {
                         testResults.add(testResult);
                     }
                 }
+                preparedStatement.close();
+                PoolConnector.closeConnection(connection);
             } catch (SQLException throwables) {
                 throwables.printStackTrace();
             }

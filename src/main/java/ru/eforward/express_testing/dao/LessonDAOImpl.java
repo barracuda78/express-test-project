@@ -41,6 +41,8 @@ public class LessonDAOImpl implements LessonDAO {
                         lesson = new Lesson(id, lessonName, pathToTestFile, levelId);
                     }
                 }
+                preparedStatement.close();
+                PoolConnector.closeConnection(connection);
             } catch (SQLException throwables) {
                 throwables.printStackTrace();
             }

@@ -36,6 +36,8 @@ public class SchoolDAOImpl implements SchoolDAO {
                     updateCount = preparedStatement.getUpdateCount();
                     LogHelper.writeMessage("class SchoolDAOImpl, method addSchool() : added records to SCHOOLS table" + updateCount + "schoolName = " + schoolName);
                 }
+                preparedStatement.close();
+                PoolConnector.closeConnection(connection);
             } catch (SQLException throwables) {
                 throwables.printStackTrace();
             }
@@ -77,6 +79,8 @@ public class SchoolDAOImpl implements SchoolDAO {
                     updateCount = preparedStatement.getUpdateCount();
                     LogHelper.writeMessage("class SchoolDAOImpl, method addSchool() : added records to SCHOOLS table" + updateCount);
                 }
+                preparedStatement.close();
+                PoolConnector.closeConnection(connection);
             } catch (SQLException throwables) {
                 throwables.printStackTrace();
             }
@@ -107,7 +111,8 @@ public class SchoolDAOImpl implements SchoolDAO {
                 }else{
                     LogHelper.writeMessage("class SchoolDAOImpl, method schoolPresents() : resultSet is null");
                 }
-
+                preparedStatement.close();
+                PoolConnector.closeConnection(connection);
             } catch (SQLException throwables) {
                 throwables.printStackTrace();
             }

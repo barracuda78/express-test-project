@@ -309,6 +309,8 @@ public class UserDAOImpl implements UserDAO {
                             return true;
                         }
                     }
+                    preparedStatement.close();
+                    PoolConnector.closeConnection(connection);
                 }else{
                     LogHelper.writeMessage("class UserDAOImpl, method userPresents() : resultSet is null");
                 }

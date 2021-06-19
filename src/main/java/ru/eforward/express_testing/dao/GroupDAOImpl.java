@@ -32,17 +32,11 @@ public class GroupDAOImpl implements GroupDAO {
                 if(!resultSet.wasNull()){
                     while(resultSet.next()) {
                         int id = resultSet.getInt("ID");
-//                        String groupName = resultSet.getString("GROUP_NAME");
-//                        int schoolId = resultSet.getInt("SCHOOL_ID");
-//                        int teacher_id = resultSet.getInt("TEACHER_ID");
-//                        Group group = new Group();
-//                        group.setId(id);
-//                        group.setGroupName(groupName);
-//                        group.setSchoolId(schoolId);
-//                        group.setTeacherId(teacher_id);
                         groups.add(id);
                     }
                 }
+                preparedStatement.close();
+                PoolConnector.closeConnection(connection);
             } catch (SQLException throwables) {
                 throwables.printStackTrace();
             }
