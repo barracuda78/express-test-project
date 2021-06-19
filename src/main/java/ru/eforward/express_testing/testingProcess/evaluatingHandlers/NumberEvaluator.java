@@ -5,12 +5,13 @@ import org.slf4j.LoggerFactory;
 import ru.eforward.express_testing.testingProcess.QuestionType;
 import ru.eforward.express_testing.testingProcess.questionHandlers.NumberHandler;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
 /**
- * This class does not support multianswer number questions
+ * This class does not support multi-answer number questions
  * Subtypes of questions supported:
  * 1. Когда родился Грант? {#1822} - NumberQuestionType.SINGLE
  * 2. Значение числа Пи (4 цифры после запятой)? {#3.1415:0.0005} - NumberQuestionType.PRECISION
@@ -26,7 +27,7 @@ public class NumberEvaluator implements EvaluatingHandler{
 
 
     @Override
-    public int evaluate(String question, String answer) {
+    public int evaluate(String question, String answer) throws NumberFormatException{
         LOGGER.info("evaluating question = " + question + ", answer = " + answer);
         if(answer == null  || question == null){
             return 0;
@@ -38,19 +39,52 @@ public class NumberEvaluator implements EvaluatingHandler{
         }
 
         //get right answer and it's type:
-        List<String> correctAnswers = getCorrectAnswers(question);
+        List<String> correctAnswers = getCorrectAnswers(question); //todo:  it throws exception. handle it. decide, where to handle
         NumberHandler.NumberQuestionType subType = getType(question);
 
         if(subType == NumberHandler.NumberQuestionType.SINGLE){
             return answer.equals(correctAnswers.get(0)) ? 10 : 0;
-        } else if(subType == NumberHandler.NumberQuestionType.DIAPASON){
-            //todo: implement NumberQuestionType.DIAPASON case
-        } else if(subType == NumberHandler.NumberQuestionType.PRECISION){
-            //todo: implement NumberQuestionType.PRECISION case
         }
+        else if(subType == NumberHandler.NumberQuestionType.DIAPASON){
+            double min = Double.parseDouble(correctAnswers.get(0)); //NumberFormatException was checked earlier in getCorrectAnswers()
+            double max = Double.parseDouble(correctAnswers.get(1));
 
-        //compare answer with rightAnswer
+            double choice = Double.parseDouble(answer); //method throws NumberFormatException to call-point
 
+            BigDecimal minBD = new BigDecimal(min);
+            minBD = minBD.setScale(5, BigDecimal.ROUND_HALF_UP);
+            BigDecimal maxBD = new BigDecimal(max);
+            maxBD = maxBD.setScale(5, BigDecimal.ROUND_HALF_UP);
+            BigDecimal choiceBD = new BigDecimal(choice);
+            choiceBD = choiceBD.setScale(5, BigDecimal.ROUND_HALF_UP);
+
+            if(choiceBD.compareTo(minBD) >= 0 && choiceBD.compareTo(maxBD) <= 0){
+                return 10;
+            }else{
+                return 0;
+            }
+        }
+        else if(subType == NumberHandler.NumberQuestionType.PRECISION){
+            double answ = Double.parseDouble(correctAnswers.get(0)); //exc was checked earlier in getCorrectAnswers()
+            double precision = Double.parseDouble(correctAnswers.get(1));
+
+            double choice = Double.parseDouble(answer); //method throws NumberFormatException to call-point
+
+            BigDecimal answerBD = new BigDecimal(answ);
+            answerBD = answerBD.setScale(5, BigDecimal.ROUND_HALF_UP);
+            BigDecimal precisionBD = new BigDecimal(precision);
+            precisionBD = precisionBD.setScale(5, BigDecimal.ROUND_HALF_UP);
+            BigDecimal choiceBD = new BigDecimal(choice);
+            choiceBD = choiceBD.setScale(5, BigDecimal.ROUND_HALF_UP);
+
+            //сколько тебе лет {#42:2}
+
+            if(choiceBD.compareTo(answerBD.subtract(precisionBD)) >= 0 && choiceBD.compareTo(answerBD.add(precisionBD)) <=0){
+                return 10;
+            }else{
+                return 0;
+            }
+        }
         return 0;
     }
 
@@ -132,8 +166,12 @@ public class NumberEvaluator implements EvaluatingHandler{
     }
 
     public static void main(String[] args) {
+        String question = "сколько тебе лет {#42:2}";
+        String answer = "42.5";
         NumberEvaluator ne = new NumberEvaluator();
-        List<String> numbers = ne.getCorrectAnswers("Значение числа Пи (3 цифры после запятой)? {#355.2..2.8}.");
+        List<String> numbers = ne.getCorrectAnswers(question);
         System.out.println("numbers List<> = " + numbers);
+
+        System.out.println("score = " + ne.evaluate(question, answer));
     }
 }
