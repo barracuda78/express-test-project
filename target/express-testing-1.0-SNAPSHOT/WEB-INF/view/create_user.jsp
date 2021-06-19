@@ -1,3 +1,13 @@
+<%@ page import="ru.eforward.express_testing.model.Teacher" %>
+<%@ page import="java.util.List" %>
+<%@ page import="java.util.ArrayList" %>
+<%@ page import="ru.eforward.express_testing.daoInterfaces.UserDAO" %>
+<%@ page import="ru.eforward.express_testing.dao.UserDAOImpl" %>
+<%@ page import="ru.eforward.express_testing.model.User" %>
+<%@ page import="ru.eforward.express_testing.model.Admin" %>
+<%@ page import="ru.eforward.express_testing.model.school.Branch" %>
+<%@ page import="ru.eforward.express_testing.daoInterfaces.BranchDAO" %>
+<%@ page import="ru.eforward.express_testing.dao.BranchDAOImpl" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
@@ -5,6 +15,16 @@
     <title>Новый пользователь</title>
 </head>
 <body>
+    <%
+        Admin admin = (Admin)session.getAttribute("user");
+
+        UserDAO userDAO = new UserDAOImpl();
+        List<User> users = userDAO.getUsersByRole(User.ROLE.TEACHER, admin.getSchool());
+
+        BranchDAO branchDAO = new BranchDAOImpl();
+        List<Branch> branches = branchDAO.getBranchesById(admin.getId());
+    %>
+
     <div id="box">
         <form name="add" action="AddingUserServlet" method="POST">
             <table>         <%--таблица--%>
@@ -23,8 +43,27 @@
                     </select></td>
                     <td><select name="branches">
                         <option value="" style="display:none">Выберите филиал</option>
-                        <option value="1">EF - Горьковская</option>
-                        <option value="2">EF - Парк Победы</option>
+                        <option value="0">Филиал не выбран</option>
+                        <%
+                            for(Branch b: branches){
+                        %>
+                        <%="<option value=\"" + b.getId() + "\">" + b.getName() + "</option>"%>
+                        <%
+                            }
+                        %>
+                        <%--option value="1">EF - Горьковская</option--%>
+                    </select></td>
+                    <td><select name="teacher">
+                        <option value="" style="display:none">Выберите куратора</option>
+                        <option value="0">Куратор не выбран</option>
+                        <%
+                        for(User u : users){
+                            %>
+                                <%="<option value=\"" + u.getId() + "\">" + u.getFirstName() + " " + u.getLastName() + "</option>"%>
+                            <%
+                        }
+                        %>
+                        <%--option value="1">Учитель Вася</option--%>
                     </select></td>
                 </tr>
                 <tr>
@@ -39,6 +78,12 @@
         if("notAll".equals(allFieldsFilled)){
             %>
                 <%="<p>Пользователь не добавлен. Заполните все поля.</p>"%>
+            <%
+        }
+        String added = (String)request.getAttribute("added");
+        if(!"added".equals(added)){
+            %>
+                <%="<p>Пользователь не добавлен. Проверьте уникальность логина/e-mail</p>"%>
             <%
         }
     %>

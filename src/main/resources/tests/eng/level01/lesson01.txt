@@ -1,32 +1,25 @@
-//course=English course
-//Level=First Level
-//Lesson=First Lesson
+Сколько тебе лет? {#42:0.5}
 
-::Question about Japan::Japanese characters originally came from what country? {
-    ~India
-    =China
-    ~Korea
-    ~Egypt
-    ~затрудняюсь ответить}
-
-Grant is {~buried =entombed ~living ~затрудняюсь ответить} in Grant's tomb.
-
-The American holiday of Thanksgiving is celebrated on the {
-    ~second
-    ~third
-    =fourth
-    ~затрудняюсь ответить
-} Thursday of November.
-
-два плюс два равно {=четыре =4}
-
-Солнце встает на Востоке.{T}
-
-::Question about Capitals::Укажите столицы государств: {
+Укажите столицы государств: {
     =Канада -> Оттава
     =Италия -> Рим
     =Япония -> Токио
     =Индия  -> Нью Дели
 }
 
-Когда родился Грант? {#1822}
+Кто похоронен в могиле Гранта?{=никто =никого}
+
+Ленин {~похоронен =родился ~живет} в Симбирске.
+
+День Благодарения празднуется во {
+    ~второй
+    ~третий
+    =четвертый
+} вторник ноября.
+
+Японские символы сначала появились в:? {
+    ~Индии
+    =Китае
+    ~Kорее
+    ~Египте
+}

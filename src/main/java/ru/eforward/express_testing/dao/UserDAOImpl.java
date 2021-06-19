@@ -17,6 +17,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Objects;
 
 public class UserDAOImpl implements UserDAO {
     private static final Logger LOGGER = LoggerFactory.getLogger(UserDAOImpl.class);
@@ -24,7 +25,7 @@ public class UserDAOImpl implements UserDAO {
     private PreparedStatement preparedStatement;
 
     @Override
-    public boolean addUser(User user) {
+    public boolean addUser(User user, int parent_id) {
         LogHelper.writeMessage("---class UserDAOImpl : We start creating new User");
         if(user == null){
             LogHelper.writeMessage("---class UserDAOImpl : User == null");
@@ -44,7 +45,7 @@ public class UserDAOImpl implements UserDAO {
                     return false;
                 }
 
-                preparedStatement = connection.prepareStatement("INSERT INTO USERS (LASTNAME, FIRSTNAME, MIDDLENAME, EMAIL, LOGIN, PASSWORD, ROLE_ID, SCHOOL_ID, BRANCH_ID) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)");
+                preparedStatement = connection.prepareStatement("INSERT INTO USERS (LASTNAME, FIRSTNAME, MIDDLENAME, EMAIL, LOGIN, PASSWORD, ROLE_ID, SCHOOL_ID, BRANCH_ID, TEACHER_ID) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
                 //preparedStatement.setInt(1, user.getId()); --id will be set by DB;
                 preparedStatement.setString(1, user.getLastName());
                 preparedStatement.setString(2, user.getFirstName());
@@ -54,7 +55,15 @@ public class UserDAOImpl implements UserDAO {
                 preparedStatement.setString(6, user.getPassword());
                 preparedStatement.setInt(7, user.getRole().getId());
                 preparedStatement.setInt(8, user.getSchool());
-                preparedStatement.setInt(9, user.getBranches().get(0));   //---------------------> at this stage I assume only one branch in the List. For further development
+                preparedStatement.setInt(9, user.getBranch());   //---> at this stage I assume only one branch in the List. For further development
+                //if teacher or admin will be added - use id of user, who is adding, as TEACHER_ID for this new user;
+                if(user.getRole() == User.ROLE.TEACHER || user.getRole() == User.ROLE.ADMIN){
+                    preparedStatement.setInt(10, parent_id); //
+                }
+                else{
+                    //todo:if student will be added - use teacher_id from html-from (need to add it) or use NULL
+                    preparedStatement.setInt(10, parent_id);
+                }
 
                 LogHelper.writeMessage("---class UserDAOImpl : preparedStatement prepared.");
 
@@ -87,7 +96,7 @@ public class UserDAOImpl implements UserDAO {
                 preparedStatement.setString(1, login);
                 ResultSet resultSet = preparedStatement.executeQuery();
                 if(!resultSet.wasNull()){
-                    //I'm using 'while' because can have several users with same login.
+                    //while can be replaced by if as LOGIN is UNIQUE.
                     while(resultSet.next()){
                         String hashedPassword = resultSet.getString("PASSWORD");
                         boolean equals = false;
@@ -98,6 +107,8 @@ public class UserDAOImpl implements UserDAO {
                         if(equals){
                             //LASTNAME, FIRSTNAME, MIDDLENAME, EMAIL, LOGIN, PASSWORD, ROLE_ID, BRANCH_ID
                             //take user with this password and return this user;
+                            int id = resultSet.getInt("ID");
+                            LogHelper.writeMessage("class UserDAOImpl. getUserByLoginPassword. id = " + id);
                             String lastName = resultSet.getString("LASTNAME");
                             String firstName = resultSet.getString("FIRSTNAME");
                             String middleName = resultSet.getString("MIDDLENAME");
@@ -106,9 +117,10 @@ public class UserDAOImpl implements UserDAO {
                             //password = // already defined as method parameter
                             int role_id = resultSet.getInt("ROLE_ID");
                             int school_id = resultSet.getInt("SCHOOL_ID");
-                            Integer branch_id = resultSet.getInt("BRANCH_ID");
+                            int branch_id = resultSet.getInt("BRANCH_ID");
                             User.ROLE role = User.ROLE.getRoleById(role_id);
                             UserBuilder userBuilder = new UserBuilder(role)
+                                    .addId(id)
                                     .addLastName(lastName)
                                     .addFirstName(firstName)
                                     .addMiddleName(middleName)
@@ -116,12 +128,12 @@ public class UserDAOImpl implements UserDAO {
                                     .addLogin(login)
                                     .addPassword(password)
                                     .addSchool(school_id)
-                                    .addBranches(new ArrayList<Integer>(Arrays.asList(branch_id))); //list of one element - just a stub for further development
+                                    .addBranch(branch_id);
 
                             //if ROLE = TEACER - use method AddGroupsToTeacher.
                             //Groups should be taken from BD using GroupsDAOImpl class - getGroupsByTeacherId().
                             if(role == User.ROLE.TEACHER){
-                                int id = resultSet.getInt("ID");
+                                //int id = resultSet.getInt("ID");
                                 GroupDAO groupDAO = new GroupDAOImpl();
                                 List<Integer> groups = groupDAO.getGroupsByTeacherId(id);
                                 userBuilder.addGroupsToTeacher(groups);
@@ -193,6 +205,51 @@ public class UserDAOImpl implements UserDAO {
         }
 
         return result;
+    }
+
+    @Override
+    public List<User> getUsersByRole(User.ROLE role, int school_id) {
+        if(Objects.isNull(role) || school_id <= 0){
+            return null;
+        }
+        if(connection == null){
+            connection = PoolConnector.getConnection();
+        }
+        List<User> users = new ArrayList<>();
+        if(connection != null) {
+            try {
+                //получить всех учителей (id, lastName, FirstName) по id школы
+                preparedStatement = connection.prepareStatement("SELECT ID, LASTNAME, FIRSTNAME FROM USERS WHERE SCHOOL_ID = ? AND ROLE_ID = ?");
+                preparedStatement.setInt(1, school_id);
+                preparedStatement.setInt(2, role.getId());
+                ResultSet resultSet = preparedStatement.executeQuery();
+                if(!resultSet.wasNull()){
+                    //I'm using 'while' because can have several users with same login.
+                    while(resultSet.next()){
+                        int id = resultSet.getInt("ID");
+                        String lastName = resultSet.getString("LASTNAME");
+                        String firstName = resultSet.getString("FIRSTNAME");
+                        User user = new UserBuilder(role)
+                                .addId(id)
+                                .addLastName(lastName)
+                                .addFirstName(firstName)
+                                .buildUser();
+                        users.add(user);
+                    }
+                }else{
+                    LogHelper.writeMessage("class UserDAOImpl, method getUsersByRole() : resultSet is null");
+                    LOGGER.error("resultSet is null");
+                }
+            } catch (SQLException throwables) {
+                LogHelper.writeMessage("class UserDAOImpl, method getUsersByRole() : SQLException");
+                throwables.printStackTrace();
+                LOGGER.error("SQLException while SELECT query - getUsersByRole");
+            }
+        }else{
+            LogHelper.writeMessage("class UserDAOImpl, method getUsersByRole() : connection is null");
+            LOGGER.error("connection is null");
+        }
+        return users;
     }
 
     @Override

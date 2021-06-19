@@ -22,7 +22,9 @@ public abstract class User {
     private String password;
     private ROLE role;
     private int school;
-    private List<Integer> branches; //contains branch_id's
+    private int branch;
+    private int curatorId;
+
 
     public enum ROLE {
         ADMIN(1),

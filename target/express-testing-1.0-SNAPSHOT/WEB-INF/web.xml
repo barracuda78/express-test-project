@@ -78,6 +78,16 @@
 
 
     <servlet>
+        <servlet-name>CreateBranch</servlet-name>
+        <jsp-file>/WEB-INF/view/create_branch.jsp</jsp-file>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>CreateBranch</servlet-name>
+        <url-pattern>/createBranch</url-pattern>
+    </servlet-mapping>
+
+
+    <servlet>
         <servlet-name>CreateUser</servlet-name>
         <jsp-file>/WEB-INF/view/create_user.jsp</jsp-file>
     </servlet>

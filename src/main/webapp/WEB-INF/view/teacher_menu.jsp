@@ -57,7 +57,7 @@
         <table>         <%--таблица--%>
             <tr>        <%--table raw--%>
                 <p>Укажите :</p>
-                <td>id теста<input type="text" name="testId" size="12"/></td>
+                <!--td>id теста<input type="text" name="testId" size="12"/></td-->
                 <td>id группы<input type="text" name="groupId" size="12"/></td>
                 <td>id урока<input type="text" name="lessonId" size="12"/></td>
             </tr>

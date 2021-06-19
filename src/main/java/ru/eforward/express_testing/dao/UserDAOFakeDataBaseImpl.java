@@ -42,7 +42,7 @@ public class UserDAOFakeDataBaseImpl implements UserDAO {
     }
 
     @Override
-    public boolean addUser(final User user) {
+    public boolean addUser(final User user, int parent_id) {
 
         for (User u : store) {
             if (u.getLogin().equals(user.getLogin()) && u.getPassword().equals(user.getPassword())) {
@@ -63,6 +63,12 @@ public class UserDAOFakeDataBaseImpl implements UserDAO {
         }
 
         return result;
+    }
+
+    //do not use it for fake database:
+    @Override
+    public List<User> getUsersByRole(User.ROLE role, int school_id) {
+        return null;
     }
 
     @Override

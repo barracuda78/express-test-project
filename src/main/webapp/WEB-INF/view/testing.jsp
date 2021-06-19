@@ -8,6 +8,9 @@
 <%@ page import="ru.eforward.express_testing.testingProcess.TestingUnit" %>
 <%@ page import="ru.eforward.express_testing.utils.LogHelper" %>
 <%@ page import="java.util.Optional" %>
+<%@ page import="ru.eforward.express_testing.utils.CloneMaker" %>
+<%@ page import="java.util.Objects" %>
+<%@ page import="ru.eforward.express_testing.testingProcess.Stopper" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
@@ -20,21 +23,20 @@
 
     <%
         LogHelper.writeMessage("---class testing.jsp : user entered.");
-        boolean testIsAvailable = false;
+
         Student student = (Student)session.getAttribute("user");
         ServletContext servletContext = request.getServletContext();
         @SuppressWarnings("unchecked")
         AtomicReference<List<TestingUnit>> testingUnitsListAtomicReference = (AtomicReference<List<TestingUnit>>)servletContext.getAttribute("testingUnitsListAtomicReference");
-        LogHelper.writeMessage("---class testing.jsp : AtomicReference = " + testingUnitsListAtomicReference);
-        LogHelper.writeMessage("---class testing.jsp : student = " + student);
         List<TestingUnit> list = null;
+
+        //find out if there is an available test (TestingUnit) for this student (his group);
+        boolean testIsAvailable = false;
         if(testingUnitsListAtomicReference != null && student != null){
             list = testingUnitsListAtomicReference.get();
-            LogHelper.writeMessage("---class testing.jsp : if statement:  list = " + list);
             testIsAvailable = list
                     .stream()
                     .anyMatch(testingUnit -> {
-                        LogHelper.writeMessage("---class testing.jsp : stream:  test is available");
                         //here we should take testingUnit from list and run it -> html code!
                         return testingUnit.getGroupId() == student.getGroupId();
                     });
@@ -48,26 +50,45 @@
 //                    break;
 //                }
 //            }
-            LogHelper.writeMessage("---class testing.jsp : if statement:  testIsAvailable = " + testIsAvailable);
+        }
+
+        //get stopper for testing from student's session attributes if exists, otherwise create new Stopper():
+        Stopper stopper = (Stopper)session.getAttribute("stopper");
+        if(Objects.isNull(stopper)){
+            stopper = new Stopper(1); //todo: do not hardcode time in minutes. get it from teachers web.
+            session.setAttribute("stopper", stopper);
         }
 
         if(testIsAvailable){
-            //Path path = currentTest.getPath();
-            //String htmlString = student.performTest(Paths.get("D:\\coding\\projects\\EF\\express_test_project\\src\\main\\resources\\tests\\eng\\level01\\lesson01.txt"));
-            //String htmlString = "<h1>УРРРАААА! ЗАРАБОТАЛОО!!!</h1>";
 
+            //get the first available test (TestingUnits) for this student (his group):
             Optional<TestingUnit> optionalTestingUnit = list
                     .stream()
+                    .filter(testingUnit -> testingUnit.getGroupId() == student.getGroupId())
                     .findFirst();
 
+            //get the available first/next question of this test (of this TestingUnit)
             String htmlString = "Извините. Файл с тестом не был подготовлен.";
-            if(optionalTestingUnit.isPresent() && optionalTestingUnit.get().hasNextTest()){
-                htmlString = optionalTestingUnit.get().getNextTest();
+            TestingUnit studentsTestingUnit = (TestingUnit)session.getAttribute("studentsTestingUnit");
+
+            if(studentsTestingUnit == null && optionalTestingUnit.isPresent()){
+                TestingUnit testingUnit = optionalTestingUnit.get();
+                //clone this object, and pass it to sessionAttribute after it.
+                TestingUnit clone = CloneMaker.getClone(testingUnit);
+                //add cloned TestingUnit to student's own session:
+                session.setAttribute("studentsTestingUnit", clone);
+                studentsTestingUnit = clone;
+            }
+
+
+            //pull next question from TestingUnit: (iteration algorithm exists in TestingUnit entity)
+            if(studentsTestingUnit != null && studentsTestingUnit.hasNextTest()){
+                htmlString = studentsTestingUnit.getNextTest();
             }
 
     %>
-                <br/>
-
+    <br/>
+    <!--This is for countdown:-->
     <h2 class="countdown-title">Тестирование началось:</h2>
     <div id="deadline-message" class="deadline-message">
         Время тестирования закончилось!
@@ -90,7 +111,6 @@
             <span class="countdown-text">Секунды</span>
         </div>
     </div>
-
     <script>
         function getTimeRemaining(endtime) {
             var t = Date.parse(endtime) - Date.parse(new Date());
@@ -137,17 +157,26 @@
         var deadline = new Date(Date.parse(new Date()) + 1 * 1 *  3 * 60 * 1000);
         initializeClock("countdown", deadline);
     </script>
+    <!--end of countdown code-->
 
-                <%=htmlString%>
+     <%=htmlString%>
+
+    <%
+        //httpSession.setAttribute("nfe", "nfe");
+        String numberFormatException = (String)session.getAttribute("nfe");
+        if(Objects.nonNull(numberFormatException) && "nfe".equals(numberFormatException)){
+            %>
+                <%="Вы указали число в некорректном формате. Введите число в формате 5.23 или в формате 25"%>
             <%
+        }
+    %>
 
+     <%
         }
         if(!testIsAvailable){
-
             %>
                 <p><%="Нет доступных тестов."%></p>
             <%
-
         }
     %>
 

@@ -14,6 +14,10 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicReference;
 
+/**
+ *This servlet is used for user with Teacher role for starting new Testing.
+ */
+
 @WebServlet(name = "TestingServlet", urlPatterns = {"/TestingServlet"})
 public class TestingServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -24,8 +28,6 @@ public class TestingServlet extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         request.setCharacterEncoding("UTF-8");
 
-        //                <td>id группы<input type="text" name="groupId" size="12"/></td>
-        //                <td>id урока<input type="text" name="lessonId" size="12"/></td>
         String lessonIdString = request.getParameter("lessonId");
         String groupIdString = request.getParameter("groupId");
         int lessonId = -1;
@@ -34,15 +36,12 @@ public class TestingServlet extends HttpServlet {
             lessonId = Integer.parseInt(lessonIdString);
             groupId = Integer.parseInt(groupIdString);
         }catch(NumberFormatException e){
-            LogHelper.writeMessage("---class TestingServlet: doGet() - NumberFormatException" + e.getMessage());
             request.setAttribute("wrongId", "wrongId");
         }
         String runTestButton = request.getParameter("runTestButton");
         List<TestingUnit> testingUnits = null;
         TestingUnit testingUnit = null;
-        LogHelper.writeMessage("---class TestingServlet: doGet() - before if statement");
         if(runTestButton != null && groupId >= 0 && lessonId >= 0){
-            LogHelper.writeMessage("---class TestingServlet: doGet() - in if statement");
             testingUnit = new TestingUnit(lessonId, groupId);
 
             ServletContext servletContext = request.getServletContext();
@@ -59,10 +58,8 @@ public class TestingServlet extends HttpServlet {
             }
             servletContext.setAttribute("testingUnitsListAtomicReference", testingUnitsListAtomicReference);
             request.setAttribute("testingStarted", "ok");
-            LogHelper.writeMessage("---class TestingServlet: doGet() testingStarted - OK---");
-            LogHelper.writeMessage("---class TestingServlet: doGet()Текст теста = " + testingUnit.getNextTest());
+
         } else {
-            LogHelper.writeMessage("---class TestingServlet: doGet() - in else statement");
             request.setAttribute("testingStarted", "bad");
         }
         //go back to teachers main menu with corresponding attributes:

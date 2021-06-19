@@ -1,19 +1,17 @@
 package ru.eforward.express_testing.model.school;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
+@ToString
 public class Lesson {
     private int id;
     private String lessonName;
     private String pathToTestFile;
     private int levelId;
-    private int courseId;
-    private int schoolId;
+//    private int courseId;
+//    private int schoolId;
 }

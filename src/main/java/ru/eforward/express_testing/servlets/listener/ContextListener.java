@@ -42,12 +42,6 @@ public class ContextListener implements ServletContextListener {
 
         School schoolEF = new School(1, "EnglishForward");
 
-        List<Integer> branches = new ArrayList<>();
-        branches.add(1);
-        branches.add(2);
-
-        TestResult testResult01 = new TestResult(1, "Level01 lesson02",  "I like coffee\nI get up at 6 o'clock\ntable", 10);
-        TestResult testResult02 = new TestResult(2, "Level01 lesson03",  "I like to play\nHe has lunch\napple", 9);
         List<Integer> testResults = new ArrayList<>();
         testResults.add(1);
         testResults.add(2);
@@ -61,10 +55,10 @@ public class ContextListener implements ServletContextListener {
                 .addLogin("barracuda")
                 .addPassword("111")
                 .addSchool(schoolEF.getId())
-                .addBranches(branches)
+                .addBranch(1)
                 .addTestResults(testResults)
                 .buildUser();
-        userDao.get().addUser(user01);
+        userDao.get().addUser(user01, 3);
 
         userBuilder = new UserBuilder(ADMIN);
         User user02 = userBuilder
@@ -76,7 +70,7 @@ public class ContextListener implements ServletContextListener {
                 .addPassword("1")
                 .addSchool(1)
                 .buildUser();
-        userDao.get().addUser(user02);
+        userDao.get().addUser(user02, 2);
 
 
         List<Student> students = new ArrayList<>();
@@ -96,7 +90,7 @@ public class ContextListener implements ServletContextListener {
                 .addSchool(1)
                 .addGroupsToTeacher(groups)
                 .buildUser();
-        userDao.get().addUser(user03);
+        userDao.get().addUser(user03, 2);
 
         Test test01 = new Test();
         test01.setId(1);
