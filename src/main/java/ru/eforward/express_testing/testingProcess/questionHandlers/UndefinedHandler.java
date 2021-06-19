@@ -25,6 +25,7 @@ public class UndefinedHandler extends Handler implements QuestionHandler{
         sb.append("<input type=\"text\" required placeholder=\"напишите ваш ответ\" name=\"undefinedAnswer\"><br>");
         sb.append("<input class=\"button\" type=\"submit\" name=\"undefinedButton\" value=\"Отправить\">");
         sb.append("<input type=\"hidden\" name=\"type\" value=\"UNDEFINED\">");
+        sb.append("<input type=\"hidden\" name=\"question\" value=\" " + q + "\">"); //passing the original text of question
         sb.append("</form>");
         sb.append("</p>");
         return sb.toString();

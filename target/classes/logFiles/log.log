@@ -70,3 +70,226 @@
 19.06.2021 12:39:30.149 [main] INFO   r.e.e.t.e.NumberEvaluator - evaluating question = СЃРєРѕР»СЊРєРѕ С‚РµР±Рµ Р»РµС‚ {#42.5:0.5}, answer = 43.1
 19.06.2021 12:39:30.149 [main] INFO   r.e.e.t.e.NumberEvaluator - evaluating question = СЃРєРѕР»СЊРєРѕ С‚РµР±Рµ Р»РµС‚ {#42.5:0.5}, answer = 42.0
 19.06.2021 12:39:30.149 [main] INFO   r.e.e.t.e.NumberEvaluator - evaluating question = СЃРєРѕР»СЊРєРѕ С‚РµР±Рµ Р»РµС‚ {#42.5:0.5}, answer = 41.9
+19.06.2021 12:40:07.865 [main] INFO   r.e.e.t.e.NumberEvaluator - evaluating question = СЃРєРѕР»СЊРєРѕ С‚РµР±Рµ Р»РµС‚ {#42:2}, answer = 42
+19.06.2021 12:40:07.880 [main] INFO   r.e.e.t.e.NumberEvaluator - evaluating question = СЃРєРѕР»СЊРєРѕ С‚РµР±Рµ Р»РµС‚ {#42:2}, answer = 43
+19.06.2021 12:40:07.880 [main] INFO   r.e.e.t.e.NumberEvaluator - evaluating question = СЃРєРѕР»СЊРєРѕ С‚РµР±Рµ Р»РµС‚ {#42:2}, answer = 44
+19.06.2021 12:40:07.880 [main] INFO   r.e.e.t.e.NumberEvaluator - evaluating question = СЃРєРѕР»СЊРєРѕ С‚РµР±Рµ Р»РµС‚ {#42:2}, answer = 45
+19.06.2021 12:40:07.880 [main] INFO   r.e.e.t.e.NumberEvaluator - evaluating question = СЃРєРѕР»СЊРєРѕ С‚РµР±Рµ Р»РµС‚ {#42:2}, answer = 41
+19.06.2021 12:40:07.880 [main] INFO   r.e.e.t.e.NumberEvaluator - evaluating question = СЃРєРѕР»СЊРєРѕ С‚РµР±Рµ Р»РµС‚ {#42:2}, answer = 41.5
+19.06.2021 12:40:07.880 [main] INFO   r.e.e.t.e.NumberEvaluator - evaluating question = СЃРєРѕР»СЊРєРѕ С‚РµР±Рµ Р»РµС‚ {#42:2}, answer = 40
+19.06.2021 12:40:07.880 [main] INFO   r.e.e.t.e.NumberEvaluator - evaluating question = СЃРєРѕР»СЊРєРѕ С‚РµР±Рµ Р»РµС‚ {#42:2}, answer = 39
+19.06.2021 12:40:07.880 [main] INFO   r.e.e.t.e.NumberEvaluator - evaluating question = СЃРєРѕР»СЊРєРѕ С‚РµР±Рµ Р»РµС‚ {#42.5:0.5}, answer = 42.5
+19.06.2021 12:40:07.880 [main] INFO   r.e.e.t.e.NumberEvaluator - evaluating question = СЃРєРѕР»СЊРєРѕ С‚РµР±Рµ Р»РµС‚ {#42.5:0.5}, answer = 43
+19.06.2021 12:40:07.880 [main] INFO   r.e.e.t.e.NumberEvaluator - evaluating question = СЃРєРѕР»СЊРєРѕ С‚РµР±Рµ Р»РµС‚ {#42.5:0.5}, answer = 42.9
+19.06.2021 12:40:07.880 [main] INFO   r.e.e.t.e.NumberEvaluator - evaluating question = СЃРєРѕР»СЊРєРѕ С‚РµР±Рµ Р»РµС‚ {#42.5:0.5}, answer = 42.5
+19.06.2021 12:40:07.880 [main] INFO   r.e.e.t.e.NumberEvaluator - evaluating question = СЃРєРѕР»СЊРєРѕ С‚РµР±Рµ Р»РµС‚ {#42.5:0.5}, answer = 43
+19.06.2021 12:40:07.880 [main] INFO   r.e.e.t.e.NumberEvaluator - evaluating question = СЃРєРѕР»СЊРєРѕ С‚РµР±Рµ Р»РµС‚ {#42.5:0.5}, answer = 43.0
+19.06.2021 12:40:07.880 [main] INFO   r.e.e.t.e.NumberEvaluator - evaluating question = СЃРєРѕР»СЊРєРѕ С‚РµР±Рµ Р»РµС‚ {#42.5:0.5}, answer = 43.1
+19.06.2021 12:40:07.880 [main] INFO   r.e.e.t.e.NumberEvaluator - evaluating question = СЃРєРѕР»СЊРєРѕ С‚РµР±Рµ Р»РµС‚ {#42.5:0.5}, answer = 42.0
+19.06.2021 12:40:07.880 [main] INFO   r.e.e.t.e.NumberEvaluator - evaluating question = СЃРєРѕР»СЊРєРѕ С‚РµР±Рµ Р»РµС‚ {#42.5:0.5}, answer = 41.9
+19.06.2021 12:40:07.880 [main] INFO   r.e.e.t.e.NumberEvaluator - evaluating question = СЃРєРѕР»СЊРєРѕ С‚РµР±Рµ Р»РµС‚ {#42.5:0.5}, answer = 
+19.06.2021 12:40:07.880 [main] INFO   r.e.e.t.e.NumberEvaluator - evaluating question = СЃРєРѕР»СЊРєРѕ С‚РµР±Рµ Р»РµС‚ {#42.5:0.5}, answer = null
+19.06.2021 13:31:16.343 [http-nio-8080-exec-7] INFO   r.e.e.t.TestingUnit - new test was created for lessonId 3 and groupId 1
+19.06.2021 13:31:32.272 [http-nio-8080-exec-3] INFO   r.e.e.t.q.NumberHandler - processing question: Сколько тебе лет? {#42:0.5}
+19.06.2021 13:38:07.220 [http-nio-8080-exec-6] INFO   r.e.e.t.TestingUnit - new test was created for lessonId 3 and groupId 1
+19.06.2021 13:38:12.655 [http-nio-8080-exec-1] INFO   r.e.e.t.q.NumberHandler - processing question: Сколько тебе лет? {#42:0.5}
+19.06.2021 13:40:13.672 [http-nio-8080-exec-6] INFO   r.e.e.t.TestingUnit - new test was created for lessonId 3 and groupId 1
+19.06.2021 13:40:19.335 [http-nio-8080-exec-1] INFO   r.e.e.t.q.NumberHandler - processing question: Сколько тебе лет? {#42:0.5}
+19.06.2021 13:47:02.982 [http-nio-8080-exec-8] INFO   r.e.e.t.TestingUnit - new test was created for lessonId 3 and groupId 1
+19.06.2021 13:47:08.155 [http-nio-8080-exec-2] INFO   r.e.e.t.q.NumberHandler - processing question: Сколько тебе лет? {#42:0.5}
+19.06.2021 13:47:10.668 [http-nio-8080-exec-4] ERROR  r.e.e.t.e.UndefinedEvaluator - UndefinedEvaluator evaluate method evaluates question =  Сколько тебе лет? {#42:0.5}, answer = 42
+19.06.2021 13:47:10.670 [http-nio-8080-exec-4] INFO   r.e.e.t.q.ComplianceHandler - createListOfAnswers() method: q = Укажите столицы государств: {
+    =Канада -> Оттава
+    =Италия -> Рим
+    =Япония -> Токио
+    =Индия  -> Нью Дели
+}
+19.06.2021 13:47:10.671 [http-nio-8080-exec-4] INFO   r.e.e.t.q.ComplianceHandler - createListOfAnswers() method: list = [Оттава, Рим, Токио, Нью Дели]
+19.06.2021 13:47:31.430 [http-nio-8080-exec-7] INFO   r.e.e.t.q.ComplianceHandler - createListOfAnswers() method: q =  Укажите столицы государств: {
+    =Канада -> Оттава
+    =Италия -> Рим
+    =Япония -> Токио
+    =Индия  -> Нью Дели
+}
+19.06.2021 13:47:31.430 [http-nio-8080-exec-7] INFO   r.e.e.t.q.ComplianceHandler - createListOfAnswers() method: list = [Оттава, Рим, Токио, Нью Дели]
+19.06.2021 13:47:31.430 [http-nio-8080-exec-7] INFO   r.e.e.t.q.ComplianceHandler - createStringFromList() method: List<String> list = [Оттава, Рим, Токио, Нью Дели]
+19.06.2021 13:47:31.431 [http-nio-8080-exec-7] INFO   r.e.e.t.q.ComplianceHandler - createStringFromList() method: sb.toString() = Оттава=$=Рим=$=Токио=$=Нью Дели
+19.06.2021 13:47:31.431 [http-nio-8080-exec-7] INFO   r.e.e.t.q.ComplianceHandler - createStringFromList() method: List<String> list = [Оттава, Рим, Токио, Нью Дели]
+19.06.2021 13:47:31.431 [http-nio-8080-exec-7] INFO   r.e.e.t.q.ComplianceHandler - createStringFromList() method: sb.toString() = Оттава=$=Рим=$=Токио=$=Нью Дели
+19.06.2021 13:47:31.431 [http-nio-8080-exec-7] INFO   r.e.e.t.e.ComplianceEvaluator - ComplianceEvaluator evaluating: answer = Оттава=$=Рим=$=Токио=$=Нью Дели
+19.06.2021 13:47:31.432 [http-nio-8080-exec-7] INFO   r.e.e.t.e.ComplianceEvaluator - ComplianceEvaluator evaluate() : q = 
+Оттава=$=Рим=$=Токио=$=Нью Дели
+19.06.2021 13:47:31.432 [http-nio-8080-exec-7] INFO   r.e.e.t.e.ComplianceEvaluator - ComplianceEvaluator evaluate() questions = [Оттава, Рим, Токио, Нью Дели]
+19.06.2021 13:47:31.432 [http-nio-8080-exec-7] INFO   r.e.e.t.e.ComplianceEvaluator - ComplianceEvaluator evaluate() answers = [Оттава, Рим, Токио, Нью Дели]
+19.06.2021 13:47:34.553 [http-nio-8080-exec-8] INFO   r.e.e.t.e.ShortAnswerEvaluator - evaluating: answer = никто
+19.06.2021 13:47:36.323 [http-nio-8080-exec-9] INFO   r.e.e.t.e.MultiсhoiceEvaluator - evaluating: answer = родился 
+19.06.2021 13:47:38.217 [http-nio-8080-exec-10] INFO   r.e.e.t.e.MultiсhoiceEvaluator - evaluating: answer = четвертый
+
+19.06.2021 13:47:40.971 [http-nio-8080-exec-1] INFO   r.e.e.t.e.MultiсhoiceEvaluator - evaluating: answer = Китае
+    
+19.06.2021 13:47:41.002 [http-nio-8080-exec-1] INFO   r.e.e.d.TestResultDAOImpl - New  record to TESTRESULTS table has been added by student with ID 6
+19.06.2021 13:50:59.679 [http-nio-8080-exec-6] INFO   r.e.e.t.TestingUnit - new test was created for lessonId 3 and groupId 1
+19.06.2021 13:51:06.184 [http-nio-8080-exec-1] INFO   r.e.e.t.q.NumberHandler - processing question: Сколько тебе лет? {#42:0.5}
+19.06.2021 13:51:08.711 [http-nio-8080-exec-2] INFO   r.e.e.t.e.NumberEvaluator - evaluating question =  Сколько тебе лет? {#42:0.5}, answer = 42
+19.06.2021 13:51:08.714 [http-nio-8080-exec-2] INFO   r.e.e.t.q.ComplianceHandler - createListOfAnswers() method: q = Укажите столицы государств: {
+    =Канада -> Оттава
+    =Италия -> Рим
+    =Япония -> Токио
+    =Индия  -> Нью Дели
+}
+19.06.2021 13:51:08.715 [http-nio-8080-exec-2] INFO   r.e.e.t.q.ComplianceHandler - createListOfAnswers() method: list = [Оттава, Рим, Токио, Нью Дели]
+19.06.2021 13:51:15.557 [http-nio-8080-exec-5] INFO   r.e.e.t.q.ComplianceHandler - createListOfAnswers() method: q =  Укажите столицы государств: {
+    =Канада -> Оттава
+    =Италия -> Рим
+    =Япония -> Токио
+    =Индия  -> Нью Дели
+}
+19.06.2021 13:51:15.557 [http-nio-8080-exec-5] INFO   r.e.e.t.q.ComplianceHandler - createListOfAnswers() method: list = [Оттава, Рим, Токио, Нью Дели]
+19.06.2021 13:51:15.557 [http-nio-8080-exec-5] INFO   r.e.e.t.q.ComplianceHandler - createStringFromList() method: List<String> list = [Оттава, Рим, Токио, Нью Дели]
+19.06.2021 13:51:15.557 [http-nio-8080-exec-5] INFO   r.e.e.t.q.ComplianceHandler - createStringFromList() method: sb.toString() = Оттава=$=Рим=$=Токио=$=Нью Дели
+19.06.2021 13:51:15.558 [http-nio-8080-exec-5] INFO   r.e.e.t.q.ComplianceHandler - createStringFromList() method: List<String> list = [Оттава, Рим, Токио, Нью Дели]
+19.06.2021 13:51:15.558 [http-nio-8080-exec-5] INFO   r.e.e.t.q.ComplianceHandler - createStringFromList() method: sb.toString() = Оттава=$=Рим=$=Токио=$=Нью Дели
+19.06.2021 13:51:15.558 [http-nio-8080-exec-5] INFO   r.e.e.t.e.ComplianceEvaluator - ComplianceEvaluator evaluating: answer = Оттава=$=Рим=$=Токио=$=Нью Дели
+19.06.2021 13:51:15.559 [http-nio-8080-exec-5] INFO   r.e.e.t.e.ComplianceEvaluator - ComplianceEvaluator evaluate() : q = 
+Оттава=$=Рим=$=Токио=$=Нью Дели
+19.06.2021 13:51:15.559 [http-nio-8080-exec-5] INFO   r.e.e.t.e.ComplianceEvaluator - ComplianceEvaluator evaluate() questions = [Оттава, Рим, Токио, Нью Дели]
+19.06.2021 13:51:15.559 [http-nio-8080-exec-5] INFO   r.e.e.t.e.ComplianceEvaluator - ComplianceEvaluator evaluate() answers = [Оттава, Рим, Токио, Нью Дели]
+19.06.2021 13:51:19.174 [http-nio-8080-exec-4] INFO   r.e.e.t.e.ShortAnswerEvaluator - evaluating: answer = никто
+19.06.2021 13:51:21.402 [http-nio-8080-exec-6] INFO   r.e.e.t.e.MultiсhoiceEvaluator - evaluating: answer = родился 
+19.06.2021 13:51:23.186 [http-nio-8080-exec-7] INFO   r.e.e.t.e.MultiсhoiceEvaluator - evaluating: answer = четвертый
+
+19.06.2021 13:51:24.834 [http-nio-8080-exec-8] INFO   r.e.e.t.e.MultiсhoiceEvaluator - evaluating: answer = Китае
+    
+19.06.2021 13:51:24.840 [http-nio-8080-exec-8] INFO   r.e.e.d.TestResultDAOImpl - New  record to TESTRESULTS table has been added by student with ID 6
+19.06.2021 13:54:46.369 [http-nio-8080-exec-7] INFO   r.e.e.t.TestingUnit - new test was created for lessonId 3 and groupId 1
+19.06.2021 13:54:53.141 [http-nio-8080-exec-2] INFO   r.e.e.t.q.NumberHandler - processing question: Сколько тебе лет? {#42:0.5}
+19.06.2021 13:54:55.755 [http-nio-8080-exec-1] INFO   r.e.e.t.e.NumberEvaluator - evaluating question =  Сколько тебе лет? {#42:0.5}, answer = 42
+19.06.2021 13:54:55.758 [http-nio-8080-exec-1] INFO   r.e.e.t.q.ComplianceHandler - createListOfAnswers() method: q = Укажите столицы государств: {
+    =Канада -> Оттава
+    =Италия -> Рим
+    =Япония -> Токио
+    =Индия  -> Нью Дели
+}
+19.06.2021 13:54:55.758 [http-nio-8080-exec-1] INFO   r.e.e.t.q.ComplianceHandler - createListOfAnswers() method: list = [Оттава, Рим, Токио, Нью Дели]
+19.06.2021 13:55:15.658 [http-nio-8080-exec-4] INFO   r.e.e.t.q.ComplianceHandler - createListOfAnswers() method: q =  Укажите столицы государств: {
+    =Канада -> Оттава
+    =Италия -> Рим
+    =Япония -> Токио
+    =Индия  -> Нью Дели
+}
+19.06.2021 13:55:15.659 [http-nio-8080-exec-4] INFO   r.e.e.t.q.ComplianceHandler - createListOfAnswers() method: list = [Оттава, Рим, Токио, Нью Дели]
+19.06.2021 13:55:15.659 [http-nio-8080-exec-4] INFO   r.e.e.t.q.ComplianceHandler - createStringFromList() method: List<String> list = [Оттава, Рим, Токио, Нью Дели]
+19.06.2021 13:55:15.659 [http-nio-8080-exec-4] INFO   r.e.e.t.q.ComplianceHandler - createStringFromList() method: sb.toString() = Оттава=$=Рим=$=Токио=$=Нью Дели
+19.06.2021 13:55:15.660 [http-nio-8080-exec-4] INFO   r.e.e.t.q.ComplianceHandler - createStringFromList() method: List<String> list = [Оттава, Рим, Токио, Нью Дели]
+19.06.2021 13:55:15.660 [http-nio-8080-exec-4] INFO   r.e.e.t.q.ComplianceHandler - createStringFromList() method: sb.toString() = Оттава=$=Рим=$=Токио=$=Нью Дели
+19.06.2021 13:55:15.661 [http-nio-8080-exec-4] INFO   r.e.e.t.e.ComplianceEvaluator - ComplianceEvaluator evaluating: answer = Оттава=$=Рим=$=Токио=$=Нью Дели
+19.06.2021 13:55:15.661 [http-nio-8080-exec-4] INFO   r.e.e.t.e.ComplianceEvaluator - ComplianceEvaluator evaluate() : q = 
+Оттава=$=Рим=$=Токио=$=Нью Дели
+19.06.2021 13:55:15.661 [http-nio-8080-exec-4] INFO   r.e.e.t.e.ComplianceEvaluator - ComplianceEvaluator evaluate() questions = [Оттава, Рим, Токио, Нью Дели]
+19.06.2021 13:55:15.661 [http-nio-8080-exec-4] INFO   r.e.e.t.e.ComplianceEvaluator - ComplianceEvaluator evaluate() answers = [Оттава, Рим, Токио, Нью Дели]
+19.06.2021 13:55:18.611 [http-nio-8080-exec-5] INFO   r.e.e.t.e.ShortAnswerEvaluator - evaluating: answer = никто
+19.06.2021 13:55:20.273 [http-nio-8080-exec-7] INFO   r.e.e.t.e.MultiсhoiceEvaluator - evaluating: answer = родился 
+19.06.2021 13:55:21.744 [http-nio-8080-exec-6] INFO   r.e.e.t.e.MultiсhoiceEvaluator - evaluating: answer = четвертый
+
+19.06.2021 13:55:23.337 [http-nio-8080-exec-8] INFO   r.e.e.t.e.MultiсhoiceEvaluator - evaluating: answer = Китае
+    
+19.06.2021 13:55:23.343 [http-nio-8080-exec-8] INFO   r.e.e.d.TestResultDAOImpl - New  record to TESTRESULTS table has been added by student with ID 6
+19.06.2021 13:59:16.985 [http-nio-8080-exec-9] INFO   r.e.e.t.TestingUnit - new test was created for lessonId 3 and groupId 1
+19.06.2021 13:59:26.418 [http-nio-8080-exec-3] INFO   r.e.e.t.q.NumberHandler - processing question: Сколько тебе лет? {#42:0.5}
+19.06.2021 13:59:32.191 [http-nio-8080-exec-5] INFO   r.e.e.t.e.NumberEvaluator - evaluating question =  Сколько тебе лет? {#42:0.5}, answer = 4r
+19.06.2021 13:59:32.194 [http-nio-8080-exec-5] INFO   r.e.e.t.q.NumberHandler - processing question: Сколько тебе лет? {#42:0.5}
+19.06.2021 14:01:18.554 [http-nio-8080-exec-6] INFO   r.e.e.t.e.NumberEvaluator - evaluating question =  Сколько тебе лет? {#42:0.5}, answer = rew
+19.06.2021 14:01:18.558 [http-nio-8080-exec-6] INFO   r.e.e.t.q.NumberHandler - processing question: Сколько тебе лет? {#42:0.5}
+19.06.2021 14:01:20.624 [http-nio-8080-exec-9] INFO   r.e.e.t.e.NumberEvaluator - evaluating question =  Сколько тебе лет? {#42:0.5}, answer = dsadsa
+19.06.2021 14:01:20.627 [http-nio-8080-exec-9] INFO   r.e.e.t.q.NumberHandler - processing question: Сколько тебе лет? {#42:0.5}
+19.06.2021 14:01:22.255 [http-nio-8080-exec-8] INFO   r.e.e.t.e.NumberEvaluator - evaluating question =  Сколько тебе лет? {#42:0.5}, answer = dsadsa
+19.06.2021 14:01:22.256 [http-nio-8080-exec-8] INFO   r.e.e.t.q.NumberHandler - processing question: Сколько тебе лет? {#42:0.5}
+19.06.2021 14:01:23.974 [http-nio-8080-exec-10] INFO   r.e.e.t.e.NumberEvaluator - evaluating question =  Сколько тебе лет? {#42:0.5}, answer = dsadsa
+19.06.2021 14:01:23.977 [http-nio-8080-exec-10] INFO   r.e.e.t.q.NumberHandler - processing question: Сколько тебе лет? {#42:0.5}
+19.06.2021 14:06:12.800 [http-nio-8080-exec-6] INFO   r.e.e.t.TestingUnit - new test was created for lessonId 3 and groupId 1
+19.06.2021 14:06:18.973 [http-nio-8080-exec-1] INFO   r.e.e.t.q.NumberHandler - processing question: Сколько тебе лет? {#42:0.5}
+19.06.2021 14:06:22.742 [http-nio-8080-exec-2] INFO   r.e.e.t.e.NumberEvaluator - evaluating question =  Сколько тебе лет? {#42:0.5}, answer = 45п
+19.06.2021 14:06:22.744 [http-nio-8080-exec-2] INFO   r.e.e.t.q.NumberHandler - processing question: Сколько тебе лет? {#42:0.5}
+19.06.2021 14:06:31.524 [http-nio-8080-exec-4] INFO   r.e.e.t.e.NumberEvaluator - evaluating question =  Сколько тебе лет? {#42:0.5}, answer = 42
+19.06.2021 14:06:31.528 [http-nio-8080-exec-4] INFO   r.e.e.t.q.ComplianceHandler - createListOfAnswers() method: q = Укажите столицы государств: {
+    =Канада -> Оттава
+    =Италия -> Рим
+    =Япония -> Токио
+    =Индия  -> Нью Дели
+}
+19.06.2021 14:06:31.528 [http-nio-8080-exec-4] INFO   r.e.e.t.q.ComplianceHandler - createListOfAnswers() method: list = [Оттава, Рим, Токио, Нью Дели]
+19.06.2021 14:06:43.666 [http-nio-8080-exec-5] INFO   r.e.e.t.q.ComplianceHandler - createListOfAnswers() method: q =  Укажите столицы государств: {
+    =Канада -> Оттава
+    =Италия -> Рим
+    =Япония -> Токио
+    =Индия  -> Нью Дели
+}
+19.06.2021 14:06:43.666 [http-nio-8080-exec-5] INFO   r.e.e.t.q.ComplianceHandler - createListOfAnswers() method: list = [Оттава, Рим, Токио, Нью Дели]
+19.06.2021 14:06:43.666 [http-nio-8080-exec-5] INFO   r.e.e.t.q.ComplianceHandler - createStringFromList() method: List<String> list = [Оттава, Рим, Токио, Нью Дели]
+19.06.2021 14:06:43.666 [http-nio-8080-exec-5] INFO   r.e.e.t.q.ComplianceHandler - createStringFromList() method: sb.toString() = Оттава=$=Рим=$=Токио=$=Нью Дели
+19.06.2021 14:06:43.667 [http-nio-8080-exec-5] INFO   r.e.e.t.q.ComplianceHandler - createStringFromList() method: List<String> list = [Оттава, Рим, Токио, Нью Дели]
+19.06.2021 14:06:43.667 [http-nio-8080-exec-5] INFO   r.e.e.t.q.ComplianceHandler - createStringFromList() method: sb.toString() = Оттава=$=Рим=$=Токио=$=Нью Дели
+19.06.2021 14:06:43.667 [http-nio-8080-exec-5] INFO   r.e.e.t.e.ComplianceEvaluator - ComplianceEvaluator evaluating: answer = Оттава=$=Рим=$=Токио=$=Нью Дели
+19.06.2021 14:06:43.667 [http-nio-8080-exec-5] INFO   r.e.e.t.e.ComplianceEvaluator - ComplianceEvaluator evaluate() : q = 
+Оттава=$=Рим=$=Токио=$=Нью Дели
+19.06.2021 14:06:43.667 [http-nio-8080-exec-5] INFO   r.e.e.t.e.ComplianceEvaluator - ComplianceEvaluator evaluate() questions = [Оттава, Рим, Токио, Нью Дели]
+19.06.2021 14:06:43.667 [http-nio-8080-exec-5] INFO   r.e.e.t.e.ComplianceEvaluator - ComplianceEvaluator evaluate() answers = [Оттава, Рим, Токио, Нью Дели]
+19.06.2021 14:06:46.383 [http-nio-8080-exec-6] INFO   r.e.e.t.e.ShortAnswerEvaluator - evaluating: answer = никто
+19.06.2021 14:06:48.185 [http-nio-8080-exec-7] INFO   r.e.e.t.e.MultiсhoiceEvaluator - evaluating: answer = родился 
+19.06.2021 14:06:49.724 [http-nio-8080-exec-8] INFO   r.e.e.t.e.MultiсhoiceEvaluator - evaluating: answer = четвертый
+
+19.06.2021 14:06:51.036 [http-nio-8080-exec-9] INFO   r.e.e.t.e.MultiсhoiceEvaluator - evaluating: answer = Китае
+    
+19.06.2021 14:06:51.042 [http-nio-8080-exec-9] INFO   r.e.e.d.TestResultDAOImpl - New  record to TESTRESULTS table has been added by student with ID 6
+19.06.2021 14:09:48.219 [http-nio-8080-exec-6] INFO   r.e.e.t.TestingUnit - new test was created for lessonId 3 and groupId 1
+19.06.2021 14:09:53.514 [http-nio-8080-exec-1] INFO   r.e.e.t.q.NumberHandler - processing question: Сколько тебе лет? {#4а2:0.5}
+19.06.2021 14:09:57.280 [http-nio-8080-exec-2] INFO   r.e.e.t.e.NumberEvaluator - evaluating question =  Сколько тебе лет? {#4а2:0.5}, answer = 42
+19.06.2021 14:09:57.281 [http-nio-8080-exec-2] WARN   r.e.e.t.e.NumberEvaluator - NumberQuestion is incorrect: 4а2:0.5
+19.06.2021 14:09:57.283 [http-nio-8080-exec-2] INFO   r.e.e.t.q.ComplianceHandler - createListOfAnswers() method: q = Укажите столицы государств: {
+    =Канада -> Оттава
+    =Италия -> Рим
+    =Япония -> Токио
+    =Индия  -> Нью Дели
+}
+19.06.2021 14:09:57.283 [http-nio-8080-exec-2] INFO   r.e.e.t.q.ComplianceHandler - createListOfAnswers() method: list = [Оттава, Рим, Токио, Нью Дели]
+19.06.2021 14:10:58.109 [http-nio-8080-exec-4] INFO   r.e.e.t.q.ComplianceHandler - createListOfAnswers() method: q =  Укажите столицы государств: {
+    =Канада -> Оттава
+    =Италия -> Рим
+    =Япония -> Токио
+    =Индия  -> Нью Дели
+}
+19.06.2021 14:10:58.109 [http-nio-8080-exec-4] INFO   r.e.e.t.q.ComplianceHandler - createListOfAnswers() method: list = [Оттава, Рим, Токио, Нью Дели]
+19.06.2021 14:10:58.109 [http-nio-8080-exec-4] INFO   r.e.e.t.q.ComplianceHandler - createStringFromList() method: List<String> list = [Оттава, Рим, Токио, Нью Дели]
+19.06.2021 14:10:58.110 [http-nio-8080-exec-4] INFO   r.e.e.t.q.ComplianceHandler - createStringFromList() method: sb.toString() = Оттава=$=Рим=$=Токио=$=Нью Дели
+19.06.2021 14:10:58.111 [http-nio-8080-exec-4] INFO   r.e.e.t.q.ComplianceHandler - createStringFromList() method: List<String> list = [Оттава, Рим, Токио, Нью Дели]
+19.06.2021 14:10:58.111 [http-nio-8080-exec-4] INFO   r.e.e.t.q.ComplianceHandler - createStringFromList() method: sb.toString() = Оттава=$=Рим=$=Токио=$=Нью Дели
+19.06.2021 14:10:58.111 [http-nio-8080-exec-4] INFO   r.e.e.t.e.ComplianceEvaluator - ComplianceEvaluator evaluating: answer = Оттава=$=Рим=$=Токио=$=Нью Дели
+19.06.2021 14:10:58.111 [http-nio-8080-exec-4] INFO   r.e.e.t.e.ComplianceEvaluator - ComplianceEvaluator evaluate() : q = 
+Оттава=$=Рим=$=Токио=$=Нью Дели
+19.06.2021 14:10:58.112 [http-nio-8080-exec-4] INFO   r.e.e.t.e.ComplianceEvaluator - ComplianceEvaluator evaluate() questions = [Оттава, Рим, Токио, Нью Дели]
+19.06.2021 14:10:58.112 [http-nio-8080-exec-4] INFO   r.e.e.t.e.ComplianceEvaluator - ComplianceEvaluator evaluate() answers = [Оттава, Рим, Токио, Нью Дели]
+19.06.2021 14:11:01.260 [http-nio-8080-exec-5] INFO   r.e.e.t.e.ShortAnswerEvaluator - evaluating: answer = никто
+19.06.2021 14:11:02.913 [http-nio-8080-exec-6] INFO   r.e.e.t.e.MultiсhoiceEvaluator - evaluating: answer = родился 
+19.06.2021 14:11:04.449 [http-nio-8080-exec-7] INFO   r.e.e.t.e.MultiсhoiceEvaluator - evaluating: answer = четвертый
+
+19.06.2021 14:11:05.682 [http-nio-8080-exec-8] INFO   r.e.e.t.e.MultiсhoiceEvaluator - evaluating: answer = Китае
+    
+19.06.2021 14:11:05.688 [http-nio-8080-exec-8] INFO   r.e.e.d.TestResultDAOImpl - New  record to TESTRESULTS table has been added by student with ID 6
+19.06.2021 14:20:31.208 [http-nio-8080-exec-6] INFO   r.e.e.t.TestingUnit - new test was created for lessonId 3 and groupId 1
+19.06.2021 14:20:37.267 [http-nio-8080-exec-2] INFO   r.e.e.t.q.NumberHandler - processing question: Сколько тебе лет? {#4а2:0.5}
+19.06.2021 14:20:40.601 [http-nio-8080-exec-1] INFO   r.e.e.t.e.NumberEvaluator - evaluating question =  Сколько тебе лет? {#4а2:0.5}, answer = fdsa
+19.06.2021 14:20:40.603 [http-nio-8080-exec-1] INFO   r.e.e.t.q.NumberHandler - processing question: Сколько тебе лет? {#4а2:0.5}
+19.06.2021 14:20:43.999 [http-nio-8080-exec-4] INFO   r.e.e.t.e.NumberEvaluator - evaluating question =  Сколько тебе лет? {#4а2:0.5}, answer = 42
+19.06.2021 14:20:44.002 [http-nio-8080-exec-4] INFO   r.e.e.t.q.NumberHandler - processing question: Сколько тебе лет? {#4а2:0.5}
+19.06.2021 14:20:46.589 [http-nio-8080-exec-5] INFO   r.e.e.t.e.NumberEvaluator - evaluating question =  Сколько тебе лет? {#4а2:0.5}, answer = 42
+19.06.2021 14:20:46.591 [http-nio-8080-exec-5] INFO   r.e.e.t.q.NumberHandler - processing question: Сколько тебе лет? {#4а2:0.5}
+19.06.2021 14:20:48.382 [http-nio-8080-exec-6] INFO   r.e.e.t.e.NumberEvaluator - evaluating question =  Сколько тебе лет? {#4а2:0.5}, answer = 42
+19.06.2021 14:20:48.385 [http-nio-8080-exec-6] INFO   r.e.e.t.q.NumberHandler - processing question: Сколько тебе лет? {#4а2:0.5}
+19.06.2021 14:20:50.838 [http-nio-8080-exec-7] INFO   r.e.e.t.e.NumberEvaluator - evaluating question =  Сколько тебе лет? {#4а2:0.5}, answer = fds
+19.06.2021 14:20:50.841 [http-nio-8080-exec-7] INFO   r.e.e.t.q.NumberHandler - processing question: Сколько тебе лет? {#4а2:0.5}
+19.06.2021 14:30:12.448 [http-nio-8080-exec-6] INFO   r.e.e.t.TestingUnit - new test was created for lessonId 3 and groupId 1
+19.06.2021 14:30:17.993 [http-nio-8080-exec-2] INFO   r.e.e.t.q.NumberHandler - processing question: Сколько тебе лет? {#4а2:0.5}
+19.06.2021 14:30:22.280 [http-nio-8080-exec-1] INFO   r.e.e.t.e.NumberEvaluator - evaluating question =  Сколько тебе лет? {#4а2:0.5}, answer = 42
+19.06.2021 14:30:22.283 [http-nio-8080-exec-1] INFO   r.e.e.t.q.NumberHandler - processing question: Сколько тебе лет? {#4а2:0.5}
+19.06.2021 14:30:26.092 [http-nio-8080-exec-4] INFO   r.e.e.t.e.NumberEvaluator - evaluating question =  Сколько тебе лет? {#4а2:0.5}, answer = 42
+19.06.2021 14:30:26.094 [http-nio-8080-exec-4] INFO   r.e.e.t.q.NumberHandler - processing question: Сколько тебе лет? {#4а2:0.5}

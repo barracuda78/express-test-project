@@ -28,8 +28,9 @@ public class TrueFalseHandler extends Handler implements QuestionHandler{
 
         sb.append("<input type=\"radio\" name=\"choice3\" value=\"trueCase\">ДА<br>");
         sb.append("<input type=\"radio\" name=\"choice3\" value=\"falseCase\">НЕТ<br>");
-        sb.append("<input class=\"button\" type=\"submit\" name=\"choice3\" value=\"Отправить\">");
+        sb.append("<input class=\"button\" type=\"submit\" name=\"choice\" value=\"Отправить\">");
         sb.append("<input type=\"hidden\" name=\"type\" value=\"TRUE_FALSE\">");
+        sb.append("<input type=\"hidden\" name=\"question\" value=\" " + q + "\">"); //passing the original text of question
         sb.append("</form>");
         sb.append("</p>");
         return sb.toString();

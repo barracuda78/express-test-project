@@ -21,8 +21,8 @@ public class TestingUnit implements Serializable {
 
     private final int lessonId;
     private final int groupId;
-    private volatile List<String> questions;
-    private volatile int cursor;
+    private List<String> questions;
+    private int cursor;
 
     public TestingUnit(int lessonId, int groupId){
         this.lessonId = lessonId;
@@ -143,5 +143,15 @@ public class TestingUnit implements Serializable {
             }
         }
         return array.length == numberOfCommentedStrings.get();
+    }
+
+    /**
+    * This method is used in AnswerTestingServlet in case of any exceptions
+     * (such as NumberFormatException or IllegalArgumentException) when trying to evaluate
+     * a NumberQuestion. Just need to make student understand than wrong number format was entered.
+     * Decrements cursor to give chance answer this question correctly.
+    * */
+    public void decrementCursor(){
+        cursor--;
     }
 }

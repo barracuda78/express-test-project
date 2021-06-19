@@ -26,6 +26,7 @@ public class DescriptionHandler extends Handler implements QuestionHandler{
 
         sb.append("<input class=\"button\" type=\"submit\" name=\"descriptionButton\" value=\"Далее\">");
         sb.append("<input type=\"hidden\" name=\"type\" value=\"DESCRIPTION\">");
+        sb.append("<input type=\"hidden\" name=\"question\" value=\" " + q + "\">"); //passing the original text of question
         sb.append("</form>");
         sb.append("</p>");
         return sb.toString();

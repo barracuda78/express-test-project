@@ -9,6 +9,7 @@
 <%@ page import="ru.eforward.express_testing.utils.LogHelper" %>
 <%@ page import="java.util.Optional" %>
 <%@ page import="ru.eforward.express_testing.utils.CloneMaker" %>
+<%@ page import="java.util.Objects" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
@@ -162,6 +163,16 @@
     <!--end of countdown code-->
 
      <%=htmlString%>
+
+    <%
+        //httpSession.setAttribute("nfe", "nfe");
+        String numberFormatException = (String)session.getAttribute("nfe");
+        if(Objects.nonNull(numberFormatException) && "nfe".equals(numberFormatException)){
+            %>
+                <%="Вы указали число в некорректном формате. Введите число в формате 5.23 или в формате 25"%>
+            <%
+        }
+    %>
 
      <%
         }

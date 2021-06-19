@@ -58,6 +58,11 @@ public enum QuestionType {
         handlers.add(new ShortAnswerEvaluator());
         handlers.add(new TrueFalseEvaluator());
         handlers.add(new ComplianceEvaluator());
+        handlers.add(new NumberEvaluator());
+        handlers.add(new EssayEvaluator());
+        handlers.add(new DescriptionEvaluator());
+        handlers.add(new CommentEvaluator());
+        handlers.add(new UndefinedEvaluator());
 
         for(EvaluatingHandler h : handlers){
             if(h.canEvaluate(enumType)){

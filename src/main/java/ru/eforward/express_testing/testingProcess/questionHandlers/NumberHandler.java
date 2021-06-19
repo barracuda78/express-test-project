@@ -32,9 +32,10 @@ public class NumberHandler extends Handler implements QuestionHandler{
         //3. build the html-string here:
         StringBuilder sb = startBuildingHtml(questionName, questionItself);
 
-        sb.append("<input type=\"text\" required placeholder=\"напишите ваш ответ\" name=\"NumberAnswer\"><br>");
+        sb.append("<input type=\"text\" required placeholder=\"напишите ваш ответ\" name=\"choice\"><br>");
         sb.append("<input class=\"button\" type=\"submit\" name=\"numberButton\" value=\"Отправить\">");
         sb.append("<input type=\"hidden\" name=\"type\" value=\"NUMBER\">");
+        sb.append("<input type=\"hidden\" name=\"question\" value=\" " + q + "\">"); //passing the original text of question
         sb.append("</form>");
         sb.append("</p>");
         return sb.toString();

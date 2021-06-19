@@ -48,6 +48,7 @@ public class AnswerHandlerServlet extends HttpServlet {
         //MULTICHOICE AND SHORTANSWER:
         //sb.append("<input type=\"hidden\" name=\"type\" value=\"MULTICHOICE\">");
         String type = request.getParameter("type");
+        LogHelper.writeMessage("AnswerHandlerServlet: type = " + type);
         //sb.append("<input type=\"hidden\" name=\"question\" value=\" " + q + "\">"); //passing the original text of question
         String question = request.getParameter("question");
         String choice = request.getParameter("choice"); //this is the answer student gave
@@ -71,7 +72,21 @@ public class AnswerHandlerServlet extends HttpServlet {
 
             //evaluate question, add question score to the totalScore:
             Evaluating evaluating = new TestEvaluate();
-            int score = evaluating.getScore(questionType, question, choice);
+
+            int score = 0;
+            try{
+                score = evaluating.getScore(questionType, question, choice);
+            }catch(NumberFormatException nfe){
+                LogHelper.writeMessage("AnswerHandlerServlet : NumberFormatException");
+                httpSession.setAttribute("nfe", "nfe");
+                testingUnit.decrementCursor();
+                request.getRequestDispatcher("testing").forward(request, response);
+            }catch(IllegalArgumentException iae){
+                LogHelper.writeMessage("AnswerHandlerServlet : IllegalArgumentException");
+                httpSession.setAttribute("iae", "iae");
+                request.getRequestDispatcher("testing").forward(request, response);
+            }
+
             int totalScore = testResult.getTotalScore();
             testResult.setTotalScore(totalScore + score);
 

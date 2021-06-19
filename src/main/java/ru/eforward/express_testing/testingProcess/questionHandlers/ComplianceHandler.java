@@ -33,8 +33,8 @@ public class ComplianceHandler extends Handler implements  QuestionHandler{
 
         Map<String, String> map = createMapOfQuestionAnswers(q); // map of question-answer.
         List<String> list = createListOfAnswers(q); //for answers only.
-
-        //4. build the html-string here:
+        Collections.shuffle(list);
+        //3. build the html-string here:
         StringBuilder sb = startBuildingHtml(questionName, questionItself);
 
         sb.append("<table border=\"1\">");

@@ -27,7 +27,7 @@ public class NumberEvaluator implements EvaluatingHandler{
 
 
     @Override
-    public int evaluate(String question, String answer) throws NumberFormatException{
+    public int evaluate(String question, String answer){
         LOGGER.info("evaluating question = " + question + ", answer = " + answer);
         if(answer == null  || question == null){
             return 0;
@@ -39,17 +39,33 @@ public class NumberEvaluator implements EvaluatingHandler{
         }
 
         //get right answer and it's type:
-        List<String> correctAnswers = getCorrectAnswers(question); //todo:  it throws exception. handle it. decide, where to handle
+
+        List<String> correctAnswers = getCorrectAnswers(question);
         NumberHandler.NumberQuestionType subType = getType(question);
 
         if(subType == NumberHandler.NumberQuestionType.SINGLE){
             return answer.equals(correctAnswers.get(0)) ? 10 : 0;
         }
         else if(subType == NumberHandler.NumberQuestionType.DIAPASON){
-            double min = Double.parseDouble(correctAnswers.get(0)); //NumberFormatException was checked earlier in getCorrectAnswers()
-            double max = Double.parseDouble(correctAnswers.get(1));
+            double min = 0.0d;
+            double max = 0.0d;
+            try {
+                min = Double.parseDouble(correctAnswers.get(0)); //NumberFormatException was checked earlier in getCorrectAnswers()
+                max = Double.parseDouble(correctAnswers.get(1));
+            }
+            catch(NumberFormatException nfe){
+                LOGGER.warn("NumberQuestion is incorrect: " + question);
+                return 10; //give student maximum score if answer is incorrect.
+            }
 
-            double choice = Double.parseDouble(answer); //method throws NumberFormatException to call-point
+            double choice = 0.0d;
+            try {
+                choice = Double.parseDouble(answer); //method throws NumberFormatException to call-point
+            }catch (NumberFormatException nfe){
+                LOGGER.info("User entered not a number");
+                throw new IllegalArgumentException("User entered not a number. Can not be parsed to double", nfe);
+            }
+
 
             BigDecimal minBD = new BigDecimal(min);
             minBD = minBD.setScale(5, BigDecimal.ROUND_HALF_UP);
@@ -65,10 +81,25 @@ public class NumberEvaluator implements EvaluatingHandler{
             }
         }
         else if(subType == NumberHandler.NumberQuestionType.PRECISION){
-            double answ = Double.parseDouble(correctAnswers.get(0)); //exc was checked earlier in getCorrectAnswers()
-            double precision = Double.parseDouble(correctAnswers.get(1));
+            double answ  = 0.0d;
+            double precision = 0.0d;
+            try {
+                answ = Double.parseDouble(correctAnswers.get(0)); //exc was checked earlier in getCorrectAnswers()
+                precision = Double.parseDouble(correctAnswers.get(1));
+            }
+            catch(NumberFormatException nfe){
+                LOGGER.warn("NumberQuestion is incorrect: " + question);
+                return 10; //give student maximum score if answer is incorrect.
+            }
 
-            double choice = Double.parseDouble(answer); //method throws NumberFormatException to call-point
+            double choice = 0.0d;
+            try {
+                choice = Double.parseDouble(answer); //method throws NumberFormatException to call-point
+            }catch (NumberFormatException nfe){
+                LOGGER.info("User entered not a number");
+                throw new IllegalArgumentException("User entered not a number. Can not be parsed to double", nfe);
+            }
+
 
             BigDecimal answerBD = new BigDecimal(answ);
             answerBD = answerBD.setScale(5, BigDecimal.ROUND_HALF_UP);
@@ -119,7 +150,7 @@ public class NumberEvaluator implements EvaluatingHandler{
      * @return list of Strings containing within curly braces of this question
      * @throws IllegalArgumentException if a given parameter is not a valid NumberQuestion.
      * */
-    private List<String> getCorrectAnswers(String q) throws IllegalArgumentException{
+    private List<String> getCorrectAnswers(String q) throws NumberFormatException{
         List<String> numbers = new ArrayList<>();
         q = getPartWithNumbers(q);
         String[] array = null;
@@ -136,14 +167,7 @@ public class NumberEvaluator implements EvaluatingHandler{
         System.out.println("String[] array = " + Arrays.toString(array));
 
         for(String n : array){
-            try {
-                Double.parseDouble(n); //uer parseDouble() just to be sure it was really a number literal .
                 numbers.add(n);
-            }
-            catch (NumberFormatException ne){
-                LOGGER.warn("NumberQuestion is incorrect: " + q);
-                throw new IllegalArgumentException("the number can not be parsed to Double");
-            }
         }
         return numbers;
     }
@@ -163,15 +187,5 @@ public class NumberEvaluator implements EvaluatingHandler{
             return q.substring(q.indexOf("#") + 1, q.indexOf("}"));
         }
         throw new IllegalArgumentException("This might not be a NumberQuestion at all");
-    }
-
-    public static void main(String[] args) {
-        String question = "сколько тебе лет {#42:2}";
-        String answer = "42.5";
-        NumberEvaluator ne = new NumberEvaluator();
-        List<String> numbers = ne.getCorrectAnswers(question);
-        System.out.println("numbers List<> = " + numbers);
-
-        System.out.println("score = " + ne.evaluate(question, answer));
     }
 }
