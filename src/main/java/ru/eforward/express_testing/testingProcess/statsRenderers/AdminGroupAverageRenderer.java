@@ -5,7 +5,6 @@ import ru.eforward.express_testing.daoInterfaces.TestResultDAO;
 import ru.eforward.express_testing.testingProcess.StatisticType;
 import ru.eforward.express_testing.utils.LogHelper;
 
-import java.util.Collection;
 import java.util.Map;
 
 public class AdminGroupAverageRenderer implements StatsRenderer{
@@ -16,7 +15,7 @@ public class AdminGroupAverageRenderer implements StatsRenderer{
     }
 
     @Override
-    public String render() {
+    public <T>String render(T stub) {
         TestResultDAO testResultDAO = new TestResultDAOImpl();
         Map<String, Double> map = testResultDAO.getGroupAverages(); //used for stats like 'groupName : averageScores'
 

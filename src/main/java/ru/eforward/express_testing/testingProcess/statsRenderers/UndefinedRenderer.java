@@ -11,7 +11,7 @@ public class UndefinedRenderer implements StatsRenderer{
     }
 
     @Override
-    public String render() {
+    public String render(Object stub) {
         return "<p>Нет статистики</p>";
     }
 }

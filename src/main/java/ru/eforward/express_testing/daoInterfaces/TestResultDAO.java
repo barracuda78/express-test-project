@@ -13,4 +13,7 @@ public interface TestResultDAO {
 
     Map<String, Double> getGroupAverages();
 
+    Map<String, Double> getTeacherGroupAverages(int tId);
+
+    Map<String, Double> getStudentStats(int sId);
 }

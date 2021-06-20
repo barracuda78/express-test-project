@@ -58,11 +58,30 @@
 <p1>Проверить, доступен ли <a href="testing">тест</a></p1>
 <hr/>
 
-<hr/>
-<p1>Посмотреть <a href="testResults">результаты тестов</a></p1>
-<hr/>
+<p1>Посмотреть <a href="StudentTestResultServlet">результаты тестов СТАРЫЕ</a></p1>
 
-<p1>Посмотреть <a href="StudentTestResultServlet">результаты тестов новые</a></p1>
+<div id="box">
+    <form name="add" action="StatisticServlet" method="GET">
+        <table>         <%--таблица--%>
+            <tr>        <%--table raw--%>
+                <p>Мои результаты тестов:</p>
+            </tr>
+            <tr>
+                <td><input type="submit" name="showStudentStats" value="Статистика"/></td>
+            </tr>
+
+        </table>
+    </form>
+</div>
+
+<%
+    String stats = (String)request.getAttribute("stats");
+    if(stats != null){
+        %>
+            <%=stats%>
+        <%
+    }
+%>
 
 <hr/>
 <a href="<c:url value='/logout' />">Выйти</a>

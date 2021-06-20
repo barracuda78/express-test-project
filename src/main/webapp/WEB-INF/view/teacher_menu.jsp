@@ -99,12 +99,37 @@
                 <td>id группы: <input type="text" name="groupId" size="12"/></td>
             </tr>
             <tr>
-                <td><input type="submit" name="showStats" value="посмотреть статистику"/></td>
+                <td><input type="submit" name="showStats" value="посмотреть статистику группы"/></td>
             </tr>
 
         </table>
     </form>
 </div>
+
+
+<div id="box">
+    <form name="add" action="StatisticServlet" method="GET">
+        <table>         <%--таблица--%>
+            <tr>        <%--table raw--%>
+                <p>Статистика по моим группам:</p>
+            </tr>
+            <tr>
+                <td><input type="submit" name="showTeacherAllGroupStats" value="статистика по всем моим группам"/></td>
+            </tr>
+
+        </table>
+    </form>
+</div>
+
+<%
+    String stats = (String)request.getAttribute("stats");
+    if(stats != null){
+        %>
+            <%=stats%>
+        <%
+    }
+%>
+
 
 <br/>
 

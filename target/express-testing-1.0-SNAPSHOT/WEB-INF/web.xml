@@ -68,6 +68,16 @@
 
 
     <servlet>
+        <servlet-name>StudentMenu</servlet-name>
+        <jsp-file>/WEB-INF/view/student_menu.jsp</jsp-file>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>StudentMenu</servlet-name>
+        <url-pattern>/studentMenu</url-pattern>
+    </servlet-mapping>
+
+
+    <servlet>
         <servlet-name>CreateSchool</servlet-name>
         <jsp-file>/WEB-INF/view/create_school.jsp</jsp-file>
     </servlet>

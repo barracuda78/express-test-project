@@ -4,7 +4,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import ru.eforward.express_testing.daoInterfaces.TestResultDAO;
 import ru.eforward.express_testing.dbConnection.PoolConnector;
-import ru.eforward.express_testing.model.school.Lesson;
 import ru.eforward.express_testing.testingProcess.TestResult;
 import ru.eforward.express_testing.utils.LogHelper;
 
@@ -18,6 +17,79 @@ public class TestResultDAOImpl implements TestResultDAO {
     private static final Logger LOGGER = LoggerFactory.getLogger(TestResultDAOImpl.class);
     private Connection connection;
     private PreparedStatement preparedStatement;
+
+    @Override //TO GET STATS BY STUDENT FOR ALL HIS TESTRESULTS. LESSON_NAME - AVERAGE_SCORE.
+    public Map<String, Double> getStudentStats(int sId){
+        if(sId <= 0){
+            return null;
+        }
+        if(connection == null){
+            connection = PoolConnector.getConnection();
+        }
+        Map<String, Double> map = null;
+        if(connection != null) {
+            try {
+                String query = "SELECT LESSON_NAME, AVG(TOTAL_SCORE) AS AVERAGE, USERS.ID FROM USERS\n" +
+                        "INNER JOIN TESTRESULTS T on USERS.ID = T.STUDENT_ID\n" +
+                        "INNER JOIN LESSONS L on T.LESSON_ID = L.ID\n" +
+                        "GROUP BY LESSON_NAME, USERS.ID HAVING USERS.ID = ?;";
+                preparedStatement = connection.prepareStatement(query);
+                preparedStatement.setInt(1, sId);
+                ResultSet resultSet = preparedStatement.executeQuery();
+                if(!resultSet.wasNull()){
+                    while(resultSet.next()){
+                        map = new LinkedHashMap<>();
+                        String lesson_name = resultSet.getString("LESSON_NAME");
+                        Double total_score = resultSet.getDouble("AVERAGE");
+                        map.put(lesson_name, total_score);
+                    }
+                }
+                preparedStatement.close();
+                PoolConnector.closeConnection(connection);
+            } catch (SQLException throwables) {
+                LOGGER.error("SQLException while select query to DB getting student stats");
+                throwables.printStackTrace();
+            }
+        }
+        LogHelper.writeMessage("TestResultDAOImpl: getStudentStats(): map = " + map);
+        return map;
+    }
+
+    @Override
+    public Map<String, Double> getTeacherGroupAverages(int tId){
+        if(tId <= 0){
+            return null;
+        }
+        if(connection == null){
+            connection = PoolConnector.getConnection();
+        }
+        Map<String, Double> map = null;
+        if(connection != null) {
+            try {
+                String query = "SELECT GROUP_NAME, AVG(TOTAL_SCORE) AS AVERAGE, G.TEACHER_ID  FROM USERS\n" +
+                        "INNER JOIN GROUPS G on USERS.GROUP_ID = G.ID\n" +
+                        "INNER JOIN TESTRESULTS T on USERS.ID = T.STUDENT_ID\n" +
+                        "GROUP BY GROUP_NAME, G.TEACHER_ID HAVING G.TEACHER_ID = ?;";
+                preparedStatement = connection.prepareStatement(query);
+                preparedStatement.setInt(1, tId);
+                ResultSet resultSet = preparedStatement.executeQuery();
+                if(!resultSet.wasNull()){
+                    map = new LinkedHashMap<>();
+                    while(resultSet.next()) {
+                        String groupName = resultSet.getString("GROUP_NAME");
+                        Double averageScores = resultSet.getDouble("AVERAGE");
+                        map.put(groupName, averageScores);
+                    }
+                }
+                preparedStatement.close();
+                PoolConnector.closeConnection(connection);
+            } catch (SQLException throwables) {
+                LOGGER.error("SQLException while select query to DB getting group averages stats");
+                throwables.printStackTrace();
+            }
+        }
+        return map;
+    }
 
     @Override
     public Map<String, Double> getGroupAverages(){
@@ -48,9 +120,7 @@ public class TestResultDAOImpl implements TestResultDAO {
                 throwables.printStackTrace();
             }
         }
-        LogHelper.writeMessage("TestResultDAOImpl : map = " + map);
         return map;
-
     }
 
     @Override
@@ -73,15 +143,6 @@ public class TestResultDAOImpl implements TestResultDAO {
                 if(!resultSet.wasNull()){
                     testResults = new ArrayList<>();
                     while(resultSet.next()) {
-                        //SELECT USERS.ID, USERS.LASTNAME, T.ID, LESSON_ID, RESULTS, TOTAL_SCORE - from resultset
-
-                        //public class TestResult {
-                        //    private int id;
-                        //    private int studentId;
-                        //    private int schoolId;
-                        //    private int lessonId;
-                        //    private Map<String, String> map = new LinkedHashMap<>();
-                        //    private int totalScore;
                         int id = resultSet.getInt("TESTRESULTS.ID");
                         int studentId = resultSet.getInt("USERS.ID");
                         int schoolId = 1; //todo: do not hardcode it, build one more join to SCHOOLS table;
