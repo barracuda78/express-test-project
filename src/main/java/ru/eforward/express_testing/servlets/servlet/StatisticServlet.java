@@ -2,7 +2,9 @@ package ru.eforward.express_testing.servlets.servlet;
 
 import ru.eforward.express_testing.dao.TestResultDAOImpl;
 import ru.eforward.express_testing.daoInterfaces.TestResultDAO;
+import ru.eforward.express_testing.testingProcess.StatisticType;
 import ru.eforward.express_testing.testingProcess.TestResult;
+import ru.eforward.express_testing.testingProcess.statsRenderers.StatsRenderer;
 import ru.eforward.express_testing.utils.LogHelper;
 
 import javax.servlet.ServletException;
@@ -46,10 +48,17 @@ public class StatisticServlet extends HttpServlet {
 
         String showAdminStats = request.getParameter("showAdminStats");
         if(showAdminStats != null){
-            TestResultDAO testResultDAO = new TestResultDAOImpl();
-            Map<String, Double> map = testResultDAO.getGroupAverages(); //used for stats like 'groupName : averageScores'
-            request.setAttribute("groupAverages", map);
-            LogHelper.writeMessage("StatisticServlet : map = " + map);
+
+
+            StatsRenderer statsRenderer = StatisticType.getStatsRenderer(StatisticType.ADMIN_GROUP_AVERAGE);
+            String stats = statsRenderer.render();
+            request.setAttribute("stats", stats);
+
+//            TestResultDAO testResultDAO = new TestResultDAOImpl();
+//            Map<String, Double> map = testResultDAO.getGroupAverages(); //used for stats like 'groupName : averageScores'
+//            request.setAttribute("groupAverages", map);
+
+
         }
         request.getRequestDispatcher("adminMenu").forward(request, response);
 

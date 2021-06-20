@@ -74,20 +74,11 @@
 <div>
 
 <%
-    Map<String, Double> map = (Map<String, Double>)request.getAttribute("groupAverages");
-
-    if(Objects.nonNull(map)){
-        LogHelper.writeMessage("admin_menu.jsp : map = " + map);
+    String stats = (String)request.getAttribute("stats");
+    if(stats != null){
         %>
-            <p>Средний балл по каждой группе школы:</p>
+                <%=stats%>
         <%
-        for(Map.Entry<String, Double> pair : map.entrySet()){
-            String groupName = pair.getKey();
-            Double averageScores = pair.getValue();
-            %>
-                <%="<p>" + groupName + " : " + averageScores + "</p>"%>
-            <%
-        }
     }
 %>
 </div>
