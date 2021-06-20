@@ -1,3 +1,6 @@
+<%--
+This page is used by STUDENT as a main page
+--%>
 <%@ page import="ru.eforward.express_testing.model.User" %>
 <%@ page import="ru.eforward.express_testing.model.Student" %>
 <%@ page import="java.nio.file.Paths" %>

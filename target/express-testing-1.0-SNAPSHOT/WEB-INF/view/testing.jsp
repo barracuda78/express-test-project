@@ -1,3 +1,6 @@
+<%--
+This page is used for go through the test by user.
+--%>
 <%@ page import="ru.eforward.express_testing.model.Student" %>
 <%@ page import="java.nio.file.Paths" %>
 <%@ page import="ru.eforward.express_testing.dao.TestDAOFakeDatabaseImpl" %>

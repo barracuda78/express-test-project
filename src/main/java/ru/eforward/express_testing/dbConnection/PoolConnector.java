@@ -2,7 +2,6 @@ package ru.eforward.express_testing.dbConnection;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import ru.eforward.express_testing.dao.UserDAOImpl;
 import ru.eforward.express_testing.utils.LogHelper;
 
 import javax.naming.Context;
@@ -11,7 +10,6 @@ import javax.naming.NamingException;
 import javax.sql.DataSource;
 import java.sql.Connection;
 import java.sql.SQLException;
-
 
 public class PoolConnector {
     private static final Logger LOGGER = LoggerFactory.getLogger(PoolConnector.class);
@@ -62,5 +60,4 @@ public class PoolConnector {
         }
         return connection;
     }
-
 }

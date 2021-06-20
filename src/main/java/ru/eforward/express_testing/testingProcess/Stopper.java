@@ -1,7 +1,8 @@
 package ru.eforward.express_testing.testingProcess;
 
 /**
-*This class is used within testing.jsp
+* This class is used within testing.jsp to stop the test
+* and to give js time-counter correct info to render it to view.
 */
 public class Stopper {
     long startTime;

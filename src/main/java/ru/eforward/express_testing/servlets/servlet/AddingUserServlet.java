@@ -42,7 +42,6 @@ public class AddingUserServlet extends HttpServlet {
 
         if(lastName != null && firstName != null && email != null && password != null && role_id != null && branch_id != null){
             UserDAO userDAO = new UserDAOImpl();
-            //User user = "1".equals(role_id) ? new Admin() : ("2".equals(role_id) ? new Teacher() : new Student());
             User.ROLE role = "1".equals(role_id) ? User.ROLE.ADMIN : ("2".equals(role_id) ? User.ROLE.TEACHER : User.ROLE.STUDENT);
             UserBuilder userBuilder = new UserBuilder(role);
             int branchId = Integer.parseInt(branch_id);
@@ -74,18 +73,6 @@ public class AddingUserServlet extends HttpServlet {
         request.setAttribute("userCreated", userCreated);
         request.setAttribute("allFieldsFilled", allFieldsFilled);
         request.getRequestDispatcher("adminMenu").forward(request, response);
-
-        //just for testing:
-//        try(PrintWriter out = response.getWriter()){
-//            out.println("<p>Мы в сервлете AddingUserServlet</p>");
-//            out.println("<p>lastName = " + lastName + "</p>");
-//            out.println("<p>firstName = " + firstName + "</p>");
-//            out.println("<p>middleName = " + middleName + "</p>");
-//            out.println("<p>email = " + email + "</p>");
-//            out.println("<p>password = " + password + "</p>");
-//            out.println("<p>role_id = " + role_id + "</p>");
-//            out.println("<p>branch_id = " + branch_id + "</p>");
-//        }
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

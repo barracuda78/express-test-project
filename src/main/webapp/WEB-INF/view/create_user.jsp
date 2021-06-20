@@ -1,3 +1,6 @@
+<%--
+This page is used by ADMIN to create new users
+--%>
 <%@ page import="ru.eforward.express_testing.model.Teacher" %>
 <%@ page import="java.util.List" %>
 <%@ page import="java.util.ArrayList" %>
@@ -8,6 +11,7 @@
 <%@ page import="ru.eforward.express_testing.model.school.Branch" %>
 <%@ page import="ru.eforward.express_testing.daoInterfaces.BranchDAO" %>
 <%@ page import="ru.eforward.express_testing.dao.BranchDAOImpl" %>
+<%@ page import="ru.eforward.express_testing.utils.LogHelper" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
@@ -17,6 +21,9 @@
 <body>
     <%
         Admin admin = (Admin)session.getAttribute("user");
+
+        LogHelper.writeMessage("create_user.jsp: admin = " + admin);
+
 
         UserDAO userDAO = new UserDAOImpl();
         List<User> users = userDAO.getUsersByRole(User.ROLE.TEACHER, admin.getSchool());

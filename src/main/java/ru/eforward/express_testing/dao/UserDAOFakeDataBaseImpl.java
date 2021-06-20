@@ -6,33 +6,26 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class UserDAOFakeDataBaseImpl implements UserDAO {
-
     private final List<User> store = new ArrayList<>(); //this is a fake database
 
     public User getById(int id) {
-
         User result = null;
-
         for (User user : store) {
             if (user.getId() == id) {
                 result = user;
             }
         }
-
         return result;
     }
 
     @Override
     public User getUserByLoginPassword(final String login, final String password) {
-
         User result = null;
-
         for (User user : store) {
             if (user.getLogin().equals(login) && user.getPassword().equals(password)) {
                 result = user;
             }
         }
-
         return result;
     }
 
@@ -43,13 +36,11 @@ public class UserDAOFakeDataBaseImpl implements UserDAO {
 
     @Override
     public boolean addUser(final User user, int parent_id) {
-
         for (User u : store) {
             if (u.getLogin().equals(user.getLogin()) && u.getPassword().equals(user.getPassword())) {
                 return false;
             }
         }
-
         return store.add(user);
     }
 
@@ -61,11 +52,9 @@ public class UserDAOFakeDataBaseImpl implements UserDAO {
                 result = user.getRole();
             }
         }
-
         return result;
     }
 
-    //do not use it for fake database:
     @Override
     public List<User> getUsersByRole(User.ROLE role, int school_id) {
         return null;
@@ -73,16 +62,13 @@ public class UserDAOFakeDataBaseImpl implements UserDAO {
 
     @Override
     public boolean userIsPresent(final String login, final String password) {
-
         boolean result = false;
-
         for (User user : store) {
             if (user.getLogin().equals(login) && user.getPassword().equals(password)) {
                 result = true;
                 break;
             }
         }
-
         return result;
     }
 }

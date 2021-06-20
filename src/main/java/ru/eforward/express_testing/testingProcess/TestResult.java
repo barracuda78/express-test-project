@@ -17,11 +17,17 @@ public class TestResult {
     private int studentId;
     private int schoolId;
     private int lessonId;
+    //map like: QUESTION - ANSWER+scoreOfAnswer
     private Map<String, String> map = new LinkedHashMap<>();
     private int totalScore;
-    //todo: do I need here int maxScore (to know what was maximum for this test?
+    //todo: do I need here int maxScore (to know what was maximum for this test?)
+    // or create counting method for it by multiplying size * 10 ?
 
-    public synchronized void setTotalScore(int totalScore) {
+    /**
+     * Sets a total amount of scores could be earned by student for this test.
+     * @param totalScore
+     */
+    public void setTotalScore(int totalScore) {
         this.totalScore = totalScore;
     }
 }

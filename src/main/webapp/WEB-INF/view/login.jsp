@@ -1,3 +1,6 @@
+<%--
+This page is used by all users to log in to the service
+--%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>

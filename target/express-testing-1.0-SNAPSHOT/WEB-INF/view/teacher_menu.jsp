@@ -1,3 +1,6 @@
+<%--
+This page is used by TEACHERS as a main page
+--%>
 <%@ page import="ru.eforward.express_testing.model.Teacher" %>
 <%@ page import="ru.eforward.express_testing.model.school.Group" %>
 <%@ page import="java.util.List" %>

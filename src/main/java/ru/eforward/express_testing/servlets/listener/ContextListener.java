@@ -22,6 +22,8 @@ import java.util.concurrent.atomic.AtomicReference;
 import static ru.eforward.express_testing.model.User.ROLE.*;
 
 /**
+ * Is used for development purposes only
+ * Is used with no access to DB.
  * ContextListener put user dao to servlet context.
  */
 @WebListener
@@ -71,7 +73,6 @@ public class ContextListener implements ServletContextListener {
                 .addSchool(1)
                 .buildUser();
         userDao.get().addUser(user02, 2);
-
 
         List<Student> students = new ArrayList<>();
         students.add((Student)user01);

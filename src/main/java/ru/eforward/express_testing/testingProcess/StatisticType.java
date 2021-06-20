@@ -10,6 +10,12 @@ public enum StatisticType {
     STUDENT_SINGLE,
     TEACHER_GROUP;
 
+    /**
+     * Returns an appropriate StatsRenderer interface implementation for the given type of StatisticType.
+     * StatsRenderers are used to render different statistics to appropriate HTML-formatted string;
+     * @param type - given type of StatisticType.
+     * @return an appropriate StatsRenderer interface implementation for the given type of StatisticType.
+     */
     public static StatsRenderer getStatsRenderer(StatisticType type){
         //todo: implement package scanning here for automatic adding of entities from package enumHandlers.
         List<StatsRenderer> renderers = new ArrayList<>();
@@ -22,7 +28,6 @@ public enum StatisticType {
                 return r;
             }
         }
-
         return new UndefinedRenderer();
     }
 }

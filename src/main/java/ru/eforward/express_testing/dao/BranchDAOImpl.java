@@ -25,15 +25,18 @@ public class BranchDAOImpl implements BranchDAO {
         if(branchName == null){
             return false;
         }
-        if(connection == null){
-            connection = PoolConnector.getConnection();
+        try {
+            if(connection == null || connection.isClosed()){
+                connection = PoolConnector.getConnection();
+            }
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+            LOGGER.error("jdbc connection problem");
         }
 
         int updateCount = -1;
         if(connection != null){
             try {
-                //здесь нужно вычислить id школы и передавать его в БД внешним ключом.
-                //id школы можно вычислить из данных пользователя. - branch_id - по нему вытаскивать school_id
                 preparedStatement = connection.prepareStatement("INSERT INTO BRANCHES (NAME, SCHOOL_ID) VALUES (?, ?)");
                 preparedStatement.setString(1, branchName);
                 preparedStatement.setInt(2, schoolId);
@@ -43,6 +46,8 @@ public class BranchDAOImpl implements BranchDAO {
                     LogHelper.writeMessage("class BranchDAOImpl, method addBranchByName() : added records to BRANCHES table" + updateCount + "branchName = " + branchName);
                     LOGGER.info("added record to BRANCHES table for school: " + schoolId);
                 }
+                preparedStatement.close();
+                PoolConnector.closeConnection(connection);
             } catch (SQLException throwables) {
                 throwables.printStackTrace();
                 LOGGER.error("SQLException while adding new branch to school: " + schoolId);
@@ -66,8 +71,6 @@ public class BranchDAOImpl implements BranchDAO {
                 preparedStatement = connection.prepareStatement("SELECT DISTINCT B.ID, B.NAME FROM USERS " +
                         "INNER JOIN SCHOOLS S on S.ID = USERS.SCHOOL_ID\n" +
                         "INNER JOIN BRANCHES B on S.ID = B.SCHOOL_ID;");
-//                preparedStatement.setInt(1, school_id);
-//                preparedStatement.setInt(2, role.getId());
                 ResultSet resultSet = preparedStatement.executeQuery();
                 if(!resultSet.wasNull()){
                     while(resultSet.next()){

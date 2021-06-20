@@ -1,5 +1,7 @@
 package ru.eforward.express_testing.dao;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import ru.eforward.express_testing.daoInterfaces.GroupDAO;
 import ru.eforward.express_testing.dbConnection.PoolConnector;
 import ru.eforward.express_testing.model.school.Group;
@@ -12,6 +14,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class GroupDAOImpl implements GroupDAO {
+    private static final Logger LOGGER = LoggerFactory.getLogger(GroupDAOImpl.class);
     private Connection connection;
     private PreparedStatement preparedStatement;
 
@@ -21,8 +24,13 @@ public class GroupDAOImpl implements GroupDAO {
         if(teacherId < 0){
             return groups;
         }
-        if(connection == null){
-            connection = PoolConnector.getConnection();
+        try {
+            if(connection == null || connection.isClosed()){
+                connection = PoolConnector.getConnection();
+            }
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+            LOGGER.error("jdbc connection problem");
         }
         if(connection != null){
             try{
@@ -39,6 +47,7 @@ public class GroupDAOImpl implements GroupDAO {
                 PoolConnector.closeConnection(connection);
             } catch (SQLException throwables) {
                 throwables.printStackTrace();
+                LOGGER.error("SQLException");
             }
         }
 

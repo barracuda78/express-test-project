@@ -23,8 +23,13 @@ public class TestResultDAOImpl implements TestResultDAO {
         if(sId <= 0){
             return null;
         }
-        if(connection == null){
-            connection = PoolConnector.getConnection();
+        try {
+            if(connection == null || connection.isClosed()){
+                connection = PoolConnector.getConnection();
+            }
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+            LOGGER.error("jdbc connection problem");
         }
         Map<String, Double> map = null;
         if(connection != null) {
@@ -60,8 +65,13 @@ public class TestResultDAOImpl implements TestResultDAO {
         if(tId <= 0){
             return null;
         }
-        if(connection == null){
-            connection = PoolConnector.getConnection();
+        try {
+            if(connection == null || connection.isClosed()){
+                connection = PoolConnector.getConnection();
+            }
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+            LOGGER.error("jdbc connection problem");
         }
         Map<String, Double> map = null;
         if(connection != null) {
@@ -93,8 +103,13 @@ public class TestResultDAOImpl implements TestResultDAO {
 
     @Override
     public Map<String, Double> getGroupAverages(){
-        if(connection == null){
-            connection = PoolConnector.getConnection();
+        try {
+            if(connection == null || connection.isClosed()){
+                connection = PoolConnector.getConnection();
+            }
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+            LOGGER.error("jdbc connection problem");
         }
         Map<String, Double> map = null;
         if(connection != null) {
@@ -128,8 +143,13 @@ public class TestResultDAOImpl implements TestResultDAO {
         if(groupId <= 0){
             return null;
         }
-        if(connection == null){
-            connection = PoolConnector.getConnection();
+        try {
+            if(connection == null || connection.isClosed()){
+                connection = PoolConnector.getConnection();
+            }
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+            LOGGER.error("jdbc connection problem");
         }
         List<TestResult> testResults = null;
         if(connection != null) {
@@ -177,8 +197,13 @@ public class TestResultDAOImpl implements TestResultDAO {
         if(testResult == null){
             return false;
         }
-        if(connection == null){
-            connection = PoolConnector.getConnection();
+        try {
+            if(connection == null || connection.isClosed()){
+                connection = PoolConnector.getConnection();
+            }
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+            LOGGER.error("jdbc connection problem");
         }
         int updateCount = -1;
         if(connection != null){
@@ -220,8 +245,13 @@ public class TestResultDAOImpl implements TestResultDAO {
         if(studentId < 0){
             return null;
         }
-        if(connection == null){
-            connection = PoolConnector.getConnection();
+        try {
+            if(connection == null || connection.isClosed()){
+                connection = PoolConnector.getConnection();
+            }
+        } catch (SQLException throwables) {
+            LOGGER.error("jdbc connection problem");
+            throwables.printStackTrace();
         }
         List<TestResult> testResults = null;
         if(connection != null) {
@@ -258,6 +288,10 @@ public class TestResultDAOImpl implements TestResultDAO {
         return testResults;
     }
 
+    /**
+     * Creates a mapping 'question - answer' of plain String stored within a given parameter results
+     * pair-method createStringFromMap()
+     */
     private Map<String, String> createMapFromString(String results) {
         Map<String, String> map = new LinkedHashMap<>();
         String[] pairs = results.split("==\\$\\$==");
@@ -269,7 +303,11 @@ public class TestResultDAOImpl implements TestResultDAO {
         return map;
     }
 
-    private synchronized String createStringFromMap(Map<String, String> map) {
+    /**
+     * Creates a plain String from mapping 'question - answer'
+     * pair method createMapFromString()
+     */
+    private String createStringFromMap(Map<String, String> map) {
         StringBuilder sb = new StringBuilder();
         for(Map.Entry<String, String> pair : map.entrySet()){
             String key = pair.getKey();

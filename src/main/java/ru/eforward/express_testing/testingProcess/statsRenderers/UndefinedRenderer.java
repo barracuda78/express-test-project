@@ -2,8 +2,6 @@ package ru.eforward.express_testing.testingProcess.statsRenderers;
 
 import ru.eforward.express_testing.testingProcess.StatisticType;
 
-import java.util.Collection;
-
 public class UndefinedRenderer implements StatsRenderer{
     @Override
     public boolean canRender(StatisticType type) {

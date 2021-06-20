@@ -11,17 +11,7 @@ public class MultichoiceHandler extends Handler implements QuestionHandler{
     public boolean canProcess(QuestionType enumValue) {
         return enumValue == QuestionType.MULTICHOICE;
     }
-//How does this type of question look:
 
-//Кто похоронен в могиле Гранта? {~Грант ~Джефферсон =никто}
-
-//Ленин {~похоронен =родился ~живет} в Симбирске.
-
-//День Благодарения празднуется во {
-//    ~второй
-//    ~третий
-//    =четвертый
-//} вторник ноября.
     @Override
     public String process(String q) {
         LogHelper.writeMessage("---MultichoiceHandler");

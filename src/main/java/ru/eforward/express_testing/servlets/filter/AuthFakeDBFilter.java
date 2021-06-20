@@ -73,7 +73,7 @@ public class AuthFakeDBFilter implements Filter {
     }
 
     /*
-     * Перепещает пользователя на страницу jsp с соответствующим контентом в зависимости от роли пользователя.
+     * Перемещает пользователя на страницу jsp с соответствующим контентом в зависимости от роли пользователя.
      */
     private void moveToMenu(final HttpServletRequest req, final HttpServletResponse res, final User.ROLE role) throws ServletException, IOException {
 

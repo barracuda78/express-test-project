@@ -16,9 +16,6 @@ public class TrueFalseEvaluator implements EvaluatingHandler{
         return enumType == QuestionType.TRUE_FALSE;
     }
 
-    //Грант похоронен в могиле Гранта.{F}
-    //
-    //Солнце встает на Востоке.{T}
     @Override
     public int evaluate(String question, String answer) {
         //answer may by {F} or {T}

@@ -9,7 +9,6 @@ public class EssayHandler extends Handler implements QuestionHandler{
         return enumValue == QuestionType.ESSAY;
     }
 
-    //Напишите коротко биографию Гранта {}
     @Override
     public String process(String q) {
         LogHelper.writeMessage("--class EssayHandler--");

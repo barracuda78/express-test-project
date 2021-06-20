@@ -1,6 +1,5 @@
 package ru.eforward.express_testing.servlets.filter;
 
-import ru.eforward.express_testing.dao.UserDAOFakeDataBaseImpl;
 import ru.eforward.express_testing.dao.UserDAOImpl;
 import ru.eforward.express_testing.daoInterfaces.UserDAO;
 import ru.eforward.express_testing.model.Admin;
@@ -14,7 +13,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
-import java.util.concurrent.atomic.AtomicReference;
 
 import static java.util.Objects.nonNull;
 
@@ -33,59 +31,55 @@ public class AuthFilter implements Filter {
         final String login = req.getParameter("login");
         final String password = req.getParameter("password");
 
-        @SuppressWarnings("unchecked")
-        //final AtomicReference<UserDAOFakeDataBaseImpl> dao = (AtomicReference<UserDAOFakeDataBaseImpl>) req.getServletContext().getAttribute("dao");
         UserDAO userDAO = new UserDAOImpl();
 
         final HttpSession session = req.getSession();
 
-        //Logged user. - если пользователь уже залогинен:
+        //Logged user - if user already logged in:
         if (nonNull(session) &&  nonNull(session.getAttribute("login")) && nonNull(session.getAttribute("password"))) {
 
             final User.ROLE role = (User.ROLE) session.getAttribute("role");
 
             if(role == User.ROLE.STUDENT){
-                //Student user = (Student) dao.get().getUserByLoginPassword((String) session.getAttribute("login"), (String) session.getAttribute("password"));
                 Student user = (Student)userDAO.getUserByLoginPassword(
                         (String) session.getAttribute("login"),
                         (String) session.getAttribute("password"));
                 session.setAttribute("user", user);
             }else if(role == User.ROLE.ADMIN){
-                //Admin user = (Admin)dao.get().getUserByLoginPassword((String) session.getAttribute("login"), (String) session.getAttribute("password"));
                 Admin user = (Admin)userDAO.getUserByLoginPassword((String) session.getAttribute("login"), (String) session.getAttribute("password"));
                 session.setAttribute("user", user);
             }else if(role == User.ROLE.TEACHER){
-                //Teacher user = (Teacher) dao.get().getUserByLoginPassword((String) session.getAttribute("login"), (String) session.getAttribute("password"));
                 Teacher user = (Teacher)userDAO.getUserByLoginPassword((String) session.getAttribute("login"), (String) session.getAttribute("password"));
                 session.setAttribute("user", user);
             }
 
             moveToMenu(req, res, role);
 
-        //если пользователь еще не залогинен, но существует в БД такие логин-пароль:
-        //} else if (dao.get().userIsPresent(login, password)) {
+        //if user is not logged yet, and such login-password exist in a Storage:
         } else if (userDAO.userIsPresent(login, password)) {
-            //final User.ROLE role = dao.get().getRoleByLoginPassword(login, password);
             final User.ROLE role = userDAO.getRoleByLoginPassword(login, password);
+
+            LogHelper.writeMessage("AuthFilter: role = " + role);
 
             req.getSession().setAttribute("password", password);
             req.getSession().setAttribute("login", login);
             req.getSession().setAttribute("role", role);
-            //User user = dao.get().getUserByLoginPassword((String) session.getAttribute("login"), (String) session.getAttribute("password"));
             User user = userDAO.getUserByLoginPassword((String) session.getAttribute("login"), (String) session.getAttribute("password"));
+
+            LogHelper.writeMessage("AuthFilter: user = " + user);
 
             session.setAttribute("user", user);
 
             moveToMenu(req, res, role);
 
-        //если не залогинен и такой пары логин-пароль в БД не существует:
+        //if user is not logged , and there is no such login-password in a Storage:
         } else {
             moveToMenu(req, res, User.ROLE.UNKNOWN);
         }
     }
 
     /**
-     * Перемещает пользователя на страницу jsp с соответствующим контентом в зависимости от роли пользователя.
+     * Moves user to appropriate jsp page - using it's role:
      */
     private void moveToMenu(final HttpServletRequest req, final HttpServletResponse res, final User.ROLE role) throws ServletException, IOException {
 
@@ -99,7 +93,7 @@ public class AuthFilter implements Filter {
         } else if (role.equals(User.ROLE.STUDENT)) {
             req.getRequestDispatcher("/WEB-INF/view/student_menu.jsp").forward(req, res);
         }else {
-            //неизвестный пользователь опять перенаправляется на страницу логина:
+            //unknown user moves back to login page:
             req.getRequestDispatcher("/WEB-INF/view/login.jsp").forward(req, res);
         }
     }

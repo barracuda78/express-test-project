@@ -1,3 +1,6 @@
+<%--
+This page is used by ADMIN to create new entities of a school
+--%>
 <%@ page import="ru.eforward.express_testing.utils.LogHelper" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 

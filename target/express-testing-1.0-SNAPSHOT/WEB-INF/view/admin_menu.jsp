@@ -1,3 +1,6 @@
+<%--
+This page is main ADMIN page
+--%>
 <%@ page import="ru.eforward.express_testing.model.User" %>
 <%@ page import="java.util.Objects" %>
 <%@ page import="java.util.Map" %>

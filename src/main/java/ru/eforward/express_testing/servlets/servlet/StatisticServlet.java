@@ -7,7 +7,6 @@ import ru.eforward.express_testing.model.Teacher;
 import ru.eforward.express_testing.testingProcess.StatisticType;
 import ru.eforward.express_testing.testingProcess.TestResult;
 import ru.eforward.express_testing.testingProcess.statsRenderers.StatsRenderer;
-import ru.eforward.express_testing.utils.LogHelper;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -16,9 +15,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
-import java.util.LinkedHashMap;
 import java.util.List;
-import java.util.Map;
 
 @WebServlet(name = "StatisticServlet", urlPatterns = {"/StatisticServlet"})
 public class StatisticServlet extends HttpServlet {
@@ -26,11 +23,6 @@ public class StatisticServlet extends HttpServlet {
 
     }
 
-    //- первый вид отчета представляет собой запись,
-    // состоящую из ФИО студента и общего балла за прохождение заданного теста данным студентом.
-
-    //- второй вид отчета представляет собой запись,
-    // состоящую из названия группы и среднего балла за прохождение студентами данной группы данного тестирования.
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         request.setCharacterEncoding("UTF-8");

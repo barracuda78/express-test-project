@@ -53,8 +53,6 @@ public class AnswerHandlerServlet extends HttpServlet {
                 httpSession.setAttribute("timeIsOver", "timeIsOver");
                 request.getRequestDispatcher("/WEB-INF/view/student_menu.jsp").forward(request, response);
 
-                //get from context List<TestingUnit>
-                //Delete from list particular TestingUnit
                 ServletContext servletContext = request.getServletContext();
                 AtomicReference<List<TestingUnit>> atomicReference = (AtomicReference<List<TestingUnit>>)servletContext.getAttribute("testingUnitsListAtomicReference");
                 if(Objects.nonNull(atomicReference)){
@@ -72,7 +70,6 @@ public class AnswerHandlerServlet extends HttpServlet {
         //MULTICHOICE AND OTHERS:
         String type = request.getParameter("type");
         LogHelper.writeMessage("AnswerHandlerServlet: type = " + type);
-        //sb.append("<input type=\"hidden\" name=\"question\" value=\" " + q + "\">"); //passing the original text of question
         String question = request.getParameter("question");
         String choice = request.getParameter("choice"); //this is the answer student gave
         if(Objects.nonNull(type)

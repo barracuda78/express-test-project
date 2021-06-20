@@ -1,5 +1,8 @@
 package ru.eforward.express_testing.dbConnection;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import ru.eforward.express_testing.dao.BranchDAOImpl;
 import ru.eforward.express_testing.utils.LogHelper;
 
 import java.io.IOException;
@@ -9,18 +12,17 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.util.Properties;
 
-/*
-Утилитарный класс для загрузки драйвера, получения параметров соединения из файла .properties и создания соединения.
-Используется в конструкторе классов DAO;
+/**
+ * Is used only ic ConnectionPool is not used.
+ * Util class for loading driver, getting Connection.
 */
 public class DriverManagerConnector{
     private static Connection connection;
-//    private static final String URL = "jdbc:hsqldb:hsql://localhost:9001/efdb";
-//    private static final String USER = "root";
-//    private static final String PASSWORD = "root";
+    private static final Logger LOGGER = LoggerFactory.getLogger(DriverManagerConnector.class);
 
-
-    //метод для получения параметров подключения:
+    /**
+     * Reads Connection parameters from .properties file
+     */
     protected static Properties getProperties(){
         Properties properties = new Properties();
         try(InputStream inputStream = ClassLoader.getSystemResourceAsStream("database.properties")){
@@ -35,7 +37,9 @@ public class DriverManagerConnector{
         return properties;
     }
 
-    //метод для получения соединения:
+    /**
+     * Creates jdbc Connection to DataBase
+     */
     public static Connection getConnection(){
         try {
             if(connection != null && !connection.isClosed()){
@@ -44,9 +48,9 @@ public class DriverManagerConnector{
         } catch (SQLException ex) {
             LogHelper.writeMessage("Ошибка проверки активности соединения");
             ex.printStackTrace();
+            LOGGER.error("jdbc connection problem");
         }
 
-        //загрузим драйвер. Если загрузился драйвер - будем возвращщать соединение:
         if(loadDriver()){
             Properties properties = getProperties();
             String connectionString =
@@ -54,10 +58,7 @@ public class DriverManagerConnector{
                     properties.getProperty("user") + ";password=" +
                     properties.getProperty("password");
 
-            //String connectionString = URL + ";user=" + USER + ";password=" + PASSWORD;
-
             LogHelper.writeMessage("Строка подключения: " + connectionString);
-
             try {
                 connection = DriverManager.getConnection(connectionString);
                 LogHelper.writeMessage("Соединение создано");
@@ -65,28 +66,30 @@ public class DriverManagerConnector{
             } catch (SQLException ex) {
                 LogHelper.writeMessage("Ошибка получения соединения");
                 ex.printStackTrace();
+                LOGGER.error("Can not get jdbc connection");
             }
         }
         return connection;
     }
 
-    //метод для загрузки драйвера:
-    public static boolean loadDriver(){     //--------------->make it private
+    /**
+     * Loads jdbc Driver:
+     */
+    public static boolean loadDriver(){
         try {
             Class.forName("org.hsqldb.jdbcDriver");
-            //Class.forName("java.util.List");
-            //               org.hsqldb.jdbc.JDBCDriver
-            //Class.forName("org.hsqldb.jdbc.JDBCDriver");
-            //Class.forName("org.apache.derby.jdbc.ClientDriver");
             LogHelper.writeMessage("Драйвер  загружен");
             return true;
         } catch (ClassNotFoundException ex) {
             LogHelper.writeMessage("Ошибка загрузки драйвера");
+            LOGGER.error("Can not load jdbc driver");
             return false;
         }
     }
 
-    //метод для закрытия соединения:
+    /**
+     * Closes connection:
+     */
     private void closeConnection(){
         try {
             if(connection != null && !connection.isClosed()){
@@ -96,6 +99,7 @@ public class DriverManagerConnector{
         } catch (SQLException ex) {
             ex.printStackTrace();
             LogHelper.writeMessage("6: метод closeConnection(): Ошибка закрытия соединения. " + ex.getMessage());
+            LOGGER.error("jdbc connection closing error");
         }
     }
 }

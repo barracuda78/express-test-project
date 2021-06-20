@@ -1,3 +1,6 @@
+<%--
+This page is used to render test results
+--%>
 <%@ page import="ru.eforward.express_testing.testingProcess.TestResult" %>
 <%@ page import="java.util.List" %>
 <%@ page import="java.util.Objects" %>
@@ -11,19 +14,11 @@
     <h1>Результаты тестирования:</h1>
     <c:set var="user" scope="page" value="${param.user}"/>
     <c:set var="branch" scope="page" value="${user.branch}"/>
-    <%--c:set var="testResults" scope="page" value="${user.testResults}"/--%>
 
 
     <p><b>Результаты тестов:</b></p>
-    <ul>
-        <%--c:forEach var="testResult" items="${testResults}">
-            <li><c:out value="${testResult}"/></li>
-        </c:forEach--%>
-    </ul>
 
     <%
-        //request.setAttribute("testResults", testResults);
-        //request.setAttribute("badId", "badId");
         String badId = (String)request.getAttribute("badId");
         if("badId".equals(badId)){
             %>
@@ -31,7 +26,6 @@
             <%
         }
 
-        //request.setAttribute("testResults", testResults);
         @SuppressWarnings("unchecked")
         List<TestResult> testResults = (List<TestResult>)request.getAttribute("testResults");
         if(Objects.nonNull(testResults)){

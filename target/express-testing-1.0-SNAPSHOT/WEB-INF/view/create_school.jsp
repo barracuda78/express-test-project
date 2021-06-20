@@ -1,9 +1,5 @@
 <%--
-  Created by IntelliJ IDEA.
-  User: ENVY
-  Date: 05.06.2021
-  Time: 19:48
-  To change this template use File | Settings | File Templates.
+This page is used by ADMIN to change parameters of school
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>

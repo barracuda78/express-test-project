@@ -1,7 +1,6 @@
 package ru.eforward.express_testing.servlets.servlet;
 
 import ru.eforward.express_testing.testingProcess.TestingUnit;
-import ru.eforward.express_testing.utils.LogHelper;
 
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
@@ -69,28 +68,6 @@ public class TestingServlet extends HttpServlet {
         }
         //go back to teachers main menu with corresponding attributes:
         request.getRequestDispatcher("teacherMenu").forward(request, response);
-
-//this code works with fake database:
-//        @SuppressWarnings("unchecked")
-//        final AtomicReference<TestDAOFakeDatabaseImpl> testDao = (AtomicReference<TestDAOFakeDatabaseImpl>) request.getServletContext().getAttribute("test");
-//        String text1 = request.getParameter("testId");
-//        int testId = -1;
-//        try {
-//            testId = Integer.parseInt(text1);
-//        } catch (NumberFormatException e) {
-//            request.setAttribute("wrongTestId", "wrongId");
-//        }
-//        String runTestButton = request.getParameter("runTestButton");
-//        Test test = null;
-//
-//        if (text1 != null && runTestButton != null && testId >= 0) {
-//            test = testDao.get().getTestById(testId);
-//            test.setActive(true);
-//            request.setAttribute("testingStarted", "ok");
-//        } else {
-//            request.setAttribute("testingStarted", "bad");
-//        }
-//        request.getRequestDispatcher("teacherMenu").forward(request, response); // ПРОВЕРИТЬ АДРЕС! ВОЗМОЖНО ВНЕСТИ В WEB.XML!
 
     }
 }

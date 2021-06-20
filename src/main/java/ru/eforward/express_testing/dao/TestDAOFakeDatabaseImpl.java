@@ -6,6 +6,9 @@ import ru.eforward.express_testing.model.school.Test;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Class is used for development purposes only when not connected to DB.
+ */
 public class TestDAOFakeDatabaseImpl implements TestDAO {
 
     private final List<Test> testsStore = new ArrayList<>();
@@ -41,7 +44,6 @@ public class TestDAOFakeDatabaseImpl implements TestDAO {
         }
         return result;
     }
-
 
     public List<Test> getTestsStore() {
         return testsStore;
