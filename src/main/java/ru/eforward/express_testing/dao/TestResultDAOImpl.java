@@ -8,10 +8,7 @@ import ru.eforward.express_testing.model.school.Lesson;
 import ru.eforward.express_testing.testingProcess.TestResult;
 import ru.eforward.express_testing.utils.LogHelper;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -21,6 +18,40 @@ public class TestResultDAOImpl implements TestResultDAO {
     private static final Logger LOGGER = LoggerFactory.getLogger(TestResultDAOImpl.class);
     private Connection connection;
     private PreparedStatement preparedStatement;
+
+    @Override
+    public Map<String, Double> getGroupAverages(){
+        if(connection == null){
+            connection = PoolConnector.getConnection();
+        }
+        Map<String, Double> map = null;
+        if(connection != null) {
+            try {
+                String query = "SELECT GROUP_NAME, AVG(TOTAL_SCORE) AS AVERAGE FROM USERS\n" +
+                        "INNER JOIN GROUPS G on USERS.GROUP_ID = G.ID\n" +
+                        "INNER JOIN TESTRESULTS T on USERS.ID = T.STUDENT_ID\n" +
+                        "GROUP BY GROUP_NAME;";
+                Statement statement = connection.createStatement();
+                ResultSet resultSet = statement.executeQuery(query);
+                if(!resultSet.wasNull()){
+                    map = new LinkedHashMap<>();
+                    while(resultSet.next()) {
+                        String groupName = resultSet.getString("GROUP_NAME");
+                        Double averageScores = resultSet.getDouble("AVERAGE");
+                        map.put(groupName, averageScores);
+                    }
+                }
+                statement.close();
+                PoolConnector.closeConnection(connection);
+            } catch (SQLException throwables) {
+                LOGGER.error("SQLException while select query to DB getting group averages stats");
+                throwables.printStackTrace();
+            }
+        }
+        LogHelper.writeMessage("TestResultDAOImpl : map = " + map);
+        return map;
+
+    }
 
     @Override
     public List<TestResult> getTestResultsByGroupId(int groupId){
@@ -72,6 +103,7 @@ public class TestResultDAOImpl implements TestResultDAO {
                 preparedStatement.close();
                 PoolConnector.closeConnection(connection);
             } catch (SQLException throwables) {
+                LOGGER.error("SQLException while select query to DB getting group stats");
                 throwables.printStackTrace();
             }
         }
@@ -158,6 +190,7 @@ public class TestResultDAOImpl implements TestResultDAO {
                 preparedStatement.close();
                 PoolConnector.closeConnection(connection);
             } catch (SQLException throwables) {
+                LOGGER.error("SQLException while select query to DB getting students stats");
                 throwables.printStackTrace();
             }
         }

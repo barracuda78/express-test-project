@@ -3,6 +3,7 @@ package ru.eforward.express_testing.servlets.servlet;
 import ru.eforward.express_testing.dao.TestResultDAOImpl;
 import ru.eforward.express_testing.daoInterfaces.TestResultDAO;
 import ru.eforward.express_testing.testingProcess.TestResult;
+import ru.eforward.express_testing.utils.LogHelper;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -10,7 +11,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 
 @WebServlet(name = "StatisticServlet", urlPatterns = {"/StatisticServlet"})
 public class StatisticServlet extends HttpServlet {
@@ -38,7 +41,17 @@ public class StatisticServlet extends HttpServlet {
             }catch (NumberFormatException nfe){
                 request.setAttribute("badId", "badId");
             }
+            request.getRequestDispatcher("testResults").forward(request, response);
         }
-        request.getRequestDispatcher("testResults").forward(request, response);
+
+        String showAdminStats = request.getParameter("showAdminStats");
+        if(showAdminStats != null){
+            TestResultDAO testResultDAO = new TestResultDAOImpl();
+            Map<String, Double> map = testResultDAO.getGroupAverages(); //used for stats like 'groupName : averageScores'
+            request.setAttribute("groupAverages", map);
+            LogHelper.writeMessage("StatisticServlet : map = " + map);
+        }
+        request.getRequestDispatcher("adminMenu").forward(request, response);
+
     }
 }

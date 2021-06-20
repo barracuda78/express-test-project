@@ -1,5 +1,7 @@
 <%@ page import="ru.eforward.express_testing.model.User" %>
 <%@ page import="java.util.Objects" %>
+<%@ page import="java.util.Map" %>
+<%@ page import="ru.eforward.express_testing.utils.LogHelper" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
@@ -54,6 +56,41 @@
     }
 
 %>
+
+<div id="box">
+    <form name="add" action="StatisticServlet" method="GET">
+        <table>         <%--таблица--%>
+            <tr>        <%--table raw--%>
+                <p>Статистика по школе: </p>
+                <%--td>id группы: <input type="text" name="groupId" size="12"/></td--%>
+            </tr>
+            <tr>
+                <td><input type="submit" name="showAdminStats" value="посмотреть статистику"/></td>
+            </tr>
+        </table>
+    </form>
+</div>
+
+<div>
+
+<%
+    Map<String, Double> map = (Map<String, Double>)request.getAttribute("groupAverages");
+
+    if(Objects.nonNull(map)){
+        LogHelper.writeMessage("admin_menu.jsp : map = " + map);
+        %>
+            <p>Средний балл по каждой группе школы:</p>
+        <%
+        for(Map.Entry<String, Double> pair : map.entrySet()){
+            String groupName = pair.getKey();
+            Double averageScores = pair.getValue();
+            %>
+                <%="<p>" + groupName + " : " + averageScores + "</p>"%>
+            <%
+        }
+    }
+%>
+</div>
 
 <a href="<c:url value='/logout' />">Выйти</a>
 </body>
