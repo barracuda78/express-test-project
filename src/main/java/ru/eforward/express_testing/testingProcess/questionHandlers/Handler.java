@@ -22,7 +22,8 @@ public abstract class Handler {
             questionItself = q;
         }
 
-        //3. check if there is a question text after {...} variants block: insert "____" here. ( ___ is not needed in case of TRUE_FALSE or COMPLIANCE QuestionType) :
+        //3. check if there is a question text after {...} variants block: insert "____" here.
+        // ( ___ is not needed in case of TRUE_FALSE or COMPLIANCE QuestionType) :
         if(!q.endsWith("}")
                 && !q.toLowerCase().contains("{t}")
                 && !q.toLowerCase().contains("{true}")

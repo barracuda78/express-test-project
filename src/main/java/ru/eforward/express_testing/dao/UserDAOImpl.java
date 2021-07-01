@@ -1,5 +1,6 @@
 package ru.eforward.express_testing.dao;
 
+import org.apache.taglibs.standard.lang.jstl.LessThanOrEqualsOperator;
 import org.mindrot.jbcrypt.BCrypt;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -15,7 +16,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 
@@ -32,8 +32,13 @@ public class UserDAOImpl implements UserDAO {
             return false;
         }
 
-        if(connection == null){
-            connection = PoolConnector.getConnection();
+        try {
+            if(connection == null || connection.isClosed()){
+                connection = PoolConnector.getConnection();
+            }
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+            LOGGER.error("jdbc connection failed");
         }
 
         int updateCount = -1;
@@ -61,7 +66,7 @@ public class UserDAOImpl implements UserDAO {
                     preparedStatement.setInt(10, parent_id); //
                 }
                 else{
-                    //todo:if student will be added - use teacher_id from html-from (need to add it) or use NULL
+                    //if student will be added - use teacher_id from html-from (need to add it) or use NULL
                     preparedStatement.setInt(10, parent_id);
                 }
 
@@ -72,8 +77,11 @@ public class UserDAOImpl implements UserDAO {
                     LogHelper.writeMessage("class SchoolDAOImpl, method addUser() : added records to Users table" + updateCount);
                     LOGGER.warn("new user record was inserted into table USERS with lastName {}", user.getLastName());
                 }
+                preparedStatement.close();
+                PoolConnector.closeConnection(connection);
             } catch (SQLException throwables) {
                 throwables.printStackTrace();
+                LOGGER.error("SQLException");
             }
         }else{
             LogHelper.writeMessage("class UserDAOImpl, method addUser() : connection is null");
@@ -87,8 +95,13 @@ public class UserDAOImpl implements UserDAO {
             return null;
         }
 
-        if(connection == null){
-            connection = PoolConnector.getConnection();
+        try {
+            if(connection == null || connection.isClosed()){
+                connection = PoolConnector.getConnection();
+            }
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+            LOGGER.error("jdbc connection failed");
         }
         if(connection != null){
             try {
@@ -135,14 +148,10 @@ public class UserDAOImpl implements UserDAO {
                             if(role == User.ROLE.TEACHER){
                                 //int id = resultSet.getInt("ID");
                                 GroupDAO groupDAO = new GroupDAOImpl();
-                                List<Integer> groups = groupDAO.getGroupsByTeacherId(id);
+                                List<Integer> groups = groupDAO.getGroupIdsByTeacherId(id);
                                 userBuilder.addGroupsToTeacher(groups);
                             }
 
-                            //add group_id to user:
-                            //    private int levelId;
-                            //    private int groupId;
-                            //    private List<Integer> testResults; //list of ids of testResults
                             if(role == User.ROLE.STUDENT){
                                 int groupId = resultSet.getInt("GROUP_ID");
                                 userBuilder.addGroupIdToStudent(groupId);
@@ -154,7 +163,10 @@ public class UserDAOImpl implements UserDAO {
                 }else{
                     LogHelper.writeMessage("class UserDAOImpl, method getUserByLoginPassword() : resultSet is null");
                 }
+                preparedStatement.close();
+                PoolConnector.closeConnection(connection);
             } catch (SQLException throwables) {
+                LOGGER.error("SQLExceprion");
                 throwables.printStackTrace();
             }
         }else{
@@ -171,8 +183,13 @@ public class UserDAOImpl implements UserDAO {
             return null;
         }
 
-        if(connection == null){
-            connection = PoolConnector.getConnection();
+        try {
+            if(connection == null || connection.isClosed()){
+                connection = PoolConnector.getConnection();
+            }
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+            LOGGER.error("jdbc connection failed");
         }
         if(connection != null){
             try {
@@ -189,7 +206,6 @@ public class UserDAOImpl implements UserDAO {
                         }
 
                         if(equals){
-                            //LASTNAME, FIRSTNAME, MIDDLENAME, EMAIL, LOGIN, PASSWORD, ROLE_ID, BRANCH_ID
                             int role_id = resultSet.getInt("ROLE_ID");
                             result = User.ROLE.getRoleById(role_id);
                         }
@@ -197,8 +213,11 @@ public class UserDAOImpl implements UserDAO {
                 }else{
                     LogHelper.writeMessage("class UserDAOImpl, method getUserByLoginPassword() : resultSet is null");
                 }
+                preparedStatement.close();
+                PoolConnector.closeConnection(connection);
             } catch (SQLException throwables) {
                 throwables.printStackTrace();
+                LOGGER.error("SQLException");
             }
         }else{
             LogHelper.writeMessage("class UserDAOImpl, method getUserByLoginPassword() : connection is null");
@@ -212,8 +231,13 @@ public class UserDAOImpl implements UserDAO {
         if(Objects.isNull(role) || school_id <= 0){
             return null;
         }
-        if(connection == null){
-            connection = PoolConnector.getConnection();
+        try {
+            if(connection == null || connection.isClosed()){
+                connection = PoolConnector.getConnection();
+            }
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+            LOGGER.error("jdbc connection failed");
         }
         List<User> users = new ArrayList<>();
         if(connection != null) {
@@ -240,6 +264,8 @@ public class UserDAOImpl implements UserDAO {
                     LogHelper.writeMessage("class UserDAOImpl, method getUsersByRole() : resultSet is null");
                     LOGGER.error("resultSet is null");
                 }
+                preparedStatement.close();
+                PoolConnector.closeConnection(connection);
             } catch (SQLException throwables) {
                 LogHelper.writeMessage("class UserDAOImpl, method getUsersByRole() : SQLException");
                 throwables.printStackTrace();
@@ -257,8 +283,13 @@ public class UserDAOImpl implements UserDAO {
         if(userId < 0 ){
             return false;
         }
-        if(connection == null){
-            connection = PoolConnector.getConnection();
+        try {
+            if(connection == null || connection.isClosed()){
+                connection = PoolConnector.getConnection();
+            }
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+            LOGGER.error("jdbc connection failed");
         }
 
         if(connection != null){
@@ -273,9 +304,11 @@ public class UserDAOImpl implements UserDAO {
                 }else{
                     LogHelper.writeMessage("class UserDAOImpl, method userPresents() : resultSet is null");
                 }
-
+                preparedStatement.close();
+                PoolConnector.closeConnection(connection);
             } catch (SQLException throwables) {
                 throwables.printStackTrace();
+                LOGGER.error("SQLException");
             }
         }else{
             LogHelper.writeMessage("class UserDAOImpl, method userPresents() : connection is null");
@@ -288,8 +321,13 @@ public class UserDAOImpl implements UserDAO {
         if(login == null || password == null ){
             return false;
         }
-        if(connection == null){
-            connection = PoolConnector.getConnection();
+        try {
+            if(connection == null || connection.isClosed()){
+                connection = PoolConnector.getConnection();
+            }
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+            LOGGER.error("jdbc connection failed");
         }
 
         if(connection != null){
@@ -304,17 +342,20 @@ public class UserDAOImpl implements UserDAO {
                         if(hashedPassword != null){
                             equals = BCrypt.checkpw(password, hashedPassword);
                         }
-
                         if(equals){
                             return true;
                         }
                     }
+                    preparedStatement.close();
+                    PoolConnector.closeConnection(connection);
                 }else{
                     LogHelper.writeMessage("class UserDAOImpl, method userPresents() : resultSet is null");
                 }
-
+                preparedStatement.close();
+                PoolConnector.closeConnection(connection);
             } catch (SQLException throwables) {
                 throwables.printStackTrace();
+                LOGGER.error("SQLException");
             }
         }else{
             LogHelper.writeMessage("class UserDAOImpl, method userPresents() : connection is null");

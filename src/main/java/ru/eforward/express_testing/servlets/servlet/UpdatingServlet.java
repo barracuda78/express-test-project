@@ -27,7 +27,6 @@ public class UpdatingServlet extends HttpServlet {
         if(Objects.nonNull(branchName) && Objects.nonNull(user)){
             BranchDAO branchDAO = new BranchDAOImpl();
             added = branchDAO.addBranchByName(branchName, user.getSchool());
-            LogHelper.writeMessage("UpdatingServlet = if");
         }else{
             LogHelper.writeMessage("UpdatingServlet = else");
         }

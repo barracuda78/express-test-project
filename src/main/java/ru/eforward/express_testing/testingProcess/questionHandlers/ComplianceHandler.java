@@ -17,12 +17,6 @@ public class ComplianceHandler extends Handler implements  QuestionHandler{
         return enumValue == QuestionType.COMPLIANCE;
     }
 
-    //Укажите столицы государств: {
-    //    =Канада -> Оттава
-    //    =Италия -> Рим
-    //    =Япония -> Токио
-    //    =Индия  -> Нью Дели
-    //}
     @Override
     public String process(String q) {
         LogHelper.writeMessage("---class ComplianceHandler");
@@ -51,8 +45,9 @@ public class ComplianceHandler extends Handler implements  QuestionHandler{
                     sb.append(k);
                 sb.append("</td>");
                 sb.append("<td>");
-                    //drop-down menu:
-                sb.append("<select name=\"" + valueParameter.incrementAndGet() + "\">"); //was 'answerDropdowns'. For first pair will be '1' and so on
+                //drop-down menu:
+                //was 'answerDropdowns'. For first pair will be '1' and so on
+                sb.append("<select name=\"" + valueParameter.incrementAndGet() + "\">");
                 sb.append("<option value=\"\" style=\"display:none\">Выберите ответ</option>");
                 for(String s : list) {
                     sb.append("<option value=\"" + s + "\">" + s + "</option>"); // 's' is an answer//

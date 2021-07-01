@@ -15,22 +15,36 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicInteger;
 
+/**
+ * This is a main class for testing process which is used as:
+ * - a storage of questions for testing,
+ * - a storage of answers for testing,
+ * - an iterator for questions.
+ */
+
 @Getter
 public class TestingUnit implements Serializable {
     private static final Logger LOGGER = LoggerFactory.getLogger(TestingUnit.class);
 
     private final int lessonId;
     private final int groupId;
+    private final double duration; //for example 3.5 minutes
     private List<String> questions;
     private int cursor;
 
-    public TestingUnit(int lessonId, int groupId){
+
+    public TestingUnit(int lessonId, int groupId, double duration){
         this.lessonId = lessonId;
         this.groupId = groupId;
+        this.duration = duration;
         init(lessonId);
         LOGGER.info("new test was created for lessonId {} and groupId {}", lessonId, groupId);
     }
 
+    /**
+     * Is used in constructor. Initiates field questions with the list of Questions from Storage.
+     * @param lessonId - the id of a lesson for which Testing will be started.
+     */
     private void init(int lessonId){
         if(lessonId < 1){
             return;
@@ -43,11 +57,19 @@ public class TestingUnit implements Serializable {
         LogHelper.writeMessage("TestingUnit :: questions = \n" + questions);
     }
 
-    public synchronized boolean hasNextTest(){
+    /**
+     * Determines if it is the end of questions list or not
+     * @return true if not all questions from list were answered, otherwise returns false.
+     */
+    public boolean hasNextTest(){
         return questions != null && questions.size() >= 1 && cursor < questions.size();
     }
 
-    public synchronized String getNextTest(){
+    /**
+     * Iterates forward by the questions field of this class
+     * @return next String representation of a question from questions List.
+     */
+    public String getNextTest(){
         if (questions == null || questions.size() < 1 || cursor >= questions.size()){
             return null;
         }
@@ -58,7 +80,12 @@ public class TestingUnit implements Serializable {
         return questionToHtml(testString);
     }
 
-    private synchronized String questionToHtml(String plainString){
+    /**
+     * Creates an HTML-formatted string from a plain question String
+     * @param plainString - String representation of a question
+     * @return an HTML-formatted string from a plain question String
+     */
+    private String questionToHtml(String plainString){
         //here I have to understand witch enum 'QuestionType' is this question.
         //and move this  plainString to appropriate Handler:
         QuestionType questionType = findOutQuestionType(plainString);
@@ -67,6 +94,11 @@ public class TestingUnit implements Serializable {
         return  questionHandler.process(plainString);
     }
 
+    /**
+     * Determines what type is a question in terms of GIFT-convention by given String representation of a question.
+     * @param plainString - given String representation of a question.
+     * @return a QuestionType of a given String representation of a question or UNDEFINED if not a GIGT format.
+     */
     QuestionType findOutQuestionType(String plainString) {
         LogHelper.writeMessage("plainString = " + plainString);
         LogHelper.writeMessage("plainString.split(\"=\").length = " + plainString.split("=").length);
@@ -134,6 +166,11 @@ public class TestingUnit implements Serializable {
         return QuestionType.UNDEFINED;
     }
 
+    /**
+     * Checks if this question is actually not a question but just a comment.
+     * @param q - a string representation of a question.
+     * @return true if it is just a comment and not a question, otherwise returns false.
+     */
     private boolean isEveryLineCommented(String q){
         String[] array = q.split("\n");
         AtomicInteger numberOfCommentedStrings = new AtomicInteger(0);
@@ -155,6 +192,11 @@ public class TestingUnit implements Serializable {
         cursor--;
     }
 
+    /**
+     * Can determine the cursor position. For example for setting it to the end of questions
+     * to make test off.
+     * @param size - the desired position of cursor.
+     */
     public void setCursor(int size) {
         cursor = size;
     }

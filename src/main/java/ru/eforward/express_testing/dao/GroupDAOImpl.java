@@ -1,5 +1,7 @@
 package ru.eforward.express_testing.dao;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import ru.eforward.express_testing.daoInterfaces.GroupDAO;
 import ru.eforward.express_testing.dbConnection.PoolConnector;
 import ru.eforward.express_testing.model.school.Group;
@@ -12,17 +14,23 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class GroupDAOImpl implements GroupDAO {
+    private static final Logger LOGGER = LoggerFactory.getLogger(GroupDAOImpl.class);
     private Connection connection;
     private PreparedStatement preparedStatement;
 
     @Override
-    public List<Integer> getGroupsByTeacherId(int teacherId) {
+    public List<Integer> getGroupIdsByTeacherId(int teacherId) {
         List<Integer> groups = new ArrayList<>();
         if(teacherId < 0){
             return groups;
         }
-        if(connection == null){
-            connection = PoolConnector.getConnection();
+        try {
+            if(connection == null || connection.isClosed()){
+                connection = PoolConnector.getConnection();
+            }
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+            LOGGER.error("jdbc connection problem");
         }
         if(connection != null){
             try{
@@ -32,19 +40,14 @@ public class GroupDAOImpl implements GroupDAO {
                 if(!resultSet.wasNull()){
                     while(resultSet.next()) {
                         int id = resultSet.getInt("ID");
-//                        String groupName = resultSet.getString("GROUP_NAME");
-//                        int schoolId = resultSet.getInt("SCHOOL_ID");
-//                        int teacher_id = resultSet.getInt("TEACHER_ID");
-//                        Group group = new Group();
-//                        group.setId(id);
-//                        group.setGroupName(groupName);
-//                        group.setSchoolId(schoolId);
-//                        group.setTeacherId(teacher_id);
                         groups.add(id);
                     }
                 }
+                preparedStatement.close();
+                PoolConnector.closeConnection(connection);
             } catch (SQLException throwables) {
                 throwables.printStackTrace();
+                LOGGER.error("SQLException");
             }
         }
 

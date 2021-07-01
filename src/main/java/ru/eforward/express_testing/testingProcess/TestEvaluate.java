@@ -4,10 +4,13 @@ import ru.eforward.express_testing.testingProcess.evaluatingHandlers.EvaluatingH
 
 public class TestEvaluate implements Evaluating {
 
-    //. Количество баллов за такой ответ может быть равно значению от 0 до 10.
-    // В файле с ответами может быть указано несколько вариантов ответа на данный вопрос.
-    // Один из них абсолютно правильный, количество баллов при таком ответе равно 10 баллов.
-    // Остальные будут оценены в 0 баллов.
+/**
+* Scores for question diapason: 0-10
+* File may contain several variants of answer to the question
+* One of them - absolute correct - gives 10 score.
+* All the others give 0 score.
+* %50% - percentage evaluating - to be implemented in further versions.
+*/
     @Override
     public synchronized int getScore(QuestionType type, String question, String choice) {
         EvaluatingHandler evaluatingHandler = QuestionType.getEvaluatingHandler(type);

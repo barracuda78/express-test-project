@@ -25,7 +25,6 @@ public abstract class User {
     private int branch;
     private int curatorId;
 
-
     public enum ROLE {
         ADMIN(1),
         TEACHER(2),
@@ -38,9 +37,19 @@ public abstract class User {
             this.id = id;
         }
 
+        /**
+         * Returns id of this type.
+         * @return int id of a type this..
+         * */
         public int getId(){
             return id;
         }
+
+        /**
+         * Returns Role type by users id.
+         * @param id - id of a user
+         * @return ROLE of a user with given id.
+         * */
         public static ROLE getRoleById(int id){
             Optional<ROLE> firstRole = Arrays.stream(values()).filter(role -> role.id == id).findFirst();
             return firstRole.orElse(UNKNOWN);

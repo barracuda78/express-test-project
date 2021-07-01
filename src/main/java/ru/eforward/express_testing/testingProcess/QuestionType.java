@@ -7,8 +7,9 @@ import ru.eforward.express_testing.testingProcess.questionHandlers.*;
 import java.util.ArrayList;
 import java.util.List;
 
-//about .gift file format and types of question:
-//https://www.masu.edu.ru/moodle/help.php?file=formatgift.html&module=quiz
+/** Read about .GIFT file format and types of question:
+* https://www.masu.edu.ru/moodle/help.php?file=formatgift.html&module=quiz
+*/
 public enum QuestionType {
     //Множественный выбор:
     MULTICHOICE,
@@ -29,6 +30,12 @@ public enum QuestionType {
     //Непонятно какой тип вороса:
     UNDEFINED;
 
+    /**
+     * Returns an appropriate QuestionHandler interface implementation for the given type of QuestionType.
+     * QuestionHandler is used to perform particular String representation of question to HTML-formatted string
+     * @param enumType - given type of QuestionType.
+     * @return an appropriate QuestionHandler interface implementation for the given type of QuestionType.
+     */
     public static QuestionHandler getQuestionHandler(QuestionType enumType){
         List<QuestionHandler> handlers = new ArrayList<>();
         //todo: implement package scanning here for automatic adding of entities from package enumHandlers.
@@ -51,6 +58,12 @@ public enum QuestionType {
         return new UndefinedHandler();
     }
 
+    /**
+     * Returns an appropriate EvaluatingHandler interface implementation for the given type of QuestionType.
+     * EvaluatingHandler is used to evaluate an answer of the Student to this particular question of that type.
+     * @param enumType - given type of QuestionType.
+     * @return an appropriate EvaluatingHandler interface implementation for the given type of QuestionType.
+     */
     public static EvaluatingHandler getEvaluatingHandler(QuestionType enumType){
         List<EvaluatingHandler> handlers = new ArrayList<>();
         //todo: implement package scanning here for automatic adding of entities from package evaluatingHandlers.

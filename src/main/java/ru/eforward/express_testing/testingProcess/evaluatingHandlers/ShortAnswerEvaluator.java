@@ -5,8 +5,6 @@ import org.slf4j.LoggerFactory;
 import ru.eforward.express_testing.testingProcess.QuestionType;
 import ru.eforward.express_testing.utils.LogHelper;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -18,9 +16,6 @@ public class ShortAnswerEvaluator implements EvaluatingHandler{
         return enumType == QuestionType.SHORT_ANSWER;
     }
 
-    //Кто похоронен в могиле Гранта?{=никто =никого}
-    //
-    //два плюс два равно {=четыре =4}.
     @Override
     public int evaluate(String question, String answer) {
         LOGGER.info("evaluating: answer = " + answer);
@@ -30,9 +25,8 @@ public class ShortAnswerEvaluator implements EvaluatingHandler{
         int score = 0;
         question = question.trim().toLowerCase();
         answer = answer.trim().toLowerCase();
-        List<String> answers = new ArrayList<>();
-
-        Pattern p = Pattern.compile("=.+?[\\s}]"); //regex matches to every combination started with '=' and ended with '}' or 'space' symbol (including \n, \t, \r\n)
+        //regex matches to every combination started with '=' and ended with '}' or 'space' symbol (including \n, \t, \r\n)
+        Pattern p = Pattern.compile("=.+?[\\s}]");
         Matcher m = p.matcher(question);
 
         String correctAnswer = "";

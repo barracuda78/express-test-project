@@ -12,6 +12,4 @@ public class Lesson {
     private String lessonName;
     private String pathToTestFile;
     private int levelId;
-//    private int courseId;
-//    private int schoolId;
 }

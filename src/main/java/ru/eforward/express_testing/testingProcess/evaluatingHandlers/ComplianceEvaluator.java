@@ -16,13 +16,6 @@ public class ComplianceEvaluator implements EvaluatingHandler{
         return enumType == QuestionType.COMPLIANCE;
     }
 
-//    Укажите столицы государств: {
-//    =Канада -> Оттава
-//                =Италия -> Рим
-//                =Япония -> Токио
-//                =Индия  -> Нью Дели
-//    }
-
     @Override
     public int evaluate(String q, String a) {
         if(q == null || a == null){
@@ -54,7 +47,8 @@ public class ComplianceEvaluator implements EvaluatingHandler{
                 correctAnswersCounter ++;
             }
         }
-        return correctAnswersCounter == questions.size() ? 10 : score; //all answers correct - 10. to avoid loosing scores while rounding to an integer
+        //all answers correct - 10. to avoid loosing scores while rounding to an integer
+        return correctAnswersCounter == questions.size() ? 10 : score;
     }
 
 

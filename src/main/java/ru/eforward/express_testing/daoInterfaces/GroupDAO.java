@@ -4,5 +4,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 public interface GroupDAO {
-    List<Integer> getGroupsByTeacherId(int teacherId);
+    /**
+     * Creates a list of id's of groups which are related to this teacher.
+     * @param teacherId - id of a teacher, groups are related to.
+     * @return  List of id's of groups which are related to this teacher.
+     */
+    List<Integer> getGroupIdsByTeacherId(int teacherId);
 }

@@ -15,20 +15,6 @@ public class MultiсhoiceEvaluator implements EvaluatingHandler{
         return enumType == QuestionType.MULTICHOICE;
     }
 
-    //Ленин {~похоронен =родился ~живет} в Симбирске.
-
-    //День Благодарения празднуется во {
-    //    ~второй
-    //    ~третий
-    //    =четвертый
-    //} вторник ноября.
-    //
-    //Японские символы сначала появились в:? {
-    //    ~Индии
-    //    =Китае
-    //    ~Kорее
-    //    ~Египте
-    //}
     @Override
     public int evaluate(String question, String answer) {
         LOGGER.info("evaluating: answer = " + answer);
@@ -44,9 +30,10 @@ public class MultiсhoiceEvaluator implements EvaluatingHandler{
             return 0;
         }
 
-        //todo: implement percentage here ~%50%Галилея#Вы должны быть более определенным.
+        //todo: implement percentage and lined-comments here ~%50%Галилея#Вы должны быть более определенным.
         //lazy quantifier used (for one-lined questions)
-        Pattern p = Pattern.compile("=.+?\\s"); //regex matches to every combination started with '=' and ended with 'space' symbol (including \n, \t, \r\n)
+        //regex matches to every combination started with '=' and ended with 'space' symbol (including \n, \t, \r\n)
+        Pattern p = Pattern.compile("=.+?\\s");
         Matcher m = p.matcher(question);
 
         String correctAnswer = "";

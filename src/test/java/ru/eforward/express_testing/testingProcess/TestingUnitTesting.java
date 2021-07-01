@@ -10,7 +10,7 @@ public class TestingUnitTesting {
 
     @Test
     public void isEveryLineCommentedTesting(){
-        TestingUnit testingUnit = new TestingUnit(-1, -1);
+        TestingUnit testingUnit = new TestingUnit(-1, -1, 2);
         String q = "//abc\n//defg\n//hijk";
         try {
             Method isEveryLineCommented = testingUnit.getClass().getDeclaredMethod("isEveryLineCommented", String.class);

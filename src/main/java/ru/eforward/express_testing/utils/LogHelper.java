@@ -1,19 +1,16 @@
 package ru.eforward.express_testing.utils;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
-
+/**
+ * This is a simple wrapper to PrintStream.out
+ * Used for development purposes only
+ */
 public class LogHelper {
-    private static BufferedReader bis = new BufferedReader(new InputStreamReader(System.in));
+    /**
+     * Prints given string message to console.
+     * @param message - string message to be printed to console.
+     */
     public static void writeMessage(String message) {
         System.out.println(message);
     }
-    public static String readString() throws IOException {
-        return bis.readLine();
-    }
-    public static int readInt() throws IOException {
-        String text = readString();
-        return Integer.parseInt(text.trim());
-    }
+
 }

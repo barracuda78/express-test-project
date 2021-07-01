@@ -8,6 +8,12 @@ import java.io.*;
 public class CloneMaker {
     private static final Logger LOGGER = LoggerFactory.getLogger(CloneMaker.class);
 
+    /**
+     * Serializes a given object to bytes and deserializes it as another clone object.
+     * @param original - the object to be cloned;
+     * @param <T> type of object to be cloned (serialized-deserialized);
+     * @return - deep clone of original object.
+     */
     public static <T>T getClone(T original){
         synchronized (CloneMaker.class){
             T clone = null;

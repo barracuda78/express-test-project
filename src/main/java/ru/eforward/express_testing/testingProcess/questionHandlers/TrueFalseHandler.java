@@ -9,10 +9,6 @@ public class TrueFalseHandler extends Handler implements QuestionHandler{
         return enumValue == QuestionType.TRUE_FALSE;
     }
 
-
-    //Грант похоронен в могиле Гранта.{F}
-    //
-    //Солнце встает на Востоке.{T}
     @Override
     public String process(String q) {
         LogHelper.writeMessage("---class TrueFalseHandler");
@@ -20,10 +16,8 @@ public class TrueFalseHandler extends Handler implements QuestionHandler{
         String questionName = getQuestionName(q); //methods are inherited from superclass Handler
         //2.get question itself:
         String questionItself = getQuestion(q);
-        //3. get all variants of answer:
-        //String allVariants = getAllVariants(q); //- there is no variants in this type of question (true-false only)
 
-        //4. build the html-string here:
+        //3. build the html-string here:
         StringBuilder sb = startBuildingHtml(questionName, questionItself);
 
         sb.append("<input type=\"radio\" name=\"choice3\" value=\"trueCase\">ДА<br>");

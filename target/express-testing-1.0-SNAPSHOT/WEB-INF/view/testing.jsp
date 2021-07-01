@@ -1,3 +1,6 @@
+<%--
+This page is used for go through the test by user.
+--%>
 <%@ page import="ru.eforward.express_testing.model.Student" %>
 <%@ page import="java.nio.file.Paths" %>
 <%@ page import="ru.eforward.express_testing.dao.TestDAOFakeDatabaseImpl" %>
@@ -40,23 +43,6 @@
                         //here we should take testingUnit from list and run it -> html code!
                         return testingUnit.getGroupId() == student.getGroupId();
                     });
-//same as stream above - for testing:
-//            for(TestingUnit t : list){
-//                int unitGroupId = t.getGroupId();
-//                int studentGroupId = student.getGroupId();
-//                LogHelper.writeMessage("---class testing.jsp : for cycle:  unitGroupId = " + unitGroupId + ", studentGroupId = " + studentGroupId);
-//                if(t.getGroupId() == student.getGroupId()){
-//                    testIsAvailable = true;
-//                    break;
-//                }
-//            }
-        }
-
-        //get stopper for testing from student's session attributes if exists, otherwise create new Stopper():
-        Stopper stopper = (Stopper)session.getAttribute("stopper");
-        if(Objects.isNull(stopper)){
-            stopper = new Stopper(1); //todo: do not hardcode time in minutes. get it from teachers web.
-            session.setAttribute("stopper", stopper);
         }
 
         if(testIsAvailable){
@@ -71,6 +57,8 @@
             String htmlString = "Извините. Файл с тестом не был подготовлен.";
             TestingUnit studentsTestingUnit = (TestingUnit)session.getAttribute("studentsTestingUnit");
 
+
+
             if(studentsTestingUnit == null && optionalTestingUnit.isPresent()){
                 TestingUnit testingUnit = optionalTestingUnit.get();
                 //clone this object, and pass it to sessionAttribute after it.
@@ -81,8 +69,19 @@
             }
 
 
+            long millisPassed = 0L; //used for setting up js timer every time;
+            double duration = 0.0d; //used for set up Stopper and also for setting up js timer every time;
             //pull next question from TestingUnit: (iteration algorithm exists in TestingUnit entity)
             if(studentsTestingUnit != null && studentsTestingUnit.hasNextTest()){
+                //get stopper for testing from student's session attributes if exists, otherwise create new Stopper():
+                Stopper stopper = (Stopper)session.getAttribute("stopper");
+                //get duration from testingUnit:
+                duration = studentsTestingUnit.getDuration();
+                if(Objects.isNull(stopper)){
+                    stopper = new Stopper(duration);
+                    session.setAttribute("stopper", stopper);
+                }
+                millisPassed = stopper.getMillisPassed();
                 htmlString = studentsTestingUnit.getNextTest();
             }
 
@@ -153,8 +152,9 @@
             updateClock();
             var timeinterval = setInterval(updateClock, 1000);
         }
-
-        var deadline = new Date(Date.parse(new Date()) + 1 * 1 *  3 * 60 * 1000);
+        var duratio ="<%=duration%>"
+        var studentmillisPassed="<%=millisPassed%>"
+        var deadline = new Date(Date.parse(new Date()) + 1 * 1 * duratio * 60 * 1000 - studentmillisPassed);
         initializeClock("countdown", deadline);
     </script>
     <!--end of countdown code-->

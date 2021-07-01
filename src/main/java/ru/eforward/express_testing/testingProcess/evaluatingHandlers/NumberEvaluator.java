@@ -38,8 +38,7 @@ public class NumberEvaluator implements EvaluatingHandler{
             return 0;
         }
 
-        //get right answer and it's type:
-
+        //get correct answer and it's type:
         List<String> correctAnswers = getCorrectAnswers(question);
         NumberHandler.NumberQuestionType subType = getType(question);
 
@@ -67,7 +66,6 @@ public class NumberEvaluator implements EvaluatingHandler{
                 //appropriate message, move cursor left and give chance answer again:
                 throw new IllegalArgumentException("User entered not a number. Can not be parsed to double", nfe);
             }
-
 
             BigDecimal minBD = new BigDecimal(min);
             minBD = minBD.setScale(5, BigDecimal.ROUND_HALF_UP);
@@ -101,7 +99,6 @@ public class NumberEvaluator implements EvaluatingHandler{
                 LOGGER.info("User entered not a number");
                 throw new IllegalArgumentException("User entered not a number. Can not be parsed to double", nfe);
             }
-
 
             BigDecimal answerBD = new BigDecimal(answ);
             answerBD = answerBD.setScale(5, BigDecimal.ROUND_HALF_UP);

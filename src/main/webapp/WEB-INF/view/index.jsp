@@ -1,3 +1,6 @@
+<%--
+This page is not used yet - users go to login.jsp directly.
+--%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
@@ -8,7 +11,6 @@
 <body>
 
 <h1>Index</h1><br />
-<h2>Все пользователи</h2><br />
 
 <c:forEach var="user" items="${requestScope.users}">
     <ul>

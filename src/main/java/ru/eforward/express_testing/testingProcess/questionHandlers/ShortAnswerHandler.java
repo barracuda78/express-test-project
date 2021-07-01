@@ -12,15 +12,11 @@ public class ShortAnswerHandler extends Handler implements QuestionHandler{
 
     /**
      * A String, passed as a parameter to this method, looks like:
-     *
      *      Кто похоронен в могиле Гранта?{=никто =никого}
-     *
      * or like this:
-     *
      *      два плюс два равно {=четыре =4}
-     *
      * if only one answer is shown - no '=' sign required.
-     * */
+     */
     @Override
     public String process(String q) {
         LogHelper.writeMessage("--class ShortAnswerHandler");
@@ -30,8 +26,7 @@ public class ShortAnswerHandler extends Handler implements QuestionHandler{
         String questionItself = getQuestion(q);
         //3. get all variants of answer:
         String allVariants = getAllVariants(q);
-
-        //6. build the html-string here:
+        //4. build the html-string here:
         StringBuilder sb = startBuildingHtml(questionName, questionItself);
 
             sb.append("<input type=\"text\" required placeholder=\"напишите ваш ответ\" name=\"choice\"><br>");

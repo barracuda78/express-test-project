@@ -1,15 +1,10 @@
 package ru.eforward.express_testing.model;
 
-import ru.eforward.express_testing.model.school.*;
-
 import java.util.List;
 
 public class UserBuilder {
     private User user;
     private User.ROLE role;
-//    private Student student;
-//    private Admin admin;
-//    private Teacher teacher;
 
     public UserBuilder(User.ROLE role){
         this.role = role;
@@ -32,7 +27,6 @@ public class UserBuilder {
         if(user != null) {
             user.setRole(role);
         }
-
     }
 
     public UserBuilder addId(int id){
@@ -58,7 +52,6 @@ public class UserBuilder {
     public UserBuilder addLogin(String login){
         user.setLogin(login);
         return this;
-
     }
 
     public UserBuilder addEmail(String email){
@@ -86,28 +79,25 @@ public class UserBuilder {
         return this;
     }
 
-    //методы только для студента:
-
+    //used for STUDENT only:
     public UserBuilder addTestResults(List<Integer> testResults){
         ((Student)user).setTestResults(testResults);
         return this;
     }
 
+    //used for STUDENT only:
     public UserBuilder addGroupIdToStudent(int groupId) {
         ((Student)user).setGroupId(groupId);
         return this;
     }
 
-
-    //------------------------------
-
-    //методы только для преподавателя:
+    //used for TEACHER only:
     public UserBuilder addGroupsToTeacher(List<Integer> groups){
         ((Teacher)user).setGroups(groups);
         return this;
     }
 
-    //терминальный метод:
+    //terminal method of a builder:
     public <T extends User>T buildUser(){
         return (T) user;
     }
